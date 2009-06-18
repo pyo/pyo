@@ -9,7 +9,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090618184732) do
+ActiveRecord::Schema.define(:version => 20090618194844) do
+
+  create_table "profiles", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "twitter"
+    t.string   "youtube"
+    t.string   "flickr"
+    t.text     "bio"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "profiles", ["address"], :name => "index_profiles_on_address"
+  add_index "profiles", ["city"], :name => "index_profiles_on_city"
+  add_index "profiles", ["first_name"], :name => "index_profiles_on_first_name"
+  add_index "profiles", ["last_name"], :name => "index_profiles_on_last_name"
+  add_index "profiles", ["state"], :name => "index_profiles_on_state"
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
+  add_index "profiles", ["username"], :name => "index_profiles_on_username"
+  add_index "profiles", ["zip"], :name => "index_profiles_on_zip"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

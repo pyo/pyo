@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :profiles
+
   map.resources :users, :has_one => [:password, :confirmation]
   map.resource :session
   map.resources :passwords
