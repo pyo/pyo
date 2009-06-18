@@ -17,6 +17,7 @@ Rails::Initializer.run do |config|
   config.gem "thoughtbot-clearance",    :lib => 'clearance', :source => 'http://gems.github.com'
   config.gem 'beanstalk-client'
   config.gem 'right_aws'
+  config.gem 'capistrano'
 
   # Activate observers that should always be running
   #config.active_record.observers = :covalence_notification_observer
