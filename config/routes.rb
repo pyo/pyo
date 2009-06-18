@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :users, :has_one => [:password, :confirmation]
+  map.resource :session
+  map.resources :passwords
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -38,6 +41,9 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
+  
+  map.root :controller => 'home'
+  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
