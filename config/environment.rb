@@ -12,7 +12,7 @@ Rails::Initializer.run do |config|
   config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
   config.gem 'thoughtbot-paperclip',    :lib => 'paperclip', :source => 'http://gems.github.com'
   config.gem 'thoughtbot-shoulda',      :lib => 'shoulda', :source => 'http://gems.github.com'
-  config.gem 'mmangino-facebooker',     :lib => 'facebooker', :source => 'http://gems.github.com'
+  #config.gem 'mmangino-facebooker',     :lib => 'facebooker', :source => 'http://gems.github.com'
   config.gem 'giraffesoft-is_taggable', :lib => "is_taggable", :source => "http://gems.github.com"
   config.gem "thoughtbot-clearance",    :lib => 'clearance', :source => 'http://gems.github.com'
   config.gem 'beanstalk-client'

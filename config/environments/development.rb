@@ -22,3 +22,6 @@ config.after_initialize do
   # This value should change every time you make a release of your app.
   AsyncObserver::Queue.app_version = "PYO"
 end
+
+# clearance
+HOST = "localhost"

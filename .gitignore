@@ -1,5 +1,6 @@
 config/database.yml
 log/*.log
+tmp/*
 public/system/*
 public/carpet_tiles
 public/installation_images
