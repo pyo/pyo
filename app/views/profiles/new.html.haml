@@ -1,0 +1,7 @@
+%h1 New Profile
+
+- form_for(@profile) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit "Create"
+
+%p= link_to 'Back', profiles_path

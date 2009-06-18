@@ -1,0 +1,34 @@
+%h1 Listing Profiles
+
+%table
+  %tr
+    %th First name
+    %th Last name
+    %th Username
+    %th Address
+    %th City
+    %th State
+    %th Zip
+    %th Twitter
+    %th Youtube
+    %th Flickr
+    %th Bio
+
+  - for profile in @profiles
+    %tr
+      %td= h profile.first_name
+      %td= h profile.last_name
+      %td= h profile.username
+      %td= h profile.address
+      %td= h profile.city
+      %td= h profile.state
+      %td= h profile.zip
+      %td= h profile.twitter
+      %td= h profile.youtube
+      %td= h profile.flickr
+      %td= h profile.bio
+      %td= link_to 'Show', profile
+      %td= link_to 'Edit', edit_profile_path(profile)
+      %td= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New Profile', new_profile_path

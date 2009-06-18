@@ -1,0 +1,28 @@
+%dl
+  %dt First name
+  %dd= h @profile.first_name
+  %dt Last name
+  %dd= h @profile.last_name
+  %dt Username
+  %dd= h @profile.username
+  %dt Address
+  %dd= h @profile.address
+  %dt City
+  %dd= h @profile.city
+  %dt State
+  %dd= h @profile.state
+  %dt Zip
+  %dd= h @profile.zip
+  %dt Twitter
+  %dd= h @profile.twitter
+  %dt Youtube
+  %dd= h @profile.youtube
+  %dt Flickr
+  %dd= h @profile.flickr
+  %dt Bio
+  %dd= h @profile.bio
+
+%p
+  = link_to 'Edit', edit_profile_path(@profile)
+  |
+  = link_to 'Back', profiles_path
