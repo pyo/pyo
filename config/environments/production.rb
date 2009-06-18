@@ -26,3 +26,10 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+config.after_initialize do
+  AsyncObserver::Queue.queue = Beanstalk::Pool.new(%w(localhost:11300))
+
+  # This value should change every time you make a release of your app.
+  AsyncObserver::Queue.app_version = "PYO-PRODUCTION"
+end
