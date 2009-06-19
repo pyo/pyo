@@ -1,0 +1,9 @@
+%h1 Editing Group
+
+- form_for(@group) do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  %p= form.submit 'Update'
+
+%p
+  = link_to 'Show', @group
+  = link_to 'Back', groups_path
