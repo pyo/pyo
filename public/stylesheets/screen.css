@@ -1,0 +1,91 @@
+body {
+  font-family: sans-serif;
+  font-size: 0.9em; }
+
+h1, h2, h3, form, body, p, ul {
+  padding: 0;
+  margin: 0; }
+
+.content, .header {
+  padding: 10px;
+  margin: 0 10px;
+  margin-bottom: 10px;
+  background-color: #EEE;
+  float: left;
+  width: 920px; }
+
+.header {
+  background-color: #FFF; }
+
+.container {
+  width: 960px;
+  margin: 0 auto; }
+
+.footer {
+  float: left;
+  width: 920px;
+  color: #BBB; }
+  .footer ul li {
+    border-left: 1px solid #BBB; }
+  .footer a {
+    text-decoration: none;
+    color: #BBB; }
+
+.footer-left {
+  float: left; }
+
+.footer-right {
+  float: right; }
+
+.menu {
+  list-style-type: none;
+  float: left; }
+  .menu li {
+    display: inline;
+    margin-right: 20px; }
+    .menu li a {
+      color: #000;
+      font-weight: bold;
+      text-decoration: none; }
+
+div.search {
+  float: right; }
+
+.logo {
+  float: left; }
+
+.user_bar {
+  float: right;
+  color: #DDD; }
+  .user_bar li {
+    border-left: 1px solid #DDD; }
+  .user_bar a {
+    text-transform: uppercase;
+    color: #DDD; }
+
+.one-third {
+  float: left;
+  width: 33%; }
+
+h1 {
+  text-transform: uppercase; }
+
+.join_form {
+  float: right; }
+
+.headline {
+  float: left; }
+
+.join_now {
+  padding: 10px 15px;
+  border: 1px solid #000;
+  text-transform: uppercase; }
+
+ul.separated {
+  list-style-type: none; }
+  ul.separated li {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 6px; }
+  ul.separated li.first {
+    border-left: none; }

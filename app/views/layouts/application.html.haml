@@ -7,13 +7,28 @@
     = javascript_include_tag 'application', 'jquery-1.3.2.min'
   %body
     #main.container
+      .header
+        %h2.logo Logo
+
+        .user_bar
+          %ul.separated
+            %li.first= link_to 'Login', '#'
+            %li= link_to 'Signup', '#'
+            %li= link_to 'Forum', '#'
       - flash.each do |key, value|
         %div{:class => key}
           = h value
       = yield
-      
-    .footer.container
-      .footer-left
-        spot
-      .footer-right
-        = link_to 'Contact Us', '#' #:controller => '/pages', :action => 'contact'
+    
+    .container
+      .footer.content
+        .footer-left
+          2009 PYO Networks. All Rights Reserved.
+        .footer-right
+          %ul.separated
+            %li.first= link_to 'FAQ', '#'
+            %li= link_to 'About Us', '#'
+            %li= link_to 'Contact Us', '#'
+            %li= link_to 'Terms of Use', '#'
+            %li= link_to 'Privacy Policy', '#'
+            %li= link_to 'PYO Blog', '#'

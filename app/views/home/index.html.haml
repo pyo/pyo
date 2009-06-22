@@ -1,1 +1,40 @@
-Foo
+.content
+  %ul.menu
+    %li= link_to 'Members', '#'
+    %li= link_to 'Music', '#'
+    %li= link_to 'Videos', '#'
+
+  .search
+    %form
+      %input{:type => 'text'}
+      %input{:type => 'submit', :value => 'Search'}
+
+.content
+  .headline
+    %h1 Headline
+    %p Sub-headline lorem ipsum dolor sit amet.
+    = link_to 'Learn More', '#'
+
+    hero image/graphic (if necessary)
+
+  .join_form
+    %button.join_now Join now for free
+    %p 
+      Already a member? 
+      = link_to 'Login', '#'
+
+.content
+  .one-third
+    %h3 What is it?
+    %p lorem ipsum dolor sit amet, consectetur adipiscing elit. metus eget.
+  
+  .one-third
+    %h3 Who's it for?
+    %p lorem ipsum dolor sit amet, consectetur adipiscing elit. metus eget.
+
+  .one-third
+    %h3 Why use it?
+    %p lorem ipsum dolor sit amet, consectetur adipiscing elit. metus eget.
+
+.content
+  Featured Talent
