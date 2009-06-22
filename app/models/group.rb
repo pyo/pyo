@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  include Covalence::Groupable
+  include Covalence::Group
   #covalence
   has_members       :users
   has_roles :ADMIN, :MEMBER

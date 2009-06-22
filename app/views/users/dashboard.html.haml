@@ -1,0 +1,26 @@
+.main
+  %h2 Recent Friend Activity
+  %ul.buttons
+    %li= link_to 'All', '#'
+    %li= link_to 'Media', '#'
+    %li= link_to 'Comments', '#'
+    %li= link_to 'Follows', '#'
+  .activity
+    No Activity
+
+.details
+  = current_user.name
+  %p
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, metus egetipsum dolor sit
+  %h3 Following
+  %p
+    Not following Anyone
+  %h3 Alerts
+  %p
+    No Alerts
+  %button
+    Add Media
+
+.details
+  .advertisement
+    Advertisement

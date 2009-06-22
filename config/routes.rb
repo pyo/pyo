@@ -9,6 +9,8 @@ ActionController::Routing::Routes.draw do |map|
  
   map.root :controller => 'home'
   
+  map.dashboard '/dashboard', :controller => 'users', :action => 'dashboard'
+  
   #sessions
   map.login     '/login',     :controller => 'sessions',  :action => 'new'
   map.logout    '/logout',    :controller => 'sessions',  :action => 'destroy'
