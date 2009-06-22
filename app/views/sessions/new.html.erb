@@ -1,25 +1,3 @@
-<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
-<script type="text/javascript">
-//<![CDATA[
-
-$(function(){
-  FB_RequireFeatures(["XFBML"], function() {
-    FB.Facebook.init('7e4b2330ce64d1f2ed7714d6ba74e415','/xd_receiver.html', {});
-  });
-});
-
-//]]>
-</script>
-<%# init_fb_connect "XFBML"%>
-
-
-<% if facebook_session %>
-  <h2>You are logged in as <%= facebook_session.user.name %></h2>
-<% else %>
-  <%= fb_login_button%>
-<% end %>
-
-
 <h2>Sign in</h2>
 
 <% form_for :session, :url => session_path do |form| %>
