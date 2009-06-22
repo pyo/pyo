@@ -11,10 +11,7 @@
         %h2.logo Logo
 
         .user_bar
-          %ul.separated
-            %li.first= link_to 'Login', '#'
-            %li= link_to 'Signup', '#'
-            %li= link_to 'Forum', '#'
+          = render :partial => 'users/user_bar'
       - flash.each do |key, value|
         %div{:class => key}
           = h value
