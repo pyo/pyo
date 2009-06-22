@@ -1,0 +1,19 @@
+!!! Strict
+%html
+  %head
+    %title= "Put Yourself On" + (@title ||  '')
+    %link{:rel => 'icon', :type => 'image/gif', :href=>'favicon.gif'}
+    = stylesheet_link_tag 'screen', :media => 'screen'
+    = javascript_include_tag 'application', 'jquery-1.3.2.min'
+  %body
+    #main.container
+      - flash.each do |key, value|
+        %div{:class => key}
+          = h value
+      = yield
+      
+    .footer.container
+      .footer-left
+        spot
+      .footer-right
+        = link_to 'Contact Us', '#' #:controller => '/pages', :action => 'contact'
