@@ -1,6 +1,7 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
   before_filter :load_user, :only => [:show, :follow]
+  helper :notifications
   def index
     @users = User.all
   end

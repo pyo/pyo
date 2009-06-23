@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :followers, :as => 'child', :class_name => 'Following'
   has_many :followings, :as => 'parent', :class_name => 'Following'
   
+  has_many :alerts, :as => 'consumer', :conditions => {:state => 'new'}
+  
   validates_presence_of :name
   attr_accessible :email, :password, :password_confirmation, :name
   #covalence

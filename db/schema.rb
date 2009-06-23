@@ -9,7 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090623150739) do
+ActiveRecord::Schema.define(:version => 20090623153610) do
+
+  create_table "alerts", :force => true do |t|
+    t.string   "producer_type"
+    t.integer  "producer_id"
+    t.string   "consumer_type"
+    t.integer  "consumer_id"
+    t.string   "state",         :default => "new"
+    t.string   "flavor"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "followings", :force => true do |t|
     t.string   "parent_type"

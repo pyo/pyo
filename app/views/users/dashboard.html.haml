@@ -19,7 +19,11 @@
       Not following Anyone
     %h3 Alerts
     %p
-      No Alerts
+      - if current_user.alerts.length > 0
+        - current_user.alerts.each do |alert|
+          = display_notification(alert)
+      - else
+        No Alerts
     %button
       Add Media
   .inner_content

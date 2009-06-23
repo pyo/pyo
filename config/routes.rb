@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :alerts
+
   map.resources :followings
 
   map.resources :groups
