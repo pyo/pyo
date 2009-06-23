@@ -1,5 +1,1 @@
-<<<<<<< HEAD:tmp/pids/thin.pid
-10305
-=======
-11473
->>>>>>> 2698041... Refs #19 FacebookConnect now working with basic integration. rm Facebooker gem and replace with the plugin which seems to work better:tmp/pids/thin.pid
+93244
