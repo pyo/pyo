@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090623174629) do
+ActiveRecord::Schema.define(:version => 20090623182417) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -95,6 +95,9 @@ ActiveRecord::Schema.define(:version => 20090623174629) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
   end
 
   add_index "profiles", ["address"], :name => "index_profiles_on_address"

@@ -1,0 +1,45 @@
+- form_for @user, :html => {:multipart => true} do |form|
+  = form.error_messages
+  .text_field
+    = form.label :name, 'Username'
+    = form.text_field :name
+
+  - form.fields_for :profile do |p|
+    .text_field
+      = p.label :avatar
+      = p.file_field :avatar
+      
+    .text_field
+      = p.label :first_name
+      = p.text_field :first_name
+      
+    .text_field
+      = p.label :last_name
+      = p.text_field :last_name
+  
+    .text_field
+      = p.label :city
+      = p.text_field :city
+      
+    .text_field
+      = p.label :state
+      = p.text_field :state
+    
+    .text_field
+      = p.label :zip
+      = p.text_field :zip
+
+  .text_field
+    = form.label :email
+    = form.text_field :email
+  
+  - if @user.new_record?
+    .password_field
+      = form.label :password
+      = form.password_field :password
+
+    .password_field
+      = form.label :password_confirmation, "Confirm password"
+      = form.password_field :password_confirmation
+  
+  = form.submit 'Update', :disable_with => 'Please wait...'

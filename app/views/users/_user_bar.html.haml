@@ -5,6 +5,6 @@
   - else
     %li.first= link_to 'Logout', logout_path
     %li= link_to 'My Dashboard', dashboard_path
-    %li= link_to 'Settings', '#'
+    %li= link_to 'Settings', edit_user_path(current_user)
   %li= link_to 'Forum', '#'
   
