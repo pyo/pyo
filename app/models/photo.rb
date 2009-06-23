@@ -1,4 +1,6 @@
 class Photo < ActiveRecord::Base
+  is_taggable :tags
+  
   # assocs
   belongs_to :user
   

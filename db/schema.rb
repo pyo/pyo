@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090623140455) do
+ActiveRecord::Schema.define(:version => 20090623145732) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -68,6 +68,22 @@ ActiveRecord::Schema.define(:version => 20090623140455) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "taggings", :force => true do |t|
+    t.integer "tag_id"
+    t.string  "taggable_type", :default => ""
+    t.integer "taggable_id"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
+
+  create_table "tags", :force => true do |t|
+    t.string "name", :default => ""
+    t.string "kind", :default => ""
+  end
+
+  add_index "tags", ["name", "kind"], :name => "index_tags_on_name_and_kind"
 
   create_table "users", :force => true do |t|
     t.string   "email"

@@ -1,5 +1,7 @@
 .main
   .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
     %h2 Recent Friend Activity
     %ul.buttons
       %li= link_to 'All', '#'
@@ -10,17 +12,6 @@
       No Activity
 .details
   .inner_content
-    = current_user.name
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, metus egetipsum dolor sit
-    %h3 Following
-    %p
-      Not following Anyone
-    %h3 Alerts
-    %p
-      No Alerts
-    %button
-      Add Media
+    = render :partial => "users/info"
   .inner_content
-    .advertisement
-      Advertisement
+    = render :partial => "shared/advertisment"
