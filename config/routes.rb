@@ -5,7 +5,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :profiles
 
-  map.resources :users, :has_one => [:password, :confirmation]
+  map.resources :users, 
+                :has_one => [:password, :confirmation], 
+                :has_many => [:photos]
+
   map.resource :session
   map.resources :passwords
  

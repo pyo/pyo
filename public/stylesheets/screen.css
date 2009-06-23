@@ -48,6 +48,9 @@ h1, h2, h3, form, body, p, ul {
       font-weight: bold;
       text-decoration: none; }
 
+.dashboard_nav {
+  background: #eee; }
+
 div.search {
   float: right; }
 
