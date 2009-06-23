@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090622201919) do
+ActiveRecord::Schema.define(:version => 20090623150739) do
+
+  create_table "followings", :force => true do |t|
+    t.string   "parent_type"
+    t.integer  "parent_id"
+    t.string   "child_type"
+    t.integer  "child_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "groups", :force => true do |t|
     t.string   "name"

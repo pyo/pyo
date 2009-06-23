@@ -1,9 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :followings
+
   map.resources :groups
 
   map.resources :profiles
 
-  map.resources :users, :has_one => [:password, :confirmation]
+  map.resources :users, :has_one => [:password, :confirmation], :member => {:follow => :post}
   map.resource :session
   map.resources :passwords
  
