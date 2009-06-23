@@ -8,7 +8,12 @@ class PhotosController < ApplicationController
     @photo = Photo.new
   end
   
-  def create      
+  def show
+    
+  end
+  
+  def create    
+    @photo = Photo.new(params[:photo])  
     if @photo.save
       flash[:notice] = 'Photo was successfully created.'
       redirect_to user_photo_path(@user,@photo)
@@ -21,7 +26,7 @@ class PhotosController < ApplicationController
 
   private
     def find_photo
-      @photo = Photos.find(params[:id]) if params[:id]
+      @photo = Photo.find(params[:id]) if params[:id]
     end
     
     def find_user
