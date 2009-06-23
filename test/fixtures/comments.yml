@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  producer_type: MyString
+  producer_id: 1
+  consumer_type: MyString
+  consumer_id: 1
+  state: MyString
+  message: MyString
+
+two:
+  producer_type: MyString
+  producer_id: 1
+  consumer_type: MyString
+  consumer_id: 1
+  state: MyString
+  message: MyString

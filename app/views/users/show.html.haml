@@ -4,6 +4,18 @@
   
   .inner_content
     %h2 User's Audio
+    
+  .inner_content
+    %h2 User's Photo
+    
+  .inner_content
+    %h2 Comments
+    - @user.comments.each do |comment|
+      = comment.message
+    %h3 Leave a Comment
+    - form_for([@user, Comment.new]) do |f|
+      = f.text_area :message
+      = f.submit 'Submit'
 
 .details
   .inner_content

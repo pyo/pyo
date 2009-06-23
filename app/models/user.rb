@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :followers, :as => 'child', :class_name => 'Following'
   has_many :followings, :as => 'parent', :class_name => 'Following'
   has_many :alerts, :as => 'consumer', :conditions => {:state => 'new'}
+  has_many :comments, :as => 'consumer'
+  has_many :activities, :as => 'consumer'
   
   # validations
   validates_presence_of :name
@@ -23,5 +25,9 @@ class User < ActiveRecord::Base
   
   def following?(user)
     followings.exists?(["child_type = ? and child_id = ?", user.class.to_s, user.id])
+  end
+  
+  def receive_comment_notification(notification)
+    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'comment'})
   end
 end

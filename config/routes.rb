@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :activities
+
+  map.resources :comments
+
   map.resources :alerts
   map.resources :photos
   map.resources :followings
@@ -10,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, 
                 :has_one => [:password, :confirmation], 
                 :member => {:follow => :post},
-                :has_many => [:photos]
+                :has_many => [:photos, :comments]
                 
   map.resource :session
   map.resources :passwords

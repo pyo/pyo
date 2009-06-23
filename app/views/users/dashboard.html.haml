@@ -9,7 +9,11 @@
       %li= link_to 'Comments', '#'
       %li= link_to 'Follows', '#'
     .activity
-      No Activity
+      - if current_user.activities.length > 0
+        - current_user.activities.each do |activity|
+          = display_notification(activity)
+      - else
+        No Activity
 .details
   .inner_content
     = render :partial => "users/info"
