@@ -1,15 +1,19 @@
 class User < ActiveRecord::Base
   include Covalence::Member
   include Clearance::App::Models::User
-  has_one :profile, :dependent => :destroy
-  
+  attr_accessible :email, :password, :password_confirmation, :name
+
+  #assocs
+  has_one  :profile, :dependent => :destroy
+  has_many :photos
   has_many :followers, :as => 'child', :class_name => 'Following'
   has_many :followings, :as => 'parent', :class_name => 'Following'
-  
   has_many :alerts, :as => 'consumer', :conditions => {:state => 'new'}
   
+  # validations
   validates_presence_of :name
-  attr_accessible :email, :password, :password_confirmation, :name
+  validates_uniqueness_of :name
+  
   #covalence
   is_member_of :groups
   

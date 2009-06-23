@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20090623153610) do
 
   add_index "groups", ["name"], :name => "index_groups_on_name"
 
+  create_table "photos", :force => true do |t|
+    t.string   "title"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "profiles", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -79,6 +89,22 @@ ActiveRecord::Schema.define(:version => 20090623153610) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "taggings", :force => true do |t|
+    t.integer "tag_id"
+    t.string  "taggable_type", :default => ""
+    t.integer "taggable_id"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
+
+  create_table "tags", :force => true do |t|
+    t.string "name", :default => ""
+    t.string "kind", :default => ""
+  end
+
+  add_index "tags", ["name", "kind"], :name => "index_tags_on_name_and_kind"
 
   create_table "users", :force => true do |t|
     t.string   "email"

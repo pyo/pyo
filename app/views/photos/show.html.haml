@@ -1,0 +1,18 @@
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    .photo_view
+      %h2 
+        = h @photo.title
+      = image_tag(@photo.image.url(:medium))
+      .photo_tags
+        %h3 Tags:
+        %p
+          = h @photo.tags.collect(&:name)
+    
+.details
+  .inner_content
+    = render :partial => "users/info"
+  .inner_content
+    = render :partial => "shared/advertisment"

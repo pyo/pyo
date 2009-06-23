@@ -1,14 +1,8 @@
 config/database.yml
+db/schema.rb
 log/*.log
 tmp/*
 public/system/*
-public/carpet_tiles
-public/installation_images
-metal/public/public/product_names.json
-metal/public/public/product_names.xml"
-metal/public/public/product_names.fxml
-public/install/interfaceFlor.air
 *.DS_Store
 *.swo
 *.swp
-public/feeds

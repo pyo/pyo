@@ -1,5 +1,7 @@
 .main
   .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
     %h2 Recent Friend Activity
     %ul.buttons
       %li= link_to 'All', '#'
@@ -8,15 +10,9 @@
       %li= link_to 'Follows', '#'
     .activity
       No Activity
-
 .details
   .inner_content
-    = current_user.name
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, metus egetipsum dolor sit
-    %h3 Following
-    %p
-      Not following Anyone
+    = render :partial => "users/info"
     %h3 Alerts
     %p
       - if current_user.alerts.length > 0
@@ -24,8 +20,5 @@
           = display_notification(alert)
       - else
         No Alerts
-    %button
-      Add Media
   .inner_content
-    .advertisement
-      Advertisement
+    = render :partial => "shared/advertisment"
