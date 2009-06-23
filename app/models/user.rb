@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   
   #covalence
   is_member_of :groups
+  
+  def to_param
+    name
+  end
 end
