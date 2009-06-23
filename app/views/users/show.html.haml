@@ -1,17 +1,13 @@
 .main
   .inner_content
-    %h2 Recent Friend Activity
-    %ul.buttons
-      %li= link_to 'All', '#'
-      %li= link_to 'Media', '#'
-      %li= link_to 'Comments', '#'
-      %li= link_to 'Follows', '#'
-    .activity
-      No Activity
+    %h2 User's Videos
+  
+  .inner_content
+    %h2 User's Audio
 
 .details
   .inner_content
-    = current_user.name
+    = @user.name
     %p
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, metus egetipsum dolor sit
     %h3 Following

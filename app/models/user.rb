@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :name
   #covalence
   is_member_of :groups
+  
+  def to_param
+    name
+  end
 end
