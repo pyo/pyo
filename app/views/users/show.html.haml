@@ -7,17 +7,28 @@
 
 .details
   .inner_content
+    - if current_user and current_user != @user
+      - unless current_user.following?(@user)
+        - form_tag follow_user_path(@user) do
+          = submit_tag 'Follow'
+      - else
+        Following
+      %button Favorite
+      %button Message
+    
     = @user.name
+    
     %p
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, metus egetipsum dolor sit
-    %h3 Following
-    %p
-      Not following Anyone
-    %h3 Alerts
-    %p
-      No Alerts
-    %button
-      Add Media
+    
+    - if @user.followings.length > 0
+      %p=@user.followings.length.to_s + "Following"
+      %p
+        - @user.followings.each do |following|
+          = link_to following.child.name, following.child
+      
+        
+
   .inner_content
     .advertisement
       Advertisement
