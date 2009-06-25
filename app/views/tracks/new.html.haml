@@ -1,0 +1,25 @@
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    
+    %h2 Upload a Track
+    
+    - form_for([@user, @track], :html => {:multipart => true}) do |form|
+      %dl
+        %dt= form.label :name
+        %dd= form.text_field :name
+        %dt= form.label :description
+        %dd= form.text_area :description
+        %dt= form.label :mp3
+        %dd= form.file_field :mp3
+        %dt= form.label :tags
+        %dd= form.text_field :tag_list    
+        %small Comma separate tags.    
+      %p= form.submit 'Upload'
+    
+.details
+  .inner_content
+    = render :partial => "users/info"
+  .inner_content
+    = render :partial => "shared/advertisment"

@@ -1,0 +1,28 @@
+= javascript_include_tag "/audio-player/audio-player.js"
+= javascript_include_tag "/javascripts/pyo_media.js"
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    .photo_view
+      %h2 
+        = h @track.name
+      %br
+      %p 
+        = h @track.description
+      %br  
+      %p
+      %script{:type=>"text/javascript"}
+        = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{@track.mp3.url}\"});"  
+      #audioplayer_1
+      .photo_tags
+        %br
+        %h3 Tags:
+        %p
+          = h @track.tags.collect(&:name).join(" ")
+    
+.details
+  .inner_content
+    = render :partial => "users/info"
+  .inner_content
+    = render :partial => "shared/advertisment"

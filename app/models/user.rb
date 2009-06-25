@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   # assocs
   has_one  :profile, :dependent => :destroy
   has_many :photos
+  has_many :tracks
   has_many :followers, :as => 'child', :class_name => 'Following'
   has_many :followings, :as => 'parent', :class_name => 'Following'
   has_many :alerts, :as => 'consumer', :conditions => {:state => 'new'}
