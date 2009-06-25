@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   has_attached_file :image,
                     :styles => { 
-                      :thumb => "x150>", 
+                      :thumb => "150x150#", 
                       :medium => "600>" 
                     },
                     :whiny_thumbnails => true,
@@ -15,9 +15,12 @@ class Photo < ActiveRecord::Base
   
   # assocs
   belongs_to :user
+  has_many :comments, :as => 'consumer'
   
   # validations
   validates_presence_of :title
   validates_presence_of :image_file_name
+  
+  
   
 end

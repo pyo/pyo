@@ -13,13 +13,17 @@
       %br  
       %p
       %script{:type=>"text/javascript"}
-        = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{@track.mp3.url}\"});"  
+        = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{@track.mp3.url}\", titles: \"#{h @track.name}\", artists: \"#{@track.user.name}\",});"  
       #audioplayer_1
       .photo_tags
         %br
         %h3 Tags:
         %p
           = h @track.tags.collect(&:name).join(" ")
+  .inner_content
+    %h2 Comments
+    = render :partial => @track.comments
+    = render :partial => "comments/form", :locals => {:commentable => @track}
     
 .details
   .inner_content

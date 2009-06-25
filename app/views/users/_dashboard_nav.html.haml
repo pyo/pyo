@@ -1,4 +1,7 @@
 %ul.menu
   %li= link_to "Upload Photos", new_user_photo_path(current_user)
-  %li= link_to "Upload Music", new_user_track_path(current_user)
+  %li= link_to "Upload Tracks", new_user_track_path(current_user)
+  %li= link_to "My Photos", user_photos_path(current_user)
+  %li= link_to "My Tracks", user_tracks_path(current_user)
+  %li= link_to "My Videos", "#"
   %li= link_to "Edit Profile", edit_user_path(current_user)

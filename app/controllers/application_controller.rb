@@ -7,5 +7,31 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  # filter_parameter_logging :password'
+  
+  
+  # Helper methods for polymorphism in controllers
+  class << self
+    attr_reader :parents
+    def parent_resources(*parents)
+      @parents = parents
+    end
+  end
+
+  def parent_id(parent)
+    request.path_parameters["#{ parent }_id"]
+  end
+
+  def parent_type
+    Growler.growl(@parent.inspect)
+    self.class.parents.detect { |parent| parent_id(parent) }
+  end
+
+  def parent_class
+    parent_type && parent_type.to_s.classify.constantize
+  end
+
+  def parent_object
+    parent_class && parent_class.find_by_id(parent_id(parent_type))
+  end
 end

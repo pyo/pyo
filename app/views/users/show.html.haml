@@ -11,10 +11,7 @@
   .inner_content
     %h2 Comments
     = render :partial => @user.comments
-    %h3 Leave a Comment
-    - form_for([@user, Comment.new]) do |f|
-      = f.text_area :message
-      = f.submit 'Submit'
+    = render :partial => "comments/form", :locals => {:commentable => @user}
 
 .details
   .inner_content

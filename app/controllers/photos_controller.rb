@@ -3,6 +3,9 @@ class PhotosController < ApplicationController
   before_filter :find_user
   before_filter :check_user, :only => [:new, :create]
   
+  def index
+    @photos = @user.photos.all
+  end
 
   def new
     @photo = Photo.new
@@ -13,7 +16,7 @@ class PhotosController < ApplicationController
   end
   
   def create    
-    @photo = Photo.new(params[:photo])  
+    @photo = @user.photos.new(params[:photo])  
     if @photo.save
       flash[:notice] = 'Photo was successfully created.'
       redirect_to user_photo_path(@user,@photo)

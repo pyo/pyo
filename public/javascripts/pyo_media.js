@@ -1,3 +1,4 @@
 AudioPlayer.setup("/audio-player/player.swf", {  
-    width: 290  
+    width: 290,
+	transparentpagebg: "yes"
 });

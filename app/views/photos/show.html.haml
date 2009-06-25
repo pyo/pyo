@@ -10,7 +10,10 @@
         %h3 Tags:
         %p
           = h @photo.tags.collect(&:name)
-    
+  .inner_content
+    %h2 Comments
+    = render :partial => @photo.comments
+    = render :partial => "comments/form", :locals => {:commentable => @photo}
 .details
   .inner_content
     = render :partial => "users/info"

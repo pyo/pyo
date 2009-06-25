@@ -9,7 +9,8 @@ class Track < ActiveRecord::Base
                     :path => ":attachment/:id/:style.:extension",
                     :bucket => 'pyo-tracks'
   #assocs 
-  belongs_to :user
+  belongs_to  :user
+  has_many    :comments, :as => 'consumer'
   
   # validations
   validates_presence_of             :name
