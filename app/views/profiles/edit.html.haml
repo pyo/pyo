@@ -1,9 +1,16 @@
-%h1 Editing Profile
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
 
-- form_for(@profile) do |form|
-  = render :partial => 'form', :locals => {:form => form}
-  %p= form.submit 'Update'
+    %h2 Editing Profile
 
-%p
-  = link_to 'Show', @profile
-  = link_to 'Back', profiles_path
+    - form_for(@profile) do |form|
+      = render :partial => 'form', :locals => {:form => form}
+      %p= form.submit 'Update'
+
+.details
+  .inner_content
+    = render :partial => "users/info"
+  .inner_content
+    = render :partial => "shared/advertisment"
