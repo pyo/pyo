@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   include Clearance::App::Controllers::UsersController
   before_filter :load_user, :only => [:show, :edit, :update, :follow]
   helper :notifications
+  
   def index
     @users = User.all
   end
+  
   def dashboard
   end
   
@@ -32,6 +34,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    @photos = @user.photos.recent(:limit => 6)
+    @tracks = @user.tracks.recent(:limit => 10)
   end
   
   def update

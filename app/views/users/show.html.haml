@@ -2,11 +2,26 @@
   .inner_content
     %h2 User's Videos
   
-  .inner_content
-    %h2 User's Audio
-    
-  .inner_content
-    %h2 User's Photo
+  - unless @photos.empty?
+    .inner_content
+      %h2 
+        = "Recent Audio"
+      = link_to("VIEW ALL", user_tracks_path(@user), :style=>"float:right; margin-top:-20px")
+      - for track in @tracks
+        .profile_track_info
+          %strong
+            = link_to h(track.name), user_track_path(@user,track)
+          %p
+            = h truncate(track.description, 20)
+  
+  - unless @photos.empty?
+    .inner_content
+      %h2
+        = "Recent Photos"
+      = link_to("VIEW ALL", user_photos_path(@user), :style=>"float:right; margin-top:-20px")
+      - for photo in @photos
+        .profile_photo_thumb
+          = link_to image_tag(photo.image.url(:thumb)), user_photo_path(@user,photo)
     
   .inner_content
     %h2 Comments

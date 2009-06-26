@@ -1,5 +1,10 @@
 class Track < ActiveRecord::Base
   is_taggable :tags
+  
+  # scopes
+  named_scope :recent,
+              :order => "tracks.created_at DESC"
+              
   #paperclip
   has_attached_file :mp3,
                     :path => ':rails_root/public/data/:class/:id/:style/:basename.:extension',

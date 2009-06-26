@@ -6,6 +6,12 @@ h1, h2, h3, form, body, p, ul {
   padding: 0;
   margin: 0; }
 
+a {
+  color: #333; }
+
+a:visited {
+  color: #aaa; }
+
 .content, .header {
   padding: 10px;
   margin: 0 10px;
@@ -129,6 +135,17 @@ ul.separated {
 .photos .photo_thumb {
   float: left;
   margin: 3px; }
+
+.profile_photo_thumb {
+  float: left;
+  margin: 3px; }
+
+.profile_track_info {
+  background: #ddd;
+  float: left;
+  margin: 5px;
+  padding: 3px;
+  width: 150px; }
 
 .comment {
   margin: 10px;
