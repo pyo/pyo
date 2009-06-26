@@ -26,6 +26,15 @@ class Photo < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :image_file_name
   
+  # covalence hooks
+  def receive_comment_notification(notification)
+    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'comment'})
+  end
   
+  def after_save
+    user.followers.each do |follower|
+      Activity.create({:producer => user, :consumer => follower, :flavor => 'photo', :payload => self})
+    end
+  end
   
 end

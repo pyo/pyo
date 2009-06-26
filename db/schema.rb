@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090625163912) do
+ActiveRecord::Schema.define(:version => 20090626191339) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -21,7 +21,11 @@ ActiveRecord::Schema.define(:version => 20090625163912) do
     t.string   "flavor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "payload_type"
+    t.integer  "payload_id"
   end
+
+  add_index "activities", ["payload_type", "payload_id"], :name => "index_activities_on_payload_type_and_payload_id"
 
   create_table "alerts", :force => true do |t|
     t.string   "producer_type"

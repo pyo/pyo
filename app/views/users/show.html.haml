@@ -49,7 +49,7 @@
       %p=@user.followings.length.to_s + "Following"
       %p
         - @user.followings.each do |following|
-          = link_to following.child.name, following.child
+          = link_to following.name, following
 
   .inner_content
     .advertisement

@@ -22,4 +22,18 @@ class Track < ActiveRecord::Base
   validates_presence_of             :user_id
   #validates_attachment_presence     :mp3
   #validates_attachment_content_type :mp3, "audio/mpeg"
+  
+  
+  # covalence hooks
+  def receive_comment_notification(notification)
+    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'comment'})
+  end
+  
+  
+  def after_save
+    user.followers.each do |follower|
+      Activity.create({:producer => user, :consumer => follower, :flavor => 'track', :payload => self})
+    end
+  end
+  
 end

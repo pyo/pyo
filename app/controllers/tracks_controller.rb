@@ -7,6 +7,10 @@ class TracksController < ApplicationController
     @tracks = @user.tracks.all
   end
   
+  def music
+    @tracks = Track.all
+  end
+  
   def new
     @track = Track.new
   end

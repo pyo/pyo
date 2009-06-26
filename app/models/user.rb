@@ -7,8 +7,14 @@ class User < ActiveRecord::Base
   has_one  :profile, :dependent => :destroy
   has_many :photos
   has_many :tracks
-  has_many :followers, :as => 'child', :class_name => 'Following'
-  has_many :followings, :as => 'parent', :class_name => 'Following'
+  
+  has_many :parents, :as => 'child', :class_name => 'Following'
+  has_many :followers, :through => :parents, :source => "parent", :source_type => "User"
+
+
+  has_many :children, :as => 'parent', :class_name => 'Following'
+  has_many :followings, :through => :children, :source => "child", :source_type => "User"
+  
   has_many :alerts, :as => 'consumer', :conditions => {:state => 'new'}
   has_many :comments, :as => 'consumer'
   has_many :activities, :as => 'consumer'
