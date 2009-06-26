@@ -16,7 +16,7 @@
         %dt= form.label :tags
         %dd= form.text_field :tag_list    
         %small Comma separate tags.    
-      %p= form.submit 'Upload'
+      %p= form.submit 'Upload', :disable_with => "Uploading"
     
 .details
   .inner_content

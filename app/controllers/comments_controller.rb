@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
   
   def create
-    params[:comment][:producer] = current_user
-    Comment.create(params[:comment])
+    Comment.create({:producer=>current_user}.merge(params[:comment]))
     redirect_to :back
   end
   

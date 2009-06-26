@@ -3,6 +3,10 @@ class TracksController < ApplicationController
   before_filter :find_user
   before_filter :check_user, :only => [:new, :create]
   
+  def index
+    @tracks = @user.tracks.all
+  end
+  
   def new
     @track = Track.new
   end

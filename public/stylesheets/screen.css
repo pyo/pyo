@@ -130,6 +130,26 @@ ul.separated {
   float: left;
   margin: 3px; }
 
+.comment {
+  margin: 10px;
+  padding: 3px;
+  background: #ddd; }
+  .comment .thumb_info {
+    width: 60px;
+    padding: 5px;
+    float: left; }
+  .comment .comment_message {
+    float: left;
+    width: 550px;
+    margin-left: 3px; }
+
+.track_list_item {
+  margin: 10px;
+  padding: 3px;
+  background: #ddd; }
+  .track_list_item p {
+    margin: 5px; }
+
 ul.buttons {
   margin: 10px 0;
   float: left;
