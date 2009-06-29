@@ -8,16 +8,17 @@
       %li= link_to 'Media', '#'
       %li= link_to 'Comments', '#'
       %li= link_to 'Follows', '#'
-    .activity
+    .activities
       - unless current_user.activities.empty?
         - current_user.activities.each do |activity|
-          .thumb_info
-            = image_tag activity.producer.profile.avatar(:thumb)
-          .activity_message
-            = link_to activity.producer.name, activity.producer
-            = "#{time_ago_in_words(activity.created_at)} ago"
-            %br
-            = display_notification(activity)
+          .activity
+            .thumb_info
+              = image_tag activity.producer.profile.avatar(:thumb)
+            .activity_message
+              = link_to activity.producer.name, activity.producer
+              = "#{time_ago_in_words(activity.created_at)} ago"
+              %br
+              = display_notification(activity)
       - else
         No Activity
 .details

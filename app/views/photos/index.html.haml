@@ -8,7 +8,9 @@
       - unless @photos.empty?
         - @photos.each do |photo|
           .photo_thumb
-            = link_to  image_tag(photo.image.url(:thumb)), user_photo_path(photo.user,photo)
+            = link_to('delete', [@user,photo], :confirm =>"Are you sure you want to delete this photo?", :method => :delete)+"<br>" if is_owner?(photo)
+            = link_to image_tag(photo.image.url(:thumb)), user_photo_path(photo.user,photo)
+            
       - else
         No Photos
 .details

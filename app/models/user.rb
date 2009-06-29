@@ -8,16 +8,29 @@ class User < ActiveRecord::Base
   has_many :photos
   has_many :tracks
   
+  # setup followers
   has_many :parents, :as => 'child', :class_name => 'Following'
-  has_many :followers, :through => :parents, :source => "parent", :source_type => "User"
+  has_many :followers, :through => :parents, :source => "parent", :source_type => "User" do
+    def recent
+      all(:limit=>8,:order => "created_at DESC" )
+    end
+  end
 
-
+  # setup followings
   has_many :children, :as => 'parent', :class_name => 'Following'
-  has_many :followings, :through => :children, :source => "child", :source_type => "User"
+  has_many :followings, :through => :children, :source => "child", :source_type => "User" do
+    def recent
+      all(:limit=>8,:order => "created_at DESC" )
+    end
+  end
   
+  # Covalence notifications
   has_many :alerts, :as => 'consumer', :conditions => {:state => 'new'}
   has_many :comments, :as => 'consumer'
   has_many :activities, :as => 'consumer'
+  
+  # covalence groups
+  is_member_of :groups
   
   # validations
   validates_presence_of :name
@@ -25,15 +38,12 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :profile, :allow_destroy => true
   
-  # covalence
-  is_member_of :groups
-  
   def following?(user)
     followings.exists?(["child_type = ? and child_id = ?", user.class.to_s, user.id])
   end
   
   def receive_comment_notification(notification)
-    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'comment'})
+    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'profile_comment'})
   end
   
   def to_param

@@ -1,8 +1,9 @@
 .main
-  .inner_content
-    %h2 User's Videos
+  - unless @videos.empty?
+    .inner_content
+      %h2 User's Videos
   
-  - unless @photos.empty?
+  - unless @tracks.empty?
     .inner_content
       %h2 
         = "Recent Audio"

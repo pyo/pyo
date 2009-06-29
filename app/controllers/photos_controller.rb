@@ -26,6 +26,18 @@ class PhotosController < ApplicationController
     end
   end
   
+  
+  def destroy
+    if is_owner?
+      @photo.destroy
+      flash[:notice] = "Comment was deleted."
+      redirect_to :back
+    else
+      flash[:error] = "You are not authorized for that action."
+      redirect_to :back
+    end
+  end
+  
 
   private
     def find_photo
@@ -38,6 +50,10 @@ class PhotosController < ApplicationController
     
     def check_user
       current_user == @user
+    end
+    
+    def is_owner?
+      (current_user == @photo.user)
     end
     
 end
