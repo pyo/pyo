@@ -4,4 +4,7 @@
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, metus egetipsum dolor sit
 %h3 Following
 %p
-  Not following Anyone
+  - for following in current_user.followings
+    .info_following_thumb
+      = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
+  %br{:clear => "all"}

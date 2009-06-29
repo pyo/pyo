@@ -147,6 +147,10 @@ ul.separated {
   padding: 3px;
   width: 150px; }
 
+.info_following_thumb {
+  float: left;
+  margin: 3px; }
+
 .comment {
   margin: 10px;
   padding: 3px;

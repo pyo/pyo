@@ -1,7 +1,7 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
   before_filter :authenticate, :except => [:new, :create]
-  before_filter :load_user, :only => [:show, :edit, :update, :follow]
+  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects]
   helper :notifications
   
   def index
@@ -11,6 +11,9 @@ class UsersController < ApplicationController
   def dashboard
   end
   
+  def connects
+    @connects = @user.followings
+  end
   
   def new
     @user = User.new(params[:user])
