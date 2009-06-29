@@ -31,6 +31,18 @@ class TracksController < ApplicationController
     end
   end
   
+  def destroy
+    if is_owner?
+      @track.destroy
+      flash[:notice] = "Track was deleted."
+      redirect_to :back
+    else
+      flash[:error] = "You are not authorized for that action."
+      redirect_to :back
+    end
+  end
+  
+  
   private
     def find_track
       @track = Track.find(params[:id]) if params[:id]
@@ -41,6 +53,12 @@ class TracksController < ApplicationController
     end
     
     def check_user
-      current_user == @user
+      unless current_user == @user
+        redirect_to "/"
+      end
+    end
+    
+    def is_owner?
+      (current_user == @track.user)
     end
 end

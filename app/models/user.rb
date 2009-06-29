@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_one  :profile, :dependent => :destroy
   has_many :photos
   has_many :tracks
+  has_many :activities, :as => :payload, :dependent => :destroy 
   
   # setup followers
   has_many :parents, :as => 'child', :class_name => 'Following'
@@ -43,7 +44,7 @@ class User < ActiveRecord::Base
   end
   
   def receive_comment_notification(notification)
-    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'profile_comment'})
+    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'profile_comment', :payload=>self})
   end
   
   def to_param

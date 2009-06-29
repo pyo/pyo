@@ -15,6 +15,7 @@ class Track < ActiveRecord::Base
                     :bucket => 'pyo-tracks'
   #assocs 
   belongs_to  :user
+  has_many    :activities, :as => :payload, :dependent => :destroy 
   has_many    :comments, :as => 'consumer'
   
   # validations
