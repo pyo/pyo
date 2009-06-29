@@ -30,26 +30,7 @@
 
 .details
   .inner_content
-    = image_tag @user.profile.avatar.url(:profile)
-    - if current_user and current_user != @user
-      - unless current_user.following?(@user)
-        - form_tag follow_user_path(@user) do
-          = submit_tag 'Follow'
-      - else
-        Following
-      %button Favorite
-      %button Message
-    
-    = @user.name
-    
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, metus egetipsum dolor sit
-    
-    - if @user.followings.length > 0
-      %p=@user.followings.length.to_s + "Following"
-      %p
-        - @user.followings.each do |following|
-          = link_to following.name, following
+    = render :partial => "users/public_info"
 
   .inner_content
     .advertisement

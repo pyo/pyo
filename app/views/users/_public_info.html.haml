@@ -1,0 +1,21 @@
+= image_tag @user.profile.avatar.url(:profile)
+- if current_user and current_user != @user
+  - unless current_user.following?(@user)
+    - form_tag follow_user_path(@user) do
+      = submit_tag 'Follow'
+  - else
+    Following
+  %button Favorite
+  %button Message
+
+= @user.name
+
+%p
+
+- unless @user.followings.empty?
+  %h3 Connects
+  %p
+    - for following in @user.followings
+      .info_following_thumb
+        = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
+    %br{:clear => "all"}

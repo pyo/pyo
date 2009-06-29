@@ -24,13 +24,6 @@
         No Tracks Found
 .details
   .inner_content
-    = render :partial => "users/info"
-    %h3 Alerts
-    %p
-      - if current_user.alerts.length > 0
-        - current_user.alerts.each do |alert|
-          = display_notification(alert)
-      - else
-        No Alerts
+     = render :partial => "users/public_info"
   .inner_content
     = render :partial => "shared/advertisment"
