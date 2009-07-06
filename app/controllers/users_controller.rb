@@ -1,6 +1,6 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
-  before_filter :authenticate, :except => [:new, :create]
+  before_filter :authenticate, :except => [:new, :create,:index,:show]
   before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
