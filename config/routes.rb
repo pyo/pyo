@@ -15,8 +15,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users, 
                 :has_one => [:password, :confirmation], 
-                :member => {:follow => :post,:connects => :get},
-                :has_many => [:photos, :tracks, :comments]
+                :member => {:follow => :post,:connects => :get} do |users|
+                  users.resources :photos,
+                                  :member => {:rate => :post}
+                  users.resources :tracks,
+                                  :member => {:rate => :post}
+                  users.resources :comments
+                end
                 
   map.resource :session
   map.resources :passwords

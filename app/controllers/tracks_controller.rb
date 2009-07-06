@@ -2,6 +2,7 @@ class TracksController < ApplicationController
   before_filter :find_track
   before_filter :find_user
   before_filter :check_user, :only => [:new, :create]
+  before_filter :authenticate, :except => [:show, :index]
   
   def index
     @tracks = @user.tracks.all
@@ -17,6 +18,15 @@ class TracksController < ApplicationController
   
   def show
     
+  end
+  
+  def rate
+    @track.rate_it( params[:rate_value], current_user.id )
+    respond_to do |wants|
+      wants.json { 
+        render :json => @track
+      }
+    end
   end
   
   def create    

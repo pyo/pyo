@@ -11,6 +11,14 @@
         %p
           = h @photo.tags.collect(&:name)
   .inner_content
+    %h2 Rating    
+    %form{:action=>rate_user_photo_path(@user,@photo)}
+      - 5.times do |i|
+        - if @photo.average_rating_round.to_i == i
+          %input{:name => "star1", :type=>"radio", :class=>"star", :value=>i, :checked=>"checked"}
+        - else
+          %input{:name => "star1", :type=>"radio", :class=>"star", :value=>i}
+  .inner_content
     %h2 Comments
     = render :partial => @photo.comments
     = render :partial => "comments/form", :locals => {:commentable => @photo}

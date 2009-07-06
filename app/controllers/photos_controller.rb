@@ -1,7 +1,8 @@
 class PhotosController < ApplicationController
   before_filter :find_photo
   before_filter :find_user
-  before_filter :check_user, :only => [:new, :create]
+  before_filter :check_user, :only => [:new, :create, :rate]
+  before_filter :authenticate, :except => [:show, :index]
   
   def index
     @photos = @user.photos.all
@@ -13,6 +14,15 @@ class PhotosController < ApplicationController
   
   def show
     
+  end
+  
+  def rate
+    @photo.rate_it( params[:rate_value], current_user.id )
+    respond_to do |wants|
+      wants.json { 
+        render :json => @photo
+      }
+    end
   end
   
   def create    

@@ -5,8 +5,11 @@
     %link{:rel => 'icon', :type => 'image/gif', :href=>'favicon.gif'}
     = stylesheet_link_tag 'screen', :media => 'screen'
     = stylesheet_link_tag '/jquery-ui/css/smoothness/custom.css'
-    = javascript_include_tag 'application', 'jquery-1.3.2.min'
+    = stylesheet_link_tag '/stylesheets/jquery.rating.css'
+    = javascript_include_tag 'jquery-1.3.2.min','application'
     = javascript_include_tag '/jquery-ui/js/jquery-ui-1.7.2.custom.min.js'
+    = javascript_include_tag '/javascripts/jquery.rating.pack.js'
+    = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? 
   %body
     #main.container
       .header

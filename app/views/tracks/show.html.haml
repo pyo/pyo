@@ -21,6 +21,14 @@
         %p
           = h @track.tags.collect(&:name).join(" ")
   .inner_content
+    %h2 Rating    
+    %form{:action=>rate_user_track_path(@user,@track)}
+      - 5.times do |i|
+        - if @track.average_rating_round.to_i == i
+          %input{:name => "star1", :type=>"radio", :class=>"star", :value=>i, :checked=>"checked"}
+        - else
+          %input{:name => "star1", :type=>"radio", :class=>"star", :value=>i}
+  .inner_content
     %h2 Comments
     = render :partial => @track.comments
     = render :partial => "comments/form", :locals => {:commentable => @track}
