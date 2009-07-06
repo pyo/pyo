@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090706145928) do
+ActiveRecord::Schema.define(:version => 20090706152441) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -81,9 +81,6 @@ ActiveRecord::Schema.define(:version => 20090706145928) do
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["title"], :name => "index_photos_on_title"
-  add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
-
   create_table "profiles", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -112,6 +109,19 @@ ActiveRecord::Schema.define(:version => 20090706145928) do
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
   add_index "profiles", ["username"], :name => "index_profiles_on_username"
   add_index "profiles", ["zip"], :name => "index_profiles_on_zip"
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "score"
+    t.integer  "rateable_id"
+    t.string   "rateable_type", :limit => 32
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["category"], :name => "index_ratings_on_category"
+  add_index "ratings", ["rateable_id", "rateable_type"], :name => "index_ratings_on_rateable_id_and_rateable_type"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
