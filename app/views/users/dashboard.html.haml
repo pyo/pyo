@@ -1,26 +1,35 @@
 .main
   .inner_content
     = render :partial => "users/dashboard_nav"
-  .inner_content
-    %h2 Recent Friend Activity
-    %ul.buttons
-      %li= link_to 'All', '#'
-      %li= link_to 'Media', '#'
-      %li= link_to 'Comments', '#'
-      %li= link_to 'Follows', '#'
-    .activities
-      - unless current_user.activities.empty?
-        - current_user.activities.each do |activity|
-          .activity
-            .thumb_info
-              = image_tag activity.producer.profile.avatar(:thumb)
-            .activity_message
-              = link_to activity.producer.name, activity.producer
-              = "#{time_ago_in_words(activity.created_at)} ago"
-              %br
-              = display_notification(activity)
-      - else
-        No Activity
+  - unless current_user.first_run?
+    .inner_content
+      %h2 Recent Friend Activity
+      %ul.buttons
+        %li= link_to 'All', '#'
+        %li= link_to 'Media', '#'
+        %li= link_to 'Comments', '#'
+        %li= link_to 'Follows', '#'
+      .activities
+        - unless current_user.activities.empty?
+          - current_user.activities.each do |activity|
+            .activity
+              .thumb_info
+                = image_tag activity.producer.profile.avatar(:thumb)
+              .activity_message
+                = link_to activity.producer.name, activity.producer
+                = "#{time_ago_in_words(activity.created_at)} ago"
+                %br
+                = display_notification(activity)
+        - else
+          No Activity
+  - else
+    .inner_content
+      %h2 Welcome to PYO.
+      %p First run copy goes here
+      = link_to "Upload your first track.", new_user_track_path(current_user)
+      %br
+      = link_to "Upload Photos.", new_user_photo_path(current_user)
+  
 .details
   .inner_content
     = render :partial => "users/info"

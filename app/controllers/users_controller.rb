@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   include Clearance::App::Controllers::UsersController
   before_filter :authenticate, :except => [:new, :create]
   before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects]
+  after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
   
   def index
@@ -54,8 +55,16 @@ class UsersController < ApplicationController
   end
   
   private
-  def load_user
-    @user = User.find_by_name(params[:id])
-    logger.info params.inspect
-  end
+  
+    def set_first_run
+      if current_user.first_run
+        current_user.first_run = false   
+        current_user.save 
+      end
+    end
+  
+    def load_user
+      @user = User.find_by_name(params[:id])
+      logger.info params.inspect
+    end
 end
