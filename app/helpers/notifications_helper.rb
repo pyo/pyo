@@ -2,6 +2,7 @@ module NotificationsHelper
   def display_notification(notification)
     case [notification.class, notification.flavor]
     when [Alert, 'following'] then "is now following you"
+    when [Activity, 'following'] then "is now following you"
     when [Activity, 'profile_comment'] then "has commented on your profile"
     when [Activity, 'photo_comment'] then "has commented on your #{link_to('photo', user_photo_path(current_user, notification.payload))}"
     when [Activity, 'track_comment'] then "has commented on your #{link_to('track', user_photo_path(current_user, notification.payload))}"
