@@ -1,8 +1,8 @@
-
-- form_for(:comment,:url=>comments_path) do |form|
-  %div{:class=>comment_class}
-    %h3 Reply
-    = hidden_field_tag("comment[consumer_id]", commentable.id)
-    = hidden_field_tag("comment[consumer_type]", commentable.class.to_s)
-    = text_area_tag "comment[message]", "",:style => "width:98%; height:100px"
-    = form.submit 'Add Comment'
+- if current_user
+  - form_for(:comment,:url=>comments_path) do |form|
+    %div{:class=>comment_class}
+      %h3 Reply
+      = hidden_field_tag("comment[consumer_id]", commentable.id)
+      = hidden_field_tag("comment[consumer_type]", commentable.class.to_s)
+      = text_area_tag "comment[message]", "",:style => "width:98%; height:100px"
+      = form.submit 'Add Comment'

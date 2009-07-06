@@ -1,3 +1,5 @@
+= javascript_include_tag "/audio-player/audio-player.js"
+= javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
 .main
   - unless @videos.empty?
     .inner_content
@@ -14,6 +16,9 @@
             = link_to h(track.name), user_track_path(@user,track)
           %p
             = h truncate(track.description, 20)
+            %script{:type=>"text/javascript"}
+              = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+            #audioplayer_1
   
   - unless @photos.empty?
     .inner_content

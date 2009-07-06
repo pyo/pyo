@@ -11,7 +11,7 @@ module ApplicationHelper
   
   def radio_for_rating val,checked
     attrs = {:class => "star"}
-    attrs.merge(:disabled=>"true") if current_user
+    attrs.merge(:disabled=>"disabled") unless current_user
     attrs.merge(:checked=>"true") if checked
     
     radio_button_tag("star1",val, checked,attrs)
