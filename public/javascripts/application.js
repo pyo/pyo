@@ -10,14 +10,22 @@ $(document).ajaxSend(function(event, request, settings) {
 
 
 $(function(){
+	
+	/* star rating */
 	$('input.star').rating({
 		callback: function(value, link){ 
 			var path = $(link).parents("form").attr('action')+'.json';
 			$.post(path,{
 				rate_value:value
 			},function(data){
-				console.log(data);
+				
 			});
 		}
+	});
+	
+	/* commenting */
+	$(".reply_btn").click(function(){
+		$(this).parents(".comment:first").find(".reply").slideToggle('fast');
+		return false;
 	}); 
 });

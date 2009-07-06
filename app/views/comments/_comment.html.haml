@@ -5,6 +5,9 @@
     = link_to comment.producer.name, comment.producer
     = "#{time_ago_in_words(comment.created_at)} ago"
     = "| #{link_to('delete', comment, :confirm => 'Are you sure?', :method => :delete)}" if is_owner?(comment)
+    = "| #{link_to('reply', '#', :class => 'reply_btn')}" if current_user
     %br
     = comment.message
   %br{:clear=>"all"}
+    = render :partial => "comments/form", :locals => {:commentable => comment, :comment_class => "reply"}
+    = render :partial => comment.comments
