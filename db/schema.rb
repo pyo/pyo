@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090706152441) do
+ActiveRecord::Schema.define(:version => 20090706204409) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -70,6 +70,24 @@ ActiveRecord::Schema.define(:version => 20090706152441) do
   end
 
   add_index "groups", ["name"], :name => "index_groups_on_name"
+
+  create_table "memberships", :force => true do |t|
+    t.string   "parent_type"
+    t.integer  "parent_id"
+    t.string   "child_type"
+    t.integer  "child_id"
+    t.string   "state"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+  end
+
+  add_index "memberships", ["child_id", "child_type"], :name => "index_memberships_on_child_id_and_child_type"
+  add_index "memberships", ["parent_id", "parent_type"], :name => "index_memberships_on_parent_id_and_parent_type"
+  add_index "memberships", ["role"], :name => "index_memberships_on_role"
+  add_index "memberships", ["state"], :name => "index_memberships_on_state"
+  add_index "memberships", ["status"], :name => "index_memberships_on_status"
 
   create_table "photos", :force => true do |t|
     t.string   "title"

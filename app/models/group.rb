@@ -5,6 +5,10 @@ class Group < ActiveRecord::Base
   has_roles :ADMIN, :MEMBER
   has_default_role  :MEMBER
   
+  #scopes
+  default_scope :order => 'name'
+  named_scope :with_role, lambda { |role| { :conditions => ['status = ?', role.to_s] } }
+  
   #paperclip
   has_attached_file :icon,
                     :styles => { 
