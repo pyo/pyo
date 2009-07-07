@@ -12,7 +12,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups,
                 :member => {
                   :join => :put,
-                  :leave => :put
+                  :leave => :put,
+                  :approve => :put
+                },
+                :collection =>{
+                  :request_group => :get
                 }
 
   map.resources :profiles
@@ -27,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
                   users.resources :comments
                 end
                 
-  map.resource :session
+  map.resource  :session
   map.resources :passwords
  
   map.root :controller => 'home'

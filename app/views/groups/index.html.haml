@@ -1,4 +1,8 @@
 .main  
+  .inner_content
+    %ul.menu
+      %li
+        = link_to "Request a new Group", request_group_groups_path
   - unless @groups.empty?
     .inner_content
       %h2 
