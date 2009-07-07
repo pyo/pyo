@@ -20,7 +20,7 @@
 #############################################################
 :scm: :git
 :repository: git@git.assembla.com:putyourselfon.git
-# :deploy_via: remote_cache
+:deploy_via: remote_cache
 
 #:time_zone: UTC
 #:domain_aliases:

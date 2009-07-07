@@ -21,6 +21,26 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   # database.yml, Postfix, Cron, logrotate and NTP. See lib/moonshine/manifest/rails.rb
   # for details. To customize, remove this recipe and specify the components you want.
 
+  case deploy_stage
+    when "production" then
+      configure({
+        :application => "putyourselfon.com",
+        :deploy_to => "/home/admin/public_html/putyourselfon.com",
+        :domain => "putyourselfon.com",
+        :domain_aliases => [ ]
+      })
+    when "staging" then 
+      configure({
+        :application => "staging.putyourselfon.com",
+        :deploy_to => "/home/admin/public_html/staging.putyourselfon.com",
+        :domain => "staging.putyourselfon.com",        
+        :domain_aliases => [ "174.129.227.77" ]
+      })    
+  end
+
+  plugin :ds_tools
+  recipe :ds_tools_apache
+
   configure(:ssh  => {
     :port  => "30306",
     :allow_users => ['admin']  
@@ -28,7 +48,11 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   plugin :ssh
   recipe :ssh
 
-
+  plugin :php
+  recipe :php
+  
+  plugin :phpmyadmin
+  recipe :phpmyadmin
 
   recipe :default_stack
 

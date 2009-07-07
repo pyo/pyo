@@ -15,10 +15,12 @@ Rails::Initializer.run do |config|
   #config.gem 'mmangino-facebooker',     :lib => 'facebooker', :source => 'http://gems.github.com'
   config.gem 'giraffesoft-is_taggable', :lib => "is_taggable", :source => "http://gems.github.com"
   config.gem "thoughtbot-clearance",    :lib => 'clearance', :source => 'http://gems.github.com'
-  config.gem 'beanstalk-client'
+  config.gem 'beanstalk-client', :source => 'http://gems.github.com'
   config.gem 'right_aws'
-  config.gem 'capistrano'
+  config.gem 'right_http_connection'
+  # config.gem 'capistrano'
   config.gem 'andand'
+  config.gem 'haml'
 
   # Activate observers that should always be running
   #config.active_record.observers = :covalence_notification_observer
