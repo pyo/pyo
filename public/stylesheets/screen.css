@@ -23,6 +23,20 @@ a:visited {
   float: left;
   width: 920px; }
 
+.content_flash {
+  margin: 0 10px;
+  margin-bottom: 10px;
+  background-color: #EEE;
+  float: left;
+  width: 940px; }
+
+.content_flash .notice {
+  padding: 5px;
+  color: green; }
+.content_flash .error {
+  padding: 5px;
+  color: red; }
+
 .header {
   background-color: #FFF; }
 

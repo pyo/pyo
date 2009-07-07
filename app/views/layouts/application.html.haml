@@ -17,14 +17,7 @@
 
         .user_bar
           = render :partial => 'users/user_bar'
-      - flash.each do |key, value|
-        %div{:class => key}
-          - if value.is_a? ActiveRecord::Errors
-            - for error in value
-              %p
-                = h error.join(" ")
-          - else
-            = h value
+      
       .content
         %ul.menu
           %li= link_to 'Connects', '#' if current_user
@@ -37,6 +30,15 @@
           %form
             %input{:type => 'text'}
             %input{:type => 'submit', :value => 'Search'}
+      .content_flash
+        - flash.each do |key, value|
+          %div{:class => key}
+            - if value.is_a? ActiveRecord::Errors
+              - for error in value
+                %p
+                  = h error.join(" ")
+            - else
+              = h value
       = yield
     
     .container
