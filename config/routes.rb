@@ -9,7 +9,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :photos
   map.resources :followings
 
-  map.resources :groups
+  map.resources :groups,
+                :member => {
+                  :join => :put,
+                  :leave => :put
+                }
 
   map.resources :profiles
 

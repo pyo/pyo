@@ -4,4 +4,5 @@
 %p
   = h @group.description
 %p
-  = link_to "edit", edit_group_path(@group) if current_user.is_admin?(@group)
+  = button_to "edit", edit_group_path(@group) if current_user.is_admin?(@group)
+  = join_or_leave_btn @group, current_user
