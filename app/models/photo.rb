@@ -21,7 +21,7 @@ class Photo < ActiveRecord::Base
   
   # assocs
   belongs_to :user
-  has_many :comments, :as => 'consumer'
+  has_many :comments, :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => :payload, :dependent => :destroy 
   
   # validations

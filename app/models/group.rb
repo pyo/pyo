@@ -1,5 +1,8 @@
 class Group < ActiveRecord::Base
   include Covalence::Group
+  # assocs 
+  has_many :comments, :as => 'consumer', :dependent => :destroy 
+  
   #covalence
   has_members       :users
   has_roles :ADMIN, :MEMBER
@@ -21,4 +24,9 @@ class Group < ActiveRecord::Base
                     
   # validations                  
   validates_presence_of :name
+      
+  def receive_comment_notification comment
+    Activity.send_group_comment_notification self, comment
+  end
+  
 end

@@ -6,6 +6,7 @@ module NotificationsHelper
       when [Activity, 'following'] then "is now following you"
       when [Activity, 'join_group'] then "has joined the group \"#{link_to(notification.payload.name,notification.payload)}\"."
       when [Activity, 'profile_comment'] then "has commented on your profile"
+      when [Activity, 'group_comment'] then "has commented in the group \"#{link_to(h(notification.payload.consumer.name),notification.payload.consumer)}\""
       when [Activity, 'photo_comment'] then "has commented on your #{link_to('photo', user_photo_path(current_user, notification.payload))}"
       when [Activity, 'comment_comment'] then "has replied to your comment #{link_to("here", polymorphic_path(notification.payload.consumer))}"
       when [Activity, 'track_comment'] then "has commented on your #{link_to('track', user_photo_path(current_user, notification.payload))}"

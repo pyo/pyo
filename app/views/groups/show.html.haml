@@ -11,6 +11,11 @@
             = leave_group_btn @group, user
   - else
     %strong No members yet.
+  
+  .inner_content
+    = render :partial => @group.comments
+    = render :partial => "comments/form", :locals => {:commentable => @group, :comment_class=>""}
+  
 .details
   .inner_content
     = render :partial => "groups/info"
