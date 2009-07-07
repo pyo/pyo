@@ -1,4 +1,7 @@
 class GroupsController < ApplicationController
+  before_filter :authenticate, :except => [:index, :show] 
+  before_filter :find_group, :except => [:create,:new,:index] 
+  
   def index
     @groups = Group.find(:all)
 
@@ -9,7 +12,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -27,7 +29,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
+
   end
 
   def create
@@ -46,7 +48,6 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.find(params[:id])
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
@@ -61,7 +62,6 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id])
     @group.destroy
 
     respond_to do |format|
@@ -69,4 +69,17 @@ class GroupsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private 
+    def find_group
+      @group = Group.find(params[:id])
+    end
+    
+    def check_user
+      unless current_user.is_admin?(@group)
+        flash[:error] = "You are not authorized for that action."
+        redirect_to "/"
+      end
+    end
+  
 end

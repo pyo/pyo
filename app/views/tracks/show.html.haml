@@ -26,7 +26,7 @@
   .inner_content
     %h2 Comments
     = render :partial => @track.comments
-    = render :partial => "comments/form", :locals => {:commentable => @track}
+    = render :partial => "comments/form", :locals => {:commentable => @track, :comment_class=>""}
     
 .details
   .inner_content

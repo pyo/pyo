@@ -1,9 +1,13 @@
-%h1 Editing Group
+.main
+  .inner_content
+    %h2 Editing Group
 
-- form_for(@group) do |form|
-  = render :partial => 'form', :locals => {:form => form}
-  %p= form.submit 'Update'
+    - form_for(@group) do |form|
+      = render :partial => 'form', :locals => {:form => form}
+      %p= form.submit 'Update'
 
-%p
-  = link_to 'Show', @group
-  = link_to 'Back', groups_path
+.details
+  .inner_content
+    = render :partial => "groups/info"
+  .inner_content
+    = render :partial => "shared/advertisment"

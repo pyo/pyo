@@ -1,10 +1,18 @@
-%dl
-  %dt Name
-  %dd= h @group.name
-  %dt Description
-  %dd= h @group.description
+.main  
+  %h2 
+    = "Members"
+  - unless @group.users.empty?
+    .inner_content
+      - for user in @group.users
+        .group_member_thumb
+          %strong
+            = link_to(image_tag(user.profile.avatar.url(:thumb)), user_path(user))
+  - else
+    %strong No members yet.
+.details
+  .inner_content
+    = render :partial => "groups/info"
 
-%p
-  = link_to 'Edit', edit_group_path(@group)
-  |
-  = link_to 'Back', groups_path
+  .inner_content
+    .advertisement
+      Advertisement

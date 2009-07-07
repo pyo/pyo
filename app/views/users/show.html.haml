@@ -17,8 +17,8 @@
           %p
             = h truncate(track.description, 20)
             %script{:type=>"text/javascript"}
-              = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
-            #audioplayer_1
+              = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+            %div{:id => "audioplayer_#{track.id}"}
   
   - unless @photos.empty?
     .inner_content
@@ -30,7 +30,7 @@
           = link_to image_tag(photo.image.url(:thumb)), user_photo_path(@user,photo)
     
   .inner_content
-    %h2 Comments
+    %h2 Profile Comments
     = render :partial => @user.comments
     = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
 

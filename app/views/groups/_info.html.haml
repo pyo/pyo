@@ -1,0 +1,7 @@
+=# image_tag current_user.profile.avatar.url(:profile)
+%h2
+  = h @group.name
+%p
+  = h @group.description
+%p
+  = link_to "edit", edit_group_path(@group) if current_user.is_admin?(@group)

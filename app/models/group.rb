@@ -18,4 +18,7 @@ class Group < ActiveRecord::Base
                     :whiny_thumbnails => true,
                     :path => ':rails_root/public/data/:class/:id/:style/:basename.:extension',
                     :url => '/data/:class/:id/:style/:basename.:extension'
+                    
+  # validations                  
+  validates_presence_of :name
 end

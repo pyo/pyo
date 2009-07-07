@@ -1,16 +1,18 @@
-%h1 Listing Groups
+.main  
+  - unless @groups.empty?
+    .inner_content
+      %h2 
+        = "Groups"
+      - for group in @groups
+        .group_info
+          %strong
+            = link_to h(group.name), group_path(group)
+          %p
+            = h truncate(group.description, 20)
+.details
+  .inner_content
+    = render :partial => "users/info"
 
-%table
-  %tr
-    %th Name
-    %th Description
-
-  - for group in @groups
-    %tr
-      %td= h group.name
-      %td= h group.description
-      %td= link_to 'Show', group
-      %td= link_to 'Edit', edit_group_path(group)
-      %td= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
-
-%p= link_to 'New Group', new_group_path
+  .inner_content
+    .advertisement
+      Advertisement
