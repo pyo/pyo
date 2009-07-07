@@ -1,0 +1,15 @@
+.main  
+  .inner_content
+    %h2 Request New Group
+
+    - form_for(@group) do |form|
+      = render :partial => 'form', :locals => {:form => form}
+      %p= form.submit "Send Request"
+ 
+.details
+  .inner_content
+    = render :partial => "users/info"
+
+  .inner_content
+    .advertisement
+      Advertisement

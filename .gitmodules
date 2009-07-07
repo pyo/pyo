@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/covalence"]
+	path = vendor/plugins/covalence
+	url = git@github.com:digitalscientists/Covalence.git
