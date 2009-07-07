@@ -4,7 +4,7 @@ class Activity < ActiveRecord::Base
   
   def self.send_join_group_notifications user, group
     user.followers.each do |follower|
-      Activity.create({:producer => user, :consumer => follower, :flavor => 'join_group', :payload => comment})
+      Activity.create({:producer => user, :consumer => follower, :flavor => 'join_group', :payload => group})
     end
   end
   

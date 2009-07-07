@@ -9,7 +9,7 @@ class Group < ActiveRecord::Base
   has_default_role  :MEMBER
   
   #scopes
-  default_scope :order => 'name', :conditions => "approved = 1"
+  default_scope :order => 'name', :conditions => {:approved => 1}
   named_scope :with_role, lambda { |role| { :conditions => ['status = ?', role.to_s] } }
   
   #paperclip
@@ -27,6 +27,10 @@ class Group < ActiveRecord::Base
       
   def receive_comment_notification comment
     Activity.send_group_comment_notification self, comment
+  end
+  
+  def tracks
+    Track.all(:joins => :user, :conditions => ["user_id in (select child_id from memberships where parent_type = ? and parent_id = ? and child_type = 'User')", self.class.name, self.id])
   end
   
 end
