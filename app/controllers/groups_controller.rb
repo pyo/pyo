@@ -19,7 +19,6 @@ class GroupsController < ApplicationController
   end
   
   def leave
-    
     @user = User.find(params[:user_id])
     if @user
       if @user==current_user || current_user.is_admin?(@group)
