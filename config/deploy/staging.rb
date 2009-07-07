@@ -2,7 +2,7 @@
 #	Application
 #############################################################
 
-set :application, "PYO"
+
 set :deploy_to, ""
 
 #############################################################
@@ -22,7 +22,7 @@ set :keep_releases, 20
 #############################################################
 
 set :user, ""
-set :domain, "208.52.138.243"
+set :domain, ""
 server domain, :app, :web
 role :db, domain, :primary => true
 
@@ -32,8 +32,6 @@ role :db, domain, :primary => true
 
 set :scm, :git
 set :branch, "staging"
-set :scm_user, 'digitalscientists'
-set :scm_passphrase, "scooterpie5"
 set :repository, "git@git.assembla.com:pyo.git"
 set :deploy_via, :remote_cache
 set :git, "/usr/local/bin/git"
