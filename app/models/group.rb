@@ -9,7 +9,7 @@ class Group < ActiveRecord::Base
   has_default_role  :MEMBER
   
   #scopes
-  default_scope :order => 'name'
+  default_scope :order => 'name', :conditions => "approved = 1"
   named_scope :with_role, lambda { |role| { :conditions => ['status = ?', role.to_s] } }
   
   #paperclip
@@ -23,7 +23,7 @@ class Group < ActiveRecord::Base
                     :url => '/data/:class/:id/:style/:basename.:extension'
                     
   # validations                  
-  validates_presence_of :name
+  validates_presence_of :name, :description
       
   def receive_comment_notification comment
     Activity.send_group_comment_notification self, comment

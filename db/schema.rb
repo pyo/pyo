@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090706204409) do
+ActiveRecord::Schema.define(:version => 20090707192351) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(:version => 20090706204409) do
     t.integer  "icon_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved",          :default => false
   end
 
+  add_index "groups", ["approved"], :name => "index_groups_on_approved"
   add_index "groups", ["name"], :name => "index_groups_on_name"
 
   create_table "memberships", :force => true do |t|
@@ -193,11 +195,13 @@ ActiveRecord::Schema.define(:version => 20090706204409) do
     t.boolean  "email_confirmed",                   :default => false, :null => false
     t.string   "name"
     t.boolean  "first_run",                         :default => true
+    t.boolean  "super_user",                        :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["first_run"], :name => "index_users_on_first_run"
   add_index "users", ["id", "token"], :name => "index_users_on_id_and_token"
+  add_index "users", ["super_user"], :name => "index_users_on_super_user"
   add_index "users", ["token"], :name => "index_users_on_token"
 
 end

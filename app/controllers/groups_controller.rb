@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :authenticate,  :except => [:index, :show] 
-  before_filter :find_group,    :except => [:create,:new,:index] 
-  before_filter :check_user,    :except => [:show,:leave,:join,:index] 
+  before_filter :find_group,    :except => [:create,:new,:index,:request_group] 
+  before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create] 
   
   def index
     @groups = Group.find(:all)
@@ -56,13 +56,14 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
+    @group.users.join(current_user,:ADMIN)
     respond_to do |format|
       if @group.save
-        flash[:notice] = 'Group was successfully created.'
-        format.html { redirect_to(@group) }
+        flash[:notice] = 'Group request was submitted.'
+        format.html { redirect_to(groups_path) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "request_group" }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
@@ -87,6 +88,21 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(groups_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def request_group
+    @group = Group.new
+  end
+  
+  def approve
+    unless current_user.super_user?
+      flash[:error] = "You are not authorized for that action!"
+      redirect_to "/"
+    else
+      @group.approved = true
+      @group.save
+      redirect_to :back
     end
   end
   
