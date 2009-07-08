@@ -1,0 +1,22 @@
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    %h2 
+      = "New Direct Message to #{h @user.name}"
+    - form_for [ @user,@direct_message] do |f|
+      %br
+      %h3 Message 
+      = f.hidden_field :consumer_id, :value=>@user.id
+      = f.hidden_field :consumer_type, :value=>"User"
+      = f.hidden_field :producer_id, :value=>current_user.id
+      = f.hidden_field :producer_type, :value=>"User"
+      = f.text_area :message, :style=>"width:98%"
+      =f.submit "Send"
+    
+  
+.details
+  .inner_content
+    = render :partial => "users/info"
+  .inner_content
+    = render :partial => "shared/advertisment"

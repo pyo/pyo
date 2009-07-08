@@ -34,6 +34,7 @@ ActionController::Routing::Routes.draw do |map|
                                   :member => {:rate => :post}
                   users.resources :tracks,
                                   :member => {:rate => :post}
+                  users.resources :direct_messages
                   users.resources :comments
                 end
                 
