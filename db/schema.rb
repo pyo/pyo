@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090707192351) do
+ActiveRecord::Schema.define(:version => 20090708155210) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -49,6 +49,23 @@ ActiveRecord::Schema.define(:version => 20090707192351) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "direct_messages", :force => true do |t|
+    t.string   "producer_type"
+    t.integer  "producer_id"
+    t.string   "consumer_type"
+    t.integer  "consumer_id"
+    t.string   "state",         :default => "new"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "reply_to_id"
+  end
+
+  add_index "direct_messages", ["consumer_type", "consumer_id"], :name => "index_direct_messages_on_consumer_type_and_consumer_id"
+  add_index "direct_messages", ["producer_id", "producer_type"], :name => "index_direct_messages_on_producer_id_and_producer_type"
+  add_index "direct_messages", ["reply_to_id"], :name => "index_direct_messages_on_reply_to_id"
+  add_index "direct_messages", ["state"], :name => "index_direct_messages_on_state"
 
   create_table "followings", :force => true do |t|
     t.string   "parent_type"

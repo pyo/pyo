@@ -24,8 +24,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :profiles
 
   map.resources :users, 
-                :has_one => [:password, :confirmation,:inbox], 
-                :member => {:follow => :post,:connects => :get} do |users|
+                :has_one => [:password, :confirmation], 
+                :member => {
+                  :follow => :post,
+                  :connects => :get,
+                  :inbox => :get
+                  } do |users|
                   users.resources :photos,
                                   :member => {:rate => :post}
                   users.resources :tracks,

@@ -10,6 +10,9 @@ class CreateComments < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :comments, [:producer_id,:producer_type]
+    add_index :comments, [:consumer_type,:consumer_id]
+    add_index :comments, :state
   end
 
   def self.down
