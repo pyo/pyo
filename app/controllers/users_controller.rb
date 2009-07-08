@@ -1,7 +1,8 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
   before_filter :authenticate, :except => [:new, :create,:index,:show]
-  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects]
+  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects,:inbox]
+  before_filter :check_user, :only => [:edit,:inbox]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
   
@@ -10,6 +11,10 @@ class UsersController < ApplicationController
   end
   
   def dashboard
+    
+  end
+  
+  def inbox
     
   end
   
@@ -56,6 +61,11 @@ class UsersController < ApplicationController
   end
   
   private
+    def check_user
+      unless current_user == @user
+        redirect_to "/"
+      end
+    end
   
     def set_first_run
       if current_user.first_run
