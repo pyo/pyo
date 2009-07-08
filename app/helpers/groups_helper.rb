@@ -28,4 +28,23 @@ module GroupsHelper
       end
     end
   end
+  
+  def approve_group_btn group
+    html = capture do 
+      form_for group, :url => approve_group_path(group) do |f|
+        concat hidden_field_tag "group_id", group.id
+        concat f.submit "approve"
+      end
+    end
+  end
+  
+  def deny_group_btn group
+    html = capture do 
+      form_for group, :url => deny_group_path(group) do |f|
+        concat hidden_field_tag "group_id", group.id
+        concat f.submit "deny"
+      end
+    end
+  end
+  
 end

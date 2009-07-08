@@ -13,10 +13,12 @@ ActionController::Routing::Routes.draw do |map|
                 :member => {
                   :join => :put,
                   :leave => :put,
-                  :approve => :put
+                  :approve => :put,
+                  :deny => :put
                 },
                 :collection =>{
-                  :request_group => :get
+                  :request_group => :get,
+                  :pending => :get
                 }
 
   map.resources :profiles

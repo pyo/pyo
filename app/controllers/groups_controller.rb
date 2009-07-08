@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :authenticate,  :except => [:index, :show] 
-  before_filter :find_group,    :except => [:create,:new,:index,:request_group] 
-  before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create] 
+  before_filter :find_group,    :except => [:create,:new,:index,:request_group,:pending,:approve,:deny] 
+  before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create,:approve,:deny,:pending] 
   
   def index
     @groups = Group.find(:all)
@@ -95,14 +95,38 @@ class GroupsController < ApplicationController
     @group = Group.new
   end
   
+  def pending
+    unless current_user.super_user?
+      flash[:error] = "You are not authorized for that action!"
+      redirect_to "/"
+    else
+      @groups = Group.pending
+    end
+  end
+  
   def approve
     unless current_user.super_user?
       flash[:error] = "You are not authorized for that action!"
       redirect_to "/"
     else
+      # TODO Send Approval DM
+      @group = Group.find_pending(params[:id])
       @group.approved = true
       @group.save
+      flash[:notice] = "Group was approved."
       redirect_to :back
+    end
+  end
+  
+  def deny
+    unless current_user.super_user?
+      flash[:error] = "You are not authorized for that action!"
+      redirect_to "/"
+    else
+      # TODO Send Denied DM
+      @group = Group.find_pending(params[:id])
+      @group.destroy
+      flash[:notice] = "Group was denied."
     end
   end
   
