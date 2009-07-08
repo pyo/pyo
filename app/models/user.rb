@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
   has_many :comments,   :as => 'consumer'
   has_many :activities, :as => 'consumer'
   
+  has_many :messages, :as => :consumer, :class_name => 'DirectMessage'
+  has_many :sent_messages, :as => :producer, :class_name => 'DirectMessage'
+  
   # covalence groups
   is_member_of :groups
   
