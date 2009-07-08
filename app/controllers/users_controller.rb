@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   
   def inbox
-    
+    @messages = current_user.messages.unread
   end
   
   def connects

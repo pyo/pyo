@@ -8,8 +8,26 @@
       %li= link_to 'Sent', '#'
       %li= link_to 'Archive', '#'
     %br{:clear=>"all"}
-    .inbox_messages
-      No Activity
+    %table.inbox_messages{:width=>"100%"}
+      %tr
+        %th From
+        %th Message
+        %th Date
+        %th Options
+      - unless @messages.empty?
+        - for message in @messages
+          %tr
+            %td
+              = h message.producer.name
+            %td
+              = h truncate(message.message,40)
+            %td
+              = "#{time_ago_in_words(message.created_at)} ago"
+            %td
+              = link_to "read", user_direct_message_path(current_user,message)
+              = link_to('delete', [@user,message], :confirm => 'Are you sure?', :method => :delete)
+      - else
+        No Activity
   
 .details
   .inner_content
