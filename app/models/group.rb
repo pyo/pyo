@@ -33,4 +33,17 @@ class Group < ActiveRecord::Base
     Track.all(:joins => :user, :conditions => ["user_id in (select child_id from memberships where parent_type = ? and parent_id = ? and child_type = 'User')", self.class.name, self.id])
   end
   
+  def self.pending
+    with_exclusive_scope {
+      all(:conditions=>{:approved=>false})
+    }
+  end
+  
+  def self.find_pending id
+    with_exclusive_scope {
+      find(id)
+    }
+  end
+  
+  
 end
