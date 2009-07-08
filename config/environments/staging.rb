@@ -37,4 +37,4 @@ end
 # clearance
 HOST = "174.129.227.77"
 
-Paperclip.options[:image_magick_path] = '/usr/local/bin/'
+Paperclip.options[:image_magick_path] = '/usr/bin/'
