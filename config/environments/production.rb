@@ -35,6 +35,6 @@ config.after_initialize do
 end
 
 # clearance
-HOST = "putyourselfon.com"
+HOST = "174.129.227.77"
 
 Paperclip.options[:image_magick_path] = '/usr/local/bin/'
