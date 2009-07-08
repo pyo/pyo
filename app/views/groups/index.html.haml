@@ -2,7 +2,7 @@
   .inner_content
     %ul.menu
       %li
-        = link_to "Request a new Group", request_group_groups_path
+        = link_to "Request a new Group", request_group_groups_path if current_user
   - unless @groups.empty?
     .inner_content
       %h2 
@@ -15,7 +15,7 @@
             = h truncate(group.description, 20)
 .details
   .inner_content
-    = render :partial => "users/info"
+    = render :partial => "users/info" if current_user
 
   .inner_content
     .advertisement

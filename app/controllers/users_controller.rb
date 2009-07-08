@@ -15,7 +15,9 @@ class UsersController < ApplicationController
   end
   
   def inbox
-    @messages = current_user.messages.unread
+    @messages = current_user.messages.unread unless params[:mbox]
+    @messages = current_user.messages.read   if (params[:mbox]=="archive")
+    @messages = current_user.sent_messages   if (params[:mbox]=="sent")
   end
   
   def connects

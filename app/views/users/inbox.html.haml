@@ -2,11 +2,13 @@
   .inner_content
     = render :partial => "users/dashboard_nav"
   .inner_content
-    %h2 Inbox
+    %h2 
+      = "Inbox"
+      = " - #{params[:mbox]}" if params[:mbox]
     %ul.buttons
-      %li= link_to 'New', '#'
-      %li= link_to 'Sent', '#'
-      %li= link_to 'Archive', '#'
+      %li= link_to 'New', inbox_user_path(current_user)
+      %li= link_to 'Sent', inbox_user_path(current_user,:mbox=>"sent")
+      %li= link_to 'Archive', inbox_user_path(current_user,:mbox=>"archive")
     %br{:clear=>"all"}
     %table.inbox_messages{:width=>"100%"}
       %tr
