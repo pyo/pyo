@@ -1,4 +1,5 @@
 --- 
+- :name: paperclip
 - :name: right_http_connection
 - :name: andand
 - :name: haml
