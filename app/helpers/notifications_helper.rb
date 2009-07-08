@@ -7,11 +7,11 @@ module NotificationsHelper
       when [Activity, 'join_group'] then "has joined the group \"#{link_to(notification.payload.name,notification.payload)}\"."
       when [Activity, 'profile_comment'] then "has commented on your profile"
       when [Activity, 'group_comment'] then "has commented in the group \"#{link_to(h(notification.payload.consumer.name),notification.payload.consumer)}\""
-      when [Activity, 'photo_comment'] then "has commented on your #{link_to('photo', user_photo_path(current_user, notification.payload))}"
-      when [Activity, 'comment_comment'] then "has replied to your comment #{link_to("here", polymorphic_path(notification.payload.consumer))}"
-      when [Activity, 'track_comment'] then "has commented on your #{link_to('track', user_photo_path(current_user, notification.payload))}"
-      when [Activity, 'track'] then "has posted the track #{link_to(h(notification.payload.name), user_track_path(notification.payload.user, notification.payload))}. "
-      when [Activity, 'photo'] then "posted the photo <br> #{link_to(image_tag(notification.payload.image.url(:thumb), :width=>'60'), user_photo_path(notification.payload.user, notification.payload))}"
+      #when [Activity, 'photo_comment'] then "has commented on your #{link_to('photo', user_photo_path(current_user, notification.payload))}"
+      #when [Activity, 'comment_comment'] then "has replied to your comment #{link_to("here", polymorphic_path(notification.payload.consumer))}"
+      #when [Activity, 'track_comment'] then "has commented on your #{link_to('track', user_photo_path(current_user, notification.payload))}"
+      #when [Activity, 'track'] then "has posted the track #{link_to(h(notification.payload.name), user_track_path(notification.payload.user, notification.payload))}. "
+      #when [Activity, 'photo'] then "posted the photo <br> #{link_to(image_tag(notification.payload.image.url(:thumb), :width=>'60'), user_photo_path(notification.payload.user, notification.payload))}"
 
     end    
   end

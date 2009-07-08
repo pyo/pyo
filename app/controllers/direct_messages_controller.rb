@@ -1,6 +1,6 @@
 class DirectMessagesController < ApplicationController
   before_filter :authenticate
-  before_filter :find_direct_message, :only => [:show]
+  before_filter :find_direct_message, :only => [:show,:destroy]
   before_filter :find_user, :only => [:new,:create,:show]
   before_filter :check_user, :only => [:show,:destroy]
   
@@ -19,14 +19,24 @@ class DirectMessagesController < ApplicationController
     end
   end
   
+  def destroy
+    if @direct_message.destroy
+      flash[:notice] = "Message deleted."
+      redirect_to :back
+    else
+      flash[:error] = "Error deleting message!"
+      redirect_to inbox_user_path(current_user)
+    end
+  end
+  
   def show
     @direct_message.state = "read"
     @direct_message.save
   end
 
   private
-    def check_user
-      unless (@direct_message.consumer == current_user)
+    def check_user    
+      unless (@direct_message.consumer == current_user || @direct_message.producer == current_user)
         flash[:error] = "You are not authorized for that action."
         redirect_to "/"
       end
