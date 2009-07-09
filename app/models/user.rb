@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   include Covalence::Member
   include Clearance::App::Models::User
-  attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes
-
+  attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list
+  is_taggable :tags
+  
   # assocs
   has_one  :profile, :dependent => :destroy
   has_many :photos

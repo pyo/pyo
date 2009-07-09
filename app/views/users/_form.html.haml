@@ -33,6 +33,10 @@
     = form.label :email
     = form.text_field :email
   
+  .text_field
+    = form.label :tags
+    = form.text_field :tag_list
+  
   - if @user.new_record?
     .password_field
       = form.label :password
