@@ -50,6 +50,7 @@ class UsersController < ApplicationController
     @photos = @user.photos.recent(:limit => 6)
     @tracks = @user.tracks.recent(:limit => 10)
     @videos = []
+    @tweets = @user.tweets
   end
   
   def update
