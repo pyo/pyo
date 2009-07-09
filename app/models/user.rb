@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  TALENT_TYPES = %w{DJ Producer Singer Guitarist Drummer Fan}.sort
+  
   include Covalence::Member
   include Clearance::App::Models::User
   attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list

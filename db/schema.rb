@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090708155210) do
+ActiveRecord::Schema.define(:version => 20090709143334) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -210,12 +210,14 @@ ActiveRecord::Schema.define(:version => 20090708155210) do
     t.string   "name"
     t.boolean  "first_run",                         :default => true
     t.boolean  "super_user",                        :default => false
+    t.string   "talent_type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["first_run"], :name => "index_users_on_first_run"
   add_index "users", ["id", "token"], :name => "index_users_on_id_and_token"
   add_index "users", ["super_user"], :name => "index_users_on_super_user"
+  add_index "users", ["talent_type"], :name => "index_users_on_talent_type"
   add_index "users", ["token"], :name => "index_users_on_token"
 
 end
