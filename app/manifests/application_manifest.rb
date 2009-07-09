@@ -27,7 +27,7 @@ class ApplicationManifest < Moonshine::Manifest::Rails
         :application => "putyourselfon.com",
         :deploy_to => "/home/admin/public_html/putyourselfon.com",
         :domain => "putyourselfon.com",
-        :domain_aliases => [ ]
+        :domain_aliases => [ "www.putyourselfon.com" ]
       })
     when "staging" then 
       configure({

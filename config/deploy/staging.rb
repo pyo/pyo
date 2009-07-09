@@ -5,7 +5,6 @@ set :application, "staging.putyourselfon.com"
 set :deploy_to, "/home/admin/public_html/staging.putyourselfon.com"
 set :domain, "staging.putyourselfon.com"
 
-
 set :rails_env, "staging"
 set :keep_releases, 20  
 
