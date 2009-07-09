@@ -127,6 +127,10 @@
   # Rewrite to check for Rails cached page
 	# Breaks access to /phpmyadmin
   # RewriteRule ^([^.]+)$ $1.html [QSA]
+
+  RewriteCond %{HTTP_HOST} ^www\.<%= configuration[:domain] || `hostname -f` %>$ [NC]
+  RewriteRule ^(.*)$ http://<%= configuration[:domain] || `hostname -f` %>$1 [L,R=301]
+
 <% end %>
 </VirtualHost>
 
@@ -272,6 +276,9 @@
   # Rewrite to check for Rails cached page
 	# Breaks access to /phpmyadmin
   # RewriteRule ^([^.]+)$ $1.html [QSA]
+
+  RewriteCond %{HTTP_HOST} ^www\.<%= configuration[:domain] || `hostname -f` %>$ [NC]
+  RewriteRule ^(.*)$ http://<%= configuration[:domain] || `hostname -f` %>$1 [L,R=301]
 
   </VirtualHost>
 <% end %>
