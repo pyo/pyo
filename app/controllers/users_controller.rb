@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include Clearance::App::Controllers::UsersController
   before_filter :authenticate, :except => [:new, :create,:index,:show]
   before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects,:inbox]
-  before_filter :check_user, :only => [:edit,:inbox]
+  before_filter :check_user, :only => [:edit,:inbox,:update]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
   
@@ -53,8 +53,13 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user.update_attributes(params[:user])
-    redirect_to dashboard_path
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Profile was updated."
+      redirect_to dashboard_path
+    else
+      flash[:notice] = "Profile update failed."
+      redirect_to :action => "edit"
+    end
   end
   
   def follow

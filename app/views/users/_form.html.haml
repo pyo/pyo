@@ -4,6 +4,10 @@
     = form.label :name, 'Username'
     = form.text_field :name
 
+  .text_field
+    = form.label :talent_type
+    = form.select :talent_type, User::TALENT_TYPES.map {|t| [t,t] }
+
   - form.fields_for :profile do |p|
     .text_field
       = p.label :avatar
