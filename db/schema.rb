@@ -118,6 +118,9 @@ ActiveRecord::Schema.define(:version => 20090708155210) do
     t.datetime "updated_at"
   end
 
+  add_index "photos", ["title"], :name => "index_photos_on_title"
+  add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
+
   create_table "profiles", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"

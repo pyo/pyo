@@ -1,0 +1,14 @@
+= Moonshine_DsTools
+
+=== A plugin for Moonshine[http://github.com/railsmachine/moonshine]
+
+A plugin for installing and managing ds_tools.
+
+=== Instructions
+
+* <tt>script/plugin install git://github.com/ACCOUNT/moonshine_ds_tools.git</tt>
+* Configure settings if needed
+    configure(:ds_tools => {:foo => true})
+* Include the plugin and recipe(s) in your Moonshine manifest
+    plugin :ds_tools
+    recipe :ds_tools

@@ -1,0 +1,23 @@
+= Moonshine_SSH
+
+== A plugin for Moonshine[http://github.com/railsmachine/moonshine]
+
+This plugin provides a few security improvements for your default SSH
+configuration. It also gives you the ability to easily customize your
+settings. Browse through the sshd_config in the <tt>templates/</tt> directory
+to see the available settings.
+
+The new configuration file is tested before it's used, so there's less
+chance that you'll accidentally lock yourself out.
+
+=== Instructions
+
+* <tt>script/plugin install git://github.com/railsmachine/moonshine_ssh.git</tt>
+* Use <tt>configure</tt> to customize plugin settings if desired:
+    configure(:ssh => {
+      :port => '9022', 
+      :allow_users => ['rob','rails'] 
+    })
+* Include the plugin and recipe(s) you want to use in your Moonshine manifest.
+    plugin :ssh
+    recipe :ssh
