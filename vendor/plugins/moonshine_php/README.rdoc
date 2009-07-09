@@ -1,0 +1,14 @@
+= Moonshine_Php
+
+=== A plugin for Moonshine[http://github.com/railsmachine/moonshine]
+
+A plugin for installing and managing php.
+
+=== Instructions
+
+* <tt>script/plugin install git://github.com/ACCOUNT/moonshine_php.git</tt>
+* Configure settings if needed
+    configure(:php => {:foo => true})
+* Include the plugin and recipe(s) in your Moonshine manifest
+    plugin :php
+    recipe :php

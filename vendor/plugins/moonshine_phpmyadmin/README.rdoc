@@ -1,0 +1,14 @@
+= Moonshine_Phpmyadmin
+
+=== A plugin for Moonshine[http://github.com/railsmachine/moonshine]
+
+A plugin for installing and managing phpmyadmin.
+
+=== Instructions
+
+* <tt>script/plugin install git://github.com/ACCOUNT/moonshine_phpmyadmin.git</tt>
+* Configure settings if needed
+    configure(:phpmyadmin => {:foo => true})
+* Include the plugin and recipe(s) in your Moonshine manifest
+    plugin :phpmyadmin
+    recipe :phpmyadmin

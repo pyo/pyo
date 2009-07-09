@@ -35,10 +35,6 @@ config.after_initialize do
 end
 
 # clearance
-HOST = "putyourselfon.com"
+HOST = "174.129.227.77"
 
-<<<<<<< HEAD:config/environments/production.rb
-Paperclip.options[:image_magick_path] = '/usr/local/bin/'
-=======
 Paperclip.options[:image_magick_path] = '/usr/bin/'
->>>>>>> a8876795699fde52c915b6a4c9a5eead786c3ea4:config/environments/production.rb
