@@ -59,7 +59,12 @@ class User < ActiveRecord::Base
     
     unless twitter_username == "" || twitter_password == ""
       twitter = Twitter.new(twitter_username,twitter_password) 
-      twitter.timeline(:user,:query=>{:count=>8})      
+      tweets = twitter.timeline(:user,:query=>{:count=>8})      
+      if tweets.class != String
+        tweets
+      else
+        []
+      end
     else
       []
     end
