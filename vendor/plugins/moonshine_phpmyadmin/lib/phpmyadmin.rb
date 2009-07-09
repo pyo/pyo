@@ -21,7 +21,13 @@ module Phpmyadmin
       :ensure => :present,
       :content => template(File.join(File.dirname(__FILE__), 'templates', 'phpmyadmin.conf.erb')),
       :notify => service("apache2"),
-      :alias => "phpmyadmin"
+      :alias => "phpmyadmin_conf"
+
+    file '/etc/phpmyadmin/config.inc.php',
+      :ensure => :present,
+      :content => template(File.join(File.dirname(__FILE__), 'templates', 'config.inc.php.erb')),
+      :notify => service("apache2"),
+      :alias => "phpmyadmin_config"
     
   end
   

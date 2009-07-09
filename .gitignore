@@ -1,5 +1,4 @@
 config/database.yml
-config/capsize/*
 db/schema.rb
 log/*.log
 tmp/*
