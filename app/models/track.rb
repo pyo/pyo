@@ -13,7 +13,7 @@ class Track < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :path => ":attachment/:id/:style.:extension",
-                    :bucket => 'pyo-tracks'
+                    :bucket => "pyo-tracks-#{ENV}"
   #assocs 
   belongs_to  :user
   has_many    :activities, :as => :payload, :dependent => :destroy 
