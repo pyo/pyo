@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'httparty'
   config.gem 'haml'
   config.gem 'capistrano'
-  config.gem 'jnewland-capsize', :lib => false # deployment tasks on ec2
+  config.gem 'jnewland-capsize', :lib => false, :source => 'http://gems.github.com' # deployment tasks on ec2
 
   # Activate observers that should always be running
   #config.active_record.observers = :covalence_notification_observer
