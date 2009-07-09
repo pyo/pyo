@@ -51,7 +51,6 @@ class UsersController < ApplicationController
     @tracks = @user.tracks.recent(:limit => 10)
     @videos = []
     @tweets = @user.tweets
-    Growler.growl(@tweets)
     
   end
   
