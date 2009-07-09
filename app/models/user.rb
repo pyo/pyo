@@ -55,9 +55,11 @@ class User < ActiveRecord::Base
   end
   
   def tweets    
-    if twitter_username.nil? && twitter_password.nil?
+    Growler.growl(twitter_username)
+    
+    unless twitter_username == "" || twitter_password == ""
       twitter = Twitter.new(twitter_username,twitter_password) 
-      twitter.timeline(:user,:query=>{:count=>8})
+      twitter.timeline(:user,:query=>{:count=>8})      
     else
       []
     end
