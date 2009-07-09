@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   # validations
   validates_presence_of   :name
   validates_uniqueness_of :name
-  validates_format_of :name, :with => /^[^\s]*$/, :message => "Username cannot include spaces."
+  validates_format_of :name, :with => /^[^\s]*$/, :message => "cannot contain spaces."
   
   accepts_nested_attributes_for :profile, :allow_destroy => true
   
