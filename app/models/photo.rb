@@ -17,7 +17,8 @@ class Photo < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :path => ":attachment/:id/:style.:extension",
-                    :bucket => "pyo-images-#{RAILS_ENV}"
+                    :bucket => "pyo-images-#{RAILS_ENV}",
+                    :default_url => "/images/:attachment/:style/missing.png"
   
   # assocs
   belongs_to :user
