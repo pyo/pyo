@@ -19,7 +19,7 @@ class Profile < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :path => ":attachment/:id/:style.:extension",
-                    :bucket => "pyo-images-#{ENV}"
+                    :bucket => "pyo-images-#{RAILS_ENV}"
   
   # assocs
   belongs_to :user
