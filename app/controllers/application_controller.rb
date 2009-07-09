@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def parent_type
-    Growler.growl(@parent.inspect)
     self.class.parents.detect { |parent| parent_id(parent) }
   end
 

@@ -54,12 +54,15 @@ class User < ActiveRecord::Base
     Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'profile_comment', :payload=>self})
   end
   
-  def tweets    
-    Growler.growl(twitter_username)
-    
+  def tweets        
     unless twitter_username == "" || twitter_password == ""
       twitter = Twitter.new(twitter_username,twitter_password) 
-      twitter.timeline(:user,:query=>{:count=>8})      
+      tweets = twitter.timeline(:user,:query=>{:count=>8})            
+      if tweets.class != Hash
+        tweets
+      else
+        []
+      end
     else
       []
     end
