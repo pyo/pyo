@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   
   include Covalence::Member
   include Clearance::App::Models::User
-  attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list, :talent_type
+  attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list, :talent_type, :twitter_username, :twitter_password, :flickr_username
   is_taggable :tags
   
   # assocs

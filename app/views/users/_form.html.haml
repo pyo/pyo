@@ -7,7 +7,21 @@
   .text_field
     = form.label :talent_type
     = form.select :talent_type, User::TALENT_TYPES.map {|t| [t,t] }
+  
+  %h3 Twitter Integration
+  .text_field
+    = form.label :twitter_username
+    = form.text_field :twitter_username
+  .text_field
+    = form.label :twitter_password
+    = form.password_field :twitter_password    
 
+  %h3 Flickr Integration
+  .text_field
+    = form.label :flickr_username
+    = form.text_field :flickr_username
+
+  %h3 Profile
   - form.fields_for :profile do |p|
     .text_field
       = p.label :avatar
