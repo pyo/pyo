@@ -187,6 +187,7 @@ ul.separated {
 .group_member_thumb {
   width: 60px;
   padding: 5px;
+  overflow: hidden;
   float: left; }
 
 .activity {

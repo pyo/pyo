@@ -7,8 +7,8 @@
     Following
   %button Favorite
   = message_user_btn @user
-
-= @user.name
+%h4
+  = "#{h @user.name} - #{@user.talent_type}"
 
 %p
 

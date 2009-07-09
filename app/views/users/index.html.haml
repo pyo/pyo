@@ -1,2 +1,18 @@
-- @users.each do |user|
-  = link_to user.name, user
+.main  
+  - unless @users.empty?
+    .inner_content
+      %h2 
+        = "Members"
+      - for user in @users
+        .group_member_thumb
+          = link_to image_tag(user.profile.avatar.url(:thumb)), user_path(user)
+          %p
+            = h user.name
+            
+.details
+  .inner_content
+    = render :partial => "users/info" if current_user
+
+  .inner_content
+    .advertisement
+      Advertisement

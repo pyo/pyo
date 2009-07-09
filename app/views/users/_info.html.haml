@@ -1,5 +1,5 @@
 = image_tag current_user.profile.avatar.url(:profile)
-= current_user.name
+= "#{h current_user.name} - #{current_user.talent_type}"
 %p
 
 %h3 Connects
