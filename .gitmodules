@@ -1,7 +1,3 @@
-<<<<<<< HEAD:.gitmodules
-
-=======
->>>>>>> a8876795699fde52c915b6a4c9a5eead786c3ea4:.gitmodules
 [submodule "vendor/plugins/covalence"]
 	path = vendor/plugins/covalence
 	url = git@github.com:digitalscientists/Covalence.git

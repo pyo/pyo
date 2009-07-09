@@ -1,5 +1,5 @@
 server "174.129.227.77", :app, :web, :db, :primary => true
-set :branch, "server_setup"
+set :branch, "staging"
 
 set :application, "staging.putyourselfon.com"
 set :deploy_to, "/home/admin/public_html/staging.putyourselfon.com"
