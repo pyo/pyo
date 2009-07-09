@@ -19,6 +19,8 @@ Rails::Initializer.run do |config|
   config.gem 'right_aws'
   config.gem 'capistrano'
   config.gem 'andand'
+  config.gem 'httparty'
+  
 
   # Activate observers that should always be running
   #config.active_record.observers = :covalence_notification_observer
