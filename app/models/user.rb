@@ -53,8 +53,8 @@ class User < ActiveRecord::Base
     Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'profile_comment', :payload=>self})
   end
   
-  def tweets
-    if twitter_username && twitter_password
+  def tweets    
+    if twitter_username.nil? && twitter_password.nil?
       twitter = Twitter.new(twitter_username,twitter_password) 
       twitter.timeline(:user,:query=>{:count=>8})
     else
