@@ -2,6 +2,8 @@
 - :name: paperclip
 - :name: right_http_connection
 - :name: andand
+- :name: httparty
 - :name: haml
+- :name: jnewland-capsize
 - :version: 2.3.2
   :name: rails
