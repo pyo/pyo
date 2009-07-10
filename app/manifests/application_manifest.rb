@@ -53,7 +53,10 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   
   plugin :phpmyadmin
   recipe :phpmyadmin
-
+  
+  plugin :astrails_safe
+  recipe :astrails_safe
+  
   recipe :default_stack
 
   # Add your application's custom requirements here
@@ -82,6 +85,13 @@ class ApplicationManifest < Moonshine::Manifest::Rails
     # on_stage 'testing' do
     #   file '/etc/motd', :ensure => :file, :content => "Welcome to the TEST server!"
     # end
+  
+    cron "#{deploy_stage}_daily_backup",
+       :command => "astrails-safe #{configuration[:deploy_to]}/shared/config/astrails_safe_backup.conf",
+       :user => "root",
+       :minute => "0",
+       :hour => "0"
+    
   end
   # The following line includes the 'application_packages' recipe defined above
   recipe :application_packages

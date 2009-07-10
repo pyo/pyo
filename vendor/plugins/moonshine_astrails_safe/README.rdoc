@@ -1,0 +1,14 @@
+= Moonshine_AstrailsSafe
+
+=== A plugin for Moonshine[http://github.com/railsmachine/moonshine]
+
+A plugin for installing and managing astrails_safe.
+
+=== Instructions
+
+* <tt>script/plugin install git://github.com/ACCOUNT/moonshine_astrails_safe.git</tt>
+* Configure settings if needed
+    configure(:astrails_safe => {:foo => true})
+* Include the plugin and recipe(s) in your Moonshine manifest
+    plugin :astrails_safe
+    recipe :astrails_safe
