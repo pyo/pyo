@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(:version => 20090709153027) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["consumer_type", "consumer_id"], :name => "index_comments_on_consumer_type_and_consumer_id"
+  add_index "comments", ["producer_id", "producer_type"], :name => "index_comments_on_producer_id_and_producer_type"
+  add_index "comments", ["state"], :name => "index_comments_on_state"
+
   create_table "direct_messages", :force => true do |t|
     t.string   "producer_type"
     t.integer  "producer_id"
