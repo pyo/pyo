@@ -33,4 +33,10 @@ class ApplicationController < ActionController::Base
   def parent_object
     parent_class && parent_class.find_by_id(parent_id(parent_type))
   end
+
+	protected
+    
+   def find_user
+     @user = User.find_by_name(params[:user_id]) if params[:user_id]
+   end
 end

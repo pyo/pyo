@@ -1,0 +1,29 @@
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    .photo_view
+      %h2 
+        = h @event.title
+      %br
+      %p 
+        = h @event.description
+      %br  
+      .photo_tags
+        %br
+        %h3 Tags:
+        %p
+          =#h @track.tags.collect(&:name).join(" ")
+  .inner_content
+    %h2 Rating    
+    =# render :partial =>"shared/rate_item",:locals => {:ratable=>@event}
+  .inner_content
+    %h2 Comments
+    =# render :partial => @event.comments
+    =# render :partial => "comments/form", :locals => {:commentable => @event, :comment_class=>""}
+    
+.details
+  .inner_content
+    = render :partial => "users/public_info"
+  .inner_content
+    = render :partial => "shared/advertisment"

@@ -58,10 +58,6 @@ class TracksController < ApplicationController
       @track = Track.find(params[:id]) if params[:id]
     end
     
-    def find_user
-      @user = User.find_by_name(params[:user_id]) if params[:user_id]
-    end
-    
     def check_user
       unless current_user == @user
         redirect_to "/"

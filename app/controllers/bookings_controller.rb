@@ -1,4 +1,7 @@
 class BookingsController < ApplicationController
+	before_filter :authenticate, :only=>[:new,:create,:edit,:update]
+  before_filter :find_user, :only=>[:show,:index]
+	
   # GET /events
   # GET /events.xml
   def index
@@ -24,6 +27,7 @@ class BookingsController < ApplicationController
   # GET /events/new
   # GET /events/new.xml
   def new
+	
     @event = Booking.new
 
     respond_to do |format|
@@ -40,7 +44,7 @@ class BookingsController < ApplicationController
   # POST /events
   # POST /events.xml
   def create
-    @event = Booking.new(params[:event])
+    @event = current_user.bookings.new(params[:booking])
 
     respond_to do |format|
       if @event.save
@@ -48,7 +52,7 @@ class BookingsController < ApplicationController
         format.html { redirect_to(@event) }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to new_user_booking_path(current_user) }
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
     end
