@@ -1,0 +1,8 @@
+%h2 This is the Talent Marketplace
+
+-if signed_in?
+  %ul
+    %li
+      =link_to "Create an Ad", new_user_ad_path(current_user)
+    %li
+      =link_to "Create an Event", new_user_booking_path(current_user)
