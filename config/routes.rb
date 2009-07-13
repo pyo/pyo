@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :ads
+
+  map.resources :bookings, :as=>:events
+
   map.resources :tracks
 
   map.resources :activities

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090709153027) do
+ActiveRecord::Schema.define(:version => 20090713191928) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(:version => 20090709153027) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["consumer_type", "consumer_id"], :name => "index_comments_on_consumer_type_and_consumer_id"
+  add_index "comments", ["producer_id", "producer_type"], :name => "index_comments_on_producer_id_and_producer_type"
+  add_index "comments", ["state"], :name => "index_comments_on_state"
+
   create_table "direct_messages", :force => true do |t|
     t.string   "producer_type"
     t.integer  "producer_id"
@@ -66,6 +70,23 @@ ActiveRecord::Schema.define(:version => 20090709153027) do
   add_index "direct_messages", ["producer_id", "producer_type"], :name => "index_direct_messages_on_producer_id_and_producer_type"
   add_index "direct_messages", ["reply_to_id"], :name => "index_direct_messages_on_reply_to_id"
   add_index "direct_messages", ["state"], :name => "index_direct_messages_on_state"
+
+  create_table "events", :force => true do |t|
+    t.string   "type"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["end_date"], :name => "index_events_on_end_date"
+  add_index "events", ["start_date"], :name => "index_events_on_start_date"
+  add_index "events", ["title"], :name => "index_events_on_title"
+  add_index "events", ["type"], :name => "index_events_on_type"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "followings", :force => true do |t|
     t.string   "parent_type"
