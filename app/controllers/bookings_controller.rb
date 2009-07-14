@@ -49,7 +49,7 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
-        format.html { redirect_to(@event) }
+        format.html { redirect_to([current_user, @event]) }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         format.html { redirect_to new_user_booking_path(current_user) }

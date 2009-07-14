@@ -22,7 +22,7 @@
         %br
         %h3 Tags:
         %p
-          =#h @track.tags.collect(&:name).join(" ")
+          =h @ad.tags.collect(&:name).join(" ")
   .inner_content
     %h2 Rating    
     =# render :partial =>"shared/rate_item",:locals => {:ratable=>@event}

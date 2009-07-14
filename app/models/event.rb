@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  is_taggable :tags
+  acts_as_rateable
 	
 	validates_presence_of :title, :description, :start_date, :end_date, :user_id
 	
