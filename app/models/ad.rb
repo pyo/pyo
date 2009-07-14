@@ -2,6 +2,8 @@ class Ad < Event
 	
 	DURATION = 30.days
 	
+  has_many    :comments, :dependent => :destroy, :conditions=>"comments.consumer_type = 'Ad'", :foreign_key=>'consumer_id'
+	
 	before_validation :set_start_and_end_dates, :if => :needs_dates?
 	
 	def set_start_date

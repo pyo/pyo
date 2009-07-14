@@ -28,8 +28,8 @@
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@ad}
   .inner_content
     %h2 Comments
-    =# render :partial => @event.comments
-    =# render :partial => "comments/form", :locals => {:commentable => @event, :comment_class=>""}
+    = render :partial => @ad.comments
+    = render :partial => "comments/form", :locals => {:commentable => @ad, :comment_class=>""}
     
 .details
   .inner_content

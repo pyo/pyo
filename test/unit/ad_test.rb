@@ -10,6 +10,7 @@ class AdTest < ActiveSupport::TestCase
 	should_validate_presence_of :title, :message=>"can't be blank"
 	should_validate_presence_of :description, :message=>"can't be blank"
 	should_validate_presence_of :user_id, :message=>"can't be blank"
+	should_have_many :comments
 	
 	context "with valid attributes" do
 		
