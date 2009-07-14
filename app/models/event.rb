@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+	
   is_taggable :tags
   acts_as_rateable
 	
