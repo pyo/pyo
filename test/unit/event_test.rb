@@ -3,6 +3,7 @@ require 'test_helper'
 class EventTest < ActiveSupport::TestCase
 	
 	should_belong_to :user
+	should_belong_to :group
 	
 	context "An Instance" do
 		setup do

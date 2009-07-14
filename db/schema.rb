@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090713191928) do
+ActiveRecord::Schema.define(:version => 20090714205958) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -80,9 +80,11 @@ ActiveRecord::Schema.define(:version => 20090713191928) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
   end
 
   add_index "events", ["end_date"], :name => "index_events_on_end_date"
+  add_index "events", ["group_id"], :name => "index_events_on_group_id"
   add_index "events", ["start_date"], :name => "index_events_on_start_date"
   add_index "events", ["title"], :name => "index_events_on_title"
   add_index "events", ["type"], :name => "index_events_on_type"
