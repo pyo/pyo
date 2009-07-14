@@ -1,4 +1,6 @@
 class AdsController < ApplicationController
+	before_filter :authenticate, :only=>[:new,:create,:edit,:update]
+  before_filter :find_user, :only=>[:show,:index]
   # GET /ads
   # GET /ads.xml
   def index
@@ -40,12 +42,12 @@ class AdsController < ApplicationController
   # POST /ads
   # POST /ads.xml
   def create
-    @ad = Ad.new(params[:ad])
+    @ad = current_user.ads.new(params[:ad])
 
     respond_to do |format|
       if @ad.save
         flash[:notice] = 'Ad was successfully created.'
-        format.html { redirect_to(@ad) }
+        format.html { redirect_to([current_user,@ad]) }
         format.xml  { render :xml => @ad, :status => :created, :location => @ad }
       else
         format.html { render :action => "new" }
@@ -62,7 +64,7 @@ class AdsController < ApplicationController
     respond_to do |format|
       if @ad.update_attributes(params[:ad])
         flash[:notice] = 'Ad was successfully updated.'
-        format.html { redirect_to(@ad) }
+        format.html { redirect_to([current_user,@ad]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

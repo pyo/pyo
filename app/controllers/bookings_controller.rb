@@ -64,9 +64,9 @@ class BookingsController < ApplicationController
     @event = Booking.find(params[:id])
 
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(params[:booking])
         flash[:notice] = 'Event was successfully updated.'
-        format.html { redirect_to(@event) }
+        format.html { redirect_to([current_user,@event]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -3,7 +3,7 @@
     = render :partial => "users/dashboard_nav"
   .inner_content
     
-    %h2 Create an Event
+    %h2 Edit Event
     
     - form_for([current_user, @event], :html => {:multipart => true}) do |form|
       .errors
@@ -13,12 +13,8 @@
         %dd= form.text_field :title
         %dt= form.label :description
         %dd= form.text_area :description
-        %dt= form.label :start_date
-        %dd= form.datetime_select :start_date
-        %dt= form.label :end_date
-        %dd= form.datetime_select :end_date
         %small Comma separate tags.    
-      %p= form.submit 'Create', :disable_with => "Creating"
+      %p= form.submit 'Update', :disable_with => "Updating"
     
 .details
   .inner_content

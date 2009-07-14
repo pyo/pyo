@@ -4,20 +4,19 @@
   .inner_content
     .photo_view
       %h2 
-        = h @event.title
+        = h @ad.title
       %br
       %p 
-        = h @event.description
-      %p
-        %small
-          Begins in
-          = distance_of_time_in_words_to_now @event.start_date
-      %p
-        Starts
-        = @event.start_date.to_formatted_s :human_date_and_time
-      %p
-        Ends
-        = @event.start_date.to_formatted_s :human_date_and_time
+        = h @ad.description
+      %p 
+        %small 
+          Posted
+          =  time_ago_in_words @ad.start_date
+          ago
+      %p 
+        %small 
+          Expires in
+          =  distance_of_time_in_words_to_now @ad.end_date
       %br  
       .photo_tags
         %br
