@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_filter :find_event
 	before_filter :authenticate, :only=>[:new,:create,:edit,:update]
   before_filter :find_user, :only=>[:show,:index]
 	
@@ -12,11 +13,19 @@ class BookingsController < ApplicationController
       format.xml  { render :xml => @events }
     end
   end
+  
+  def rate
+    @event.rate_it( params[:rate_value], current_user.id )
+    respond_to do |wants|
+      wants.json { 
+        render :json => @event
+      }
+    end
+  end
 
   # GET /events/1
   # GET /events/1.xml
   def show
-    @event = Booking.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,7 +47,6 @@ class BookingsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Booking.find(params[:id])
   end
 
   # POST /events
@@ -61,7 +69,6 @@ class BookingsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.xml
   def update
-    @event = Booking.find(params[:id])
 
     respond_to do |format|
       if @event.update_attributes(params[:booking])
@@ -78,7 +85,6 @@ class BookingsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.xml
   def destroy
-    @event = Booking.find(params[:id])
     @event.destroy
 
     respond_to do |format|
@@ -86,4 +92,9 @@ class BookingsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+    def find_event
+      @event = Booking.find(params[:id]) if params[:id]
+    end
 end

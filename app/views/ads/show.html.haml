@@ -25,7 +25,7 @@
           =h @ad.tags.collect(&:name).join(" ")
   .inner_content
     %h2 Rating    
-    =# render :partial =>"shared/rate_item",:locals => {:ratable=>@event}
+    = render :partial =>"shared/rate_item",:locals => {:ratable=>@ad}
   .inner_content
     %h2 Comments
     =# render :partial => @event.comments

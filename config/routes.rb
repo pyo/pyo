@@ -43,8 +43,10 @@ ActionController::Routing::Routes.draw do |map|
                                   :member => {:rate => :post}
                   users.resources :direct_messages
                   users.resources :comments
-									users.resources :bookings, :as=>:events
-									users.resources :ads
+									users.resources :bookings, :as=>:events,
+																	:member => {:rate => :post}
+									users.resources :ads,
+																	:member => {:rate => :post}
                 end
                 
   map.resource  :session

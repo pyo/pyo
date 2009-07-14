@@ -1,4 +1,5 @@
 class AdsController < ApplicationController
+	before_filter :find_ad
 	before_filter :authenticate, :only=>[:new,:create,:edit,:update]
   before_filter :find_user, :only=>[:show,:index]
   # GET /ads
@@ -11,11 +12,19 @@ class AdsController < ApplicationController
       format.xml  { render :xml => @ads }
     end
   end
+  
+  def rate
+    @ad.rate_it( params[:rate_value], current_user.id )
+    respond_to do |wants|
+      wants.json { 
+        render :json => @ad
+      }
+    end
+  end
 
   # GET /ads/1
   # GET /ads/1.xml
   def show
-    @ad = Ad.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +45,6 @@ class AdsController < ApplicationController
 
   # GET /ads/1/edit
   def edit
-    @ad = Ad.find(params[:id])
   end
 
   # POST /ads
@@ -59,7 +67,6 @@ class AdsController < ApplicationController
   # PUT /ads/1
   # PUT /ads/1.xml
   def update
-    @ad = Ad.find(params[:id])
 
     respond_to do |format|
       if @ad.update_attributes(params[:ad])
@@ -76,7 +83,6 @@ class AdsController < ApplicationController
   # DELETE /ads/1
   # DELETE /ads/1.xml
   def destroy
-    @ad = Ad.find(params[:id])
     @ad.destroy
 
     respond_to do |format|
@@ -84,4 +90,9 @@ class AdsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+    def find_ad
+      @ad = Ad.find(params[:id]) if params[:id]
+    end
 end
