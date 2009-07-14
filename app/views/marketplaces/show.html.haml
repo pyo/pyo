@@ -7,6 +7,10 @@
     %li
       =link_to "Create an Event", new_user_booking_path(current_user)
 
+.categories
+  - @categories.each do |category|
+    = link_to category.name, group_marketplace_path(category)
+
 .events
   %h3 Recent Events
   = render :partial=>"bookings", :collection=>@events, :as=>:booking

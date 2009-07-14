@@ -55,10 +55,11 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(params[:group])
-    @group.users.join(current_user,:ADMIN)
+    @group = Group.new_with_pending(params[:group])
+    
     respond_to do |format|
       if @group.save
+				@group.users.join(current_user,:ADMIN)
         flash[:notice] = 'Group request was submitted.'
         format.html { redirect_to(groups_path) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
@@ -110,7 +111,7 @@ class GroupsController < ApplicationController
       redirect_to "/"
     else
       # TODO Send Approval DM
-      @group = Group.find_pending(params[:id])
+      @group = Group.find_pending_by_url(params[:id])
       @group.approved = true
       @group.save
       flash[:notice] = "Group was approved."
@@ -124,7 +125,7 @@ class GroupsController < ApplicationController
       redirect_to "/"
     else
       # TODO Send Denied DM
-      @group = Group.find_pending(params[:id])
+      @group = Group.find_pending_by_url(params[:id])
       @group.destroy
       flash[:notice] = "Group was denied."
     end
@@ -132,7 +133,7 @@ class GroupsController < ApplicationController
   
   private 
     def find_group
-      @group = Group.find(params[:id])
+      @group = Group.find_by_url(params[:id])
     end
     
     def check_user

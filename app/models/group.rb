@@ -1,7 +1,11 @@
 class Group < ActiveRecord::Base
   include Covalence::Group
+	acts_as_url :name, :sync_url=>true
+	
   # assocs 
-  has_many :comments, :as => 'consumer', :dependent => :destroy 
+  has_many :comments, :as => 'consumer', :dependent => :destroy
+	has_many :bookings
+	has_many :ads
   
   #covalence
   has_members       :users
@@ -24,6 +28,7 @@ class Group < ActiveRecord::Base
                     
   # validations                  
   validates_presence_of :name, :description
+	validates_uniqueness_of :name
       
   def receive_comment_notification comment
     Activity.send_group_comment_notification self, comment
@@ -32,6 +37,14 @@ class Group < ActiveRecord::Base
   def tracks
     Track.all(:joins => :user, :conditions => ["user_id in (select child_id from memberships where parent_type = ? and parent_id = ? and child_type = 'User')", self.class.name, self.id])
   end
+
+	def self.new_with_pending attrs
+		with_exclusive_scope { new attrs }
+	end
+	
+	def self.create_with_pending attrs
+		with_exclusive_scope { new attrs }
+	end
   
   def self.pending
     with_exclusive_scope {
@@ -41,9 +54,18 @@ class Group < ActiveRecord::Base
   
   def self.find_pending id
     with_exclusive_scope {
-      find(id)
+				find(id)
     }
   end
   
+  def self.find_pending_by_url url
+    with_exclusive_scope {
+				find_by_url(url)
+    }
+  end
+
+  def to_param
+		url
+	end
   
 end

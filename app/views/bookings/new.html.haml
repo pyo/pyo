@@ -17,6 +17,8 @@
         %dd= form.datetime_select :start_date
         %dt= form.label :end_date
         %dd= form.datetime_select :end_date
+        %dt= form.label :group_id, "Category"
+        %dd= form.select :group_id, Group.all.collect{|g|[g.name,g.id]}
         %dt= form.label :tags
         %dd= form.text_field :tag_list 
         %small Comma separate tags.    
@@ -27,3 +29,5 @@
     = render :partial => "users/info"
   .inner_content
     = render :partial => "shared/advertisment"
+    
+      

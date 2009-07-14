@@ -29,6 +29,10 @@ ActionController::Routing::Routes.draw do |map|
                   :request_group => :get,
                   :pending => :get
                 }
+	
+	map.resources :groups, :as=>'categories'  do |group|
+									group.resource :marketplace
+								end
 
   map.resources :profiles
 
