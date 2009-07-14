@@ -33,6 +33,13 @@ class BookingTest < ActiveSupport::TestCase
 			Booking.create!(@valid_attributes)
 		end
 		
+		should "have an end date occuring after the start date" do
+			@valid_attributes[:start_date] = '2009-07-15 15:58:36'
+			@valid_attributes[:end_date] = '2009-07-12 15:58:36'
+			booking = Booking.new(@valid_attributes)
+			assert !booking.valid?
+		end
+		
 	end
 
 end

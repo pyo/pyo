@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   is_taggable :tags
   acts_as_rateable
 	
+	named_scope :recent, :order=>"`events`.created_at DESC"
+	
 	validates_presence_of :title, :description, :start_date, :end_date, :user_id
 	
 	def validate

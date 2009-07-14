@@ -60,7 +60,7 @@ class BookingsController < ApplicationController
         format.html { redirect_to([current_user, @event]) }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
-        format.html { redirect_to new_user_booking_path(current_user) }
+        format.html { render :action => "new" }
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
     end

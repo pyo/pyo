@@ -6,3 +6,11 @@
       =link_to "Create an Ad", new_user_ad_path(current_user)
     %li
       =link_to "Create an Event", new_user_booking_path(current_user)
+
+.events
+  %h3 Recent Events
+  = render :partial=>"bookings", :collection=>@events, :as=>:booking
+  
+.ads
+  %h3 Recent Ads
+  = render :partial=>"ads", :collection=>@ads, :as=>:ad
