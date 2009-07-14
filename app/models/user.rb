@@ -10,7 +10,10 @@ class User < ActiveRecord::Base
   has_one  :profile, :dependent => :destroy
   has_many :photos
   has_many :tracks
-  has_many :activities, :as => :payload, :dependent => :destroy 
+  has_many :activities, :as => :payload, :dependent => :destroy
+	has_many :events, :dependent=>:destroy
+	has_many :bookings, :dependent=>:destroy
+	has_many :ads, :dependent=>:destroy
   
   # setup followers
   has_many :parents,    :as => 'child', :class_name => 'Following'

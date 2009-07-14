@@ -1,0 +1,67 @@
+safe do
+
+  # backup file path (not including filename)
+  # supported substitutions:
+  #   :kind -> backup 'engine' kind, e.g. "mysqldump" or "archive"
+  #   :id -> backup 'id', e.g. "blog", "production", etc.
+  #   :timestamp -> current run timestamp (same for all the backups in the same 'run')
+  # you can set separate :path for all backups (or once globally here)
+  local do
+    path "<%= configuration[:deploy_to] %>/backups/:kind/"
+  end
+
+  ## uncomment to enable uploads to Amazon S3
+  ## Amazon S3 auth (optional)
+  ## don't forget to add :s3 to the 'store' list
+  # s3 do
+  #   key YOUR_S3_KEY
+  #   secret YOUR_S3_SECRET
+  #   bucket S3_BUCKET
+  #   # path for uploads to S3. supports same substitution like :local/:path
+  #   path ":kind/" # this is default
+  # end
+
+  ## alternative style:
+  s3 do
+    key "AKIAJX42NHHAZDUPKPBQ"
+    secret "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"
+    bucket "pyo-backups"
+    path "<%= deploy_stage %>/:kind/"
+  end
+
+  ## uncomment to enable backup rotation. keep only given number of latest
+  ## backups. remove the rest
+  keep do
+    local 7 # keep x local backups
+    s3 30 # keep x S3 backups
+  end
+
+  # backup mysql databases with mysqldump
+  mysqldump do
+    # you can override any setting from parent in a child:
+    options "-ceKq --single-transaction --create-options"
+
+    user "<%= database_environment[:username] %>"
+    password "<%= database_environment[:password] %>"
+    # host "localhost"
+    # port 3306
+    socket "/var/run/mysqld/mysqld.sock"
+
+    database :<%= database_environment[:database] %>
+
+    # backup overriding some values
+    # database :production do
+    #   # you can override 'partially'
+    #   keep :local => 3
+
+  end
+
+  tar do
+		archive "site" do
+		  options "-h"
+			files "<%= configuration[:deploy_to] %>/current"
+		end
+    
+  end
+
+end

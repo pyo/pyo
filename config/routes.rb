@@ -1,4 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+	
+	map.resource :marketplace
+	
+  map.resources :ads
+
+  map.resources :bookings, :as=>:events
+
   map.resources :tracks
 
   map.resources :activities
@@ -36,6 +43,8 @@ ActionController::Routing::Routes.draw do |map|
                                   :member => {:rate => :post}
                   users.resources :direct_messages
                   users.resources :comments
+									users.resources :bookings, :as=>:events
+									users.resources :ads
                 end
                 
   map.resource  :session
