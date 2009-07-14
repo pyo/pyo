@@ -2,6 +2,10 @@ class Event < ActiveRecord::Base
 	
 	validates_presence_of :title, :description, :start_date, :end_date, :user_id
 	
+	def validate
+		errors.add_to_base "You cannot change the dates of an event please create a new event" if !new_record? && changed? && (changes["start_date"] || changes["end_date"])
+	end
+	
 	belongs_to :user
 	
 end
