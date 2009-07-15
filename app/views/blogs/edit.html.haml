@@ -1,0 +1,16 @@
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    
+    %h2 Edit Blog
+    
+    - form_for([@user, @blog], :html => {:multipart => true}) do |form|
+      = render :partial => "form", :locals => {:form=>form}
+      %p= form.submit 'Update', :disable_with => "Please Wait..."
+    
+.details
+  .inner_content
+    = render :partial => "users/info"
+  .inner_content
+    = render :partial => "shared/advertisment"

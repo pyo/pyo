@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :blogs
+
 	
 	map.resource :marketplace
 	
@@ -40,6 +42,8 @@ ActionController::Routing::Routes.draw do |map|
                   users.resources :photos,
                                   :member => {:rate => :post}
                   users.resources :tracks,
+                                  :member => {:rate => :post}
+                  users.resources :blogs,
                                   :member => {:rate => :post}
                   users.resources :direct_messages
                   users.resources :comments

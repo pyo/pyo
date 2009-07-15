@@ -1,0 +1,22 @@
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    
+    %h2
+      = h @blog.title
+      
+    %p
+      = h @blog.body
+      
+    %h3 Tags:
+    %p
+      = h @blog.tags.collect(&:name).join(" ")
+    
+    
+    
+.details
+  .inner_content
+    = render :partial => "users/info"
+  .inner_content
+    = render :partial => "shared/advertisment"

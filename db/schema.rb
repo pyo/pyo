@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090714205958) do
+ActiveRecord::Schema.define(:version => 20090715135810) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(:version => 20090714205958) do
     t.datetime "updated_at"
   end
 
+  create_table "blogs", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "blogs", ["title"], :name => "index_blogs_on_title"
+  add_index "blogs", ["user_id"], :name => "index_blogs_on_user_id"
+
   create_table "comments", :force => true do |t|
     t.string   "producer_type"
     t.integer  "producer_id"
@@ -49,10 +60,6 @@ ActiveRecord::Schema.define(:version => 20090714205958) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "comments", ["consumer_type", "consumer_id"], :name => "index_comments_on_consumer_type_and_consumer_id"
-  add_index "comments", ["producer_id", "producer_type"], :name => "index_comments_on_producer_id_and_producer_type"
-  add_index "comments", ["state"], :name => "index_comments_on_state"
 
   create_table "direct_messages", :force => true do |t|
     t.string   "producer_type"
@@ -140,9 +147,6 @@ ActiveRecord::Schema.define(:version => 20090714205958) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "photos", ["title"], :name => "index_photos_on_title"
-  add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
 
   create_table "profiles", :force => true do |t|
     t.string   "first_name"
