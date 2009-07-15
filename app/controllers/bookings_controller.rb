@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_filter :find_event
-	before_filter :authenticate, :only=>[:new,:create,:edit,:update]
+	before_filter :authenticate, :only=>[:new,:create]
+  before_filter :authenticate_user, :only => [:edit,:update]
   before_filter :find_user, :only=>[:show,:index]
 	
   # GET /events
@@ -94,6 +95,11 @@ class BookingsController < ApplicationController
   end
 
   private
+		def authenticate_user
+			authenticate
+			deny_access unless @event.user == current_user
+		end
+		
     def find_event
       @event = Booking.find(params[:id]) if params[:id]
     end
