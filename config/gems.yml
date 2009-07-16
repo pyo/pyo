@@ -4,6 +4,7 @@
 - :name: andand
 - :name: httparty
 - :name: haml
-- :name: jnewland-capsize
+- :source: http://gems.github.com
+  :name: jnewland-capsize
 - :version: 2.3.2
   :name: rails
