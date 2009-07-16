@@ -5,6 +5,10 @@ class Photo < ActiveRecord::Base
   # scopes
   named_scope :recent,
               :order => "photos.created_at DESC"
+  named_scope :popular,
+              :group => "ratings.rateable_id",
+              :joins=>:ratings, 
+              :order => "avg(score)"
   #paperclip
   has_attached_file :image,
                     :styles => { 

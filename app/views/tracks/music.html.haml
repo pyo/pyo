@@ -1,1 +1,52 @@
-Track#Music
+= javascript_include_tag "/audio-player/audio-player.js"
+= javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
+.main  
+  .inner_content
+    %h2 
+      = "Popualr Tracks"
+    
+    .tracks
+      - unless @popular_tracks.empty?
+        - @popular_tracks.each do |track|
+          .track_list_item
+            %h3
+              = image_tag track.user.profile.avatar.url(:thumb)
+              = h "#{track.user.name} - #{track.name}"
+              = render :partial =>"shared/rate_item",:locals => {:ratable=>track}
+              (
+              = link_to("listen", user_track_path(track.user, track))
+              )
+            %p 
+              %script{:type=>"text/javascript"}
+                = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+              #audioplayer_1
+      - else
+        No Tracks Found
+  .inner_content
+    %h2 
+      = "Recent Tracks"
+
+    .tracks
+      - unless @recent_tracks.empty?
+        - @recent_tracks.each do |track|
+          .track_list_item
+            %h3
+              = image_tag track.user.profile.avatar.url(:thumb)
+              = h "#{track.user.name} - #{track.name}"
+              (
+              = link_to("listen", user_track_path(track.user, track))
+              )
+            %p 
+              %script{:type=>"text/javascript"}
+                = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+              #audioplayer_1
+      - else
+        No Tracks Found
+   
+.details
+  .inner_content
+    = render :partial => "users/info" if current_user
+
+  .inner_content
+    .advertisement
+      Advertisement

@@ -5,6 +5,11 @@ class Track < ActiveRecord::Base
   # scopes
   named_scope :recent,
               :order => "tracks.created_at DESC"
+  named_scope :popular,
+              :group => "ratings.rateable_id",
+              :joins=>:ratings, 
+              :order => "avg(score)"
+              
               
   #paperclip
   has_attached_file :mp3,
@@ -30,7 +35,6 @@ class Track < ActiveRecord::Base
   def receive_comment_notification(notification)
     Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'comment'})
   end
-  
   
   def after_save
     user.followers.each do |follower|

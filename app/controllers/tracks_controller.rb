@@ -20,6 +20,12 @@ class TracksController < ApplicationController
     
   end
   
+  def music
+    @recent_tracks = Track.recent(:limit=>8)
+    @popular_tracks = Track.popular(:limit=>8)
+    
+  end
+  
   def rate
     @track.rate_it( params[:rate_value], current_user.id )
     respond_to do |wants|
