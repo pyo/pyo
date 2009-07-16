@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   has_many :comments,   :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => 'payload', :dependent => :destroy
   
-  def after_save
+  def async_after_create
     producer.followers.each do |follower|
       Activity.create({:producer => producer, :consumer => follower, :flavor => "#{self.consumer.class.to_s.underscore}_comment", :payload => self})
     end
