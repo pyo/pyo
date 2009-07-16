@@ -1,6 +1,10 @@
 namespace :beanstalkd do
   task :start do
-    `beanstalkd -d -p 11300  &`
-    `vendor/plugins/async_observer/bin/worker`
+    fork do
+      %x{beanstalkd -p 11300}
+    end
+    fork do
+      %x{vendor/plugins/async_observer/bin/worker}
+    end
   end
 end

@@ -27,3 +27,4 @@ end
 HOST = "localhost"
 
 Paperclip.options[:command_path] = '/opt/local/bin/'
+

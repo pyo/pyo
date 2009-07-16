@@ -36,7 +36,7 @@ class Track < ActiveRecord::Base
     Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'comment'})
   end
   
-  def after_create
+  def async_after_create
     user.followers.each do |follower|
       Activity.create({:producer => user, :consumer => follower, :flavor => 'track', :payload => self})
     end

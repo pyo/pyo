@@ -10,7 +10,7 @@ class Blog < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :body
   
-  def after_create
+  def async_after_create
     user.followers.each do |follower|
       Activity.create({:producer => user, :consumer => follower, :flavor => 'blog', :payload => self})
     end

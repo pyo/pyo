@@ -23,6 +23,7 @@ Rails::Initializer.run do |config|
   config.gem 'haml'
   config.gem 'capistrano'
   config.gem 'jnewland-capsize', :lib => false, :source => 'http://gems.github.com' # deployment tasks on ec2
+  config.gem 'beanstalk-client'
 
   # Activate observers that should always be running
   #config.active_record.observers = :covalence_notification_observer
