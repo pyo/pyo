@@ -6,7 +6,7 @@
       = "Inbox"
       = " - #{params[:mbox]}" if params[:mbox]
     %ul.buttons
-      %li= link_to 'New', inbox_user_path(current_user)
+      %li= link_to 'Unread', inbox_user_path(current_user)
       %li= link_to 'Sent', inbox_user_path(current_user,:mbox=>"sent")
       %li= link_to 'Archive', inbox_user_path(current_user,:mbox=>"archive")
     %br{:clear=>"all"}
