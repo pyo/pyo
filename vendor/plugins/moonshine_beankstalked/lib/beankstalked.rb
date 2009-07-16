@@ -35,7 +35,7 @@ sudo mv beanstalkd /usr/local/bin/
 
   exec "libevent_install",
     :command => @libevent_install_script,
-    :unless =>  "ls /usr/lib | grep libevent"
+    :unless =>  "ls /usr/local/lib | grep libevent"
 
   exec "beanstalkd_install",
     :command => @beanstalkd_install_script,
