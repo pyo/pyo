@@ -33,9 +33,16 @@ cd beanstalkd-1.3
 sudo mv beanstalkd /usr/local/bin/
 }
 
+<<<<<<< HEAD:vendor/plugins/moonshine_beankstalked/lib/beankstalked.rb
   exec "libevent_install",
     :command => @libevent_install_script,
     :unless =>  "ls /usr/local/lib | grep libevent"
+=======
+  exec "libevent_install"
+  :command => @libevent_install_script,
+  :unless =>  "ls /usr/lib | grep libevent"
+  end
+>>>>>>> b9ba46a... Updated moonshine script for beanstalkd:vendor/plugins/moonshine_beankstalked/lib/beankstalked.rb
 
   exec "beanstalkd_install",
     :command => @beanstalkd_install_script,

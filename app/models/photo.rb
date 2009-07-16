@@ -38,7 +38,7 @@ class Photo < ActiveRecord::Base
     Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'comment'})
   end
   
-  def async_after_create
+  def after_create
     
     user.followers.each do |follower|
       Activity.create({:producer => user, :consumer => follower, :flavor => 'photo', :payload => self})
