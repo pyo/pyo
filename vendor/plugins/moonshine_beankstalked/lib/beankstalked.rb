@@ -15,15 +15,17 @@ module Beankstalked
     # automatically available here in the options hash.
     #    options[:foo]   # => true
 
-    @beanstalkd_install_script = 
-%{mkdir /tmp/bean_src
+    @libevent_install_script = %{mkdir /tmp/bean_src
 cd /tmp/bean_src
 curl -O http://monkey.org/~provos/libevent-1.4.11-stable.tar.gz
 tar xzvf libevent-1.4.11-stable.tar.gz 
 cd libevent-1.4.11-stable
 ./configure && make
-sudo make install
-cd ..
+sudo make install      
+}
+
+    @beanstalkd_install_script = %{mkdir /tmp/bean_src
+cd /tmp/bean_src
 curl -O http://xph.us/dist/beanstalkd/beanstalkd-1.3.tar.gz
 tar xzvf beanstalkd-1.3.tar.gz
 cd beanstalkd-1.3
@@ -31,9 +33,14 @@ cd beanstalkd-1.3
 sudo mv beanstalkd /usr/local/bin/
 }
 
-  exec "install_beanstalkd",
-    :command => @beanstalkd_install_script,
-    :unless => ["which beanstalkd", "ls /usr/lib | libevent"]
+  exec "libevent_install"
+  :command => @libevent_install_script,
+  :unless =>  "ls /usr/lib | grep libevent"
   end
-  
+
+  exec "beanstalkd_install",
+    :command => @beanstalkd_install_script,
+    :unless => "which beanstalkd",
+    :require => exec('libevent_install')
+  end
 end
