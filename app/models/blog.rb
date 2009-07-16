@@ -4,7 +4,7 @@ class Blog < ActiveRecord::Base
   named_scope :popular,
               :group => "ratings.rateable_id",
               :joins=>:ratings, 
-              :order => "avg(score)"
+              :order => "avg(score) desc"
   # assocs 
   belongs_to :user
   validates_presence_of :title

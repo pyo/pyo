@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   named_scope :popular,
               :group => "ratings.rateable_id",
               :joins=>:ratings, 
-              :order => "avg(score)"
+              :order => "avg(score) desc"
 	
 	belongs_to :user
 	belongs_to :group

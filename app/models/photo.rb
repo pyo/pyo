@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   named_scope :popular,
               :group => "ratings.rateable_id",
               :joins=>:ratings, 
-              :order => "avg(score)"
+              :order => "avg(score) desc"
   #paperclip
   has_attached_file :image,
                     :styles => { 
