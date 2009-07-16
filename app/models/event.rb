@@ -19,4 +19,10 @@ class Event < ActiveRecord::Base
 		errors.add_to_base "You cannot change the dates of an event please create a new event" if !new_record? && changed? && (changes["start_date"] || changes["end_date"])
 	end
 	
+	def after_create
+    user.followers.each do |follower|
+      Activity.create({:producer => user, :consumer => follower, :flavor => "event_#{type.downcase}", :payload => self})
+    end
+  end
+	
 end

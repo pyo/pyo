@@ -20,7 +20,8 @@ class EventTest < ActiveSupport::TestCase
 		end
 	
 		should "not be able to update start_date and end_date" do
-			event = Event.create!(@valid_attributes)
+		  @user = Factory(:user)
+			event = @user.events.create!(@valid_attributes)
 			event.start_date = Time.now
 			event.end_date = Time.now
 			assert !event.valid?

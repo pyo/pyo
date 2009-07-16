@@ -9,4 +9,11 @@ class Blog < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :title
   validates_presence_of :body
+  
+  def after_create
+    user.followers.each do |follower|
+      Activity.create({:producer => user, :consumer => follower, :flavor => 'blog', :payload => self})
+    end
+  end
+  
 end

@@ -54,10 +54,6 @@ class User < ActiveRecord::Base
     followings.exists?(["child_type = ? and child_id = ?", user.class.to_s, user.id])
   end
   
-  def receive_comment_notification(notification)
-    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'profile_comment', :payload=>self})
-  end
-  
   def tweets        
     unless twitter_username == "" || twitter_password == ""
       twitter = Twitter.new(twitter_username,twitter_password) 
