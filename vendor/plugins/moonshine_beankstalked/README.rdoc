@@ -1,0 +1,14 @@
+= Moonshine_Beankstalked
+
+=== A plugin for Moonshine[http://github.com/railsmachine/moonshine]
+
+A plugin for installing and managing beankstalked.
+
+=== Instructions
+
+* <tt>script/plugin install git://github.com/ACCOUNT/moonshine_beankstalked.git</tt>
+* Configure settings if needed
+    configure(:beankstalked => {:foo => true})
+* Include the plugin and recipe(s) in your Moonshine manifest
+    plugin :beankstalked
+    recipe :beankstalked

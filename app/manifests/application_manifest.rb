@@ -56,6 +56,9 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   
   plugin :astrails_safe
   recipe :astrails_safe
+
+  plugin :beankstalked
+  recipe :beankstalked
   
   recipe :default_stack
 
