@@ -26,7 +26,6 @@ class BookingTest < ActiveSupport::TestCase
 			  :end_date => '2009-07-15 15:58:36',
 			  :user_id => '1'
 			}
-			
 		end
 		
 		should "create a booking" do
@@ -41,5 +40,35 @@ class BookingTest < ActiveSupport::TestCase
 		end
 		
 	end
+	
+	# context "Bookings" do
+	# 	
+	# 	setup do
+	# 		Event.after_create.reject!{|c| [:create_activity].include?(c.method)}
+	# 		
+	# 		@tags = [Factory.next(:tag),Factory.next(:tag),Factory.next(:tag)]
+	# 		@tags.each do |tag|
+	# 			booking = Factory.create(:booking)
+	# 			booking.tags << tag
+	# 		end
+	# 		
+	# 		puts Booking.all.collect(&:title).inspect
+	# 		ActiveSupport::TestCase.ts_rebuild
+	# 		
+	# 	end
+	# 	
+	# 	should "search for bookings with tags" do
+	# 		tag_to_search = @tags.rand.name
+	# 		puts tag_to_search
+	# 		bookings = Booking.search_for_ids "My" # :conditions=>{:tags=>"tag"}
+	# 		puts bookings.inspect
+	# 		puts Booking.all.collect(&:title).inspect
+	# 		assert bookings.length > 0
+	# 		bookings.each do |booking|
+	# 			assert booking.tags.collect(&:name).include?(tag_to_search)
+	# 		end
+	# 	end
+	# 	
+	# end
 
 end

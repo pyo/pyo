@@ -1,0 +1,6 @@
+development:
+  bin_path: '/opt/local/bin'
+test:
+  bin_path: '/opt/local/bin'
+production:
+  bin_path: '/usr/local/bin'

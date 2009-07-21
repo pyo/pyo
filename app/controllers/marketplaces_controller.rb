@@ -1,8 +1,8 @@
 class MarketplacesController < ApplicationController
 	
 	def show
-		@ads = ads.recent.all :limit=>4
-		@events = bookings.recent.all :limit=>4
+		@ads = ads.do_search(params.merge(:per_page=>(params[:per_page] || 4)))
+		@events = bookings.do_search(params.merge(:per_page=>(params[:per_page] || 4)))
 		@categories = Group.all
 	end
 	

@@ -5,11 +5,4 @@ class Booking < Event
 	def validate
 		errors.add_to_base "The end date must be later then the start date" if start_date && end_date && start_date >= end_date
 	end
-	
-	define_index do
-		
-		indexes title
-		indexes tags(:name), :as => :tags
-		
-	end
 end
