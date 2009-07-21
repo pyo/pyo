@@ -1,5 +1,7 @@
 config/database.yml
 config/sphinx.yml
+config/*.sphinx.conf
+db/sphinx/*
 db/schema.rb
 log/*.log
 tmp/*
