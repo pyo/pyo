@@ -3,6 +3,7 @@ config/sphinx.yml
 config/*.sphinx.conf
 db/sphinx/*
 db/schema.rb
+log/*.pid
 log/*.log
 tmp/*
 public/system/*
