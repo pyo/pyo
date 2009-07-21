@@ -31,11 +31,25 @@ class Event < ActiveRecord::Base
 		
 		indexes title
 		indexes description
+		has created_at
+		has ratings.score, :as=>:score
+		has "AVG(ratings.score)", :as=>:rating, :type=>:float
 		indexes tags(:name), :as => :tags
 		
 	end
 	
 	protected
+	
+	def self.get_order order
+		case order.to_sym
+		when :most_popular
+			"rating DESC"
+		when :least_popular
+			"rating ASC"
+		else
+			"created_at DESC"
+		end
+	end
 	
 	def self.options_from_params params
 		
@@ -43,8 +57,9 @@ class Event < ActiveRecord::Base
 		
 		{
 			:conditions			=> Hash[*params.select{|k,v|conditionals.include?(k.to_sym)}.flatten],
-			:per_page				=> params[:per_page] || 25,
+			:per_page				=> params[:per_page] || 4,
 			:page						=> params[:page] || 1,
+			:order					=> get_order(params[:order] || :recent),
 			:field_weights	=> {:title=>20, :tags=>10, :description=>5}
 		}
 	end

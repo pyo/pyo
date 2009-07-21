@@ -1,8 +1,10 @@
 class MarketplacesController < ApplicationController
 	
 	def show
-		@ads = ads.do_search(params.merge(:per_page=>(params[:per_page] || 4)))
-		@events = bookings.do_search(params.merge(:per_page=>(params[:per_page] || 4)))
+		
+		@ads = ads.do_search(params)
+		@events = bookings.do_search(params)
+		
 		@categories = Group.all
 	end
 	
