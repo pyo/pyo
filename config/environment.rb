@@ -34,4 +34,6 @@ Rails::Initializer.run do |config|
 
 end
 
+
+require 'tag_ext'
 MAX_STARS = 5

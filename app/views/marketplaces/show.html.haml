@@ -1,20 +1,32 @@
-%h2 This is the Talent Marketplace
-
--if signed_in?
-  %ul
-    %li
-      =link_to "Create an Ad", new_user_ad_path(current_user)
-    %li
-      =link_to "Create an Event", new_user_booking_path(current_user)
-
-.categories
-  - @categories.each do |category|
-    = link_to category.name, group_marketplace_path(category)
-
-.events
-  %h3 Recent Events
-  = render :partial=>"bookings", :collection=>@events, :as=>:booking
+.main
+  .inner_content
+    .events
+      %h2 Recent Events
+      = render :partial=>"bookings", :collection=>@events, :as=>:booking
   
-.ads
-  %h3 Recent Ads
-  = render :partial=>"ads", :collection=>@ads, :as=>:ad
+  .inner_content
+    .ads
+      %h2 Recent Ads
+      = render :partial=>"ads", :collection=>@ads, :as=>:ad
+    
+.details
+  .inner_content
+    -if signed_in?
+      %p 
+        Create an 
+        =link_to "Ad", new_user_ad_path(current_user)
+        or
+        =link_to "Event", new_user_booking_path(current_user)
+          
+
+  .inner_content
+    .categories
+      %h3 Categories
+      - @categories.each do |category|
+        = link_to category.name, group_marketplace_path(category)
+    
+  .inner_content
+    .popular_tags
+      %h3 Most Popular Tags
+      - @popular_tags.each do |tag|
+        = link_to tag.name, url_for(:overwrite_params => {:tags=>tag.name})

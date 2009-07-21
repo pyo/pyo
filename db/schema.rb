@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090716162531) do
+ActiveRecord::Schema.define(:version => 20090721213011) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20090716162531) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "ratings_count"
   end
 
   add_index "blogs", ["title"], :name => "index_blogs_on_title"
@@ -61,6 +60,10 @@ ActiveRecord::Schema.define(:version => 20090716162531) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["consumer_type", "consumer_id"], :name => "index_comments_on_consumer_type_and_consumer_id"
+  add_index "comments", ["producer_id", "producer_type"], :name => "index_comments_on_producer_id_and_producer_type"
+  add_index "comments", ["state"], :name => "index_comments_on_state"
 
   create_table "direct_messages", :force => true do |t|
     t.string   "producer_type"
@@ -89,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20090716162531) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group_id"
-    t.integer  "ratings_count"
   end
 
   add_index "events", ["end_date"], :name => "index_events_on_end_date"
@@ -149,8 +151,10 @@ ActiveRecord::Schema.define(:version => 20090716162531) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "ratings_count"
   end
+
+  add_index "photos", ["title"], :name => "index_photos_on_title"
+  add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
 
   create_table "profiles", :force => true do |t|
     t.string   "first_name"
@@ -214,11 +218,13 @@ ActiveRecord::Schema.define(:version => 20090716162531) do
   add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
 
   create_table "tags", :force => true do |t|
-    t.string "name", :default => ""
-    t.string "kind", :default => ""
+    t.string  "name",         :default => ""
+    t.string  "kind",         :default => ""
+    t.integer "search_count", :default => 0
   end
 
   add_index "tags", ["name", "kind"], :name => "index_tags_on_name_and_kind"
+  add_index "tags", ["search_count"], :name => "index_tags_on_search_count"
 
   create_table "tracks", :force => true do |t|
     t.string   "name"
@@ -229,7 +235,6 @@ ActiveRecord::Schema.define(:version => 20090716162531) do
     t.string   "mp3_content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "ratings_count"
   end
 
   add_index "tracks", ["name"], :name => "index_tracks_on_name"
@@ -249,7 +254,6 @@ ActiveRecord::Schema.define(:version => 20090716162531) do
     t.string   "twitter_username"
     t.string   "twitter_password"
     t.string   "flickr_username"
-    t.integer  "ratings_count"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
