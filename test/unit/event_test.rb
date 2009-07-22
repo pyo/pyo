@@ -27,6 +27,33 @@ class EventTest < ActiveSupport::TestCase
 			assert !event.valid?
 		end
 		
+		context "current and expired" do
+			
+			setup do
+				10.times do |i|
+					Factory.create(:booking, {
+						:start_date => (Time.now - 3.days),
+						:end_date		=> (i.even? ? Time.now + 2.days : Time.now - 2.days),
+					})
+				end
+			end
+		
+			should "have be able to retrieve current ads and events" do
+				assert_equal Booking.current.count, 5
+				Booking.current.each do |b|
+					assert b.end_date >= Time.now
+				end
+			end
+		
+			should "have be able to retrieve expired ads and events" do
+				assert_equal Booking.expired.count, 5
+				Booking.expired.each do |b|
+					assert b.end_date < Time.now
+				end
+			end
+			
+		end
+		
 	end
 	
 end

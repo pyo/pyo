@@ -12,6 +12,8 @@ class Event < ActiveRecord::Base
 	belongs_to :group
 	
 	named_scope :recent, :order=>"`events`.created_at DESC"
+	named_scope :current, :conditions=>"end_date >= NOW()"
+	named_scope :expired, :conditions=>"end_date < NOW()"
 	
 	after_create :create_activity
 	
@@ -32,6 +34,7 @@ class Event < ActiveRecord::Base
 		indexes title
 		indexes description
 		has created_at
+		has "end_date >= NOW()", :as=>:current, :type=>:boolean
 		has ratings.score, :as=>:score
 		has "AVG(ratings.score)", :as=>:rating, :type=>:float
 		indexes tags(:name), :as => :tags
@@ -53,7 +56,11 @@ class Event < ActiveRecord::Base
 	
 	def self.options_from_params params
 		
-		conditionals = [:tags]
+		params.reverse_merge!({
+			:current => true
+		})
+		
+		conditionals = [:tags,:current]
 		
 		{
 			:conditions			=> Hash[*params.select{|k,v|conditionals.include?(k.to_sym)}.flatten],
