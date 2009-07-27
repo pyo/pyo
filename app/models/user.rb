@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
   
   # assocs
   has_one  :profile, :dependent => :destroy
-  has_many :photos
-  has_many :tracks
+  has_many :photos, :dependent => :destroy
+  has_many :tracks, :dependent => :destroy
+  has_many :videos, :dependent => :destroy
   has_many :activities, :as => :payload, :dependent => :destroy
 	has_many :events, :dependent=>:destroy
 	has_many :bookings, :dependent=>:destroy

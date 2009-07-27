@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 		if @user
 			@recent_tracks = @user.tracks.recent(:limit=>4)
 			@recent_photos = @user.photos.recent(:limit=>4)
-			@recent_videos = [] # @user.videos.recent(:limit=>4)
+			@recent_videos = @user.videos.recent(:limit=>4)
 		end
 	end
   

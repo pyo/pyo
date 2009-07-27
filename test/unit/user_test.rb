@@ -6,6 +6,7 @@ class UserTest < ActiveSupport::TestCase
 	should_have_many :events, :dependent => :destroy
 	should_have_many :bookings, :dependent => :destroy
 	should_have_many :ads, :dependent => :destroy
+	should_have_many :videos, :dependent => :destroy
   
   context "A User Instance" do
     setup do
