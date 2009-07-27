@@ -263,4 +263,16 @@ ActiveRecord::Schema.define(:version => 20090721213011) do
   add_index "users", ["talent_type"], :name => "index_users_on_talent_type"
   add_index "users", ["token"], :name => "index_users_on_token"
 
+  create_table "videos", :force => true do |t|
+    t.string   "title"
+    t.string   "panda_id"
+    t.string   "filename"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.text     "description"
+  end
+
 end

@@ -11,10 +11,10 @@ class Group < ActiveRecord::Base
   has_members       :users
   has_roles :ADMIN, :MEMBER
   has_default_role  :MEMBER
+  has_group_assets_through :user, :tracks #define tracks getter
   
   #scopes
   default_scope :order => 'name', :conditions => {:approved => 1}
-  named_scope :with_role, lambda { |role| { :conditions => ['status = ?', role.to_s] } }
   
   #paperclip
   has_attached_file :icon,

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    
+
   end
   
   def inbox
