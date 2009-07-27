@@ -1,0 +1,138 @@
+--- !ruby/object:Gem::Specification 
+name: jnewland-capsize
+version: !ruby/object:Gem::Version 
+  version: 0.5.2
+platform: ruby
+authors: 
+- Jesse Newland
+- Glenn Rempe
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-07-13 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: capistrano
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 2.3.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: amazon-ec2
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.2.6
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: rcov
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.8.1.2.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: SQS
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.1.5
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: builder
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 2.1.2
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: RedCloth
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 3.0.4
+    version: 
+description: Capsize is a Capistrano plugin used to provide an easy way to manage and script interaction with the Amazon EC2 service using the amazon-ec2 Ruby gem.
+email: jnewland@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.textile
+files: 
+- History.txt
+- License.txt
+- Manifest.txt
+- README.textile
+- Rakefile
+- config/hoe.rb
+- config/requirements.rb
+- examples/capsize.yml.template
+- examples/deploy.rb
+- lib/capsize.rb
+- lib/capsize/capsize.rb
+- lib/capsize/configuration.rb
+- lib/capsize/ec2.rb
+- lib/capsize/ec2_plugin.rb
+- lib/capsize/meta_tasks.rb
+- lib/capsize/sqs.rb
+- lib/capsize/sqs_plugin.rb
+- lib/capsize/version.rb
+- setup.rb
+- tasks/deployment.rake
+- tasks/environment.rake
+- tasks/website.rake
+- test/test_capsize.rb
+- test/test_helper.rb
+has_rdoc: true
+homepage: http://github.com/jnewland/capsize
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: capsize
+rubygems_version: 1.3.4
+signing_key: 
+specification_version: 2
+summary: Capsize is a Capistrano plugin used to provide an easy way to manage and script interaction with the Amazon EC2 service using the amazon-ec2 Ruby gem.
+test_files: []
+

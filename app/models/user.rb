@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
     followings.exists?(["child_type = ? and child_id = ?", user.class.to_s, user.id])
   end
   
+  def flickr_photos(count = 8)
+    
+  end
+  
   def tweets        
     unless twitter_username == "" || twitter_password == ""
       twitter = Twitter.new(twitter_username,twitter_password) 
