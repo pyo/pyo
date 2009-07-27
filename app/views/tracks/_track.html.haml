@@ -1,0 +1,11 @@
+.track_list_item
+  = image_tag track.user.profile.avatar.url(:thumb)
+  %h3
+    = "#{track.name}"
+    (
+    = link_to("listen", user_track_path(track.user, track))
+    )
+  %p 
+    %script{:type=>"text/javascript"}
+      = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+    #audioplayer_1
