@@ -1,0 +1,15 @@
+development:
+  enable_star: 1
+  min_infix_len: 2
+  morphology: stem_en
+  bin_path: '/usr/local/bin'
+test:
+  enable_star: 1
+  min_infix_len: 2
+  morphology: stem_en
+  bin_path: '/usr/local/bin'
+production:
+  enable_star: 1
+  min_infix_len: 2
+  morphology: stem_en
+  bin_path: '/usr/local/bin'
