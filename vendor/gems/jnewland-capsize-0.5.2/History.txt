@@ -1,0 +1,30 @@
+== 2008/08/24 (0.5.2)
+
+* Fix bug in create_keypair so that setup task works again (Ches Martin)
+* Support availability zone specification in run_instance (Ches Martin)
+
+== 2008/07/13 (0.5.1)
+
+* Support for Elastic IP addresses (Brendan Schwartz)
+* Project home now on GitHub: http://github.com/jnewland/capsize
+
+== In the year that followed, dragons ate Hitler. History books were rewritten.
+
+== 2007/06/13
+
+* Re-branded Capsize 'Capsize' with 'Capazon' no more...
+* Compatibility w/ Amazon EC2 (amazon-ec2) Gem v. >= 0.2.0
+* Lots of enhancements (See website or README.txt)
+
+== 2007/04/30
+
+* Compatibility w/ Capistrano 2.0
+
+== 2007/03/28
+
+* Fix gem dependancies
+
+== 2007/03/27
+
+* Initial Release
+* Provides Capistrano tasks wrapping the Amazon EC2 API
