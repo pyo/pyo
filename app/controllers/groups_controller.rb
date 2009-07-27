@@ -56,9 +56,9 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    @group.users.join(current_user,:ADMIN)
     respond_to do |format|
       if @group.save
+        @group.users.join(current_user,:ADMIN)
         flash[:notice] = 'Group request was submitted.'
         format.html { redirect_to(groups_path) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }

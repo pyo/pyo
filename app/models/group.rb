@@ -7,10 +7,10 @@ class Group < ActiveRecord::Base
   has_members       :users
   has_roles :ADMIN, :MEMBER
   has_default_role  :MEMBER
+  has_group_assets_through :user, :tracks #define tracks getter
   
   #scopes
   default_scope :order => 'name', :conditions => {:approved => 1}
-  named_scope :with_role, lambda { |role| { :conditions => ['status = ?', role.to_s] } }
   
   #paperclip
   has_attached_file :icon,
@@ -27,10 +27,6 @@ class Group < ActiveRecord::Base
       
   def receive_comment_notification comment
     Activity.send_group_comment_notification self, comment
-  end
-  
-  def tracks
-    Track.all(:joins => :user, :conditions => ["user_id in (select child_id from memberships where parent_type = ? and parent_id = ? and child_type = 'User')", self.class.name, self.id])
   end
   
   def self.pending

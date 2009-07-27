@@ -38,4 +38,11 @@ class Track < ActiveRecord::Base
     end
   end
   
+  define_index do
+    indexes name
+    indexes tags(:name)
+    indexes description
+    indexes [user.profile.first_name, user.profile.last_name, user.name], :as => :user
+  end
+  
 end

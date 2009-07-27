@@ -76,4 +76,11 @@ class User < ActiveRecord::Base
     name
   end
 
+  define_index do
+    # full name, username, email, location?
+    indexes name
+    indexes [profile.first_name, profile.last_name], :as => :full_name
+    #indexes email
+  end
+
 end
