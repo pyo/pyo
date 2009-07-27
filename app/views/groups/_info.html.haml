@@ -5,4 +5,4 @@
   = h @group.description
 %p
   = button_to "edit", edit_group_path(@group), :method => :get if current_user.andand.is_admin?(@group)
-  = join_or_leave_btn @group, current_user
+  = join_or_leave_button @group, current_user
