@@ -42,6 +42,12 @@ class VideosController < ApplicationController
     @video.update_panda_status(@panda_video)
   end
   
+  def status_update
+    @video = Video.find_by_panda_id(params[:id])
+    @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
+    @video.update_panda_status(@panda_video)
+  end
+  
   def show
     @panda_video = Panda::Video.find(@video.panda_id)
     @video.update_panda_status(@panda_video) if RAILS_ENV == 'development'
