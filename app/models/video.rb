@@ -1,6 +1,10 @@
 class Video < ActiveRecord::Base
+	
   is_taggable :tags
   acts_as_rateable
+
+	validates_presence_of :title
+
   belongs_to :user
   has_many :comments, :as => 'consumer', :dependent => :destroy
 

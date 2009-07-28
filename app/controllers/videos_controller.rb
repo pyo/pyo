@@ -46,6 +46,16 @@ class VideosController < ApplicationController
     @panda_video = Panda::Video.find(@video.panda_id)
     @video.update_panda_status(@panda_video) if RAILS_ENV == 'development'
   end
+
+	def update
+		respond_to do |format|
+			if @video.update_attributes(params[:video])
+				format.html{ redirect_to [@user, @video] }
+			else
+				format.html{ render :action=>'edit' }
+			end
+		end
+	end
   
   private
     def find_video
