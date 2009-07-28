@@ -38,5 +38,6 @@ class Video < ActiveRecord::Base
       indexes tags(:name)
       indexes description
       indexes [user.profile.first_name, user.profile.last_name, user.name], :as => :user
+      indexes user.email, :as => :email
     end
 end
