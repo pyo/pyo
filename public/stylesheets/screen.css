@@ -12,6 +12,9 @@ a {
 a:visited {
   color: #aaa; }
 
+.clear {
+  clear: both; }
+
 .rating-cancel {
   display: none; }
 

@@ -3,6 +3,8 @@ class AdsController < ApplicationController
 	before_filter :authenticate, :only=>[:new,:create]
   before_filter :authenticate_user, :only => [:edit,:update]
   before_filter :find_user, :only=>[:show,:index]
+	before_filter :get_users_recent_assets, :only=>[:show]
+
   # GET /ads
   # GET /ads.xml
   def index

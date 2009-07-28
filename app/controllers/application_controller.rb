@@ -9,6 +9,13 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password'
   
+	def get_users_recent_assets
+		if @user
+			@recent_tracks = @user.tracks.recent(:limit=>4)
+			@recent_photos = @user.photos.recent(:limit=>4)
+			@recent_videos = @user.videos.recent(:limit=>4)
+		end
+	end
   
   # Helper methods for polymorphism in controllers
   class << self

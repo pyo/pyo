@@ -1,2 +1,26 @@
-%h2= @video.title
-= @video.embed_html
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    .photo_view
+      %h2 
+        = h @video.title
+      = @video.embed_html
+      %p
+        = h @video.description
+      .photo_tags
+        %h3 Tags:
+        %p
+          = h @video.tags.collect(&:name)
+  .inner_content
+    %h2 Rating        
+    = render :partial =>"shared/rate_item",:locals => {:ratable=>@video}
+  .inner_content
+    %h2 Comments
+    = render :partial => @video.comments
+    = render :partial => "comments/form", :locals => {:commentable => @video, :comment_class=>""}
+.details
+  .inner_content
+    = render :partial => "users/public_info"
+  .inner_content
+    = render :partial => "shared/advertisment"

@@ -1,6 +1,10 @@
 class Video < ActiveRecord::Base
   is_taggable :tags
+  acts_as_rateable
   belongs_to :user
+  has_many :comments, :as => 'consumer', :dependent => :destroy
+
+	named_scope :recent, :order=>"created_at DESC"
   
   def update_panda_status(panda_video)
     if encoding = panda_video.find_encoding(PANDA_ENCODING)
@@ -20,6 +24,10 @@ class Video < ActiveRecord::Base
   def screenshot_url
     "#{self.url}.jpg"
   end
+
+	def thumb_url
+		"#{self.url}_thumb.jpg"
+	end
   
   def embed_html
     %(<embed src="http://#{VIDEOS_DOMAIN}/player.swf" width="#{self.width}" height="#{self.height}" allowfullscreen="true" allowscriptaccess="always" flashvars="&displayheight=#{self.height}&file=#{self.url}&image=#{self.screenshot_url}&width=#{self.width}&height=#{self.height}" />)

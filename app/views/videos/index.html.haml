@@ -1,1 +1,22 @@
-Movies
+.main
+  .inner_content
+    = render :partial => "users/dashboard_nav"
+  .inner_content
+    %h2 Videos
+    
+    .videos
+      - unless @videos.empty?
+        - @videos.each do |video|
+          .video_thumb
+            = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
+            %h3
+              = link_to video.title, user_video_path(video.user,video)
+            = link_to('delete', [@user,video], :confirm =>"Are you sure you want to delete this photo?", :method => :delete)+"<br>" if is_owner?(video)
+            
+      - else
+        No Photos
+.details
+  .inner_content
+    = render :partial => "users/info"
+  .inner_content
+    = render :partial => "shared/advertisment"

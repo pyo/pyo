@@ -1,3 +1,5 @@
+= javascript_include_tag "/audio-player/audio-player.js"
+= javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
 .main
   .inner_content
     .photo_view
@@ -25,6 +27,33 @@
   .inner_content
     %h2 Rating    
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@event}
+    
+    
+  .inner_content
+    %h2 
+      Recent Tracks    
+      .tracks
+        - unless @recent_tracks.empty?
+          = render :partial=>@recent_tracks
+        - else
+          No Tracks Found
+    %h2 
+      Recent Photos    
+      .photos
+        - unless @recent_photos.empty?
+          = render :partial=>@recent_photos
+        - else
+          No Photos Found
+    .clear
+    %h2 
+      Recent Videos    
+      .photos
+        - unless @recent_videos.empty?
+          = render :partial=>@recent_videos
+        - else
+          No Videos Found
+          
+          
   .inner_content
     %h2 Comments
     = render :partial => @event.comments
