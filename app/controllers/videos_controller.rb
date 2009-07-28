@@ -3,6 +3,7 @@ class VideosController < ApplicationController
   before_filter :find_user
   before_filter :check_user, :only => [:new, :create, :rate]
   before_filter :authenticate, :except => [:show, :index]
+  protect_from_forgery :except => :status_update
   
   def index
     @videos = @user.nil? ? Video.all : @user.videos.all
