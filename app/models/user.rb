@@ -76,10 +76,10 @@ class User < ActiveRecord::Base
   end
 
   define_index do
-    # full name, username, email, location?
     indexes name
     indexes [profile.first_name, profile.last_name], :as => :full_name
-    #indexes email
+    indexes email
+    indexes [profile.city, profile.state], :as => :location
   end
 
 end
