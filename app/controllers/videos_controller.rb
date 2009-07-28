@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_filter :find_video, :except=>[:done,:status]
+  before_filter :find_video, :except=>[:done,:status,:status_update]
   before_filter :find_user
   before_filter :check_user, :only => [:new, :create, :rate]
   before_filter :authenticate, :except => [:show, :index]
