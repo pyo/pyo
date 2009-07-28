@@ -1,0 +1,7 @@
+development:
+  api_key: e45cb7d09e0e011bfeb7136079d106ae
+  api_secret: 4d53ea6745af9515
+production:
+  # CHANGE THESE BEFORE TESTING ON PRODUCTION
+  api_key: e45cb7d09e0e011bfeb7136079d106ae
+  api_secret: 4d53ea6745af9515

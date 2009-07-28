@@ -28,6 +28,14 @@
       - for photo in @photos
         .profile_photo_thumb
           = link_to image_tag(photo.image.url(:thumb)), user_photo_path(@user,photo)
+  
+  - unless @flickr_photos.empty?
+    .inner_content
+      %h2
+        = "Recent Flickr Photos"
+      - for photo in @flickr_photos
+        .profile_photo_thumb
+          = link_to image_tag(photo.url('s')), @user.flickr_url
 
   - unless @tweets.empty?
     .inner_content

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   
   include Covalence::Member
   include Clearance::App::Models::User
-  attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list, :talent_type, :twitter_username, :twitter_password, :flickr_username
+  attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list, :talent_type, :twitter_username, :twitter_password, :flickr_username, :flickr_id
   is_taggable :tags
   
   # assocs
@@ -54,9 +54,7 @@ class User < ActiveRecord::Base
     followings.exists?(["child_type = ? and child_id = ?", user.class.to_s, user.id])
   end
   
-  def flickr_photos(count = 8)
-    
-  end
+  acts_as_flickr_user :flickr_nsid => 'flickr_id' # defaults :flickr_username => 'flickr_username'
   
   def tweets        
     unless twitter_username == "" || twitter_password == ""

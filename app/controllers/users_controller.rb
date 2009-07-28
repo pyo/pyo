@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   
   def show
     @photos = @user.photos.recent(:limit => 6)
+    @flickr_photos = @user.flickr_photos(8)
     @tracks = @user.tracks.recent(:limit => 10)
     @videos = []
     @tweets = @user.tweets    
