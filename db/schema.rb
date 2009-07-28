@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090722203931) do
+ActiveRecord::Schema.define(:version => 20090727200530) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(:version => 20090722203931) do
     t.string   "twitter_username"
     t.string   "twitter_password"
     t.string   "flickr_username"
+    t.string   "flickr_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
