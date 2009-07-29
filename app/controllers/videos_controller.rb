@@ -56,6 +56,17 @@ class VideosController < ApplicationController
 			end
 		end
 	end
+	
+	def destroy
+    if is_owner?
+      @video.destroy
+      flash[:notice] = "Video was deleted."
+      redirect_to :back
+    else
+      flash[:error] = "You are not authorized for that action."
+      redirect_to :back
+    end
+	end
   
   private
     def find_video
