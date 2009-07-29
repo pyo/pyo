@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   
   has_many :messages, :as => :consumer, :class_name => 'DirectMessage'
   has_many :sent_messages, :as => :producer, :class_name => 'DirectMessage'
+
+	named_scope :featured, :conditions=>{:featured=>true}
   
   # covalence groups
   is_member_of :groups
