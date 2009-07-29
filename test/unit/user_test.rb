@@ -19,6 +19,12 @@ class UserTest < ActiveSupport::TestCase
     should "have a profile" do
       assert @user.profile == @profile
     end
+
+		should "have an admin status" do
+			@user = Factory.next(:user)
+			@user.update_attribute :admin, true
+			assert @user.admin?
+		end
 		
   end
   
