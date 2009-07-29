@@ -1,7 +1,7 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
   before_filter :authenticate, :except => [:new, :create,:index,:show]
-  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects,:inbox]
+  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects,:inbox, :change_admin_status, :change_featured_status]
   before_filter :check_user, :only => [:edit,:inbox,:update]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
@@ -53,6 +53,26 @@ class UsersController < ApplicationController
     @videos = @user.videos
     @tweets = @user.tweets    
   end
+
+	def change_admin_status
+		respond_to do |format|
+	    if @user.update_attribute(:admin, params[:user][:admin])
+				format.js { head :ok }
+	    else
+				format.js { render :status=>500 }
+	    end
+		end
+	end
+
+	def change_featured_status
+		respond_to do |format|
+	    if @user.update_attribute(:featured, params[:user][:featured])
+				format.js { head :ok }
+	    else
+				format.js { render :status=>500 }
+	    end
+		end
+	end
   
   def update
 		respond_to do |format|

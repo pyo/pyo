@@ -43,4 +43,18 @@ $(function(){
 		});
 	});
 	
+	$('.change_featured').click(function(e){
+		e.preventDefault();
+		var link = $(this);
+		var url = $(this).attr("href");
+		var promote = /featured%5D=1/.test(url);
+		var newUrl =  promote ? url.replace(/featured%5D=1/,'featured%5D=0') : url.replace(/featured%5D=0/,'featured%5D=1');
+		$.post(url,{
+			_method:'put'
+		},function(data){
+			link.attr('href',newUrl);
+			link.html(promote ? "Unfeature" : "Feature");
+		});
+	});
+	
 });

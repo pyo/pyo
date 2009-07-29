@@ -1,6 +1,11 @@
 %ul
   %li
     - if @user.admin?
-      = link_to "Demote Admin", user_path(@user, :user=>{:admin=>"0"}, :format=>'js'), :class=>"change_admin"
+      = link_to "Demote Admin", change_admin_status_user_path(@user, :user=>{:admin=>"0"}, :format=>'js'), :class=>"change_admin"
     - else
-      = link_to "Make Admin", user_path(@user, :user=>{:admin=>"1"}, :format=>'js'), :class=>"change_admin"
+      = link_to "Make Admin", change_admin_status_user_path(@user, :user=>{:admin=>"1"}, :format=>'js'), :class=>"change_admin"
+  %li
+    - if @user.featured?
+      = link_to "Unfeature", change_featured_status_user_path(@user, :user=>{:featured=>"0"}, :format=>'js'), :class=>"change_featured"
+    - else
+      = link_to "Feature", change_featured_status_user_path(@user, :user=>{:featured=>"1"}, :format=>'js'), :class=>"change_featured"
