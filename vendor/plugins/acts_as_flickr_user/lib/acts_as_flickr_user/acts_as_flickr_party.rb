@@ -51,6 +51,7 @@ module ActsAsFlickrParty
    end
       
    def flickr_photos(per_page = 10, scope = 'public')
+			return [] if flickr_nsid.blank?
      case scope
      when 'public' then API.call('people.getPublicPhotos', :user_id => flickr_nsid, :per_page => per_page)['photos']['photo'].map{ |hash| ActsAsFlickrParty::Photo.new(hash) }
      else []

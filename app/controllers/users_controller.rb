@@ -50,18 +50,22 @@ class UsersController < ApplicationController
     @photos = @user.photos.recent(:limit => 6)
     @flickr_photos = @user.flickr_photos(8)
     @tracks = @user.tracks.recent(:limit => 10)
-    @videos = []
+    @videos = @user.videos
     @tweets = @user.tweets    
   end
   
   def update
-    if @user.update_attributes(params[:user])
-      flash[:notice] = "Profile was updated."
-      redirect_to dashboard_path
-    else
-      flash[:notice] = "Profile update failed."
-      redirect_to :action => "edit"
-    end
+		respond_to do |format|
+	    if @user.update_attributes(params[:user])
+	      flash[:notice] = "Profile was updated."
+				format.html { redirect_to dashboard_path }
+				format.js { head :ok }
+	    else
+	      flash[:notice] = "Profile update failed."
+				format.html { render :action => "edit" }
+				format.js { render :status=>500 }
+	    end
+		end
   end
   
   def follow
@@ -71,7 +75,7 @@ class UsersController < ApplicationController
   
   private
     def check_user
-      unless current_user == @user
+      unless current_user == @user || current_user.admin?
         redirect_to "/"
       end
     end

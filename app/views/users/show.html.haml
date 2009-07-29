@@ -55,6 +55,7 @@
 .details
   .inner_content
     = render :partial => "users/public_info"
+    = render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.admin?
 
   .inner_content
     .advertisement
