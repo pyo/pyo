@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 
 	def change_admin_status
 		respond_to do |format|
-	    if @user.update_attribute(:admin, params[:user][:admin])
+	    if @user.update_attribute(:super_user, params[:user][:admin])
 				format.js { head :ok }
 	    else
 				format.js { render :status=>500 }
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
   
   private
     def check_user
-      unless current_user == @user || current_user.admin?
+      unless current_user == @user || current_user.super_user?
         redirect_to "/"
       end
     end

@@ -22,8 +22,8 @@ class UserTest < ActiveSupport::TestCase
 
 		should "have an admin status" do
 			@user = Factory.next(:user)
-			@user.update_attribute :admin, true
-			assert @user.admin?
+			@user.update_attribute :super_user, true
+			assert @user.super_user?
 		end
 
 		should "have an featured status" do

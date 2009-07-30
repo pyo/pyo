@@ -1,6 +1,6 @@
 %ul
   %li
-    - if @user.admin?
+    - if @user.super_user?
       = link_to "Demote Admin", change_admin_status_user_path(@user, :user=>{:admin=>"0"}, :format=>'js'), :class=>"change_admin"
     - else
       = link_to "Make Admin", change_admin_status_user_path(@user, :user=>{:admin=>"1"}, :format=>'js'), :class=>"change_admin"
