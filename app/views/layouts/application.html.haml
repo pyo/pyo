@@ -33,8 +33,8 @@
           %li= link_to 'Talent Marketplace', marketplace_path
 
         .search
-          %form
-            %input{:type => 'text'}
+          %form{:action=>searches_path}
+            %input{:type => 'text', :name=>"q"}
             %input{:type => 'submit', :value => 'Search'}
       .content_flash
         - flash.each do |key, value|

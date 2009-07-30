@@ -20,6 +20,15 @@ class Blog < ActiveRecord::Base
   validates_presence_of :body
 
 	after_create :create_activity
+  
+  define_index do
+     indexes title
+     indexes tags(:name)
+     indexes body
+     indexes [user.profile.first_name, user.profile.last_name, user.name], :as => :user
+     indexes user.email, :as => :email
+		has created_at
+   end
 
 	protected
 	def create_activity

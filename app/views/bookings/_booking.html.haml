@@ -1,0 +1,5 @@
+.event
+  %h4
+    = link_to booking.title, [booking.user,booking]
+  %p
+    = booking.start_date.to_formatted_s :human_date_and_time
