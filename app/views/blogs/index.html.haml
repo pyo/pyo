@@ -11,15 +11,7 @@
     .blogs
       - unless @blogs.empty?
         - @blogs.each do |blog|
-          .blog_list_item
-            %h3
-              = h blog.title
-              (
-              = link_to("read", user_blog_path(@user, blog))
-              = "| #{link_to('edit', edit_user_blog_path(@user,blog))}" if is_owner?(blog) 
-              = "| #{link_to('delete', [@user,blog], :confirm => 'Are you sure?', :method => :delete)}" if is_owner?(blog) 
-              )
-            %p 
+          = render :partial=>blog, :locals=>{ :user=>@user }
       - else
         No Blogs Found
 .details
