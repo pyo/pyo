@@ -1,8 +1,9 @@
 class VideosController < ApplicationController
-  before_filter :find_video, :except=>[:done,:status]
-  before_filter :find_user
+  before_filter :find_video, :except=>[:done,:status,:status_update]
+  before_filter :find_user, :excpet => [:status_update]
   before_filter :check_user, :only => [:new, :create, :rate]
-  before_filter :authenticate, :except => [:show, :index]
+  before_filter :authenticate, :except => [:show, :index, :status_update]
+  protect_from_forgery :except => :status_update
   
   def index
     @videos = @user.nil? ? Video.all : @user.videos.all
@@ -42,6 +43,12 @@ class VideosController < ApplicationController
     @video.update_panda_status(@panda_video)
   end
   
+  def status_update
+    @video = Video.find_by_panda_id(params[:id])
+    @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
+    @video.update_panda_status(@panda_video)
+  end
+  
   def show
     @panda_video = Panda::Video.find(@video.panda_id)
     @video.update_panda_status(@panda_video) if RAILS_ENV == 'development'
@@ -55,6 +62,17 @@ class VideosController < ApplicationController
 				format.html{ render :action=>'edit' }
 			end
 		end
+	end
+	
+	def destroy
+    if is_owner?
+      @video.destroy
+      flash[:notice] = "Video was deleted."
+      redirect_to :back
+    else
+      flash[:error] = "You are not authorized for that action."
+      redirect_to :back
+    end
 	end
   
   private

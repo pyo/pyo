@@ -26,4 +26,16 @@
     %p lorem ipsum dolor sit amet, consectetur adipiscing elit. metus eget.
 
 .content
-  Featured Talent
+  %h2 Featured Talent
+  .featured_users
+    - @users.each do |user|
+      .group_member_thumb
+        = link_to image_tag(user.profile.avatar.url(:thumb)), user_path(user)
+        %p
+          = h user.name
+          
+.content
+  %h2 PYO Blog
+  .posts
+    -@posts.each do |post|
+      = render :partial=>post, :locals=>{ :user=>current_user }

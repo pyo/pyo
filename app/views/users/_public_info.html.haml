@@ -7,6 +7,7 @@
     Following
   %button Favorite
   = message_user_btn @user
+  = render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user?
 .info
   %h4
     = "#{h @user.name} - #{@user.talent_type}"

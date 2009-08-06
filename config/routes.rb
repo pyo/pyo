@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :videos, :member => {:status => :post, :upload => :get, :done => :get}
+  map.resources :videos, :member => {:status => :post, :status_update => :any, :upload => :get, :done => :get}
 
   map.resources :blogs
 
@@ -43,7 +43,9 @@ ActionController::Routing::Routes.draw do |map|
                 :member => {
                   :follow => :post,
                   :connects => :get,
-                  :inbox => :get
+                  :inbox => :get,
+									:change_admin_status => :put,
+									:change_featured_status => :put
                   } do |users|
                   users.resources :photos,
                                   :member => {:rate => :post}

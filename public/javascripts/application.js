@@ -28,4 +28,33 @@ $(function(){
 		$(this).parents(".comment:first").find(".reply").slideToggle('fast');
 		return false;
 	}); 
+	
+	$('.change_admin').click(function(e){
+		e.preventDefault();
+		var link = $(this);
+		var url = $(this).attr("href");
+		var promote = /admin%5D=1/.test(url);
+		var newUrl =  promote ? url.replace(/admin%5D=1/,'admin%5D=0') : url.replace(/admin%5D=0/,'admin%5D=1');
+		$.post(url,{
+			_method:'put'
+		},function(data){
+			link.attr('href',newUrl);
+			link.html(promote ? "Demote Admin" : "Make Admin");
+		});
+	});
+	
+	$('.change_featured').click(function(e){
+		e.preventDefault();
+		var link = $(this);
+		var url = $(this).attr("href");
+		var promote = /featured%5D=1/.test(url);
+		var newUrl =  promote ? url.replace(/featured%5D=1/,'featured%5D=0') : url.replace(/featured%5D=0/,'featured%5D=1');
+		$.post(url,{
+			_method:'put'
+		},function(data){
+			link.attr('href',newUrl);
+			link.html(promote ? "Unfeature" : "Feature");
+		});
+	});
+	
 });

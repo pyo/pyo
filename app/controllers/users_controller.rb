@@ -1,7 +1,7 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
   before_filter :authenticate, :except => [:new, :create,:index,:show]
-  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects,:inbox]
+  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects,:inbox, :change_admin_status, :change_featured_status]
   before_filter :check_user, :only => [:edit,:inbox,:update]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
@@ -50,21 +50,45 @@ class UsersController < ApplicationController
     @photos = @user.photos.recent(:limit => 6)
     @flickr_photos = @user.flickr_photos(8)
     @tracks = @user.tracks.recent(:limit => 10)
-    @videos = []
+    @videos = @user.videos
     @tweets = @user.tweets    
     
     @user.profile.update_view_count(request)
     
   end
+
+	def change_admin_status
+		respond_to do |format|
+	    if @user.update_attribute(:super_user, params[:user][:admin])
+				format.js { head :ok }
+	    else
+				format.js { render :status=>500 }
+	    end
+		end
+	end
+
+	def change_featured_status
+		respond_to do |format|
+	    if @user.update_attribute(:featured, params[:user][:featured])
+				format.js { head :ok }
+	    else
+				format.js { render :status=>500 }
+	    end
+		end
+	end
   
   def update
-    if @user.update_attributes(params[:user])
-      flash[:notice] = "Profile was updated."
-      redirect_to dashboard_path
-    else
-      flash[:notice] = "Profile update failed."
-      redirect_to :action => "edit"
-    end
+		respond_to do |format|
+	    if @user.update_attributes(params[:user])
+	      flash[:notice] = "Profile was updated."
+				format.html { redirect_to dashboard_path }
+				format.js { head :ok }
+	    else
+	      flash[:notice] = "Profile update failed."
+				format.html { render :action => "edit" }
+				format.js { render :status=>500 }
+	    end
+		end
   end
   
   def follow
@@ -74,7 +98,7 @@ class UsersController < ApplicationController
   
   private
     def check_user
-      unless current_user == @user
+      unless current_user == @user || current_user.super_user?
         redirect_to "/"
       end
     end

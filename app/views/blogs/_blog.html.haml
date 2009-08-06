@@ -1,0 +1,10 @@
+.blog_list_item
+  %h3
+    = h blog.title
+  = "by #{blog.user.profile.full_name}"
+  (
+  = link_to("read", user_blog_path(blog.user, blog))
+  = "| #{link_to('edit', edit_user_blog_path(blog.user,blog))}" if is_owner?(blog) 
+  = "| #{link_to('delete', [blog.user,blog], :confirm => 'Are you sure?', :method => :delete)}" if is_owner?(blog) 
+  )
+  %p 

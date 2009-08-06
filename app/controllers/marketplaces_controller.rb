@@ -3,7 +3,6 @@ class MarketplacesController < ApplicationController
 	before_filter :increment_tag_search_count
 	
 	def show
-		
 		@ads = ads.do_search(params)
 		@events = bookings.do_search(params)
 		
