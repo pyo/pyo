@@ -1,22 +1,28 @@
+.top.relative
+  %h2 PYO Groups
+  There are currently #{pluralize(Group.count, 'Group').gsub(/(\d+)/, '<strong>\1</strong>')} on PYO
+  .hanger
+    = link_to image_tag('/images/startgroup.gif'), request_group_groups_path if current_user
+  
 .main  
   .inner_content
-    %ul.menu
-      %li
-        = link_to "Request a new Group", request_group_groups_path if current_user
-  - unless @groups.empty?
-    .inner_content
-      %h2 
-        = "Groups"
-      - for group in @groups
-        .group_info
-          %strong
-            = link_to h(group.name), group_path(group)
-          %p
-            = h truncate(group.description, 20)
+    - unless @groups.empty?
+      .groups
+        - for group in @groups
+          %div[group]
+            = image_tag(group.icon.url(:medium))
+            %h4= link_to group.name, group
+            %p
+              %strong #{pluralize(group.members.count, 'Member')}
+            %p Category: N/A
+
 .details
   .inner_content
-    = render :partial => "users/info" if current_user
+    .info
+      %h3 Group Categories
+      - 20.times do
+        %p Group Category(12)
+      = render "users/info" if false && current_user
 
   .inner_content
-    .advertisement
-      Advertisement
+    = render 'shared/tall_advertisement'

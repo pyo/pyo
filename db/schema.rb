@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090727200530) do
+ActiveRecord::Schema.define(:version => 20090806150219) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -64,6 +64,17 @@ ActiveRecord::Schema.define(:version => 20090727200530) do
   add_index "comments", ["consumer_type", "consumer_id"], :name => "index_comments_on_consumer_type_and_consumer_id"
   add_index "comments", ["producer_id", "producer_type"], :name => "index_comments_on_producer_id_and_producer_type"
   add_index "comments", ["state"], :name => "index_comments_on_state"
+
+  create_table "count_von_count_views", :force => true do |t|
+    t.string   "model_type"
+    t.integer  "model_id"
+    t.string   "ip_addr"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "count_von_count_views", ["ip_addr"], :name => "index_count_von_count_views_on_ip_addr"
+  add_index "count_von_count_views", ["model_type", "model_id"], :name => "index_count_von_count_views_on_model_type_and_model_id"
 
   create_table "direct_messages", :force => true do |t|
     t.string   "producer_type"
@@ -255,6 +266,8 @@ ActiveRecord::Schema.define(:version => 20090727200530) do
     t.string   "twitter_password"
     t.string   "flickr_username"
     t.string   "flickr_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

@@ -33,6 +33,6 @@ Rails::Initializer.run do |config|
 
 end
 
-
+require 'string_ext'
 require 'tag_ext'
 MAX_STARS = 5

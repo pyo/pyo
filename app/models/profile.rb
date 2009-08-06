@@ -11,7 +11,7 @@ class Profile < ActiveRecord::Base
                     :styles => { 
                       :thumb => '60x60#', 
                       :medium => "600>",
-                      :profile => "200>"
+                      :profile => "250x250#"
                     },
                     :whiny_thumbnails => true,
                     :path => ':rails_root/public/data/:class/:id/:style/:basename.:extension',
@@ -20,7 +20,7 @@ class Profile < ActiveRecord::Base
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :path => ":attachment/:id/:style.:extension",
                     :bucket => "pyo-images-#{RAILS_ENV}",
-                    :default_url => "/images/:attachment/:style/missing.png"
+                    :default_url => "/data/:class/:style.png"
   
   # assocs
   belongs_to :user

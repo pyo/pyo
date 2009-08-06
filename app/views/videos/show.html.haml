@@ -1,6 +1,6 @@
 .main
   .inner_content
-    = render :partial => "users/dashboard_nav"
+    = render "users/dashboard_nav"
   .inner_content
     .photo_view
       %h2 
@@ -14,13 +14,13 @@
           = h @video.tags.collect(&:name)
   .inner_content
     %h2 Rating        
-    = render :partial =>"shared/rate_item",:locals => {:ratable=>@video}
+    = render :partial => "shared/rate_item",:locals => {:ratable=>@video}
   .inner_content
     %h2 Comments
-    = render :partial => @video.comments
+    = render @video.comments
     = render :partial => "comments/form", :locals => {:commentable => @video, :comment_class=>""}
 .details
   .inner_content
-    = render :partial => "users/public_info"
+    = render "users/public_info"
   .inner_content
-    = render :partial => "shared/advertisment"
+    = render "shared/tall_advertisement"

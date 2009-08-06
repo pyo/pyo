@@ -24,7 +24,7 @@ class Group < ActiveRecord::Base
                     },
                     :whiny_thumbnails => true,
                     :path => ':rails_root/public/data/:class/:id/:style/:basename.:extension',
-                    :url => '/data/:class/:id/:style/:basename.:extension'
+                    :default_url => '/data/groups/:style.png'
                     
   # validations                  
   validates_presence_of :name, :description
@@ -61,7 +61,7 @@ class Group < ActiveRecord::Base
   end
 
   def to_param
-		url
-	end
+    url
+  end
   
 end

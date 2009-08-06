@@ -52,6 +52,9 @@ class UsersController < ApplicationController
     @tracks = @user.tracks.recent(:limit => 10)
     @videos = []
     @tweets = @user.tweets    
+    
+    @user.profile.update_view_count(request)
+    
   end
   
   def update

@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create,:approve,:deny,:pending] 
   
   def index
-    @groups = Group.find(:all)
+    @groups = Group.paginate(:per_page => 25, :page => params[:page])
 
     respond_to do |format|
       format.html
