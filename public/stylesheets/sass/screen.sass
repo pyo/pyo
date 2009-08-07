@@ -3,7 +3,7 @@ body
   :font-family Arial
   :font-size 0.8em
 
-p, h2, h3, h4, ul, form
+p, h2, h3, h4, ul, form, img
   :padding 0
   :margin 0
 
@@ -48,6 +48,7 @@ ul.menu, ul.separated
   :float left
   :width 900px
   :position relative
+  :margin-bottom 10px
 
 #content
   :width 900px
@@ -216,6 +217,19 @@ ul.menu, ul.separated
   :margin-bottom -25px
   :right 0
   
-.flickr_photo_thumb
+.thumb
   :float left
   :margin-left 1px
+  
+.activities
+  :border-top 1px dashed #999
+  .activity
+    :float left
+    :width 595px
+    :padding 10px
+    :border-bottom 1px dashed #999
+    .thumb
+      :width 60px
+      :height 60px
+      :margin-right 10px
+      :border 3px solid #CCC

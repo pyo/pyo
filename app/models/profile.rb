@@ -10,6 +10,7 @@ class Profile < ActiveRecord::Base
   has_attached_file :avatar,
                     :styles => { 
                       :thumb => '60x60#', 
+                      :dashboard => '80x80#',
                       :medium => "600>",
                       :profile => "250x250#"
                     },

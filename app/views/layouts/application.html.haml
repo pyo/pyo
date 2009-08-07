@@ -23,12 +23,13 @@
       
       #navigation.content
         %ul.menu
-          %li.first= link_to 'Connects', '#' if current_user
+          %li.first= link_to 'My Profile', '#' if current_user
+          %li= link_to 'My Connects', '#' if current_user
           %li= link_to 'Members', members_path
           %li= link_to 'Groups', groups_path
           %li= link_to 'Music', music_path
           %li= link_to 'Videos', videos_path
-          %li= link_to 'Talent Marketplace', marketplace_path
+          %li= link_to 'Marketplace', marketplace_path
 
         .search
           %form

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-
+    @activities = current_user.activities
   end
   
   def inbox
