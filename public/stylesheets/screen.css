@@ -3,9 +3,12 @@ body {
   font-family: Arial;
   font-size: 0.8em; }
 
-p, h2, h3, h4, ul, form, img {
+p, h1, h2, h3, h4, ul, form, img {
   padding: 0;
   margin: 0; }
+
+.blue {
+  color: #006FFF; }
 
 a {
   outline: none;
@@ -223,3 +226,67 @@ ul.menu, ul.separated {
       height: 60px;
       margin-right: 10px;
       border: 3px solid #CCC; }
+
+.home_top {
+  float: left;
+  width: 880px;
+  margin-bottom: 10px; }
+  .home_top .advertisement {
+    width: 300px;
+    float: right; }
+  .home_top .headline {
+    text-align: justify;
+    font-size: 1.2em;
+    float: left;
+    width: 555px; }
+    .home_top .headline h1 {
+      margin-bottom: 10px; }
+
+.home_left {
+  width: 467px;
+  float: left; }
+
+.home_right {
+  width: 402px;
+  float: right; }
+
+.random_members {
+  margin-top: 10px;
+  background: url(/images/random_members_top.png) top center no-repeat;
+  width: 467px;
+  padding-top: 9px; }
+  .random_members .inner_content {
+    background: url(/images/random_members_bottom.png) bottom center no-repeat;
+    width: 447px;
+    padding: 10px;
+    padding-top: 0; }
+    .random_members .inner_content .user img {
+      border: 3px solid #999; }
+    .random_members .inner_content .hanger {
+      top: 5px;
+      text-transform: uppercase;
+      font-size: 0.7em; }
+    .random_members .inner_content h4 {
+      background: url(/images/status_16.png) top left no-repeat;
+      font-size: 1.2em;
+      padding-left: 20px;
+      border-bottom: 1px solid #999;
+      padding-bottom: 10px;
+      margin-bottom: 10px; }
+
+.honors {
+  background: url(/images/honors_top.png) top center no-repeat;
+  width: 402px;
+  padding-top: 9px; }
+  .honors .inner_content {
+    background: url(/images/honors_bottom.png) bottom center no-repeat;
+    width: 382px;
+    padding: 10px;
+    padding-top: 0; }
+    .honors .inner_content h4 {
+      background: url(/images/honors.png) top left no-repeat;
+      font-size: 1.2em;
+      padding-left: 20px;
+      border-bottom: 1px solid #999;
+      padding-bottom: 10px;
+      margin-bottom: 10px; }
