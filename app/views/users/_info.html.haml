@@ -1,10 +1,11 @@
-.info
-  = image_tag current_user.profile.avatar.url(:dashboard)
-  = "#{h current_user.name} - #{current_user.talent_type}"
+- if current_user
+  .info
+    = image_tag current_user.profile.avatar.url(:dashboard)
+    = "#{h current_user.name} - #{current_user.talent_type}"
 
-  %h3 Connects
-  %p
-    - for following in current_user.followings.recent
-      .info_following_thumb
-        = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
-    %br{:clear => "all"}
+    %h3 Connects
+    %p
+      - for following in current_user.followings.recent
+        .info_following_thumb
+          = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
+      %br{:clear => "all"}
