@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
     indexes [profile.first_name, profile.last_name], :as => :full_name
     indexes email
     indexes [profile.city, profile.state], :as => :location
+		has profile.created_at, :as => :created_at
   end
 
 end

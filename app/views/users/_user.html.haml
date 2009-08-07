@@ -1,0 +1,4 @@
+.user
+  %strong
+    = link_to(image_tag(user.profile.avatar.url(:thumb)), user_path(user))
+    = link_to(user.profile.full_name, user)

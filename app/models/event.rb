@@ -37,6 +37,7 @@ class Event < ActiveRecord::Base
 		has "end_date >= NOW()", :as=>:current, :type=>:boolean
 		has ratings.score, :as=>:score
 		has "AVG(ratings.score)", :as=>:rating, :type=>:float
+    indexes [user.profile.first_name, user.profile.last_name, user.name], :as => :user
 		indexes tags(:name), :as => :tags
 		
 	end
