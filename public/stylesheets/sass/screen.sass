@@ -13,6 +13,7 @@ p, h1, h2, h3, h4, ul, form, img
 a
   :outline none
   :color #006FFF
+  :font-weight bold
   :text-decoration none
   img
     :border none
@@ -23,6 +24,7 @@ h2
 
 h3
   :background-color #BBB
+  :padding 5px 5px
   
 h4
   :font-size 2em
@@ -175,10 +177,12 @@ ul.menu, ul.separated
       :width 25px
       
 .advertisement
+  :clear both
   :margin 10px auto
   :width 726px
 
 .tall_advertisement
+  :clear both
   :margin 0 auto
   :text-align center
   :background #DDD
@@ -192,7 +196,13 @@ ul.menu, ul.separated
 .info 
   :background-color #DDD
   :padding 10px
-  
+  :clear both
+  :width 230px
+
+.profile
+  img
+    :float left
+    :margin-right 10px
   
   
 .groups
@@ -222,7 +232,16 @@ ul.menu, ul.separated
   
 .thumb
   :float left
+  :width 60px
+  :height 60px
   :margin-left 1px
+
+.smaller_thumb
+  :float left
+  :width 50px
+  :height 50px
+  :margin-left 1px
+
   
 .activities
   :border-top 1px dashed #999
@@ -261,16 +280,20 @@ ul.menu, ul.separated
   :float right
 
 .random_members
+  :float left
   :margin-top 10px
   :background url(/images/random_members_top.png) top center no-repeat
   :width 467px
   :padding-top 9px
   .inner_content
+    :float left
     :background url(/images/random_members_bottom.png) bottom center no-repeat
     :width 447px
     :padding 10px
     :padding-top 0
     .user
+      :float left
+      :margin-right 8px
       img
         :border 3px solid #999
     .hanger
@@ -301,3 +324,64 @@ ul.menu, ul.separated
       :border-bottom 1px solid #999
       :padding-bottom 10px
       :margin-bottom 10px
+
+.alert_type
+  :border-bottom 1px solid #CCC
+  :margin-top 10px
+  :padding-bottom 2px
+  
+ul.activities_menu
+  :font-weight bold
+  :margin-bottom 10px
+  li
+    a
+      :background url(/images/separator-black.gif) center left no-repeat
+      :padding 0 3px 0 8px
+
+.left
+  :float left
+  
+.hidden
+  :display none
+  
+.justify
+  :text-align justify
+  
+.load_more
+  :clear both
+  :padding-top 10px
+  
+.follow_me_button
+  :text-indent -9999px
+  :overflow hidden
+  :width 120px
+  :height 36px
+  :background url(/images/follow_me.png) top left no-repeat
+  :display block
+  :float left
+  
+.follow_me_button
+  :text-indent -9999px
+  :overflow hidden
+  :width 120px
+  :height 36px
+  :background url(/images/follow_me.png) top left no-repeat
+  :display block
+  :float left
+
+.message_button
+  :text-indent -9999px
+  :overflow hidden
+  :width 120px
+  :height 36px
+  :background url(/images/message.png) top left no-repeat
+  :display block
+  :float left
+  :margin-left 10px
+
+.buttons
+  :float left
+  :margin 10px 0
+  
+.with_border
+  :border 3px solid #CCC

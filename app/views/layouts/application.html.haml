@@ -23,7 +23,7 @@
       
       #navigation.content
         %ul.menu
-          %li.first= link_to 'My Profile', '#' if current_user
+          %li.first= link_to 'My Profile', current_user if current_user
           %li= link_to 'My Connects', '#' if current_user
           %li= link_to 'Members', members_path
           %li= link_to 'Groups', groups_path

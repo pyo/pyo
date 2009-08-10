@@ -59,6 +59,14 @@ class User < ActiveRecord::Base
   
   acts_as_flickr_user :flickr_nsid => 'flickr_id' # defaults :flickr_username => 'flickr_username'
   
+  def owns?(resource)
+    methods = %w{user producer}
+    resource_user_method = methods.select{|method| resource.respond_to?(method)}[0]
+    if resource_user_method
+      admin? || resource.send(resource_user_method) == self
+    end
+  end
+  
   def tweets        
     unless twitter_username == "" || twitter_password == ""
       twitter = Twitter.new(twitter_username,twitter_password) 

@@ -1,25 +1,25 @@
-%h2 Hello, #{current_user.name}!
-Your PYO URL: 
-%strong putyourselfon.com/#{current_user.name} 
-[ Settings ]
+.top
+  %h2 Hello, #{current_user.name}!
+  Your PYO URL: 
+  %strong putyourselfon.com/#{current_user.name} 
+  [ #{link_to 'Settings', edit_user_path(current_user)} ]
 .main
   .inner_content
-    = render :partial => "users/dashboard_nav"  
-    - unless current_user.first_run?
-    
+    .hidden
+      = render 'users/dashboard_nav'
       %form
         %input{:type => 'text'}
         %input{:type => 'submit'}
-    
+    - unless current_user.first_run?    
       %h4 Activity Hub
-      %ul.menu
+      %ul.menu.activities_menu
         %li.first All
-        %li Status
-        %li Media
-        %li Comments
-        %li Follows
-        %li Likes
-      
+        %li= link_to 'Status', '#'
+        %li= link_to 'Media', '#'
+        %li= link_to 'Comments', '#'
+        %li= link_to 'Follows', '#'
+        %li= link_to 'Likes', '#'
+  
       .activities
         - @activities.each do |activity|
           %div[activity]
@@ -29,15 +29,28 @@ Your PYO URL:
             %p
               = link_to activity.producer.name, activity.producer
               = display_notification(activity)
+      - if @activities.total_pages > 1
+        .load_more
+          = image_tag('/images/load_more.jpg')
       
     - else
       %h2 Welcome to PYO.
       %p First run copy goes here
-      = link_to "Upload your first track.", new_user_track_path(current_user)
+      = link_to 'Upload your first track.', new_user_track_path(current_user)
       %br
-      = link_to "Upload Photos.", new_user_photo_path(current_user)
+      = link_to 'Upload Photos.', new_user_photo_path(current_user)
   
 .details
   .inner_content
-    = render :partial => "users/info"
-    = render :partial => 'shared/tall_advertisement'
+    = render 'users/info'
+    .info
+      %h3 Alerts
+      .alert_type
+        = link_to '(30) new follows', '#'
+      .alert_type
+        = link_to '(12) new comments', '#'
+      .alert_type
+        = link_to '(6) new messages', '#'
+    
+  .inner_content  
+    = render 'shared/tall_advertisement'

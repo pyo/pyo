@@ -1,20 +1,27 @@
 = image_tag @user.profile.avatar.url(:profile)
 - if current_user and current_user != @user
-  - unless current_user.following?(@user)
-    - form_tag follow_user_path(@user) do
-      = submit_tag 'Follow'
-  - else
-    Following
-  %button Favorite
-  = message_user_btn @user
+  .buttons
+    - unless current_user.following?(@user)
+      = link_to 'Follow Me', follow_user_path(@user), :method => :post, :class => 'follow_me_button'
+    - else
+      Following
+    = link_to 'Message', new_user_direct_message_path(@user), :class => 'message_button'
   = render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user?
+
 .info
-  %h4
-    = "#{h @user.name} - #{@user.talent_type}"
+  .city_state
+    #{@user.profile.city}, #{@user.profile.state}
+  .class
+    class: #{link_to @user.talent_type, '#'}
+  - if @user.profile.bio
+    .bio  
+      #{@user.profile.bio}
   - unless @user.followings.empty?
-    %h3 Connects
+    Following:
     %p
-      - for following in @user.followings
-        .info_following_thumb
+      - @followings.each do |following|
+        .smaller_thumb.with_border
           = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
+      - if @followings.total_pages > 1
+        = link_to 'View All', '#'
       %br{:clear => "all"}

@@ -51,15 +51,21 @@ module ActsAsFlickrParty
    end
       
    def flickr_photos(per_page = 10, scope = 'public')
-			return [] if flickr_nsid.blank?
-     case scope
-     when 'public' then API.call('people.getPublicPhotos', :user_id => flickr_nsid, :per_page => per_page)['photos']['photo'].map{ |hash| ActsAsFlickrParty::Photo.new(hash) }
+		 return [] if flickr_nsid.blank?
+     return case scope
+     when 'public' 
+        photos = API.call('people.getPublicPhotos', :user_id => flickr_nsid, :per_page => per_page)
+        if photos && photos['photos']['total'].to_i > 0
+          photos['photos']['photo'].map{ |hash| ActsAsFlickrParty::Photo.new(hash) }
+        else
+          []
+        end
      else []
      end
    end
    
    def set_nsid
-     if self.send("#{flickr_options[:flickr_username]}_changed?")
+     if self.send("#{flickr_options[:flickr_username]}_changed?") && self.send(flickr_options[:flickr_username]).present?
        self.send("#{flickr_options[:flickr_nsid]}=", flickr_nsid(:force => true) || nil)
      end
      true
