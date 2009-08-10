@@ -8,7 +8,7 @@
   .info
     - if controller.action_name == 'dashboard'
       .upload_post_button
-        = image_tag('/images/upload_post_button.jpg')
+        = link_to image_tag('/images/upload_post_button.jpg'), '#', :id => 'upload_post_button'
     
     - unless current_user.followings.recent.empty?
       %h3 Following

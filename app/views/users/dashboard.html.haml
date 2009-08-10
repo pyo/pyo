@@ -1,11 +1,20 @@
+- content_for :head do
+  :javascript
+    $(function() {
+      $('#upload_post_button').click(function() {
+        $('#post_bar').slideToggle();
+        return false;
+      })
+    })
+
 .top
-  %h2 Hello, #{current_user.name}!
+  %h2 Hello, #{current_user.name.capitalize}!
   Your PYO URL: 
   %strong putyourselfon.com/#{current_user.name} 
   [ #{link_to 'Settings', edit_user_path(current_user)} ]
 .main
   .inner_content
-    .not_hidden
+    #post_bar.hidden
       = render 'users/dashboard_nav'
       - form_for Activity.new do |f|
         = f.text_field :message
