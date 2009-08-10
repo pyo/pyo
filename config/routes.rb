@@ -81,5 +81,7 @@ ActionController::Routing::Routes.draw do |map|
   map.music    '/music',    :controller => 'tracks',  :action => 'music'
   
   map.members '/members', :controller => 'users'
+  
+  map.redirect '/:id', :controller => "users", :action => 'show' # redirector
 
 end

@@ -6,6 +6,27 @@
   %strong #{@user.created_at.strftime("%B %Y")}
   | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
 .main
+  .greyboxes
+    .greybox
+      .count
+        #{@user.followers.size}
+      Followers
+    
+    .greybox
+      .count
+        #{@user.photos.size}
+      Photos
+    
+    .greybox
+      .count
+        #{@user.tracks.size}
+      Audio Files
+    
+    .greybox
+      .count
+        #{@user.videos.size}
+      Videos
+
   - unless @videos.empty?
     .inner_content
       %h2 User's Videos
@@ -32,7 +53,7 @@
         .profile_photo_thumb
           = link_to image_tag(photo.image.url(:thumb)), user_photo_path(@user,photo)
   
-  - unless @flickr_photos.empty?
+  - unless @flickr_photos.empty? || true
     .inner_content
       %h4 Recent Flickr Photos
       - for photo in @flickr_photos

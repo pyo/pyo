@@ -68,6 +68,7 @@ ul.menu, ul.separated {
   float: left; }
 
 .inner_content {
+  clear: both;
   margin-bottom: 10px; }
 
 .main {
@@ -190,9 +191,12 @@ ul.menu, ul.separated {
   padding: 10px;
   clear: both;
   width: 230px; }
-  .info .profile img {
-    float: left;
-    margin-right: 10px; }
+
+.profile img {
+  float: left;
+  margin-right: 10px; }
+.profile .name {
+  font-size: 18px; }
 
 .groups {
   border-top: 1px dashed #A9A9A9; }
@@ -372,3 +376,32 @@ ul.activities_menu {
 
 .with_border {
   border: 3px solid #CCC; }
+
+.upload_post_button {
+  margin-bottom: 10px; }
+
+.followers {
+  margin-top: 10px; }
+  .followers .thumb {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #CCC; }
+
+.city_state {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px; }
+
+.class {
+  font-weight: bold; }
+
+.greybox {
+  width: 100px;
+  height: 55px;
+  background: url(/images/greybox.png) top left no-repeat;
+  padding-top: 17px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  float: left;
+  margin-right: 10px; }
