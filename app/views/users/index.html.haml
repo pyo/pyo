@@ -3,11 +3,12 @@
 .main  
   - unless @users.empty?
     .inner_content
-      - for user in @users
-        .group_member_thumb
-          = link_to image_tag(user.profile.avatar.url(:thumb)), user_path(user)
-          %p
-            = h user.name
+      .users
+        - @users.each do |user|
+          %div[user]
+            .thumb= link_to image_tag(user.profile.avatar.url(:thumb)), user_path(user)
+            .name
+              = link_to user.name, user
             
 .details
   .inner_content

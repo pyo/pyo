@@ -41,6 +41,8 @@ class User < ActiveRecord::Base
   has_many :messages, :as => :consumer, :class_name => 'DirectMessage'
   has_many :sent_messages, :as => :producer, :class_name => 'DirectMessage'
 
+  has_many :updates, :class_name => "Activity", :as => :producer, :conditions => {:consumer_id => nil}
+
 	named_scope :featured, :conditions=>{:featured=>true}
   
   # covalence groups
@@ -52,6 +54,15 @@ class User < ActiveRecord::Base
   validates_format_of :name, :with => /^[^\s]*$/, :message => "cannot contain spaces."
   
   accepts_nested_attributes_for :profile, :allow_destroy => true
+  
+  def all_activities
+    Activity.all(:conditions => [
+      "(consumer_type = 'User' and consumer_id = ?) or (producer_type = 'User' and producer_id in (?))", 
+      id,
+      followings.map(&:id)
+    ],
+    :order => 'created_at desc')
+  end
   
   def following?(user)
     followings.exists?(["child_type = ? and child_id = ?", user.class.to_s, user.id])

@@ -5,11 +5,11 @@
   [ #{link_to 'Settings', edit_user_path(current_user)} ]
 .main
   .inner_content
-    .hidden
+    .not_hidden
       = render 'users/dashboard_nav'
-      %form
-        %input{:type => 'text'}
-        %input{:type => 'submit'}
+      - form_for Activity.new do |f|
+        = f.text_field :message
+        = f.submit 'Submit'
     - unless current_user.first_run?    
       %h4 Activity Hub
       %ul.menu.activities_menu

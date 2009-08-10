@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    @activities = current_user.activities.paginate(:per_page => 20, :page => 1)
+    @activities = current_user.all_activities.paginate(:per_page => 20, :page => 1)
   end
   
   def inbox
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     @tweets = @user.tweets  
     
     @followings = @user.followings.paginate(:per_page => 12, :page => 1)  
-    
+    @updates = @user.updates.paginate(:per_page => 24, :page => 1)
     @user.profile.update_view_count(request)
     
   end

@@ -15,14 +15,9 @@
             %p
               %strong #{pluralize(group.members.count, 'Member')}
             %p Category: N/A
+    - else
+      No Groups Yet! #{link_to 'Start one now', request_group_groups_path}
 
 .details
-  .inner_content
-    .info
-      %h3 Group Categories
-      - 20.times do
-        %p Group Category(12)
-      = render "users/info" if false && current_user
-
   .inner_content
     = render 'shared/tall_advertisement'

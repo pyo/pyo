@@ -2,9 +2,10 @@
 = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
 .top
   %h2 #{@user.name.capitalize_words}
-  Member Since: 
-  %strong #{@user.created_at.strftime("%B %Y")}
-  | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
+  .member_info
+    Member Since: 
+    %strong #{@user.created_at.strftime("%B %Y")}
+    | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
 .main
   .greyboxes
     .greybox
@@ -26,10 +27,27 @@
       .count
         #{@user.videos.size}
       Videos
+  
+  .inner_content
+    %h4.with_bottom_margin #{@user.profile.username}'s Updates
+    .activities
+      - unless @updates.empty?
+        - @updates.each do |update|
+          %div.activity[update]
+            = time_ago_in_words(update.created_at) + " ago"
+            %p
+              = link_to @user.profile.username, @user
+              = update.message
+      - else
+        No Updates
 
   - unless @videos.empty?
     .inner_content
-      %h2 User's Videos
+      %h4 User's Videos
+      .videos
+        - @videos.each do |video|
+          %div[video]
+            = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
   
   - unless @tracks.empty?
     .inner_content
