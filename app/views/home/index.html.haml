@@ -9,7 +9,7 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod viverra purus, id scelerisque erat ornare ac. 
         = link_to 'Learn More.', '#'
     .home_right
-      = image_tag('/images/join.gif')
+      = link_to image_tag('/images/join.gif'), signup_path
       %p
         Already a member? #{link_to 'Log In', '#'}
       
