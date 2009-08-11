@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090806150219) do
+ActiveRecord::Schema.define(:version => 20090811141015) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20090806150219) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   add_index "photos", ["title"], :name => "index_photos_on_title"

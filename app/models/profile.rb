@@ -12,7 +12,8 @@ class Profile < ActiveRecord::Base
                       :thumb => '60x60#', 
                       :dashboard => '80x80#',
                       :medium => "600>",
-                      :profile => "250x250#"
+                      :profile => "250x250#",
+                      :home => "195>x122>"
                     },
                     :whiny_thumbnails => true,
                     :path => ':rails_root/public/data/:class/:id/:style/:basename.:extension',

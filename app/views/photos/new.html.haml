@@ -11,6 +11,8 @@
         %dd= form.text_field :title
         %dt= form.label :image
         %dd= form.file_field :image
+        %dt= form.label :description
+        %dd= form.text_area :description
         %dt= form.label :tags
         %dd= form.text_field :tag_list    
         %small Comma separate tags.    
@@ -20,4 +22,4 @@
   .inner_content
     = render :partial => "users/info"
   .inner_content
-    = render :partial => "shared/advertisment"
+    = render :partial => "shared/tall_advertisement"

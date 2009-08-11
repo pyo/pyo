@@ -1,3 +1,4 @@
+- @followings = @user.followings.paginate(:per_page => 12, :page => 1) # sorry for this
 = image_tag @user.profile.avatar.url(:profile)
 - if current_user and current_user != @user
   .buttons
@@ -16,10 +17,10 @@
   - if @user.profile.bio
     .bio  
       #{@user.profile.bio}
-  - unless @user.followings.empty?
+  - unless @followings.empty?
     Following:
     %p
-      - @followings.each do |following|
+      - @followings.paginate(:per_page => 12, :page => 1).each do |following|
         .smaller_thumb.with_border
           = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
       - if @followings.total_pages > 1

@@ -2,7 +2,7 @@ class TracksController < ApplicationController
   before_filter :find_track
   before_filter :find_user
   before_filter :check_user, :only => [:new, :create]
-  before_filter :authenticate, :except => [:show, :index]
+  before_filter :authenticate, :except => [:show, :index, :music]
   
   def index
     @tracks = @user.tracks.all

@@ -3,7 +3,7 @@ body
   :font-family Arial
   :font-size 0.8em
 
-p, h1, h2, h3, h4, ul, form, img
+p, h1, h2, h3, h4, h5, ul, form, img
   :padding 0
   :margin 0
 
@@ -28,6 +28,14 @@ h3
   
 h4
   :font-size 2em
+  
+h5
+  :color #006FFF
+  :text-transform uppercase
+  :border-bottom 1px solid #DDD
+  :padding-bottom 7px
+  :margin-bottom 20px
+  :font-size 1.4em
 
 h2.logo
   :text-indent -99999px
@@ -270,20 +278,19 @@ ul.menu, ul.separated
     :width 300px
     :float right
   .headline
-    :text-align justify
+    :margin 10px 0
+    :word-spacing 0.3em
     :font-size 1.2em
     :float left
     :width 555px
     h1
       :margin-bottom 10px
 
-.home_left
-  :width 467px
-  :float left
-
 .home_right
-  :width 402px
+  :margin-top 20px
+  :width 300px
   :float right
+  :text-align center
 
 .random_members
   :float left
@@ -402,6 +409,11 @@ ul.activities_menu
     :height 50px
     :border 3px solid #CCC
 
+
+.bordered_image
+  img
+    :border 3px solid #CCC
+
 .city_state
   :font-size 18px
   :font-weight bold
@@ -436,3 +448,29 @@ ul.activities_menu
 
 .member_info
   :color #999
+  
+.home_columns
+  :float left
+  :margin-left -10px
+  :width 900px
+  :border-top 10px solid #EEE
+  :border-bottom 10px solid #EEE
+  :margin-bottom 20px
+  .column
+    :border-left 1px dashed #999
+    :float left
+    :width 259px
+    :padding 0 20px
+    :margin 10px 0
+    :text-align justify
+  .first
+    :border-left 0
+    
+.right
+  :float right
+  
+.home_users
+  .user
+    :width 201px
+    :float left
+    :margin-right 10px

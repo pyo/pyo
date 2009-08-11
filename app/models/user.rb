@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   has_many :updates, :class_name => "Activity", :as => :producer, :conditions => {:consumer_id => nil}
 
-	named_scope :featured, :conditions=>{:featured=>true}
+	named_scope :featured, :conditions=>{ :featured => true }
   
   # covalence groups
   is_member_of :groups
@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
     methods = %w{user producer}
     resource_user_method = methods.select{|method| resource.respond_to?(method)}[0]
     if resource_user_method
-      admin? || resource.send(resource_user_method) == self
+      super_user? || resource.send(resource_user_method) == self
     end
   end
   

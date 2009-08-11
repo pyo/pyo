@@ -2,51 +2,39 @@
   .home_top
     .headline
       %h1 
-        What is
+        Welcome to
         %span.blue Put Yourself On
-        %span>< ?
+        %span>< !
       %p 
-        Put Yourself On (PYO) is a social community that allows you to put your
-        talents and hobbies on display through the internet (using pictures,
-        audio and video), giving you a platform to publicly market your personal
-        brand. We give you the tools to create a digital portfolio, in addition
-        to allowing you to network within the community and obtain new associates
-        and connects. And most of all, we do all of this 
-        %strong FOR FREE!
-    = render "shared/short_advertisement"
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod viverra purus, id scelerisque erat ornare ac. 
+        = link_to 'Learn More.', '#'
+    .home_right
+      = image_tag('/images/join.gif')
+      %p
+        Already a member? #{link_to 'Log In', '#'}
       
 .content
-  .home_left
-    = link_to image_tag('/images/join_now.png'), signup_path
-    = link_to image_tag('/images/sign_in.png'), login_path
-    
-    .random_members
-      .inner_content
-        .relative
-          .hanger
-            Click here to join PYO!
-          %h4 Random PYO Members
-        - @users.each do |user|
-          %div[user]
-            = link_to image_tag(user.profile.avatar.url(:thumb)), user
-  .home_right
-    .honors
-      .inner_content
-        %h4 PYO Honors
-        %ul.menu
-          %li.first Users
-          %li= link_to 'Videos', '#'
-          %li= link_to 'Music', '#'
-          %li= link_to 'Channels', '#'
-        %ul.menu
-          %li.first Today
-          %li= link_to 'This Week', '#'
-          %li= link_to 'This Month', '#'
-          %li= link_to 'All Time', '#'
-        - @featured_users.each do |user|
-          %div[user]
-            = link_to image_tag(user.profile.avatar.url(:thumb)), user
+  .home_columns
+    .column.first
+      %h5 What is PYO?
+      %p
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod viverra purus, id scelerisque erat ornare ac.
+    .column
+      %h5 Who's PYO for?
+      %p
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod viverra purus, id scelerisque erat ornare ac.
+    .column
+      %h5 Why use PYO?
+      %p
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod viverra purus, id scelerisque erat ornare ac.
 
+.content
+  %h5 Featured Users
+  .home_users
+    - @featured_users.each do |user|
+      %div[user]
+        .bordered_image= image_tag(user.profile.avatar(:home))
+        = link_to user.profile.username, user
+        %p
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   
-  
-
