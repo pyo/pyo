@@ -13,5 +13,4 @@ class Activity < ActiveRecord::Base
       Activity.create({:producer => comment.producer, :consumer => user, :flavor => 'group_comment', :payload => comment})
     end
   end
-  
 end

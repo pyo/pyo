@@ -8,6 +8,8 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   
+  config.load_paths += %W( #{RAILS_ROOT}/app/models/activities )
+  
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
   config.gem 'thoughtbot-paperclip',    :lib => 'paperclip', :source => 'http://gems.github.com'

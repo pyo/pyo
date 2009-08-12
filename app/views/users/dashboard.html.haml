@@ -4,7 +4,14 @@
       $('#upload_post_button').click(function() {
         $('#post_bar').slideToggle();
         return false;
+      });
+      
+      
+      $('#load_more').live("click", function() {
+        $.ajax({data:'authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'get', url:this.href}); 
+        return false;
       })
+      
     })
 
 .top
@@ -29,9 +36,9 @@
         %li= link_to 'Follows', '#'
         %li= link_to 'Likes', '#'
   
-      .activities
+      #activities.activities
         - @activities.each do |activity|
-          %div[activity]
+          %div.activity[activity]
             .thumb
               = image_tag(activity.producer.profile.avatar(:thumb)) if activity.producer
             #{time_ago_in_words(activity.created_at)} ago
@@ -39,8 +46,8 @@
               = link_to activity.producer.name, activity.producer
               = display_notification(activity)
       - if @activities.total_pages > 1
-        .load_more
-          = image_tag('/images/load_more.jpg')
+        #load_more_link.load_more
+          = link_to 'Load More', activities_path(:page => @activities.current_page + 1), :id => 'load_more'
       
     - else
       %h2 Welcome to PYO.

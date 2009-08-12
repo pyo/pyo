@@ -1,0 +1,7 @@
+%div.activity[activity]
+  .thumb
+    = image_tag(activity.producer.profile.avatar(:thumb)) if activity.producer
+  #{time_ago_in_words(activity.created_at)} ago
+  %p
+    = link_to activity.producer.name, activity.producer
+    = display_notification(activity)

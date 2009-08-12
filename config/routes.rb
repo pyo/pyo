@@ -1,24 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
 	
 	map.resources :searches, :as=>"search", :only=>[:index]
-	
   map.resources :videos, :member => {:status => :post, :status_update => :any, :upload => :get, :done => :get}
-
   map.resources :blogs
-
-	
 	map.resource :marketplace
-	
   map.resources :ads
-
   map.resources :bookings, :as=>:events
-
   map.resources :tracks
-
   map.resources :activities
-
   map.resources :comments
-
   map.resources :alerts
   map.resources :photos
   map.resources :followings

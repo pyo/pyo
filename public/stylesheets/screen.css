@@ -18,6 +18,9 @@ a {
   a img {
     border: none; }
 
+a:hover {
+  text-decoration: underline; }
+
 h2 {
   color: #006FFF;
   font-size: 3em; }
@@ -146,6 +149,10 @@ ul.menu, ul.separated {
         float: left;
         padding: 0 10px;
         border-right: 1px solid #444; }
+      #navigation ul li a:hover {
+        background: #111;
+        text-decoration: underline;
+        color: #026DFE; }
 
 .search {
   float: right;
@@ -233,8 +240,8 @@ ul.menu, ul.separated {
 
 .thumb {
   float: left;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   margin-left: 1px; }
 
 .smaller_thumb {
@@ -255,10 +262,14 @@ ul.menu, ul.separated {
     padding: 10px;
     border-bottom: 1px dashed #999; }
     .activities .activity .thumb {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       margin-right: 10px;
       border: 3px solid #CCC; }
+  .activities .activity:hover {
+    background-color: #EEE; }
+    .activities .activity:hover .thumb {
+      border: 3px solid #006FFF; }
 
 .home_top {
   float: left;
@@ -275,6 +286,10 @@ ul.menu, ul.separated {
     width: 555px; }
     .home_top .headline h1 {
       margin-bottom: 10px; }
+    .home_top .headline p {
+      line-height: 25px; }
+      .home_top .headline p span {
+        border-bottom: 1px solid #EEEEEE; }
 
 .home_right {
   margin-top: 20px;
@@ -395,8 +410,11 @@ ul.activities_menu {
   margin-top: 10px; }
   .followers .thumb {
     width: 50px;
-    height: 50px;
-    border: 3px solid #CCC; }
+    height: 50px; }
+    .followers .thumb img {
+      border: 3px solid #CCC; }
+    .followers .thumb a:hover img {
+      border: 3px solid #006FFF; }
 
 .bordered_image img {
   border: 3px solid #CCC; }
@@ -459,3 +477,29 @@ ul.activities_menu {
   width: 201px;
   float: left;
   margin-right: 10px; }
+
+#upload_post_button {
+  display: block;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  height: 36px;
+  width: 230px;
+  margin-bottom: 20px;
+  text-indent: -99999px;
+  overflow: hidden;
+  background: url(/images/upload_post_button.png); }
+
+#upload_post_button:hover {
+  background-position: 0 -36px; }
+
+#load_more {
+  background: url(/images/load_more.png);
+  width: 605px;
+  height: 36px;
+  display: block;
+  overflow: hidden;
+  text-indent: -9999px; }
+
+#load_more:hover {
+  background-position: 0 -36px; }

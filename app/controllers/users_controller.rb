@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    @activities = current_user.all_activities.paginate(:per_page => 20, :page => 1)
+    @activities = current_user.all_activities.paginate(:per_page => 1, :page => 1)
   end
   
   def inbox
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @messages = current_user.messages.read   if (params[:mbox]=="archive")
     @messages = current_user.sent_messages   if (params[:mbox]=="sent")
   end
-  
+    
   def connects
     @connects = @user.followings
   end

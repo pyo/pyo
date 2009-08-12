@@ -17,6 +17,9 @@ a
   :text-decoration none
   img
     :border none
+    
+a:hover
+  :text-decoration underline
 
 h2 
   :color #006FFF
@@ -153,6 +156,10 @@ ul.menu, ul.separated
         :float left
         :padding 0 10px
         :border-right 1px solid #444
+      a:hover
+        :background #111
+        :text-decoration underline
+        :color #026DFE
         
         
 .search
@@ -243,8 +250,8 @@ ul.menu, ul.separated
   
 .thumb
   :float left
-  :width 60px
-  :height 60px
+  :width 50px
+  :height 50px
   :margin-left 1px
 
 .smaller_thumb
@@ -265,10 +272,14 @@ ul.menu, ul.separated
     :padding 10px
     :border-bottom 1px dashed #999
     .thumb
-      :width 60px
-      :height 60px
+      :width 50px
+      :height 50px
       :margin-right 10px
       :border 3px solid #CCC
+  .activity:hover
+    :background-color #EEE
+    .thumb
+      :border 3px solid #006FFF
 
 .home_top
   :float left
@@ -285,6 +296,11 @@ ul.menu, ul.separated
     :width 555px
     h1
       :margin-bottom 10px
+    p
+      :line-height 25px
+      span
+        :border-bottom 1px solid #EEEEEE
+        
 
 .home_right
   :margin-top 20px
@@ -407,7 +423,11 @@ ul.activities_menu
   .thumb
     :width 50px
     :height 50px
-    :border 3px solid #CCC
+    img
+      :border 3px solid #CCC
+    a:hover
+      img
+        :border 3px solid #006FFF
 
 
 .bordered_image
@@ -474,3 +494,29 @@ ul.activities_menu
     :width 201px
     :float left
     :margin-right 10px
+    
+#upload_post_button
+  :display block
+  :font-size 20px
+  :text-transform uppercase
+  :text-align center
+  :height 36px
+  :width 230px
+  :margin-bottom 20px
+  :text-indent -99999px
+  :overflow hidden
+  :background url(/images/upload_post_button.png)
+  
+#upload_post_button:hover
+  :background-position 0 -36px
+  
+#load_more
+  :background url(/images/load_more.png)
+  :width 605px
+  :height 36px
+  :display block
+  :overflow hidden
+  :text-indent -9999px
+  
+#load_more:hover
+  :background-position 0 -36px
