@@ -37,4 +37,7 @@ end
 
 require 'string_ext'
 require 'tag_ext'
+
 MAX_STARS = 5
+
+DO_NOT_REPLY = "info@putyourselfon.com"

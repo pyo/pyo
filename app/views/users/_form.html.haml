@@ -1,67 +1,58 @@
 - form_for @user, :html => {:multipart => true} do |form|
   = form.error_messages
   .text_field
-    = form.label :name, 'Username'
+    = form.label :name, '01. Username:'
     = form.text_field :name
+    %span.hint Your unique name that will be used throughout PYO
 
-  .text_field
-    = form.label :talent_type
-    = form.select :talent_type, User::TALENT_TYPES.map {|t| [t,t] }
-  
-  %h3 Twitter Integration
-  .text_field
-    = form.label :twitter_username
-    = form.text_field :twitter_username
-  .text_field
-    = form.label :twitter_password
-    = form.password_field :twitter_password    
-
-  %h3 Flickr Integration
-  .text_field
-    = form.label :flickr_username
-    = form.text_field :flickr_username
-
-  %h3 Profile
-  - form.fields_for :profile do |p|
-    .text_field
-      = p.label :avatar
-      = p.file_field :avatar
-      
-    .text_field
-      = p.label :first_name
-      = p.text_field :first_name
-      
-    .text_field
-      = p.label :last_name
-      = p.text_field :last_name
-  
-    .text_field
-      = p.label :city
-      = p.text_field :city
-      
-    .text_field
-      = p.label :state
-      = p.text_field :state
-    
-    .text_field
-      = p.label :zip
-      = p.text_field :zip
-
-  .text_field
-    = form.label :email
-    = form.text_field :email
-  
-  .text_field
-    = form.label :tags
-    = form.text_field :tag_list
-  
   - if @user.new_record?
     .password_field
-      = form.label :password
+      = form.label :password, '02. Password:'
       = form.password_field :password
+      %span.hint 
+        Make it at least <strong>4 characters long</strong>. But we recommend you use <strong>8 characters or more</strong> just to be on the safe side!
 
     .password_field
-      = form.label :password_confirmation, "Confirm password"
+      = form.label :password_confirmation, "03. Confirm password:"
       = form.password_field :password_confirmation
+    
+  .text_field
+    = form.label :email, '04. Email:'
+    = form.text_field :email
+    %span.hint To validate your account and receive updates about your profile and PYO. This will also be used if you need to reset your password
+
+  .text_field
+    = form.label :talent_type, '05. Talent Type:'
+    = form.text_field :talent_type
+    %span.hint What is your talent? Are you an athlete, musician, model, actor, comedian, dancer, etc.? Let us know what you do here!
+
+  .text_field
+    = form.label :tags, '06. Tags:'
+    = form.text_field :tag_list
+    %span.hint A few keywords that describe you and/or your talent. (ex: basketball, football, tennis, track, hip-hop, r&amp;b, country, rock, classical, etc.)
   
-  = form.submit 'Update', :disable_with => 'Please wait...'
+  - form.fields_for :profile do |p|
+    .text_field
+      = p.label :full_name, '07. Full Name:'
+      = p.text_field :full_name      
+      %span.hint Your first and/or last name. Completely optional, but it will help other users find you a lot easier.
+  
+    .text_field
+      = p.label :city, '08. City:'
+      = p.text_field :city
+      %span.hint Also completely optional, but providing this information is useful for geo-targetting features and helping other users search for you.
+      
+    .text_field
+      = p.label :state, '09. State/Province:'
+      = select_tag 'user[profile_attributes][state]', STATE_OPTIONS
+
+    .text_field
+      = p.label :zip, '10. Zip/Postal Code:'
+      = p.text_field :zip
+      %span.hint Another optional location field. This will help users narrow down their search when looking for people in specific locations.
+    
+    .text_field
+      = p.label :country, '11. Country:'
+      = select_tag 'user[profile_attributes][country]', COUNTRY_OPTIONS
+      
+  = image_submit_tag "signup.gif"

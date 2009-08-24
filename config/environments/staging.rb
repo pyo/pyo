@@ -27,8 +27,11 @@ config.action_view.cache_template_loading            = true
 # Enable threaded mode
 # config.threadsafe!
 
-
 # clearance
 HOST = "174.129.227.77"
 
 Paperclip.options[:image_magick_path] = '/usr/bin/'
+
+ActionMailer::Base.smtp_settings = {
+  :domain => "putyourselfon.com"
+}

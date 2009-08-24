@@ -33,3 +33,7 @@ config.action_view.cache_template_loading            = true
 HOST = "putyourselfon.com"
 
 Paperclip.options[:image_magick_path] = '/usr/bin/'
+
+ActionMailer::Base.smtp_settings = {
+  :domain => "putyourselfon.com"
+}

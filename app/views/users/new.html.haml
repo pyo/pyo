@@ -1,3 +1,8 @@
-%h2 Sign up
+- content_for(:head) do
+  = javascript_include_tag 'formhints'
+%h1.bordered_title 
+  Sign up so that you can 
+  %span.blue Put Yourself On
+  %span>< !
 
 = render :partial => 'users/form'

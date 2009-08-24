@@ -73,15 +73,15 @@ ul.menu, ul.separated
   :margin-bottom 10px 
   
 #inner_content
-  :width 880px
+  :width 900px
+  :padding-bottom 15px
   :background url(/images/content_bottom.png) center bottom no-repeat
-  :padding 15px 10px
-
   :float left
 
 .inner_content
   :clear both
-  :margin-bottom 10px
+  :padding 15px 10px
+
 
 .main
   :float right
@@ -471,11 +471,9 @@ ul.activities_menu
   
 .home_columns
   :float left
-  :margin-left -10px
   :width 900px
   :border-top 10px solid #EEE
   :border-bottom 10px solid #EEE
-  :margin-bottom 20px
   .column
     :border-left 1px dashed #999
     :float left
@@ -520,3 +518,45 @@ ul.activities_menu
   
 #load_more:hover
   :background-position 0 -36px
+  
+h1.bordered_title
+  :text-align center
+  :border-bottom 10px solid #eee
+  :padding 15px 0
+  :font-size 30px
+  :margin-bottom 15px
+  
+#new_user
+  :width 252px
+  :margin 0 auto
+  .hint
+    :display none
+    :position absolute
+    :top 15px
+    :left 300px
+    :width 200px
+    :text-align justify
+    :padding 10px 10px 10px 35px
+    :border 1px solid #888
+    :color #333
+    :font-family Verdana
+    :font-size 12px
+    :background #EEEEEE url(/images/icons/signup_arrow.png) no-repeat scroll 10px 12px
+  label
+    :margin 0 auto
+    :text-transform uppercase
+    :display block
+    :font-weight bold
+    :color #222
+    :width 250px
+  .text_field, .password_field
+    :position relative
+    select, input
+      :border 1px solid #AAA
+      :width 260px
+      :padding 5px
+      :font-size 16px
+      :margin-bottom 15px
+    input
+      :width 250px
+      :height 20px
