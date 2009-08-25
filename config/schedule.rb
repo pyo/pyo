@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-event 1.hour do
+every 1.hour do
   rake "ts:rebuild"
 end
