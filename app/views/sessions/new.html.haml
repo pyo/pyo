@@ -2,6 +2,10 @@
   Login to 
   %span.blue PYO
 
+
+- if flash[:notice]
+  %p.notify= flash[:notice]
+
 - form_for :session, :url => session_path, :html => { :id => 'new_session' } do |form|
   .text_field
     = form.label :email, 'E-Mail Address:'

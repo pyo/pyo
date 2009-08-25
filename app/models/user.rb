@@ -50,6 +50,8 @@ class User < ActiveRecord::Base
   
   # validations
   validates_presence_of   :name
+  validates_presence_of :talent_type
+  validates_presence_of :tag_list
   validates_uniqueness_of :name
   validates_format_of :name, :with => /^[^\s]*$/, :message => "cannot contain spaces."
   

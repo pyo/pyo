@@ -37,15 +37,7 @@
             %input{:type => 'text', :name=>"q"}
             %input{:type => 'image', :src => "/images/search.png", :value => 'Search', :class => 'submit'}
             
-      .content_flash
-        - flash.each do |key, value|
-          %div{:class => key}
-            - if value.is_a? ActiveRecord::Errors
-              - for error in value
-                %p
-                  = h error.join(" ")
-            - else
-              = h value
+      
       = render :partial => "shared/advertisement"
               
       #content

@@ -63,9 +63,17 @@ function checkEmail(child) {
 $(function() {
   var inputs = $("input");
   inputs.focus(function () {
-    this.parentNode.getElementsByTagName("span")[0].style.display = "inline";
+    if(this.parentNode.className.indexOf('fieldWithErrors') != -1) {
+      this.parentNode.parentNode.getElementsByTagName("span")[0].style.display = "inline";
+    } else {
+      this.parentNode.getElementsByTagName("span")[0].style.display = "inline";
+    }
   });
   inputs.blur(function () {
-    this.parentNode.getElementsByTagName("span")[0].style.display = "none";
+    if(this.parentNode.className.indexOf('fieldWithErrors') != -1) {
+      this.parentNode.parentNode.getElementsByTagName("span")[0].style.display = "none";
+    } else {
+      this.parentNode.getElementsByTagName("span")[0].style.display = "none";
+    }
   });
 })

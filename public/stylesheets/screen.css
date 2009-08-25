@@ -582,3 +582,9 @@ h1.bordered_title {
   padding: 10px;
   margin: 10px;
   text-align: justify; }
+
+.fieldWithErrors label {
+  color: red !important; }
+
+.fieldWithErrors input {
+  border: 1px solid red !important; }
