@@ -509,14 +509,27 @@ h1.bordered_title {
   font-size: 30px;
   margin-bottom: 15px; }
 
-#new_user {
+#new_user, #new_session, .edit_profile {
   width: 252px;
   margin: 0 auto; }
-  #new_user .hint {
+  #new_user fieldset, #new_session fieldset, .edit_profile fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100px; }
+    #new_user fieldset legend, #new_session fieldset legend, .edit_profile fieldset legend {
+      color: #026DFE;
+      padding: 15px 0;
+      font-size: 20px !important;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-family: Helvetica; }
+  #new_user .hint, #new_session .hint, .edit_profile .hint {
+    z-index: 10000;
     display: none;
     position: absolute;
     top: 15px;
-    left: 300px;
+    left: 280px;
     width: 200px;
     text-align: justify;
     padding: 10px 10px 10px 35px;
@@ -525,21 +538,47 @@ h1.bordered_title {
     font-family: Verdana;
     font-size: 12px;
     background: #EEEEEE url(/images/icons/signup_arrow.png) no-repeat scroll 10px 12px; }
-  #new_user label {
-    margin: 0 auto;
-    text-transform: uppercase;
-    display: block;
-    font-weight: bold;
-    color: #222;
-    width: 250px; }
-  #new_user .text_field, #new_user .password_field {
+  #new_user .submit_field, #new_session .submit_field, .edit_profile .submit_field {
+    float: left;
+    padding: 10px 0; }
+    #new_user .submit_field input, #new_session .submit_field input, .edit_profile .submit_field input {
+      float: left; }
+    #new_user .submit_field span, #new_session .submit_field span, .edit_profile .submit_field span {
+      line-height: 30px;
+      margin: 7px 50px 0 15px; }
+  #new_user .text_field, #new_user .password_field, #new_user .select_field, #new_user .file_field, #new_user .text_area, #new_session .text_field, #new_session .password_field, #new_session .select_field, #new_session .file_field, #new_session .text_area, .edit_profile .text_field, .edit_profile .password_field, .edit_profile .select_field, .edit_profile .file_field, .edit_profile .text_area {
     position: relative; }
-    #new_user .text_field select, #new_user .text_field input, #new_user .password_field select, #new_user .password_field input {
+    #new_user .text_field select, #new_user .text_field input, #new_user .password_field select, #new_user .password_field input, #new_user .select_field select, #new_user .select_field input, #new_user .file_field select, #new_user .file_field input, #new_user .text_area select, #new_user .text_area input, #new_session .text_field select, #new_session .text_field input, #new_session .password_field select, #new_session .password_field input, #new_session .select_field select, #new_session .select_field input, #new_session .file_field select, #new_session .file_field input, #new_session .text_area select, #new_session .text_area input, .edit_profile .text_field select, .edit_profile .text_field input, .edit_profile .password_field select, .edit_profile .password_field input, .edit_profile .select_field select, .edit_profile .select_field input, .edit_profile .file_field select, .edit_profile .file_field input, .edit_profile .text_area select, .edit_profile .text_area input {
       border: 1px solid #AAA;
       width: 260px;
       padding: 5px;
       font-size: 16px;
       margin-bottom: 15px; }
-    #new_user .text_field input, #new_user .password_field input {
+    #new_user .text_field input, #new_user .password_field input, #new_user .select_field input, #new_user .file_field input, #new_user .text_area input, #new_session .text_field input, #new_session .password_field input, #new_session .select_field input, #new_session .file_field input, #new_session .text_area input, .edit_profile .text_field input, .edit_profile .password_field input, .edit_profile .select_field input, .edit_profile .file_field input, .edit_profile .text_area input {
       width: 250px;
       height: 20px; }
+    #new_user .text_field label, #new_user .password_field label, #new_user .select_field label, #new_user .file_field label, #new_user .text_area label, #new_session .text_field label, #new_session .password_field label, #new_session .select_field label, #new_session .file_field label, #new_session .text_area label, .edit_profile .text_field label, .edit_profile .password_field label, .edit_profile .select_field label, .edit_profile .file_field label, .edit_profile .text_area label {
+      text-transform: uppercase;
+      display: block;
+      font-weight: bold;
+      color: #222;
+      width: 250px; }
+  #new_user .file_field input, #new_session .file_field input, .edit_profile .file_field input {
+    height: 25px; }
+  #new_user .text_area textarea, #new_session .text_area textarea, .edit_profile .text_area textarea {
+    border: 1px solid #AAA;
+    width: 400px;
+    height: 150px; }
+  #new_user .welldone .hint, #new_session .welldone .hint, .edit_profile .welldone .hint {
+    background: #B6F394 url(/images/icons/signup_check.png) no-repeat scroll 10px 12px !important;
+    border-color: #749E5C !important; }
+  #new_user .kindagood .hint, #new_session .kindagood .hint, .edit_profile .kindagood .hint {
+    background: #F9FDAB url(../images/icons/signup_excl.png) no-repeat scroll 10px 12px !important;
+    border-color: #FDCC68 !important; }
+
+.notify {
+  background-color: #F9FDAB;
+  border: 1px solid #FDCC68;
+  padding: 10px;
+  margin: 10px;
+  text-align: justify; }

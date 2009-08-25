@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       ClearanceMailer.deliver_confirmation @user
       flash[:notice] = "You will receive an email within the next few minutes. " <<
                        "It contains instructions for confirming your account."
-      redirect_to url_after_create
+      redirect_to edit_profile_path(@user.profile)
     else
       render :action => "new"
     end

@@ -1,0 +1,25 @@
+%h1.bordered_title 
+  Login to 
+  %span.blue PYO
+
+- form_for :session, :url => session_path, :html => { :id => 'new_session' } do |form|
+  .text_field
+    = form.label :email, 'E-Mail Address:'
+    = form.text_field :email
+
+  .text_field
+    = form.label :password, 'Password:'
+    = form.password_field :password
+
+  .check_box
+    = form.check_box :remember_me
+    = form.label :remember_me
+
+  .submit_field
+    = image_submit_tag "login.gif"
+    %span
+      or
+      = link_to "Sign Up", new_user_path
+  
+  .links
+    = link_to "Forgot your password?", new_password_path

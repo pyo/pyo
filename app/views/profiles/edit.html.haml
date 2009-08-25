@@ -1,16 +1,24 @@
-.main
-  .inner_content
-    = render :partial => "users/dashboard_nav"
-  .inner_content
+- if @profile.user.email_confirmed?
+  .main
+    .inner_content
+      = render :partial => "users/dashboard_nav"
+    .inner_content
 
-    %h2 Editing Profile
+      %h2 Editing Profile
 
-    - form_for(@profile) do |form|
-      = render :partial => 'form', :locals => {:form => form}
-      %p= form.submit 'Update'
+      - form_for(@profile) do |form|
+        = render :partial => 'form', :locals => {:form => form}
+        %p= image_submit_tag 'finish.gif'
 
-.details
-  .inner_content
-    = render :partial => "users/info"
-  .inner_content
-    = render :partial => "shared/advertisment"
+  .details
+    .inner_content
+      = render :partial => "users/info"
+    .inner_content
+      = render :partial => "shared/tall_advertisement"
+- else
+  %h1.bordered_title PYO Sign Up - <span class='blue'>Final Steps</span>
+  %p.notify Thank you for joinining PYO! We will be sending you a confirmation e-mail to #{@profile.user.email} within the next few minutes. It contains instructions for confirming your account. For now, you can continue to set up your profile, but you will not be able to access your dashboard or any other features on the site until you confirm your account.
+  
+  - form_for(@profile) do |form|
+    = render form
+    %p= image_submit_tag 'finish.gif'

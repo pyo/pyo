@@ -1,25 +1,42 @@
+- content_for(:head) do
+  = javascript_include_tag 'formhints'
+  
 = form.error_messages
 
-%dl
-  %dt= form.label :first_name
-  %dd= form.text_field :first_name
-  %dt= form.label :last_name
-  %dd= form.text_field :last_name
-  %dt= form.label :username
-  %dd= form.text_field :username
-  %dt= form.label :address
-  %dd= form.text_field :address
-  %dt= form.label :city
-  %dd= form.text_field :city
-  %dt= form.label :state
-  %dd= form.text_field :state
-  %dt= form.label :zip
-  %dd= form.text_field :zip
-  %dt= form.label :twitter
-  %dd= form.text_field :twitter
-  %dt= form.label :youtube
-  %dd= form.text_field :youtube
-  %dt= form.label :flickr
-  %dd= form.text_field :flickr
-  %dt= form.label :bio
-  %dd= form.text_area :bio
+%fieldset
+  %legend PYO Profile Settings
+  
+  .file_field
+    = form.label :avatar, 'PYO Avatar:'
+    = form.file_field :avatar, :size => 15
+    %span.hint 
+      <strong>Max size:</strong> # KB.<br /><br />
+      <strong>Tip #1:</strong> A square, cropped version of your face works best since the full sized image shown on your profile will be automatically cropped to 250x250 pixels. A smaller version (100x100 pixels or less) will be shown throughout the site.<br /><br />
+      <strong>Tip #2:</strong> Nudity or obscene images are prohibited.<br /><br />
+      <strong>Tip #3:</strong> Make sure you have the rights/permission to upload whatever picture you choose.
+    
+  
+  .select_field
+    = form.label :timezone, 'Timezone:'
+    = form.select :timezone, [1,2,3]
+  
+  .text_field
+    = form.label :url, 'Website URL:'
+    = form.text_field :url
+    %span.hint Make sure you put <strong>http://</strong> before the URL!
+  
+  .text_area
+    = form.label :bio, 'Bio:'
+    = form.text_area :bio
+
+%fieldset
+  %legend Twitter Integration
+  .text_field
+    = form.label :twitter, 'Twitter Username:'
+    = form.text_field :twitter
+
+%fieldset
+  %legend Flickr Integration
+  .text_field
+    = form.label :flickr, 'Flickr Username:'
+    = form.text_field :flickr

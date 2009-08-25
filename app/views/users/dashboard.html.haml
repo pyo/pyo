@@ -50,6 +50,16 @@
           = link_to 'Load More', activities_path(:page => @activities.current_page + 1), :id => 'load_more'
       
     - else
+      The Activity Hub is where you will see everything going on with the users you are following. Here are a few things you will see once you start following other users:
+
+      1. When a user follows another user
+      2. When a user updates their status
+      3. When a user comments on another user's profile
+      4. When a user uploads videos, photos and/or audio tracks
+      5. When a user "Likes" an item on the site
+      6. When a user joins/creates a group
+      7. When a user posts a new blog entry
+    
       %h2 Welcome to PYO.
       %p First run copy goes here
       = link_to 'Upload your first track.', new_user_track_path(current_user)

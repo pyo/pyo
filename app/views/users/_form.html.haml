@@ -8,7 +8,7 @@
   - if @user.new_record?
     .password_field
       = form.label :password, '02. Password:'
-      = form.password_field :password
+      = form.password_field :password, :onkeyup => 'checkPassword(this)'
       %span.hint 
         Make it at least <strong>4 characters long</strong>. But we recommend you use <strong>8 characters or more</strong> just to be on the safe side!
 
@@ -18,7 +18,7 @@
     
   .text_field
     = form.label :email, '04. Email:'
-    = form.text_field :email
+    = form.text_field :email, :onkeyup => 'checkEmail(this)'
     %span.hint To validate your account and receive updates about your profile and PYO. This will also be used if you need to reset your password
 
   .text_field

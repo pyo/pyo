@@ -525,15 +525,29 @@ h1.bordered_title
   :padding 15px 0
   :font-size 30px
   :margin-bottom 15px
-  
-#new_user
+
+    
+#new_user, #new_session, .edit_profile
   :width 252px
   :margin 0 auto
+  fieldset
+    :margin 0
+    :padding 0
+    :border none
+    :width 100px
+    legend
+      :color #026DFE
+      :padding 15px 0
+      :font-size 20px !important
+      :font-weight bold
+      :text-transform uppercase
+      :font-family Helvetica
   .hint
+    :z-index 10000
     :display none
     :position absolute
     :top 15px
-    :left 300px
+    :left 280px
     :width 200px
     :text-align justify
     :padding 10px 10px 10px 35px
@@ -542,14 +556,16 @@ h1.bordered_title
     :font-family Verdana
     :font-size 12px
     :background #EEEEEE url(/images/icons/signup_arrow.png) no-repeat scroll 10px 12px
-  label
-    :margin 0 auto
-    :text-transform uppercase
-    :display block
-    :font-weight bold
-    :color #222
-    :width 250px
-  .text_field, .password_field
+  .submit_field
+    :float left
+    input
+      :float left
+    :padding 10px 0
+    span
+      :line-height 30px
+      :margin 7px 50px 0 15px
+
+  .text_field, .password_field, .select_field, .file_field, .text_area
     :position relative
     select, input
       :border 1px solid #AAA
@@ -560,3 +576,32 @@ h1.bordered_title
     input
       :width 250px
       :height 20px
+    label
+      :text-transform uppercase
+      :display block
+      :font-weight bold
+      :color #222
+      :width 250px
+  .file_field
+    input
+      :height 25px
+  .text_area
+    textarea
+      :border 1px solid #AAA
+      :width 400px
+      :height 150px
+  .welldone
+    .hint
+      :background #B6F394 url(/images/icons/signup_check.png) no-repeat scroll 10px 12px !important
+      :border-color #749E5C !important
+  .kindagood
+    .hint
+      :background #F9FDAB url(../images/icons/signup_excl.png) no-repeat scroll 10px 12px !important
+      :border-color #FDCC68 !important
+      
+.notify
+  :background-color #F9FDAB
+  :border 1px solid #FDCC68
+  :padding 10px
+  :margin 10px
+  :text-align justify

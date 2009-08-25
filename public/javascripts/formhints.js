@@ -25,15 +25,18 @@
 // the indication that they've selected a harder-to-crack
 // password.
 
-function checkPassword(whatYouTyped) {
-	var fieldset = whatYouTyped.parentNode;
-	var txt = whatYouTyped.value;
+function checkPassword(child) {
+  
+	var parent = child.parentNode;
+	var txt = $(child).val();
 	if (txt.length > 3 && txt.length < 8) {
-		fieldset.className = "kindagood";
+    parent.className = parent.className.replace(/(kindagood|welldone)/gi, "");
+		parent.className += " kindagood";
 	} else if (txt.length > 7) {
-		fieldset.className = "welldone";
+    parent.className = parent.className.replace(/(kindagood|welldone)/gi, "");
+		parent.className += " welldone";
 	} else {
-		fieldset.className = "";
+		parent.className = parent.className.replace(/(kindagood|welldone)/gi, "");
 	}
 }
 
@@ -43,13 +46,14 @@ function checkPassword(whatYouTyped) {
 // If so, it assigns class="welldone" to the containing
 // fieldset.
 
-function checkEmail(whatYouTyped) {
-	var fieldset = whatYouTyped.parentNode;
-	var txt = whatYouTyped.value;
+function checkEmail(child) {
+	var parent = child.parentNode;
+	var txt = $(child).val();
 	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(txt)) {
-		fieldset.className = "welldone";
+	  parent.className = parent.className.replace(/welldone/gi, '');
+		parent.className += " welldone";
 	} else {
-		fieldset.className = "";
+		parent.className = parent.className.replace(/welldone/gi, '');
 	}
 }
 
