@@ -1,6 +1,9 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
-  before_filter :authenticate, :except => [:new, :create,:index,:show]
+  
+  before_filter :authenticate_or_temp, :only => [:dashboard]
+  
+  before_filter :authenticate, :except => [:new, :create,:index,:show, :dashboard]
   before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects,:inbox, :change_admin_status, :change_featured_status]
   before_filter :check_user, :only => [:edit,:inbox,:update]
   after_filter :set_first_run, :only => [:dashboard]
@@ -11,7 +14,12 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    @activities = current_user.all_activities.paginate(:per_page => 1, :page => 1)
+    logger.info current_user.inspect
+    if current_user.email_confirmed?
+      @activities = current_user.all_activities.paginate(:per_page => 1, :page => 1)
+    else
+      render 'dashboard_tmp'
+    end
   end
   
   def inbox
@@ -36,6 +44,7 @@ class UsersController < ApplicationController
       ClearanceMailer.deliver_confirmation @user
       flash[:notice] = "You will receive an email within the next few minutes. " <<
                        "It contains instructions for confirming your account."
+      session[:temp_user_id] = @user.id
       redirect_to edit_profile_path(@user.profile)
     else
       render :action => "new"
@@ -99,6 +108,19 @@ class UsersController < ApplicationController
   end
   
   private
+  
+    def authenticate_or_temp
+      logger.info "FOOK => #{session.inspect}"
+      unless session[:temp_user_id]
+        authenticate
+      else
+        @_current_user = User.find(session[:temp_user_id])
+        unless current_user
+          authenticate
+        end
+      end
+    end
+  
     def check_user
       unless current_user == @user || current_user.super_user?
         redirect_to "/"

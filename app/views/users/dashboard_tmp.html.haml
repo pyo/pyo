@@ -1,0 +1,11 @@
+.inner_content
+  %h2.title Hello, #{current_user.name}
+
+  Your PYO URL: putyourselfon.com/#{current_user.name} [ #{link_to 'Settings', edit_profile_path(current_user.profile)} ] 
+
+  %p.notify 
+    Our records show that you haven't confirmed your e-mail address yet. In order for you to begin using your PYO account, 
+    you must follow the link included in the e-mail we sent to #{current_user.email}. If your e-mail hasn't arrived yet, 
+    check your spam folders and/or be sure to add donotreply@putourselfon.com to your address book so that the message 
+    doesn't get lost or caught in your spam filters. If you accidentally misspelled your e-mail address, go to your Settings 
+    and correct it.

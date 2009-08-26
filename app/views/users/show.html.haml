@@ -1,96 +1,97 @@
 = javascript_include_tag "/audio-player/audio-player.js"
 = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
-.top
-  %h2 #{@user.name.capitalize_words}
-  .member_info
-    Member Since: 
-    %strong #{@user.created_at.strftime("%B %Y")}
-    | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
-.main
-  .greyboxes
-    .greybox
-      .count
-        #{@user.followers.size}
-      Followers
+.inner_content
+  .top
+    %h2 #{@user.name.capitalize_words}
+    .member_info
+      Member Since: 
+      %strong #{@user.created_at.strftime("%B %Y")}
+      | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
+  .main
+    .greyboxes
+      .greybox
+        .count
+          #{@user.followers.size}
+        Followers
     
-    .greybox
-      .count
-        #{@user.photos.size}
-      Photos
+      .greybox
+        .count
+          #{@user.photos.size}
+        Photos
     
-    .greybox
-      .count
-        #{@user.tracks.size}
-      Audio Files
+      .greybox
+        .count
+          #{@user.tracks.size}
+        Audio Files
     
-    .greybox
-      .count
-        #{@user.videos.size}
-      Videos
+      .greybox
+        .count
+          #{@user.videos.size}
+        Videos
   
-  .inner_content
-    %h4.with_bottom_margin #{@user.profile.username}'s Updates
-    .activities
-      - unless @updates.empty?
-        - @updates.each do |update|
-          %div.activity[update]
-            = time_ago_in_words(update.created_at) + " ago"
+    .inner_content
+      %h4.with_bottom_margin #{@user.profile.username}'s Updates
+      .activities
+        - unless @updates.empty?
+          - @updates.each do |update|
+            %div.activity[update]
+              = time_ago_in_words(update.created_at) + " ago"
+              %p
+                = link_to @user.profile.username, @user
+                = update.message
+        - else
+          No Updates
+
+    - unless @videos.empty?
+      .inner_content
+        %h4 User's Videos
+        .videos
+          - @videos.each do |video|
+            %div[video]
+              = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
+  
+    - unless @tracks.empty?
+      .inner_content
+        %h4 #{@user.name}'s Audio
+        = link_to("VIEW ALL", user_tracks_path(@user), :style=>"float:right; margin-top:-20px")
+        - for track in @tracks
+          .profile_track_info
+            %strong
+              = link_to h(track.name), user_track_path(@user,track)
             %p
-              = link_to @user.profile.username, @user
-              = update.message
-      - else
-        No Updates
+              = h truncate(track.description, 20)
+              %script{:type=>"text/javascript"}
+                = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+              %div{:id => "audioplayer_#{track.id}"}
+  
+    - unless @photos.empty?
+      .inner_content
+        %h4 Recent Photos
+        = link_to("VIEW ALL", user_photos_path(@user), :style=>"float:right; margin-top:-20px")
+        - for photo in @photos
+          .profile_photo_thumb
+            = link_to image_tag(photo.image.url(:thumb)), user_photo_path(@user,photo)
+  
+    - unless @flickr_photos.empty? || true
+      .inner_content
+        %h4 Recent Flickr Photos
+        - for photo in @flickr_photos
+          .flickr_photo_thumb
+            = link_to image_tag(photo.url('s')), @user.flickr_url
 
-  - unless @videos.empty?
-    .inner_content
-      %h4 User's Videos
-      .videos
-        - @videos.each do |video|
-          %div[video]
-            = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
-  
-  - unless @tracks.empty?
-    .inner_content
-      %h4 #{@user.name}'s Audio
-      = link_to("VIEW ALL", user_tracks_path(@user), :style=>"float:right; margin-top:-20px")
-      - for track in @tracks
-        .profile_track_info
-          %strong
-            = link_to h(track.name), user_track_path(@user,track)
-          %p
-            = h truncate(track.description, 20)
-            %script{:type=>"text/javascript"}
-              = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
-            %div{:id => "audioplayer_#{track.id}"}
-  
-  - unless @photos.empty?
-    .inner_content
-      %h4 Recent Photos
-      = link_to("VIEW ALL", user_photos_path(@user), :style=>"float:right; margin-top:-20px")
-      - for photo in @photos
-        .profile_photo_thumb
-          = link_to image_tag(photo.image.url(:thumb)), user_photo_path(@user,photo)
-  
-  - unless @flickr_photos.empty? || true
-    .inner_content
-      %h4 Recent Flickr Photos
-      - for photo in @flickr_photos
-        .flickr_photo_thumb
-          = link_to image_tag(photo.url('s')), @user.flickr_url
-
-  - unless @tweets.empty?
-    .inner_content
-      %h4 Recent Tweets
-      - for tweet in @tweets
-        .profile_tweet{:style=>"clear:both; float:left; width:675px; margin:3px; padding:3px; background:#ddd"}
-          = image_tag tweet["user"]["profile_image_url"], :style=>"float:left"
-          %p{:style=>"float:left; margin: 3px"}
-          = tweet["text"]
+    - unless @tweets.empty?
+      .inner_content
+        %h4 Recent Tweets
+        - for tweet in @tweets
+          .profile_tweet{:style=>"clear:both; float:left; width:675px; margin:3px; padding:3px; background:#ddd"}
+            = image_tag tweet["user"]["profile_image_url"], :style=>"float:left"
+            %p{:style=>"float:left; margin: 3px"}
+            = tweet["text"]
     
-  .inner_content
-    %h4 Profile Comments
-    = render :partial => @user.comments
-    = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
+    .inner_content
+      %h4 Profile Comments
+      = render :partial => @user.comments
+      = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
 
 .details
   .inner_content

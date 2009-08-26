@@ -15,7 +15,7 @@
         %h2.logo= link_to 'Put Yourself On', root_path
 
         .user_bar
-          = render :partial => 'users/user_bar'
+          = render 'users/user_bar'
       - if current_user.andand.super_user?
         .content
           %h3 Admin
@@ -38,7 +38,7 @@
             %input{:type => 'image', :src => "/images/search.png", :value => 'Search', :class => 'submit'}
             
       
-      = render :partial => "shared/advertisement"
+      = render "shared/advertisement"
               
       #content
         #inner_content= yield

@@ -1,14 +1,15 @@
-.top
-  %h2 Members
-.main  
-  - unless @users.empty?
-    .inner_content
-      .users
-        - @users.each do |user|
-          %div[user]
-            .thumb= link_to image_tag(user.profile.avatar.url(:thumb)), user_path(user)
-            .name
-              = link_to user.name, user
+.inner_content
+  .top
+    %h2 Members
+  .main  
+    - unless @users.empty?
+      .inner_content
+        .users
+          - @users.each do |user|
+            %div[user]
+              .thumb= link_to image_tag(user.profile.avatar.url(:thumb)), user_path(user)
+              .name
+                = link_to user.name, user
             
 .details
   .inner_content
