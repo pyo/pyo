@@ -97,6 +97,10 @@ class User < ActiveRecord::Base
   def to_param
     name
   end
+  
+  def status
+    updates.first
+  end
 
   define_index do
     indexes name

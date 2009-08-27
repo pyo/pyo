@@ -14,6 +14,31 @@
 //	}
 // }
 
+(function($){
+    /**
+     * jQuery delayed event execution.
+     */
+    $.fn.delay = function(options) {
+        var timer;
+        var delayImpl = function(eventObj) {
+            if (timer != null) {
+                clearTimeout(timer);
+            }
+            var newFn = function() {
+                options.fn(eventObj);
+            };
+            timer = setTimeout(newFn, options.delay);
+        }
+       
+        return this.each(function() {
+            var obj = $(this);
+            obj.bind(options.event, function(eventObj) {
+                 delayImpl(eventObj);  
+            });
+        });
+    };
+})(jQuery);
+
 
 
 
@@ -49,9 +74,11 @@ function checkPassword(child) {
 function checkEmail(child) {
 	var parent = child.parentNode;
 	var txt = $(child).val();
-	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(txt)) {
-	  parent.className = parent.className.replace(/welldone/gi, '');
-		parent.className += " welldone";
+
+	if (txt.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+    if(parent.className.indexOf(" welldone") == -1) {
+		  parent.className += " welldone";
+	  }
 	} else {
 		parent.className = parent.className.replace(/welldone/gi, '');
 	}
@@ -74,6 +101,14 @@ $(function() {
       this.parentNode.parentNode.getElementsByTagName("span")[0].style.display = "none";
     } else {
       this.parentNode.getElementsByTagName("span")[0].style.display = "none";
+    }
+  });
+  
+  $('#user_email').delay({
+    delay: 800,
+    event: 'keyup',
+    fn: function(e) {
+      checkEmail(e.target);
     }
   });
 })

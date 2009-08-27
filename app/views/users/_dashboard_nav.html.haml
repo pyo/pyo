@@ -1,11 +1,7 @@
 - if current_user
-  %ul.menu
-    %li= link_to "Inbox (#{current_user.messages.unread.count})", inbox_user_path(current_user)
-    %li= link_to "Upload Tracks", new_user_track_path(current_user)
-    %li= link_to "Upload Photos", new_user_photo_path(current_user)
-    %li= link_to "Upload Videos", new_user_video_path(current_user)
-    %li= link_to "My Photos", user_photos_path(current_user)
-    %li= link_to "My Tracks", user_tracks_path(current_user)
-    %li= link_to "My Blog", user_blogs_path(current_user)
-    %li= link_to "My Videos", user_videos_path(current_user)
-    %li= link_to "Edit Profile", edit_user_path(current_user)
+  %ul.menu#dashboard_nav
+    %li#status_nav= link_to 'Status', '#'
+    %li#picture_nav= link_to 'Picture', '#'
+    %li#video_nav= link_to 'Video', '#'
+    %li#audio_nav= link_to 'Audio', '#'
+    %li#blog_nav= link_to 'Blog', '#'

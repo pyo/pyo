@@ -8,7 +8,7 @@ class ConfirmationsController < ApplicationController
     @user.confirm_email!
 
     sign_user_in(@user)
-    flash[:success] = "Confirmed email and signed in."
+    flash[:notice] = "Your account has been confirmed! You may now use PYO."
     redirect_to url_after_create
   end
   

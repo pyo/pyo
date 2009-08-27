@@ -30,7 +30,7 @@ h3 {
   padding: 5px 5px; }
 
 h4 {
-  font-size: 2em; }
+  font-size: 20px; }
 
 h5 {
   color: #006FFF;
@@ -82,16 +82,21 @@ ul.menu, ul.separated {
   clear: both;
   padding: 15px 10px; }
 
+.inner_text {
+  clear: both;
+  padding: 10px 10px 0 10px;
+  text-align: justify; }
+
 .main {
   float: right;
-  width: 615px; }
+  width: 635px; }
 
 .details {
   float: left;
   width: 250px; }
 
-.top {
-  margin-bottom: 10px; }
+.top, .column {
+  padding-bottom: 0; }
 
 .footer {
   clear: both;
@@ -204,6 +209,7 @@ ul.menu, ul.separated {
 .info {
   background-color: #DDD;
   padding: 10px;
+  padding-bottom: 20px;
   clear: both;
   width: 230px; }
 
@@ -588,3 +594,49 @@ h1.bordered_title {
 
 .fieldWithErrors input {
   border: 1px solid red !important; }
+
+#status_message {
+  width: 600px;
+  outline: none;
+  padding: 5px;
+  border: 1px solid #AAAAAA; }
+
+#status_messageDown {
+  float: right;
+  margin-right: 15px;
+  color: #777;
+  font-weight: bold;
+  font-size: 20px; }
+
+.capital {
+  text-transform: uppercase; }
+
+.warningClass {
+  color: red !important; }
+
+#dashboard_nav {
+  float: left;
+  margin: 10px 0; }
+  #dashboard_nav li {
+    text-transform: uppercase;
+    margin-right: 15px; }
+
+#status_nav {
+  padding-left: 21px;
+  background: url(/images/icons/status_16.png) left center no-repeat; }
+
+#picture_nav {
+  padding-left: 21px;
+  background: url(/images/icons/pictures_16.png) left center no-repeat; }
+
+#video_nav {
+  padding-left: 21px;
+  background: url(/images/icons/videos_16.png) left center no-repeat; }
+
+#audio_nav {
+  padding-left: 21px;
+  background: url(/images/icons/audio_16.png) left center no-repeat; }
+
+#blog_nav {
+  padding-left: 21px;
+  background: url(/images/icons/blog_16.png) left center no-repeat; }

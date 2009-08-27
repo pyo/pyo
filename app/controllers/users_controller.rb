@@ -128,7 +128,7 @@ class UsersController < ApplicationController
     end
   
     def set_first_run
-      if current_user.first_run
+      if current_user.first_run && current_user.email_confirmed?
         current_user.first_run = false   
         current_user.save 
       end

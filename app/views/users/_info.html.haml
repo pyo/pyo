@@ -3,17 +3,21 @@
     = image_tag current_user.profile.avatar.url(:dashboard)
     .name
       %strong #{h current_user.name.capitalize}
-    %p.justify
-      is somewhere doing something useful and having a good time doing it! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    - if current_user.status
+      %p.justify
+        = current_user.status.message
   .info
     - if controller.action_name == 'dashboard'
       .upload_post_button
         = link_to 'Upload / Post', '#', :id => 'upload_post_button'
     
+    
+    %h3 Following
     - unless current_user.followings.recent.empty?
-      %h3 Following
       .followers
         - current_user.followings.recent.each do |following|
           .thumb[following]
             = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
           %br{:clear => "all"}
+    - else
+      .inner_text You are currently not following any users. Would you like to search for some?

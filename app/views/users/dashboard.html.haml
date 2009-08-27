@@ -1,7 +1,9 @@
 - content_for :head do
+  = javascript_include_tag 'jquery.textcounting.js'
   :javascript
+    
     $(function() {
-      $('#upload_post_button').click(function() {
+      $('#upload_post_button, #close_post').click(function() {
         $('#post_bar').slideToggle();
         return false;
       });
@@ -10,22 +12,33 @@
       $('#load_more').live("click", function() {
         $.ajax({data:'authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'get', url:this.href}); 
         return false;
-      })
+      });
+      
+      $.fn.textCounting.defaults.lengthExceededClass= "warningClass";
+      $("#status_message").textCounting({});
       
     })
 
-.top
+.inner_content.top
   %h2 Hello, #{current_user.name.capitalize}!
   Your PYO URL: 
   %strong putyourselfon.com/#{current_user.name} 
   [ #{link_to 'Settings', edit_user_path(current_user)} ]
+  
+  - if flash[:notice]
+    %p.notify 
+      = flash[:notice]
 .main
   .inner_content
     #post_bar.hidden
+      %a#close_post.warningClass.close(href='#') [X] CLOSE THIS
+      %h4.capital Post something new to PYO:
       = render 'users/dashboard_nav'
+      %span#status_messageDown 0
       - form_for Activity.new do |f|
-        = f.text_field :message
-        = f.submit 'Submit'
+        = f.text_area :message, :size => "50x3", :id => "status_message", :maxLength => 300
+        .submit_button
+          = image_submit_tag 'post_button.gif', :id => 'post_button'
     - unless current_user.first_run?    
       %h4 Activity Hub
       %ul.menu.activities_menu
@@ -50,33 +63,36 @@
           = link_to 'Load More', activities_path(:page => @activities.current_page + 1), :id => 'load_more'
       
     - else
+    
+      %h4 Activity Hub
+      
       The Activity Hub is where you will see everything going on with the users you are following. Here are a few things you will see once you start following other users:
 
-      1. When a user follows another user
-      2. When a user updates their status
-      3. When a user comments on another user's profile
-      4. When a user uploads videos, photos and/or audio tracks
-      5. When a user "Likes" an item on the site
-      6. When a user joins/creates a group
-      7. When a user posts a new blog entry
-    
-      %h2 Welcome to PYO.
-      %p First run copy goes here
-      = link_to 'Upload your first track.', new_user_track_path(current_user)
-      %br
-      = link_to 'Upload Photos.', new_user_photo_path(current_user)
+      %ol
+        %li When a user follows another user
+        %li When a user updates their status
+        %li When a user comments on another user's profile
+        %li When a user uploads videos, photos and/or audio tracks
+        %li When a user "Likes" an item on the site
+        %li When a user joins/creates a group
+        %li When a user posts a new blog entry
   
 .details
-  .inner_content
+  .inner_content.column
     = render 'users/info'
     .info
       %h3 Alerts
-      .alert_type
-        = link_to '(30) new follows', '#'
-      .alert_type
-        = link_to '(12) new comments', '#'
-      .alert_type
-        = link_to '(6) new messages', '#'
+      - unless current_user.alerts.empty?
+        .alert_type
+          = link_to '(30) new follows', '#'
+        .alert_type
+          = link_to '(12) new comments', '#'
+        .alert_type
+          = link_to '(6) new messages', '#'
+      - else
+        .inner_text
+          At this time, you currently do not have any new alerts.
     
-  .inner_content  
-    = render 'shared/tall_advertisement'
+  .inner_content.column  
+    .info.left
+      = render 'shared/tall_advertisement'
