@@ -1,7 +1,10 @@
 .inner_content
-  .top
+  .top.relative
     %h2 #{@group.name.capitalize_words}
     There are currently #{@group.users.count} Members in this group 
+    - if current_user && !current_user.member_in?(@group)
+      .hanger
+        = link_to image_tag('joingroup.gif'), url_for(:action => 'join'), :method => :put
 .main  
   
   Pictures

@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :authenticate,  :except => [:index, :show] 
   before_filter :find_group,    :except => [:create,:new,:index,:request_group,:pending,:approve,:deny] 
-  before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create,:approve,:deny,:pending] 
+  before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create,:approve,:deny,:pending,:members] 
   
   def index
     @groups = Group.paginate(:per_page => 25, :page => params[:page], :include => :group_category)
@@ -13,8 +13,12 @@ class GroupsController < ApplicationController
   end
 
   def join
-    @group.users.join(current_user,:MEMBER)
-    flash[:notice] = "You have successfully joined #{@group.name}."
+    if(current_user && !current_user.member_in?(@group))
+      @group.users.join(current_user,:MEMBER)
+      flash[:notice] = "You have successfully joined #{@group.name}."
+    else
+      flash[:notice] = "You are already a member of this group."
+    end
     redirect_to group_path(@group)
   end
   
@@ -37,7 +41,7 @@ class GroupsController < ApplicationController
 
   def show
     @admins = @group.with_role(:ADMIN) + @group.with_role(:MODERATOR)
-    @members = @group.users
+    @members = @group.users.paginate(:per_page => 12, :page => 1)
     respond_to do |format|
       format.html
       format.xml  { render :xml => @group }
@@ -133,6 +137,11 @@ class GroupsController < ApplicationController
       @group.destroy
       flash[:notice] = "Group was denied."
     end
+  end
+  
+  def members
+    @admins = @group.with_role(:ADMIN) + @group.with_role(:MODERATOR)
+    @members = @group.users.paginate(:per_page => 25, :page => params[:page])
   end
   
   private 

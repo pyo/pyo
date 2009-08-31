@@ -229,20 +229,20 @@ ul.menu, ul.separated {
 .profile .name {
   font-size: 18px; }
 
-.groups {
+.groups, .main .members {
   border-top: 1px dashed #A9A9A9;
   width: 615px; }
-  .groups .group {
+  .groups .group, .groups .user, .main .members .group, .main .members .user {
     width: 605px;
     float: left;
     clear: both;
     padding: 10px 5px;
     border-bottom: 1px dashed #A9A9A9; }
-    .groups .group img {
+    .groups .group img, .groups .user img, .main .members .group img, .main .members .user img {
       border: 3px solid #CCC;
       float: left;
       margin-right: 10px; }
-    .groups .group h4 {
+    .groups .group h4, .groups .user h4, .main .members .group h4, .main .members .user h4 {
       width: 479px;
       font-size: 1.5em; }
 
@@ -430,13 +430,20 @@ ul.activities_menu {
 
 .followers, .members {
   margin-top: 10px; }
+  .followers div.thumb, .members div.thumb {
+    width: 52px;
+    height: 52px;
+    margin-left: 5px;
+    margin-bottom: 5px; }
   .followers .thumb, .members .thumb {
-    width: 50px;
-    height: 50px; }
+    width: 46px;
+    height: 46px; }
     .followers .thumb img, .members .thumb img {
       border: 3px solid #CCC; }
     .followers .thumb a:hover img, .members .thumb a:hover img {
       border: 3px solid #006FFF; }
+  .followers div.first, .members div.first {
+    margin-left: 0 !important; }
 
 .bordered_image img {
   border: 3px solid #CCC; }
@@ -708,3 +715,6 @@ li.group:hover {
   color: #555555;
   margin: 10px 10px 0 0;
   font-size: 14px; }
+
+.description {
+  text-align: justify; }

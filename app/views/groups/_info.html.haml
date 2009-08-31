@@ -1,10 +1,21 @@
 .info.left
   %h3 Group Info
+  .category.with_bottom_margin
+    <strong>Category</strong>: #{link_to @group.group_category.name, @group.group_category}
+  .description
+    <strong>Description</strong>: #{@group.description}
+.info.left
   %h3 Group Admins
-  - @admins.each do |admin|
-    = link_to admin.name, admin
-    (#{admin.role_in(@group).titleize})
+  %ul
+    - @admins.each do |admin|
+      %li
+        = link_to admin.name, admin
+        (#{admin.role_in(@group).titleize})
+.info.left
   %h3 Group Members
   .members
     - @members.each do |member|
-      .thumb= link_to image_tag(member.profile.avatar.url(:thumb), :class => 'thumb'), member
+      .thumb{:class => cycle('first','','','')}= link_to image_tag(member.profile.avatar.url(:thumb), :class => 'thumb'), member
+  - if @members.total_pages > 1
+    = link_to 'View All (' + @members.total_entries.to_s + ')', members_group_path(@group)
+    

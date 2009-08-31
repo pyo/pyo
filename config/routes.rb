@@ -20,7 +20,8 @@ ActionController::Routing::Routes.draw do |map|
                   :join => :put,
                   :leave => :put,
                   :approve => :put,
-                  :deny => :put
+                  :deny => :put,
+                  :members => :get
                 },
                 :collection =>{
                   :request_group => :get,

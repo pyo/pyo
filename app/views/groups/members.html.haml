@@ -1,0 +1,30 @@
+.inner_content
+  .top.relative
+    %h2 #{@group.name.capitalize_words}
+    There are currently #{@group.users.count} Members in this group 
+    - if current_user && !current_user.member_in?(@group)
+      .hanger
+        = link_to image_tag('joingroup.gif'), url_for(:action => 'join'), :method => :put
+.main  
+  %h2 Members
+  .members
+    %ul
+      - @members.each do |member|
+        %li[member]
+          = link_to image_tag(member.profile.avatar.url(:dashboard)), member
+          .name
+            = member.name
+            \/
+            = member.profile.full_name
+          .location
+            = member.city_and_state.join(', ')
+            (#{member.profile.country})
+          .class
+            Class: #{link_to member.talent_type, '#'}
+        
+  
+.details
+  .inner_content
+    = render :partial => "groups/info"
+  .inner_content
+    = render "shared/tall_advertisement"
