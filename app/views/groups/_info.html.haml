@@ -1,8 +1,10 @@
-=# image_tag current_user.profile.avatar.url(:profile)
-%h2
-  = h @group.name
-%p
-  = h @group.description
-%p
-  = button_to "edit", edit_group_path(@group), :method => :get if current_user.andand.is_admin?(@group)
-  = join_or_leave_button @group, current_user
+.info.left
+  %h3 Group Info
+  %h3 Group Admins
+  - @admins.each do |admin|
+    = link_to admin.name, admin
+    (#{admin.role_in(@group).titleize})
+  %h3 Group Members
+  .members
+    - @members.each do |member|
+      .thumb= link_to image_tag(member.profile.avatar.url(:thumb), :class => 'thumb'), member

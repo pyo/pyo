@@ -1,16 +1,12 @@
+.inner_content
+  .top
+    %h2 #{@group.name.capitalize_words}
+    There are currently #{@group.users.count} Members in this group 
 .main  
-  %h2 
-    = "Members"
-  - unless @group.users.empty?
-    .inner_content
-      - for user in @group.users
-        .group_member_thumb
-          %strong
-            = link_to(image_tag(user.profile.avatar.url(:thumb)), user_path(user))
-          - if current_user.andand.is_admin? @group
-            = leave_group_btn @group, user
-  - else
-    %strong No members yet.
+  
+  Pictures
+  Videos
+  Audio
   
   .inner_content
     = render :partial => @group.comments
@@ -19,7 +15,5 @@
 .details
   .inner_content
     = render :partial => "groups/info"
-
   .inner_content
-    .advertisement
-      Advertisement
+    = render "shared/tall_advertisement"

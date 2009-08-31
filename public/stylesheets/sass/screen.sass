@@ -91,12 +91,14 @@ ul.menu, ul.separated
 
 .main
   :float right
-  :width 635px
+  :clear both
+  :width 625px
+  :margin-top 10px
 
 
 .details
   :float left
-  :width 250px
+  :width 270px
 
 .top, .column
   :padding-bottom 0
@@ -240,6 +242,7 @@ ul.menu, ul.separated
   
 .groups
   :border-top 1px dashed #A9A9A9
+  :width 615px
   .group
     :width 605px
     :float left
@@ -281,11 +284,16 @@ ul.menu, ul.separated
 .activities
   :clear both
   :border-top 1px dashed #999
+  :width 615px
   .activity
     :float left
-    :width 595px
-    :padding 10px
+    :width 605px
+    :padding 10px 5px
     :border-bottom 1px dashed #999
+    :font-size 11px
+    p
+      :font-size 12px
+      :margin-top 5px
     .thumb
       :width 50px
       :height 50px
@@ -433,7 +441,7 @@ ul.activities_menu
 .upload_post_button
   :margin-bottom 10px
   
-.followers
+.followers, .members
   :margin-top 10px
   .thumb
     :width 50px
@@ -458,20 +466,28 @@ ul.activities_menu
   :font-weight bold
 
 .greyboxes
+  :margin-top 30px
   :margin-bottom 10px
   :float left
-  :width 100%
   
 .greybox
   :width 100px
   :height 55px
-  :background url(/images/greybox.png) top left no-repeat
+  :background #D5D5D5
   :padding-top 17px
   :text-align center
   :font-size 15px
   :font-weight bold
   :float left
   :margin-right 10px
+  :color #222
+  :font-size 12px
+  .count
+    :font-size 20px
+.greybox:hover
+  :color #FFF
+  :background #026DFE
+  :text-decoration none
   
 .users
   .user
@@ -483,6 +499,7 @@ ul.activities_menu
 
 .member_info
   :color #999
+  :clear both
   
 .home_columns
   :float left
@@ -541,7 +558,7 @@ h1.bordered_title
   :font-size 30px
   :margin-bottom 15px
     
-#new_user, #new_session, .edit_profile
+#new_user, #new_session, .edit_profile, .edit_user
   :width 252px
   :margin 0 auto
   fieldset
@@ -612,7 +629,10 @@ h1.bordered_title
     .hint
       :background #F9FDAB url(../images/icons/signup_excl.png) no-repeat scroll 10px 12px !important
       :border-color #FDCC68 !important
-      
+
+.edit_user
+  :margin 20px 0 0 20px
+    
 .notify
   :background-color #F9FDAB
   :border 1px solid #FDCC68
@@ -695,3 +715,16 @@ li.group:hover
   :background-color #EEE
   img
     :border 3px solid #026DFE
+
+.status 
+  :margin 10px 0 0 5px
+  :float left
+  :line-height 25px
+  :color #333
+  :font-size 20px
+  
+.bio
+  :text-align justify
+  :color #555555
+  :margin 10px 10px 0 0
+  :font-size 14px

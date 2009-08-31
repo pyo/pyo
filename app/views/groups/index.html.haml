@@ -6,20 +6,19 @@
       = link_to image_tag('/images/startgroup.gif'), request_group_groups_path if current_user
   
 .main  
-  .inner_content
-    - unless @groups.empty?
-      .groups
-        %ul
-          - for group in @groups
-            %li[group]
-              = image_tag(group.icon.url(:medium))
-              %h4= link_to group.name, group
-              %p
-                %strong #{pluralize(group.members.count, 'Member')}
-              %p Category: #{link_to group.group_category.name, group.group_category}
-        = will_paginate @groups, :prev_label => "&laquo;", :next_label => "&raquo;"
-    - else
-      No Groups Yet! #{link_to 'Start one now', request_group_groups_path}
+  - unless @groups.empty?
+    .groups
+      %ul
+        - for group in @groups
+          %li[group]
+            = link_to image_tag(group.icon.url(:medium)), group
+            %h4= link_to group.name, group
+            %p
+              %strong #{pluralize(group.members.count, 'Member')}
+            %p Category: #{link_to group.group_category.name, group.group_category}
+      = will_paginate @groups, :prev_label => "&laquo;", :next_label => "&raquo;"
+  - else
+    No Groups Yet! #{link_to 'Start one now', request_group_groups_path}
 
 .details
   .inner_content

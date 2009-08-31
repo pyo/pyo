@@ -101,6 +101,13 @@ class User < ActiveRecord::Base
   def status
     updates.first
   end
+  
+  def city_and_state
+    returning [] do |values|
+      values << profile.city if profile.city.present?
+      values << profile.state if profile.state.present?
+    end
+  end
 
   define_index do
     indexes name

@@ -36,6 +36,8 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @admins = @group.with_role(:ADMIN) + @group.with_role(:MODERATOR)
+    @members = @group.users
     respond_to do |format|
       format.html
       format.xml  { render :xml => @group }
@@ -59,7 +61,9 @@ class GroupsController < ApplicationController
     
     respond_to do |format|
       if @group.save
-				@group.users.join(current_user,:ADMIN)
+        @group.with_approved_scope do
+				  @group.users.join(current_user,:ADMIN)
+				end
         flash[:notice] = 'Group request was submitted.'
         format.html { redirect_to(groups_path) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }

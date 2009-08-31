@@ -30,7 +30,7 @@ namespace :pyo do
     Sports & Recreation]
     
     categories.split("\n").each do |name|
-      GroupCategory.create(:name => name)
+      GroupCategory.create(:name => name.strip)
     end
   end
 end

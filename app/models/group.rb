@@ -31,11 +31,19 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :description, :group_category_id
 	validates_uniqueness_of :name
   
+  before_create :check_approved
   before_update :check_approved
   before_destroy :check_approved_destroy
   
   def receive_comment_notification comment
     Activity.send_group_comment_notification self, comment
+  end
+
+  def with_approved_scope &block
+    previously_approved = approved?
+    self.update_attribute(:approved, true)
+    yield block
+    self.update_attribute(:approved, false) unless previously_approved
   end
 
 	def self.new_with_pending attrs

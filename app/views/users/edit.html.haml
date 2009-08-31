@@ -1,3 +1,5 @@
+- content_for(:head) do
+  = javascript_include_tag 'formhints'
 .main
   .inner_content
     = render :partial => "users/dashboard_nav"

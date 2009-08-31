@@ -10,8 +10,10 @@
   = render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user?
 
 .info
-  .city_state
-    #{@user.profile.city}, #{@user.profile.state}
+  - if @user.city_and_state.length > 0
+    .city_state
+      = @user.city_and_state.join(", ") 
+    
   .class
     Class: #{link_to @user.talent_type, '#'}
   - if @user.profile.bio
