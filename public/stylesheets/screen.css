@@ -648,3 +648,21 @@ h1.bordered_title {
 #blog_nav {
   padding-left: 21px;
   background: url(/images/icons/blog_16.png) left center no-repeat; }
+
+.pagination {
+  clear: both;
+  padding-top: 10px; }
+  .pagination .disabled {
+    display: none; }
+  .pagination .current {
+    color: #026DFE;
+    font-size: 35px;
+    font-weight: bold; }
+  .pagination a {
+    border: 3px solid #CCC;
+    color: #333;
+    padding: 2px 5px;
+    top: -7px;
+    position: relative; }
+  .pagination a:hover {
+    background: #CCC; }
