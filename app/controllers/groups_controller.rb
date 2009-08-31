@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   
   def index
     @groups = Group.paginate(:per_page => 25, :page => params[:page])
-
+    @categories = GroupCategory.all
     respond_to do |format|
       format.html
       format.xml  { render :xml => @groups }

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090824205955) do
+ActiveRecord::Schema.define(:version => 20090831134034) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -121,6 +121,13 @@ ActiveRecord::Schema.define(:version => 20090824205955) do
     t.datetime "updated_at"
   end
 
+  create_table "group_categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "groups_count", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -131,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20090824205955) do
     t.datetime "updated_at"
     t.boolean  "approved",          :default => false
     t.string   "url"
+    t.integer  "group_category_id"
   end
 
   add_index "groups", ["approved"], :name => "index_groups_on_approved"

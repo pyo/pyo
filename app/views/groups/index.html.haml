@@ -1,8 +1,9 @@
-.top.relative
-  %h2 PYO Groups
-  There are currently #{pluralize(Group.count, 'Group').gsub(/(\d+)/, '<strong>\1</strong>')} on PYO
-  .hanger
-    = link_to image_tag('/images/startgroup.gif'), request_group_groups_path if current_user
+.top
+  .inner_content.relative
+    %h2 PYO Groups
+    There are currently #{pluralize(Group.count, 'Group').gsub(/(\d+)/, '<strong>\1</strong>')} on PYO
+    .hanger
+      = link_to image_tag('/images/startgroup.gif'), request_group_groups_path if current_user
   
 .main  
   .inner_content
@@ -19,5 +20,12 @@
       No Groups Yet! #{link_to 'Start one now', request_group_groups_path}
 
 .details
+  .inner_content
+    .info
+      %h3 Group Categories
+      %ul
+        - @categories.each do |category|
+          %li= link_to(category.name, category) + " (#{category.groups.size})"
+    
   .inner_content
     = render 'shared/tall_advertisement'

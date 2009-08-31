@@ -6,6 +6,7 @@ class Group < ActiveRecord::Base
   has_many :comments, :as => 'consumer', :dependent => :destroy
 	has_many :bookings
 	has_many :ads
+	belongs_to :group_category
   
   #covalence
   has_members       :users
@@ -27,9 +28,12 @@ class Group < ActiveRecord::Base
                     :default_url => '/data/groups/:style.png'
                     
   # validations                  
-  validates_presence_of :name, :description
+  validates_presence_of :name, :description, :group_category_id
 	validates_uniqueness_of :name
-      
+  
+  before_update :check_approved
+  before_destroy :check_approved_destroy
+  
   def receive_comment_notification comment
     Activity.send_group_comment_notification self, comment
   end
@@ -64,4 +68,13 @@ class Group < ActiveRecord::Base
     url
   end
   
+  def check_approved
+    if(approved_changed?)
+      GroupCategory.send((approved? ? :increment_counter : :decrement_counter), :groups_count, group_category)
+    end
+  end
+  
+  def check_approved_destroy
+    GroupCategory.decrement_counter(:groups_count, group_category) if(approved)
+  end
 end

@@ -2,5 +2,7 @@
 %dl
   %dt= form.label :name
   %dd= form.text_field :name
+  %dt= form.label :group_category_id
+  %dd= form.select :group_category_id, GroupCategory.all.map {|g| [g.name, g.id]}, :include_blank => "Select a Category"
   %dt= form.label :description
   %dd= form.text_area :description  

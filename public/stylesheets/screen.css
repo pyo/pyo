@@ -212,6 +212,14 @@ ul.menu, ul.separated {
   padding-bottom: 20px;
   clear: both;
   width: 230px; }
+  .info ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .info ul li {
+      color: #777;
+      padding: 10px 5px;
+      border-bottom: 1px dashed #BBB; }
 
 .profile img {
   float: left;
@@ -242,7 +250,7 @@ ul.menu, ul.separated {
   position: absolute;
   bottom: 50%;
   margin-bottom: -25px;
-  right: 0; }
+  right: 10px; }
 
 .thumb {
   float: left;
