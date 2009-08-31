@@ -1,4 +1,4 @@
-namespace :pyo
+namespace :pyo do
   desc "Import group categories into website"
   task :group_categories => :environment do
     categories = %[Arts & Literature
