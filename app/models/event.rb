@@ -74,7 +74,7 @@ class Event < ActiveRecord::Base
 	
 	def create_activity
     user.followers.each do |follower|
-      Activity.create({:producer => user, :consumer => follower, :flavor => "event_#{type.downcase}", :payload => self})
+      EventActivity.create({:producer => user, :consumer => follower, :payload => self})
     end
   end
 	

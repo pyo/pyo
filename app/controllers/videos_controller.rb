@@ -9,6 +9,10 @@ class VideosController < ApplicationController
     @videos = @user.nil? ? Video.all : @user.videos.all
   end
   
+  def videos
+    @videos = Video.paginate(:per_page => 25, :page => params[:page])
+  end
+  
   def new
     @video = current_user.videos.new
   end

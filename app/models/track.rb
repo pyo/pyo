@@ -33,12 +33,12 @@ class Track < ActiveRecord::Base
   
   # covalence hooks
   def receive_comment_notification(notification)
-    Activity.create({:producer => notification.producer, :consumer => self, :flavor => 'comment'})
+    CommentActivity.create({:producer => notification.producer, :consumer => self})
   end
   
   def after_create
     user.followers.each do |follower|
-      Activity.create({:producer => user, :consumer => follower, :flavor => 'track', :payload => self})
+      MediaUploadActivity.create({:producer => user, :consumer => follower, :payload => self})
     end
   end
   

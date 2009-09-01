@@ -23,7 +23,7 @@
         #{@user.followers.size}
       Followers
   
-    %a.greybox(class='rounded {15px}' href='#')
+    %a.greybox(class='rounded {15px}' href="#{user_photos_path(@user)}")
       .count
         #{@user.photos.size}
       Photos
@@ -33,7 +33,7 @@
         #{@user.tracks.size}
       Audio Files
   
-    %a.greybox(class='rounded {15px}' href='#')
+    %a.greybox(class='rounded {15px}' href="#{user_videos_path(@user)}")
       .count
         #{@user.videos.size}
       Videos

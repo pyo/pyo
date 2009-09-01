@@ -37,6 +37,12 @@ class Video < ActiveRecord::Base
     %(<embed src="http://#{VIDEOS_DOMAIN}/player.swf" width="#{self.width}" height="#{self.height}" allowfullscreen="true" allowscriptaccess="always" flashvars="&displayheight=#{self.height}&file=#{self.url}&image=#{self.screenshot_url}&width=#{self.width}&height=#{self.height}" />)
   end
   
+  def after_create
+    user.followers.each do |follower|
+      MediaUploadActivity.create({:producer => user, :consumer => follower, :payload => self})
+    end
+  end
+  
   define_index do
       indexes title
       indexes tags(:name)

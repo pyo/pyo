@@ -39,6 +39,9 @@ class User < ActiveRecord::Base
   has_many :activities, :as => 'consumer'
   
   has_many :messages, :as => :consumer, :class_name => 'DirectMessage'
+  has_many :new_messages, :as => :consumer, :class_name => 'DirectMessage', :conditions => {:state => 'new'}
+  has_many :new_followings, :as => :consumer, :class_name => 'FollowingActivity', :conditions => {:state => 'new'}
+  has_many :new_comments, :as => :consumer, :class_name => 'CommentActivity', :conditions => {:state => 'new'}
   has_many :sent_messages, :as => :producer, :class_name => 'DirectMessage'
 
   has_many :updates, :class_name => "Activity", :as => :producer, :conditions => {:consumer_id => nil}

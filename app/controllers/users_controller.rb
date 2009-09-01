@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     logger.info current_user.inspect
     if current_user.email_confirmed?
       @activities = current_user.all_activities.paginate(:per_page => 1, :page => 1)
+      @new_messages_count = current_user.new_messages.count
+      @new_followings_count = current_user.new_followings.count
+      @new_comments_count = current_user.new_comments.count
+      @has_alerts = (@new_messages_count + @new_followings_count + @new_comments_count) > 0
     else
       render 'dashboard_tmp'
     end

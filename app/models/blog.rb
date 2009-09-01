@@ -33,7 +33,7 @@ class Blog < ActiveRecord::Base
 	protected
 	def create_activity
     user.followers.each do |follower|
-      Activity.create({:producer => user, :consumer => follower, :flavor => 'blog', :payload => self})
+      MediaUploadActivity.create({:producer => user, :consumer => follower, :payload => self})
     end
 	end
   

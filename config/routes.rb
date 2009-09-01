@@ -3,7 +3,6 @@ ActionController::Routing::Routes.draw do |map|
 
 	
 	map.resources :searches, :as=>"search", :only=>[:index]
-  map.resources :videos, :member => {:status => :post, :status_update => :any, :upload => :get, :done => :get}
   map.resources :blogs
 	map.resource :marketplace
   map.resources :ads
@@ -66,6 +65,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.dashboard '/dashboard', :controller => 'users', :action => 'dashboard'
   map.music '/music', :controller => 'tracks', :action => 'music'
+  map.videos '/videos', :controller => 'videos', :action => 'videos'
+  
+  map.resources :videos, :member => {:status => :post, :status_update => :any, :upload => :get, :done => :get}
   
   #sessions
   map.login     '/login',     :controller => 'sessions',  :action => 'new'

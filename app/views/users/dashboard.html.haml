@@ -45,13 +45,16 @@
     = render 'users/info'
     .info
       %h3 Alerts
-      - unless current_user.alerts.empty?
-        .alert_type
-          = link_to '(30) new follows', '#'
-        .alert_type
-          = link_to '(12) new comments', '#'
-        .alert_type
-          = link_to '(6) new messages', '#'
+      - if @has_alerts
+        - if @new_followings_count > 0
+          .alert_type
+            = link_to "(#{@new_followings_count}) new follows", '#'
+        - if @new_comments_count > 0
+          .alert_type
+            = link_to "(#{@new_comments_count}) new comments", '#'
+        - if @new_messages_count > 0
+          .alert_type
+            = link_to "(#{@new_messages_count}) new messages", '#'
       - else
         .inner_text
           At this time, you currently do not have any new alerts.
