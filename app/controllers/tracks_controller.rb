@@ -36,7 +36,7 @@ class TracksController < ApplicationController
   end
   
   def create    
-    @track = @user.tracks.new(params[:track]) 
+    @track = current_user.tracks.new(params[:track]) 
      
     if @track.save
       flash[:notice] = 'Your audio track has successfully been uploaded and posted to your profile.'

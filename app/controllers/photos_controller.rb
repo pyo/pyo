@@ -26,7 +26,7 @@ class PhotosController < ApplicationController
   end
   
   def create    
-    @photo = @user.photos.new(params[:photo])  
+    @photo = current_user.photos.new(params[:photo])  
     if @photo.save
       flash[:notice] = 'Your picture has successfully been uploaded and posted to your profile.'
       redirect_to dashboard_path

@@ -30,7 +30,7 @@ class BlogsController < ApplicationController
   
   
   def create    
-    @blog = @user.blogs.new(params[:blog]) 
+    @blog = current_user.blogs.new(params[:blog]) 
      
     if @blog.save
       flash[:notice] = 'Your blog has successfully been posted to your profile.'
