@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def dashboard
     logger.info current_user.inspect
     if current_user.email_confirmed?
-      @activities = current_user.all_activities.paginate(:per_page => 1, :page => 1)
+      @activities = current_user.all_activities.paginate(:per_page => 25, :page => 1)
       @new_messages_count = current_user.new_messages.count
       @new_followings_count = current_user.new_followings.count
       @new_comments_count = current_user.new_comments.count
