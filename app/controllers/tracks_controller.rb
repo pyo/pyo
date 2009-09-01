@@ -1,7 +1,7 @@
 class TracksController < ApplicationController
   before_filter :find_track
   before_filter :find_user
-  before_filter :check_user, :only => [:new, :create]
+  # before_filter :check_user, :only => [:new, :create]
   before_filter :authenticate, :except => [:show, :index, :music]
   
   def index
@@ -13,7 +13,7 @@ class TracksController < ApplicationController
   end
   
   def new
-    @track = Track.new
+    @track = current_user.tracks.new
   end
   
   def show

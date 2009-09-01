@@ -1,9 +1,12 @@
+- content_for(:head) do
+  = javascript_include_tag :fckeditor
+  
+= render "users/top"
 .main
   .inner_content
     = render :partial => "users/dashboard_nav"
-  .inner_content
-    
-    %h2 Create a Blog
+  
+    %h4.title Post New Blog
     
     - form_for([@user, @blog], :html => {:multipart => true}) do |form|
       = render :partial => "form", :locals => {:form=>form}

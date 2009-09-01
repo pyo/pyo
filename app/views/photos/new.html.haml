@@ -1,25 +1,48 @@
+= render "users/top"
 .main
-  .inner_content
-    = render :partial => "users/dashboard_nav"
+  = render "users/dashboard_nav"
   .inner_content
     
-    %h2 Upload a Photo
+    %h4.title Upload Picture
     
     - form_for([@user, @photo], :html => {:multipart => true}) do |form|
-      %dl
-        %dt= form.label :title
-        %dd= form.text_field :title
-        %dt= form.label :image
-        %dd= form.file_field :image
-        %dt= form.label :description
-        %dd= form.text_area :description
-        %dt= form.label :tags
-        %dd= form.text_field :tag_list    
-        %small Comma separate tags.    
-      %p= form.submit 'Upload'
+      .file_field
+        = form.label :image, 'Image:'
+        = form.file_field :image
+        %span.hint 
+          Supported file types: JPG, JPEG, GIF, PNG
+      .text_field
+        = form.label :title, 'Title:'
+        = form.text_field :title
+        %span.hint 
+          Name your image.
+      .text_area
+        = form.label :description, 'Description: <span class="grey">(Optional)</span>'
+        = form.text_area :description
+      .text_field
+        = form.label :tag_list, 'Tags:'
+        = form.text_field :tag_list      
+        %span.hint 
+          Separate each tag with a comma.
+      .submit_button
+        = image_submit_tag 'upload.gif'
     
 .details
-  .inner_content
-    = render :partial => "users/info"
-  .inner_content
-    = render :partial => "shared/tall_advertisement"
+  .inner_content.column
+    = render 'users/info'
+    .info
+      %h3 Alerts
+      - unless current_user.alerts.empty?
+        .alert_type
+          = link_to '(30) new follows', '#'
+        .alert_type
+          = link_to '(12) new comments', '#'
+        .alert_type
+          = link_to '(6) new messages', '#'
+      - else
+        .inner_text
+          At this time, you currently do not have any new alerts.
+    
+  .inner_content.column  
+    .info.left
+      = render 'shared/tall_advertisement'

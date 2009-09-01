@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_filter :find_blog
   before_filter :find_user
-  before_filter :check_user, :only => [:new, :create]
+  # before_filter :check_user, :only => [:new, :create]
   before_filter :authenticate, :except => [:show, :index]
   
   
@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
   
   
   def new
-    @blog = @user.blogs.new
+    @blog = current_user.blogs.new
   end
   
   def edit

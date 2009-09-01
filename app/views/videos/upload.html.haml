@@ -1,11 +1,10 @@
+= render "users/top"
 .main
   .inner_content
     = render :partial => "users/dashboard_nav"
-  .inner_content
     
-    %h2 
-      = "Upload \"#{@video.title}\""
-    %iframe{:src => @upload_form_url, :width => '400', :height => '100', :frameborder => 0}
+    %h4.title Upload Video 
+    %iframe{:src => @upload_form_url, :width => '400', :height => '200', :frameborder => 0}
     
 .details
   .inner_content

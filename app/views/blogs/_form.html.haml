@@ -1,7 +1,11 @@
-%dl
-  %dt= form.label :title
-  %dd= form.text_field :title
-  %dt= form.label :body
-  %dd= form.text_area :body
-  %dd= form.text_field :tag_list    
-  %small Comma separate tags.
+.text_field
+  = form.label :title, 'Title:'
+  = form.text_field :title
+.text_area
+  = form.label :body, 'Body:'
+  = fckeditor_textarea 'blog', :body, :toolbarSet => "Easy", :width => '100%', :height => "350px"
+.text_field
+  = form.label :tag_list, 'Tags:'
+  = form.text_field :tag_list    
+  %span.hint 
+    Separate each tag with a comma.

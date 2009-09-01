@@ -1,44 +1,7 @@
-- content_for :head do
-  = javascript_include_tag 'jquery.textcounting.js'
-  :javascript
-    
-    $(function() {
-      $('#upload_post_button, #close_post').click(function() {
-        $('#post_bar').slideToggle();
-        return false;
-      });
-      
-      
-      $('#load_more').live("click", function() {
-        $.ajax({data:'authenticity_token=' + encodeURIComponent('#{form_authenticity_token}'), dataType:'script', type:'get', url:this.href}); 
-        return false;
-      });
-      
-      $.fn.textCounting.defaults.lengthExceededClass= "warningClass";
-      $("#status_message").textCounting({});
-      
-    })
-
-.inner_content.top
-  %h2 Hello, #{current_user.name.capitalize}!
-  Your PYO URL: 
-  %strong putyourselfon.com/#{current_user.name} 
-  [ #{link_to 'Settings', edit_user_path(current_user)} ]
-  
-  - if flash[:notice]
-    %p.notify 
-      = flash[:notice]
+= render "users/top"
 .main
   .inner_content
-    #post_bar.hidden
-      %a#close_post.warningClass.close(href='#') [X] CLOSE THIS
-      %h4.capital Post something new to PYO:
-      = render 'users/dashboard_nav'
-      %span#status_messageDown 0
-      - form_for Activity.new do |f|
-        = f.text_area :message, :size => "50x3", :id => "status_message", :maxLength => 300
-        .submit_button
-          = image_submit_tag 'post_button.gif', :id => 'post_button'
+    = render "users/dashboard_nav"
     - unless current_user.first_run?    
       %h4 Activity Hub
       %ul.menu.activities_menu

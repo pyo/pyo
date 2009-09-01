@@ -1,22 +1,31 @@
+= render "users/top"
 .main
   .inner_content
     = render :partial => "users/dashboard_nav"
-  .inner_content
     
-    %h2 Upload a Track
+    %h4.title Upload Track
     
     - form_for([@user, @track], :html => {:multipart => true}) do |form|
-      %dl
-        %dt= form.label :name
-        %dd= form.text_field :name
-        %dt= form.label :description
-        %dd= form.text_area :description
-        %dt= form.label :mp3
-        %dd= form.file_field :mp3
-        %dt= form.label :tags
-        %dd= form.text_field :tag_list    
-        %small Comma separate tags.    
-      %p= form.submit 'Upload', :disable_with => "Uploading"
+      .file_field
+        = form.label :mp3, 'MP3 File:'
+        = form.file_field :mp3
+        %span.hint
+          We only support .mp3 files here at PYO
+      .text_field
+        = form.label :name, 'Title:'
+        = form.text_field :name
+        %span.hint
+          Name your track.
+      .text_area
+        = form.label :description, 'Description:'
+        = form.text_area :description
+      .text_field
+        = form.label :tags
+        = form.text_field :tag_list    
+        %span.hint
+          Separate each tag with a comma.
+      .submit_button
+        = image_submit_tag 'upload.gif'
     
 .details
   .inner_content

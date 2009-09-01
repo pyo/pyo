@@ -7,7 +7,7 @@
       %p.justify
         = current_user.status.message
   .info
-    - if controller.action_name == 'dashboard'
+    - if %w[dashboard new upload].include? controller.action_name
       .upload_post_button
         = link_to 'Upload / Post', '#', :id => 'upload_post_button'
     

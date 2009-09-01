@@ -256,6 +256,7 @@ ul.menu, ul.separated
     h4      
       :width 479px
       :font-size 1.5em
+  li:hover
       
 .relative
   :position relative
@@ -564,22 +565,8 @@ h1.bordered_title
   :padding 15px 0
   :font-size 30px
   :margin-bottom 15px
-    
-#new_user, #new_session, .edit_profile, .edit_user
-  :width 252px
-  :margin 0 auto
-  fieldset
-    :margin 0
-    :padding 0
-    :border none
-    :width 100px
-    legend
-      :color #026DFE
-      :padding 15px 0
-      :font-size 20px !important
-      :font-weight bold
-      :text-transform uppercase
-      :font-family Helvetica
+
+form
   .hint
     :z-index 10000
     :display none
@@ -594,15 +581,6 @@ h1.bordered_title
     :font-family Verdana
     :font-size 12px
     :background #EEEEEE url(/images/icons/signup_arrow.png) no-repeat scroll 10px 12px
-  .submit_field
-    :float left
-    input
-      :float left
-    :padding 10px 0
-    span
-      :line-height 30px
-      :margin 7px 50px 0 15px
-
   .text_field, .password_field, .select_field, .file_field, .text_area
     :position relative
     select, input
@@ -622,12 +600,15 @@ h1.bordered_title
       :width 250px
   .file_field
     input
+      :font-size 10px
       :height 25px
+      :width auto
   .text_area
     textarea
       :border 1px solid #AAA
       :width 400px
       :height 150px
+      :margin-bottom 15px
   .welldone
     .hint
       :background #B6F394 url(/images/icons/signup_check.png) no-repeat scroll 10px 12px !important
@@ -636,6 +617,33 @@ h1.bordered_title
     .hint
       :background #F9FDAB url(../images/icons/signup_excl.png) no-repeat scroll 10px 12px !important
       :border-color #FDCC68 !important
+  
+
+#new_user, #new_session, .edit_profile, .edit_user
+  :width 252px
+  :margin 0 auto
+  fieldset
+    :margin 0
+    :padding 0
+    :border none
+    :width 100px
+    legend
+      :color #026DFE
+      :padding 15px 0
+      :font-size 20px !important
+      :font-weight bold
+      :text-transform uppercase
+      :font-family Helvetica
+  .submit_field
+    :float left
+    input
+      :float left
+    :padding 10px 0
+    span
+      :line-height 30px
+      :margin 7px 50px 0 15px
+    
+  
 
 .edit_user
   :margin 20px 0 0 20px
@@ -718,10 +726,10 @@ h1.bordered_title
 ul
   :list-style-type none
   
-li.group:hover
+li.group:hover, li.user:hover
   :background-color #EEE
   img
-    :border 3px solid #026DFE
+    :border 3px solid #026DFE !important
 
 .status 
   :margin 10px 0 0 5px
@@ -738,3 +746,11 @@ li.group:hover
 
 .description
   :text-align justify
+
+.grey
+  :color #AAAAAA
+
+h4.title
+  :border-bottom 1px dashed #AAAAAA
+  :margin-bottom 10px
+  :padding-bottom 5px

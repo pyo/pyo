@@ -18,7 +18,7 @@
   
   .select_field
     = form.label :timezone, 'Timezone:'
-    = form.select :timezone, [1,2,3]
+    = select_tag 'profile[timezone]', TIMEZONE_OPTIONS
   
   .text_field
     = form.label :url, 'Website URL:'

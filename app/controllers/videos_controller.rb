@@ -10,13 +10,13 @@ class VideosController < ApplicationController
   end
   
   def new
-    @video = @user.videos.new
+    @video = current_user.videos.new
   end
   
   def create
     @panda_video = Panda::Video.create
-    @video = @user.videos.create(params[:video].merge({:panda_id => @panda_video.id}))
-    redirect_to upload_user_video_path(@user,@video)
+    @video = current_user.videos.create(params[:video].merge({:panda_id => @panda_video.id}))
+    redirect_to upload_user_video_path(current_user,@video)
   end
   
   def rate
