@@ -14,6 +14,10 @@ class Group < ActiveRecord::Base
   has_default_role  :MEMBER
   has_group_assets_through :user, :tracks #define tracks getter
   
+  has_many :photos, :through => :users
+  has_many :videos, :through => :users
+  has_many :tracks, :through => :users
+  
   #scopes
   default_scope :order => 'name', :conditions => {:approved => 1}
   

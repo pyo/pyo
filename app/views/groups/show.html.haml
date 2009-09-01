@@ -1,3 +1,7 @@
+- content_for(:head) do
+  - unless @tracks.empty?
+    = javascript_include_tag "/audio-player/audio-player.js"
+    = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
 .inner_content
   .top.relative
     %h2 #{@group.name.capitalize_words}
@@ -7,9 +11,32 @@
         = link_to image_tag('joingroup.gif'), url_for(:action => 'join'), :method => :put
 .main  
   
-  Pictures
-  Videos
-  Audio
+  - unless @photos.empty?
+    %h4 Pictures
+    = link_to "View All (#{@photos.total_entries})", '#'
+    .media
+      - @photos.each do |photo|
+        = link_to image_tag(photo.image.url(:thumb)), photo
+  - unless @videos.empty?
+    %h4 Videos
+    = link_to "View All (#{@videos.total_entries})", '#'
+    .media
+      - @videos.each do |video|
+        = link_to image_tag(video.image.url(:thumb)), video
+  - unless @tracks.empty?
+    %h4 Audio
+    = link_to "View All (#{@tracks.total_entries})", '#'
+    .media
+      - @tracks.each do |track|
+        .profile_track_info
+          %strong
+            = link_to h(track.name), user_track_path(track.user,track)
+          %p
+            = h truncate(track.description, 20)
+            %script{:type=>"text/javascript"}
+              = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+            %div{:id => "audioplayer_#{track.id}"}
+        
   
   .inner_content
     = render :partial => @group.comments

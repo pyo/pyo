@@ -6,8 +6,8 @@
       $('.rounded').corners(); /* test for double rounding */
     });
 
-= javascript_include_tag "/audio-player/audio-player.js"
-= javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
+  = javascript_include_tag "/audio-player/audio-player.js"
+  = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
 .inner_content
   .top
     %h2.left #{@user.name.capitalize_words}

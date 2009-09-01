@@ -42,6 +42,9 @@ class GroupsController < ApplicationController
   def show
     @admins = @group.with_role(:ADMIN) + @group.with_role(:MODERATOR)
     @members = @group.users.paginate(:per_page => 12, :page => 1)
+    @photos = @group.photos.paginate(:per_page => 10, :page => 1)
+    @videos = @group.videos.paginate(:per_page => 10, :page => 1)
+    @tracks = @group.tracks.paginate(:per_page => 10, :page => 1)
     respond_to do |format|
       format.html
       format.xml  { render :xml => @group }
