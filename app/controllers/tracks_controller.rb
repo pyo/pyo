@@ -39,8 +39,8 @@ class TracksController < ApplicationController
     @track = @user.tracks.new(params[:track]) 
      
     if @track.save
-      flash[:notice] = 'Track was successfully created.'
-      redirect_to user_track_path(@user,@track)
+      flash[:notice] = 'Your audio track has successfully been uploaded and posted to your profile.'
+      redirect_to dashboard_path
     else
       flash[:error] = @track.errors
       render :action => "new"
