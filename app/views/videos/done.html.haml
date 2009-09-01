@@ -1,4 +1,2 @@
-%p
-  Video uploaded! It will appear on the
-  = link_to 'video page', user_video_path(@video.user,@video), :target => '_parent'
-  once it has finished encoding.
+:javascript
+  top.location.replace("#{dashboard_path}");

@@ -33,8 +33,8 @@ class BlogsController < ApplicationController
     @blog = @user.blogs.new(params[:blog]) 
      
     if @blog.save
-      flash[:notice] = 'Blog was successfully created.'
-      redirect_to user_blog_path(@user,@blog)
+      flash[:notice] = 'Your blog has successfully been posted to your profile.'
+      redirect_to dashboard_path
     else
       flash[:error] = @blog.errors
       render :action => "new"

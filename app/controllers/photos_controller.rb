@@ -28,8 +28,8 @@ class PhotosController < ApplicationController
   def create    
     @photo = @user.photos.new(params[:photo])  
     if @photo.save
-      flash[:notice] = 'Photo was successfully created.'
-      redirect_to user_photo_path(@user,@photo)
+      flash[:notice] = 'Your picture has successfully been uploaded and posted to your profile.'
+      redirect_to dashboard_path
     else
       flash[:error] = @photo.errors
       render :action => "new"

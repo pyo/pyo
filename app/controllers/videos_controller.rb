@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
   before_filter :find_video, :except=>[:done,:status,:status_update]
-  before_filter :find_user, :excpet => [:status_update]
+  before_filter :find_user, :except => [:status_update]
   before_filter :check_user, :only => [:new, :create, :rate]
   before_filter :authenticate, :except => [:show, :index, :status_update]
   protect_from_forgery :except => :status_update
@@ -34,6 +34,7 @@ class VideosController < ApplicationController
   
   def done
     @video = Video.find_by_panda_id(params[:id])
+    flash[:notice] = "Your video has successfully been uploaded and posted to your profile."
     render :layout => false
   end
   
