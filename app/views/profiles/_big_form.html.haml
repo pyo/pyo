@@ -1,0 +1,102 @@
+- content_for(:head) do
+  = javascript_include_tag 'formhints'
+  
+- form_for(current_user, :html => {:class => "edit_user_profile"}) do |form|
+
+  = form.error_messages
+
+  %fieldset
+    %legend PYO Profile Settings
+    - form.fields_for :profile do |p|
+      .file_field
+        = p.label :avatar, 'PYO Avatar:'
+        = p.file_field :avatar, :size => 15
+        %span.hint 
+          <strong>Max size:</strong> # KB.<br /><br />
+          <strong>Tip #1:</strong> A square, cropped version of your face works best since the full sized image shown on your profile will be automatically cropped to 250x250 pixels. A smaller version (100x100 pixels or less) will be shown throughout the site.<br /><br />
+          <strong>Tip #2:</strong> Nudity or obscene images are prohibited.<br /><br />
+          <strong>Tip #3:</strong> Make sure you have the rights/permission to upload whatever picture you choose.
+  
+
+      .select_field
+        = p.label :timezone, 'Timezone:'
+        = select_tag 'user[profile_attributes][timezone]', TIMEZONE_OPTIONS
+
+      .text_field
+        = p.label :url, 'Website URL:'
+        = p.text_field :url
+        %span.hint Make sure you put <strong>http://</strong> before the URL!
+
+      .text_area
+        = p.label :bio, 'Bio:'
+        = p.text_area :bio
+  
+    .text_field
+      = form.label :name, 'Username:'
+      = form.text_field :name
+      %span.hint Your unique name that will be used throughout PYO
+
+    .password_field
+      = form.label :password, 'Password:'
+      = form.password_field :password, :onkeyup => 'checkPassword(this)'
+      %span.hint 
+        Make it at least <strong>4 characters long</strong>. But we recommend you use <strong>8 characters or more</strong> just to be on the safe side!
+
+    .password_field
+      = form.label :password_confirmation, "Confirm password:"
+      = form.password_field :password_confirmation
+
+    .text_field
+      = form.label :email, 'Email Address:'
+      = form.text_field :email
+      %span.hint To validate your account and receive updates about your profile and PYO. This will also be used if you need to reset your password
+
+    .text_field
+      = form.label :talent_type, 'Talent Type:'
+      = form.text_field :talent_type
+      %span.hint What is your talent? Are you an athlete, musician, model, actor, comedian, dancer, etc.? Let us know what you do here!
+
+    .text_field
+      = form.label :tag_list, 'Tags:'
+      = form.text_field :tag_list
+      %span.hint A few keywords that describe you and/or your talent. (ex: basketball, football, tennis, track, hip-hop, r&amp;b, country, rock, classical, etc.)
+
+    - form.fields_for :profile do |p|
+      .text_field
+        = p.label :full_name, 'Full Name:'
+        = p.text_field :full_name      
+        %span.hint Your first and/or last name. Completely optional, but it will help other users find you a lot easier.
+
+      .text_field
+        = p.label :city, 'City:'
+        = p.text_field :city
+        %span.hint Also completely optional, but providing this information is useful for geo-targetting features and helping other users search for you.
+
+      .text_field
+        = p.label :state, 'State/Province:'
+        = select_tag 'user[profile_attributes][state]', STATE_OPTIONS
+
+      .text_field
+        = p.label :zip, 'Zip/Postal Code:'
+        = p.text_field :zip
+        %span.hint Another optional location field. This will help users narrow down their search when looking for people in specific locations.
+
+      .text_field
+        = p.label :country, 'Country:'
+        = select_tag 'user[profile_attributes][country]', COUNTRY_OPTIONS
+
+  - form.fields_for :profile do |p|
+    %fieldset
+      %legend Twitter Integration
+      .text_field
+        = p.label :twitter, 'Twitter Username:'
+        = p.text_field :twitter
+
+    %fieldset
+      %legend Flickr Integration
+      .text_field
+        = p.label :flickr, 'Flickr Username:'
+        = p.text_field :flickr
+  
+  .submit_button
+    = image_submit_tag 'finish.gif'

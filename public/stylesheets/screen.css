@@ -595,29 +595,35 @@ form .kindagood .hint {
   background: #F9FDAB url(../images/icons/signup_excl.png) no-repeat scroll 10px 12px !important;
   border-color: #FDCC68 !important; }
 
-#new_user, #new_session, .edit_profile, .edit_user {
+#new_user, #new_session, .edit_profile, .edit_user, .edit_user_profile {
   width: 252px;
   margin: 0 auto; }
-  #new_user fieldset, #new_session fieldset, .edit_profile fieldset, .edit_user fieldset {
+  #new_user fieldset, #new_session fieldset, .edit_profile fieldset, .edit_user fieldset, .edit_user_profile fieldset {
     margin: 0;
     padding: 0;
     border: none;
     width: 100px; }
-    #new_user fieldset legend, #new_session fieldset legend, .edit_profile fieldset legend, .edit_user fieldset legend {
+    #new_user fieldset legend, #new_session fieldset legend, .edit_profile fieldset legend, .edit_user fieldset legend, .edit_user_profile fieldset legend {
       color: #026DFE;
       padding: 15px 0;
       font-size: 20px !important;
       font-weight: bold;
       text-transform: uppercase;
       font-family: Helvetica; }
-  #new_user .submit_field, #new_session .submit_field, .edit_profile .submit_field, .edit_user .submit_field {
+  #new_user .submit_field, #new_session .submit_field, .edit_profile .submit_field, .edit_user .submit_field, .edit_user_profile .submit_field {
     float: left;
     padding: 10px 0; }
-    #new_user .submit_field input, #new_session .submit_field input, .edit_profile .submit_field input, .edit_user .submit_field input {
+    #new_user .submit_field input, #new_session .submit_field input, .edit_profile .submit_field input, .edit_user .submit_field input, .edit_user_profile .submit_field input {
       float: left; }
-    #new_user .submit_field span, #new_session .submit_field span, .edit_profile .submit_field span, .edit_user .submit_field span {
+    #new_user .submit_field span, #new_session .submit_field span, .edit_profile .submit_field span, .edit_user .submit_field span, .edit_user_profile .submit_field span {
       line-height: 30px;
       margin: 7px 50px 0 15px; }
+
+.edit_user_profile {
+  width: auto;
+  margin: 0; }
+  .edit_user_profile legend {
+    width: 500px; }
 
 .edit_user {
   margin: 20px 0 0 20px; }

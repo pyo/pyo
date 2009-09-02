@@ -26,8 +26,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def edit
-    @profile = Profile.find(params[:id])
+  def edit    
+    @profile = current_user.profile
   end
 
   def create

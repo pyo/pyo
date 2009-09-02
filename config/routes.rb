@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.settings '/settings', :controller => 'profiles', :action => 'edit'
   map.resources :group_categories
 
 	
