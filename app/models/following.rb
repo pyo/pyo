@@ -5,7 +5,14 @@ class Following < ActiveRecord::Base
     
     parent.followers+[child].each do |follower|
       FollowingActivity.create({:producer => parent, :consumer => follower, :payload => self})
-    end    
+    end
+		
+		User.increment_counter(:followers_count, child.id)
+		
   end
-  
+
+	def before_destroy
+		User.decrement_counter(:followers_count, child.id)
+	end
+
 end

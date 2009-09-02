@@ -1,6 +1,14 @@
 class User < ActiveRecord::Base
-  TALENT_TYPES = %w{DJ Producer Singer Guitarist Drummer Fan}.sort
 
+  TALENT_TYPES	= %w{DJ Producer Singer Guitarist Drummer Fan}.sort
+	SORT_TYPE			= {
+		:most_followers=>"`users`.followers_count DESC, `profiles`.last_name ASC",
+		:least_followers=>"`users`.followers_count ASC, `profiles`.last_name ASC",
+		:newest=>"`users`.created_at DESC",
+		:oldest=>"`users`.created_at ASC",
+		:alphabetical=>"`users`.name ASC"
+	}
+  
   include Covalence::Member
   include Clearance::App::Models::User
   attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list, :talent_type, :twitter_username, :twitter_password, :flickr_username, :flickr_id
@@ -48,6 +56,7 @@ class User < ActiveRecord::Base
   has_many :updates, :class_name => "Activity", :as => :producer, :conditions => {:consumer_id => nil}
 
 	named_scope :featured, :conditions=>{ :featured => true }
+	named_scope :sort_by, lambda{|*args| {:order=>User::SORT_TYPE[(args.first || "newest").to_sym], :joins=>[:profile]} }
   
   # covalence groups
   is_member_of :groups
