@@ -18,8 +18,9 @@
   - if current_user
     = render "users/dashboard_nav"
   = render "users/grey_boxes"
-  %h4.title #{@user.name.capitalize}'s Followers
-  No Likes
+  %h4.title #{@user.name.capitalize}'s Likes
+  - @likes.each do |like|
+    = like.attributes.inspect
 
 .details
   .inner_content

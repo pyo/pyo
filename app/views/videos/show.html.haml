@@ -3,7 +3,10 @@
   .inner_content
     = render "users/grey_boxes"
     = render "users/dashboard_nav"
-    %h4.title= h @video.title
+    .relative
+      %h4.title= h @video.title
+      .hanger
+      = link_to image_tag('media_like.png'), '#'
     = @video.embed_html
     %p
       = h @video.description

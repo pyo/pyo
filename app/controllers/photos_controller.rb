@@ -8,6 +8,12 @@ class PhotosController < ApplicationController
     @photos = @user.photos.paginate(:per_page => 30, :page => params[:page])
     load_user_data
   end
+  
+  def like
+    current_user.likes.create(:media => @photo)
+    flash[:notice] = "You now like this photo"
+    redirect_to user_photo_path(@photo.user, @photo)
+  end
 
   def new
     @photo = Photo.new

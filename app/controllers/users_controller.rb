@@ -4,13 +4,19 @@ class UsersController < ApplicationController
   before_filter :authenticate_or_temp, :only => [:dashboard]
   
   before_filter :authenticate, :except => [:new, :create,:index,:show, :dashboard]
-  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects,:inbox, :change_admin_status, :change_featured_status]
+  before_filter :load_user, :only => [:show, :edit, :update, :follow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status]
   before_filter :check_user, :only => [:edit,:inbox,:update]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
   
   def index
     @users = User.all
+  end
+  
+  def likes
+    @likes = @user.likes.paginate(:per_page => 15, :page => params[:page])
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
   def dashboard

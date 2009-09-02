@@ -1,7 +1,11 @@
 .main
   .inner_content
-    = render :partial => "users/dashboard_nav"
-    %h4.title=h @photo.title
+    = render "users/dashboard_nav"
+    = render "users/grey_boxes"
+    .relative
+      %h4.title=h @photo.title
+      .hanger
+        = link_to 'Like', like_user_photo_path(@photo.user, @photo), :class => 'media_like', :method => :post
     .photo_tags
       Tags:
       = @photo.tags.map{ |tag| link_to tag.name, user_photos_path }
