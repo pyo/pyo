@@ -49,7 +49,7 @@ ActionController::Routing::Routes.draw do |map|
 									:change_featured_status => :put
                   } do |users|
                   users.resources :photos,
-                                  :member => {:rate => :post}
+                                  :member => {:rate => :post, :like => :post}
                   users.resources :tracks,
                                   :member => {:rate => :post}
 									users.resources :videos, 
