@@ -51,9 +51,9 @@ ActionController::Routing::Routes.draw do |map|
                   users.resources :photos,
                                   :member => {:rate => :post, :like => :post}
                   users.resources :tracks,
-                                  :member => {:rate => :post}
+                                  :member => {:rate => :post, :like => :post}
 									users.resources :videos, 
-																	:member => {:rate => :post, :status => :post, :upload => :get, :done => :get}
+																	:member => {:rate => :post, :status => :post, :upload => :get, :done => :get, :like => :post}
                   users.resources :blogs,
                                   :member => {:rate => :post}
                   users.resources :direct_messages

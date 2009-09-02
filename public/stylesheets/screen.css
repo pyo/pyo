@@ -758,7 +758,8 @@ li.group:hover, li.user:hover {
 h4.title {
   border-bottom: 1px dashed #AAA;
   margin-bottom: 10px;
-  padding-bottom: 5px; }
+  padding-bottom: 5px;
+  width: 615px; }
 
 .sub_info {
   margin-bottom: 10px; }
@@ -859,3 +860,16 @@ h4.title {
 
 .media_like:hover {
   background: url(/images/media_like.png) left -25px no-repeat; }
+
+.like {
+  width: 595px;
+  border-bottom: 1px dashed #CCC;
+  padding: 10px; }
+  .like img {
+    display: block;
+    border: 3px solid #CCC; }
+
+.like:hover {
+  background: #EEE; }
+  .like:hover img {
+    border: 3px solid #026DFE; }

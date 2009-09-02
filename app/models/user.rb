@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   TALENT_TYPES = %w{DJ Producer Singer Guitarist Drummer Fan}.sort
-  
+
   include Covalence::Member
   include Clearance::App::Models::User
   attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list, :talent_type, :twitter_username, :twitter_password, :flickr_username, :flickr_id
@@ -82,6 +82,11 @@ class User < ActiveRecord::Base
     if resource_user_method
       super_user? || resource.send(resource_user_method) == self
     end
+  end
+  
+  def likes?(resource)
+    RAILS_DEFAULT_LOGGER.info(resource.class.to_s)
+    likes.exists?(:media_type => resource.class.to_s, :media_id => resource.id)
   end
   
   def tweets        

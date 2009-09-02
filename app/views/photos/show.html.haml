@@ -1,11 +1,13 @@
+= render "users/public_top"
 .main
   .inner_content
     = render "users/dashboard_nav"
     = render "users/grey_boxes"
     .relative
       %h4.title=h @photo.title
-      .hanger
-        = link_to 'Like', like_user_photo_path(@photo.user, @photo), :class => 'media_like', :method => :post
+      - unless current_user && (current_user.owns?(@photo) || current_user.likes?(@photo))
+        .hanger
+          = link_to 'Like', like_user_photo_path(@photo.user, @photo), :class => 'media_like', :method => :post
     .photo_tags
       Tags:
       = @photo.tags.map{ |tag| link_to tag.name, user_photos_path }

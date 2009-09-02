@@ -18,21 +18,19 @@
   - if current_user
     = render "users/dashboard_nav"
   = render "users/grey_boxes"
-  %h4.title #{@user.name.capitalize}'s Videos
-  
-  .videos
-    - unless @videos.empty?
-      - @videos.each do |video|
-        .video_thumb
-          = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
-          .title= video.title
-          .comment_link
-            - if video.comments_count > 0
-              = link_to pluralize(video.comments_count, 'Comment'), user_video_path(video.user, video, :anchor => 'comments')
-            - else
-              = link_to 'Post a comment', user_video_path(video.user, video, :anchor => 'comments')          
-    - else
-      No Videos
+  %h4.title #{@user.name.capitalize}'s Connects
+  - unless @connects.empty?
+    .followers
+      - @connects.each do |connect|
+        .follower
+          = link_to image_tag(connect.profile.avatar.url(:dashboard)), connect
+          = link_to connect.name.capitalize, connect
+          .full_name= connect.profile.full_name if connect.profile.full_name
+          .city_and_state= connect.city_and_state.join(', ')
+          .talent_type= connect.talent_type
+    = will_paginate @connects
+  - else
+    No Followers
 
 .details
   .inner_content

@@ -26,7 +26,7 @@
           = link_to image_tag(photo.image.url(:thumb)), user_photo_path(photo.user,photo)
           - if photo.title
             .title= photo.title
-          .comment
+          .comment_link
             - if photo.comments_count > 0
               = link_to pluralize(photo.comments_count, 'Comment'), user_photo_path(photo.user, photo, :anchor => 'comments')
             - else

@@ -5,8 +5,9 @@
     = render "users/dashboard_nav"
     .relative
       %h4.title= h @video.title
-      .hanger
-      = link_to image_tag('media_like.png'), '#'
+      - unless current_user && (current_user.owns?(@video) || current_user.likes?(@video))
+        .hanger
+          = link_to 'Like', like_user_video_path(@video.user, @video), :class => 'media_like', :method => :post
     = @video.embed_html
     %p
       = h @video.description

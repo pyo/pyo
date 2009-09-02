@@ -11,6 +11,12 @@ class VideosController < ApplicationController
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
+  def like
+    current_user.likes.create(:media => @video)
+    flash[:notice] = "You now like this video"
+    redirect_to user_video_path(@video.user, @video)
+  end
+  
   def videos
     @videos = Video.paginate(:per_page => 25, :page => params[:page])
   end

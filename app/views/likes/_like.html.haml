@@ -1,0 +1,15 @@
+.like
+  - if like.media_image_url
+    = link_to image_tag(like.media_image_url), self.send("user_"+like.media.class.to_s.downcase+"_path", like.media.user, like.media, :anchor => 'comments')
+  #{like.media_title} by #{link_to like.media.user.name, like.media.user}
+  - if like.media.is_a?(Track)
+    .player
+      %script{:type=>"text/javascript"}
+        = "AudioPlayer.embed(\"audioplayer_#{like.media.id}\", {soundFile: \"#{like.media.mp3.url}\", titles: \"#{h like.media.name}\", artists: \"#{like.media.user.name}\",});"  
+      %div{:id => "audioplayer_#{like.media.id}"}
+  
+  .comment_link
+    - if like.media.comments_count > 0
+      = link_to pluralize(like.media.comments_count, 'Comment'), self.send("user_"+like.media.class.to_s.downcase+"_path", like.media.user, like.media, :anchor => 'comments')
+    - else
+      = link_to 'Post a comment', self.send("user_"+like.media.class.to_s.downcase+"_path", like.media.user, like.media, :anchor => 'comments')

@@ -5,6 +5,9 @@
       $('.rounded').corners();
       $('.rounded').corners(); /* test for double rounding */
     });
+
+  = javascript_include_tag "/audio-player/audio-player.js"
+  = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
     
 .inner_content
   .top
@@ -19,8 +22,7 @@
     = render "users/dashboard_nav"
   = render "users/grey_boxes"
   %h4.title #{@user.name.capitalize}'s Likes
-  - @likes.each do |like|
-    = like.attributes.inspect
+  = render @likes
 
 .details
   .inner_content

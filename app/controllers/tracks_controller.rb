@@ -10,6 +10,12 @@ class TracksController < ApplicationController
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
+  def like
+    current_user.likes.create(:media => @track)
+    flash[:notice] = "You now like this track"
+    redirect_to user_track_path(@track.user, @track)
+  end
+  
   def music
     @tracks = Track.all
   end
@@ -19,7 +25,8 @@ class TracksController < ApplicationController
   end
   
   def show
-    
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
   def music
