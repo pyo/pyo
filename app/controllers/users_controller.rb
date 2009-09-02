@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   helper :notifications
   
   def index
-    @users = User.all
+    @users = User.sort_by(params[:sort]).all
   end
   
   def dashboard
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     @flickr_photos = @user.flickr_photos(8)
     @tracks = @user.tracks.recent(:limit => 10)
     @videos = @user.videos
-    @tweets = @user.tweets  
+    @tweets = @user.tweets rescue [] 
     
     @followings = @user.followings.paginate(:per_page => 12, :page => 1)  
     @updates = @user.updates.paginate(:per_page => 24, :page => 1)

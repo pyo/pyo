@@ -1,6 +1,6 @@
 body {
   background-color: #222;
-  font-family: Arial;
+  font-family: Helvetica, Arial;
   font-size: 0.8em; }
 
 p, h1, h2, h3, h4, h5, ul, form, img {
@@ -22,8 +22,9 @@ a:hover {
   text-decoration: underline; }
 
 h2 {
-  color: #006FFF;
-  font-size: 3em; }
+  color: #026DFE;
+  font-size: 35px;
+  padding: 0; }
 
 h3 {
   background-color: #BBB;
@@ -511,6 +512,11 @@ ul.activities_menu {
 
 .member_info {
   color: #999;
+  clear: both; }
+
+.page_info {
+  color: #777;
+  font-size: 14px;
   clear: both; }
 
 .home_columns {
