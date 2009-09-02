@@ -1,1 +1,40 @@
-User#connects
+- content_for(:head) do
+  = javascript_include_tag 'jquery.corners.js'
+  :javascript
+    $(function(){
+      $('.rounded').corners();
+      $('.rounded').corners(); /* test for double rounding */
+    });
+    
+.inner_content
+  .top
+    %h2.left #{@user.name.capitalize_words}
+    %span.status= @user.status.message if @user.status
+    .member_info
+      Member Since: 
+      %strong #{@user.created_at.strftime("%B %Y")}
+      | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
+.main
+  - if current_user
+    = render "users/dashboard_nav"
+  = render "users/grey_boxes"
+  %h4.title #{@user.name.capitalize}'s Followers
+  - unless @connects.empty?
+    .followers
+      - @connects.each do |connect|
+        .follower
+          = link_to image_tag(connect.profile.avatar.url(:dashboard)), connect
+          = link_to connect.name.capitalize, connect
+          .full_name= connect.profile.full_name if connect.profile.full_name
+          .city_and_state= connect.city_and_state.join(', ')
+          .talent_type= connect.talent_type
+    = will_paginate @connects
+  - else
+    No Followers
+
+.details
+  .inner_content
+    = render :partial => "users/public_info"
+
+  .inner_content
+    = render :partial => 'shared/tall_advertisement'

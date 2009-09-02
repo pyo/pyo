@@ -127,6 +127,29 @@ class UsersController < ApplicationController
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
+  def connects
+    @user = current_user
+    @connects = User.paginate(
+      :select => 'distinct `users`.*',
+      :per_page => 40,
+      :page => params[:page],
+      :joins => %{
+        join followings as ls
+        on
+        (ls.parent_id = '#{current_user.id}' and users.id = ls.child_id)
+        or
+        (ls.child_id = '#{current_user.id}' and users.id = ls.parent_id)
+        join followings as rs
+        on
+        (rs.parent_id = '#{current_user.id}' and rs.child_id = ls.parent_id and ls.child_id = '#{current_user.id}')
+        or
+        (rs.child_id = '#{current_user.id}' and rs.parent_id = ls.child_id and ls.parent_id = '#{current_user.id}')
+      }
+    )
+    @posts = current_user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = current_user.groups.paginate(:per_page => 5, :page => 1)
+  end
+  
   private
   
     def authenticate_or_temp
