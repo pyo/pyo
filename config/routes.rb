@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.settings '/settings', :controller => 'profiles', :action => 'edit'
-  map.settings '/connects', :controller => 'users', :action => 'connects'
+  map.connects '/connects', :controller => 'users', :action => 'connects'
   map.resources :group_categories
 
 	

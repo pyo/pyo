@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
 	has_many :bookings, :dependent=>:destroy
 	has_many :ads, :dependent=>:destroy
 	has_many :blogs
+	has_many :likes
   
   # setup followers
   has_many :_followings,    :as => 'child', :class_name => 'Following'
