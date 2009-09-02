@@ -68,6 +68,8 @@ class UsersController < ApplicationController
     
     @followings = @user.followings.paginate(:per_page => 12, :page => 1)  
     @updates = @user.updates.paginate(:per_page => 24, :page => 1)
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
     @user.profile.update_view_count(request)
     
   end
@@ -109,6 +111,12 @@ class UsersController < ApplicationController
   def follow
     Following.create(:parent => current_user, :child => @user)
     redirect_to @user
+  end
+  
+  def followers
+    @user = User.find_by_name(params[:id])
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
   private

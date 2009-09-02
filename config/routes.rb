@@ -39,6 +39,8 @@ ActionController::Routing::Routes.draw do |map|
                 :has_one => [:password, :confirmation], 
                 :member => {
                   :follow => :post,
+                  :followers => :get,
+                  :likes => :get,
                   :connects => :get,
                   :inbox => :get,
 									:change_admin_status => :put,

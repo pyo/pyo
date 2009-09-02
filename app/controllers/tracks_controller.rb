@@ -6,6 +6,8 @@ class TracksController < ApplicationController
   
   def index
     @tracks = @user.tracks.all
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
   def music

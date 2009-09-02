@@ -1,20 +1,28 @@
 .main
   .inner_content
     = render :partial => "users/dashboard_nav"
-  .inner_content
+    %h4.title=h @photo.title
+    .photo_tags
+      Tags:
+      = @photo.tags.map{ |tag| link_to tag.name, user_photos_path }
     .photo_view
-      %h2 
-        = h @photo.title
-      = image_tag(@photo.image.url(:medium))
-      .photo_tags
-        %h3 Tags:
-        %p
-          = h @photo.tags.collect(&:name)
+      .photo
+        = image_tag(@photo.image.url(:medium))
+      = @photo.description if @photo.description
+  .prev_next_links
+    - if @prev_photo
+      .prev_media
+        = link_to image_tag(@prev_photo.image.url(:thumb)), user_photo_path(@user, @prev_photo)
+        = link_to '&laquo; Previous', user_photo_path(@user, @prev_photo)
+    - if @next_photo
+      .next_media
+        = link_to image_tag(@next_photo.image.url(:thumb)), user_photo_path(@user, @next_photo)
+        = link_to 'Next &raquo;', user_photo_path(@user, @next_photo)
   .inner_content
-    %h2 Rating        
+    %h4 Rating        
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@photo}
   .inner_content
-    %h2 Comments
+    %h4 Comments
     = render :partial => @photo.comments
     = render :partial => "comments/form", :locals => {:commentable => @photo, :comment_class=>""}
 .details

@@ -17,26 +17,9 @@
       %strong #{@user.created_at.strftime("%B %Y")}
       | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
 .main
-  .greyboxes
-    %a.greybox(class='rounded {15px}' href='#')
-      .count
-        #{@user.followers.size}
-      Followers
-  
-    %a.greybox(class='rounded {15px}' href="#{user_photos_path(@user)}")
-      .count
-        #{@user.photos.size}
-      Photos
-  
-    %a.greybox(class='rounded {15px}' href='#')
-      .count
-        #{@user.tracks.size}
-      Audio Files
-  
-    %a.greybox(class='rounded {15px}' href="#{user_videos_path(@user)}")
-      .count
-        #{@user.videos.size}
-      Videos
+  - if current_user
+    = render "users/dashboard_nav"
+  = render "users/grey_boxes"
 
   
   .content

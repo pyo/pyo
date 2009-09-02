@@ -1,34 +1,49 @@
-= javascript_include_tag "/audio-player/audio-player.js"
-= javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
-.main
-  - if current_user == @user
-    .inner_content
-      = render "users/dashboard_nav"
+- content_for(:head) do
+  = javascript_include_tag 'jquery.corners.js'
+  :javascript
+    $(function(){
+      $('.rounded').corners();
+      $('.rounded').corners(); /* test for double rounding */
+    });
+  = javascript_include_tag "/audio-player/audio-player.js"
+  = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
   
-  .inner_content
-    %h2 
-      = "Tracks by #{@user.name.capitalize}"
-    
-    .tracks
-      - unless @tracks.empty?
-        - @tracks.each do |track|
-          .track_list_item
-            %h3
-              = h track.name
-              (
-              = link_to("listen", user_track_path(@user, track))
-              = "| #{link_to('edit', edit_user_track_path(@user,track))}" if is_owner?(track) 
-              = "| #{link_to('delete', [@user,track], :confirm => 'Are you sure?', :method => :delete)}" if is_owner?(track) 
-              )
-            %p 
-              = h track.description
-              %script{:type=>"text/javascript"}
-                = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
-              #audioplayer_1
-      - else
-        No Tracks Found
+.inner_content
+  .top
+    %h2.left #{@user.name.capitalize_words}
+    %span.status= @user.status.message if @user.status
+    .member_info
+      Member Since: 
+      %strong #{@user.created_at.strftime("%B %Y")}
+      | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
+.main
+  - if current_user
+    = render "users/dashboard_nav"
+  = render "users/grey_boxes"
+  %h4.title #{@user.name.capitalize}'s Tracks
+  
+  .tracks
+    - unless @tracks.empty?
+      - @tracks.each do |track|
+        .track_list_item
+          %h3
+            = h track.name
+            (
+            = link_to("listen", user_track_path(@user, track))
+            = "| #{link_to('edit', edit_user_track_path(@user,track))}" if is_owner?(track) 
+            = "| #{link_to('delete', [@user,track], :confirm => 'Are you sure?', :method => :delete)}" if is_owner?(track) 
+            )
+          %p 
+            = h track.description
+            %script{:type=>"text/javascript"}
+              = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+            #audioplayer_1
+    - else
+      No Tracks Found
+
 .details
   .inner_content
-    = render "users/public_info"
+    = render :partial => "users/public_info"
+
   .inner_content
-    = render "shared/tall_advertisement"
+    = render :partial => 'shared/tall_advertisement'

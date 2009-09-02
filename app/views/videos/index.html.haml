@@ -1,22 +1,40 @@
-.main
-  .inner_content
-    = render :partial => "users/dashboard_nav"
-  .inner_content
-    %h2 Videos
+- content_for(:head) do
+  = javascript_include_tag 'jquery.corners.js'
+  :javascript
+    $(function(){
+      $('.rounded').corners();
+      $('.rounded').corners(); /* test for double rounding */
+    });
     
-    .videos
-      - unless @videos.empty?
-        - @videos.each do |video|
-          .video_thumb
-            = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
-            %h3
-              = link_to video.title, user_video_path(video.user,video)
-            = link_to('delete', [@user,video], :confirm =>"Are you sure you want to delete this photo?", :method => :delete) if is_owner?(video)
-            
-      - else
-        No Videos
+.inner_content
+  .top
+    %h2.left #{@user.name.capitalize_words}
+    %span.status= @user.status.message if @user.status
+    .member_info
+      Member Since: 
+      %strong #{@user.created_at.strftime("%B %Y")}
+      | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
+.main
+  - if current_user
+    = render "users/dashboard_nav"
+  = render "users/grey_boxes"
+  %h4.title #{@user.name.capitalize}'s Videos
+  
+  .videos
+    - unless @videos.empty?
+      - @videos.each do |video|
+        .video_thumb
+          = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
+          %h3
+            = link_to video.title, user_video_path(video.user,video)
+          = link_to('delete', [@user,video], :confirm =>"Are you sure you want to delete this photo?", :method => :delete) if is_owner?(video)
+          
+    - else
+      No Videos
+
 .details
   .inner_content
-    = render :partial => "users/info"
+    = render :partial => "users/public_info"
+
   .inner_content
-    = render :partial => "shared/tall_advertisement"
+    = render :partial => 'shared/tall_advertisement'

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090901203317) do
+ActiveRecord::Schema.define(:version => 20090902155229) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20090901203317) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.integer  "comments_count",     :default => 0
   end
 
   add_index "photos", ["title"], :name => "index_photos_on_title"

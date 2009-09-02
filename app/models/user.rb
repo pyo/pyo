@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
 	has_many :blogs
   
   # setup followers
-  has_many :parents,    :as => 'child', :class_name => 'Following'
-  has_many :followers,  :through => :parents, :source => "parent", :source_type => "User" do
+  has_many :_followings,    :as => 'child', :class_name => 'Following'
+  has_many :followers, :through => :_followings, :source => "parent", :source_type => "User" do
     def recent
       all(:limit=>8,:order => "created_at DESC" )
     end

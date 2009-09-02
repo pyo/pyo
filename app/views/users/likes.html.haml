@@ -18,23 +18,8 @@
   - if current_user
     = render "users/dashboard_nav"
   = render "users/grey_boxes"
-  %h4.title #{@user.name.capitalize}'s Pictures
-  .photos
-    - unless @photos.empty?
-      - @photos.each do |photo|
-        .photo_thumb
-          = link_to image_tag(photo.image.url(:thumb)), user_photo_path(photo.user,photo)
-          - if photo.title
-            .title= photo.title
-          .comment
-            - if photo.comments_count > 0
-              = pluralize(photo.comments_count, 'Comment')
-            - else
-              = link_to 'Post a comment', user_photo_path(photo.user, photo, :anchor => 'comments')
-          
-    - else
-      No Photos
-  
+  %h4.title #{@user.name.capitalize}'s Followers
+  No Likes
 
 .details
   .inner_content

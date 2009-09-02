@@ -22,9 +22,27 @@
   - unless @followings.empty?
     Following:
     %p
-      - @followings.paginate(:per_page => 12, :page => 1).each do |following|
+      - @followings.each do |following|
         .smaller_thumb.with_border
           = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
       - if @followings.total_pages > 1
         = link_to 'View All', '#'
       %br{:clear => "all"}
+      
+  - unless @posts.empty?
+    .sub_info
+      %strong Blog Posts:
+      %p
+        - @posts.each do |post|
+          = link_to post.title, post
+        - if @posts.total_entries > 5
+          = link_to "View All (#{@posts.total_entries})", '#'
+  
+  - unless @groups.empty?
+    .sub_info
+      %strong Groups:
+      %p
+        - @groups.each do |group|
+          = link_to group.name, group
+        - if @groups.total_entries > 5
+          = link_to "View All (#{@groups.total_entries})", '#'

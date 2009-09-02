@@ -9,5 +9,14 @@ class Comment < ActiveRecord::Base
     producer.followers.each do |follower|
       CommentActivity.create({:producer => producer, :consumer => follower, :payload => self})
     end
+    if consumer.respond_to?(:comments_count)
+      consumer.class.increment_counter(:comments_count, consumer.id)
+    end
+  end
+  
+  def before_destroy
+    if consumer.respond_to?(:comments_count)
+      consumer.class.decrement_counter(:comments_count, consumer.id)
+    end
   end
 end

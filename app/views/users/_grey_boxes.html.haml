@@ -1,0 +1,25 @@
+.greyboxes
+  %a.greybox(class='rounded {15px} #{current_page?(followers_user_path(@user)) ? 'active' : ''}' href="#{followers_user_path(@user)}")
+    .count
+      #{@user.followers.size}
+    Followers
+
+  %a.greybox(class="rounded {15px} #{current_page?(user_photos_path(@user)) ? 'active' : ''}" href="#{user_photos_path(@user)}")
+    .count
+      #{@user.photos.size}
+    Photos
+
+  %a.greybox(class='rounded {15px} #{current_page?(user_tracks_path(@user)) ? 'active' : ''}' href="#{user_tracks_path(@user)}")
+    .count
+      #{@user.tracks.size}
+    Audio Files
+
+  %a.greybox(class='rounded {15px} #{current_page?(user_videos_path(@user)) ? 'active' : ''}' href="#{user_videos_path(@user)}")
+    .count
+      #{@user.videos.size}
+    Videos
+    
+  %a.greybox(class='rounded {15px} #{current_page?(likes_user_path(@user)) ? 'active' : ''}' href="#{likes_user_path(@user)}")
+    .count
+      #{@user.followers.size}
+    Likes

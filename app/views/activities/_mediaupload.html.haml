@@ -1,5 +1,5 @@
 - payload = item.payload
-posted 1 new #{payload.type.to_s.singularize.downcase}
+posted a new #{payload.type.to_s.singularize.downcase}
 - if payload.respond_to?(:image)
   .media
     = image_tag(payload.image.url(:thumb))

@@ -5,7 +5,8 @@ class PhotosController < ApplicationController
   before_filter :authenticate, :except => [:show, :index]
   
   def index
-    @photos = @user.photos.all
+    @photos = @user.photos.paginate(:per_page => 30, :page => params[:page])
+    load_user_data
   end
 
   def new
@@ -13,7 +14,9 @@ class PhotosController < ApplicationController
   end
   
   def show
-    
+    @prev_photo = @user.photos.first(:order => 'id desc', :conditions => ["id < ?", @photo.id])
+    @next_photo = @user.photos.first(:order => 'id asc', :conditions => ["id > ?", @photo.id])
+    load_user_data
   end
   
   def rate
@@ -66,6 +69,11 @@ class PhotosController < ApplicationController
       (current_user == @photo.user)
     end
     
+    
+    def load_user_data
+      @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+      @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+    end
 end
 
 

@@ -4,7 +4,9 @@
     There are currently #{pluralize(Group.count, 'Group').gsub(/(\d+)/, '<strong>\1</strong>')} on PYO
     .hanger
       = link_to image_tag('/images/startgroup.gif'), request_group_groups_path if current_user
-  
+  - if flash[:notice]
+    %p.notify 
+      = flash[:notice]
 .main  
   - unless @groups.empty?
     .groups
