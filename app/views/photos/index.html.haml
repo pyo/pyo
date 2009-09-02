@@ -28,7 +28,7 @@
             .title= photo.title
           .comment
             - if photo.comments_count > 0
-              = pluralize(photo.comments_count, 'Comment')
+              = link_to pluralize(photo.comments_count, 'Comment'), user_photo_path(photo.user, photo, :anchor => 'comments')
             - else
               = link_to 'Post a comment', user_photo_path(photo.user, photo, :anchor => 'comments')
           

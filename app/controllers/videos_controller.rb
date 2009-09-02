@@ -59,6 +59,8 @@ class VideosController < ApplicationController
   def show
     @panda_video = Panda::Video.find(@video.panda_id)
     @video.update_panda_status(@panda_video) if RAILS_ENV == 'development'
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
 
 	def update

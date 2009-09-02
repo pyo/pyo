@@ -1,3 +1,10 @@
+- content_for(:head) do
+  = javascript_include_tag 'jquery.corners.js'
+  :javascript
+    $(function(){
+      $('.rounded').corners();
+      $('.rounded').corners(); /* test for double rounding */
+    });
 .greyboxes
   %a.greybox(class='rounded {15px} #{current_page?(followers_user_path(@user)) ? 'active' : ''}' href="#{followers_user_path(@user)}")
     .count
@@ -14,7 +21,7 @@
       #{@user.tracks.size}
     Audio Files
 
-  %a.greybox(class='rounded {15px} #{current_page?(user_videos_path(@user)) ? 'active' : ''}' href="#{user_videos_path(@user)}")
+  %a.greybox(class='rounded {15px} #{current_page?(user_videos_path(@user)) || (@video && current_page?(user_video_path(@user, @video))) ? 'active' : ''}' href="#{user_videos_path(@user)}")
     .count
       #{@user.videos.size}
     Videos

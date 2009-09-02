@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @photos = @user.photos.recent(:limit => 6)
+    @photos = @user.photos.recent.paginate(:per_page => 10, :page => 1)
     @flickr_photos = @user.flickr_photos(8)
     @tracks = @user.tracks.recent(:limit => 10)
     @videos = @user.videos
@@ -115,6 +115,14 @@ class UsersController < ApplicationController
   
   def followers
     @user = User.find_by_name(params[:id])
+    @followers = @user.followers.paginate(:per_page => 40, :page => params[:page])
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+  end
+  
+  def following
+    @user = User.find_by_name(params[:id])
+    @followings = @user.followings.paginate(:per_page => 40, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end

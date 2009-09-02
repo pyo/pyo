@@ -1,21 +1,7 @@
 - content_for(:head) do
-  = javascript_include_tag 'jquery.corners.js'
-  :javascript
-    $(function(){
-      $('.rounded').corners();
-      $('.rounded').corners(); /* test for double rounding */
-    });
-
   = javascript_include_tag "/audio-player/audio-player.js"
   = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
-.inner_content
-  .top
-    %h2.left #{@user.name.capitalize_words}
-    %span.status= @user.status.message if @user.status
-    .member_info
-      Member Since: 
-      %strong #{@user.created_at.strftime("%B %Y")}
-      | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}
+= render "users/public_top"
 .main
   - if current_user
     = render "users/dashboard_nav"
@@ -59,12 +45,13 @@
             %div{:id => "audioplayer_#{track.id}"}
 
   - unless @photos.empty?
-    .inner_content
-      %h4 Recent Photos
+    %h4 Recent Photos
+    - if @photos.total_entries > @photos.per_page
       = link_to("VIEW ALL", user_photos_path(@user), :style=>"float:right; margin-top:-20px")
-      - for photo in @photos
+    .profile_photos
+      - @photos.each do |photo|
         .profile_photo_thumb
-          = link_to image_tag(photo.image.url(:thumb)), user_photo_path(@user,photo)
+          = link_to image_tag(photo.image.url(:thumb), :class => 'profile_photo'), user_photo_path(@user,photo)
 
   - unless @flickr_photos.empty? || true
     .inner_content

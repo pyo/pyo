@@ -40,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
                 :member => {
                   :follow => :post,
                   :followers => :get,
+                  :following => :get,
                   :likes => :get,
                   :connects => :get,
                   :inbox => :get,
@@ -69,9 +70,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.dashboard '/dashboard', :controller => 'users', :action => 'dashboard'
   map.music '/music', :controller => 'tracks', :action => 'music'
-  map.videos '/videos', :controller => 'videos', :action => 'videos'
   
+  map.videos '/videos', :controller => 'videos', :action => 'videos', :conditions => { :method => :get }
   map.resources :videos, :member => {:status => :post, :status_update => :any, :upload => :get, :done => :get}
+  
   
   #sessions
   map.login     '/login',     :controller => 'sessions',  :action => 'new'

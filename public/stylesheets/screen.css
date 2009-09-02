@@ -263,9 +263,12 @@ ul.menu, ul.separated {
 
 .smaller_thumb {
   float: left;
-  width: 50px;
-  height: 50px;
-  margin-left: 1px; }
+  width: 46px;
+  height: 46px;
+  margin: 0 5px 5px 0; }
+  .smaller_thumb img {
+    width: 46px;
+    height: 46px; }
 
 .with_bottom_margin {
   margin-bottom: 10px; }
@@ -435,15 +438,30 @@ ul.activities_menu {
     height: 52px;
     margin-left: 5px;
     margin-bottom: 5px; }
+  .followers .details, .members .details {
+    clear: both; }
   .followers .thumb, .members .thumb {
     width: 46px;
     height: 46px; }
-    .followers .thumb img, .members .thumb img {
-      border: 3px solid #CCC; }
-    .followers .thumb a:hover img, .members .thumb a:hover img {
-      border: 3px solid #006FFF; }
+  .followers img, .members img {
+    border: 3px solid #CCC; }
+  .followers a:hover img, .members a:hover img {
+    border: 3px solid #006FFF; }
   .followers div.first, .members div.first {
     margin-left: 0 !important; }
+
+.follower {
+  float: left;
+  width: 100px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 20px 20px 0;
+  height: 170px; }
+
+.follower:hover {
+  background: #EEE; }
+  .follower:hover img {
+    border: 3px solid #026DFE; }
 
 .bordered_image img {
   border: 3px solid #CCC; }
@@ -731,10 +749,13 @@ li.group:hover, li.user:hover {
   text-align: justify; }
 
 .grey {
-  color: #AAAAAA; }
+  color: #AAA; }
+
+.dark_grey {
+  color: #999; }
 
 h4.title {
-  border-bottom: 1px dashed #AAAAAA;
+  border-bottom: 1px dashed #AAA;
   margin-bottom: 10px;
   padding-bottom: 5px; }
 
@@ -744,21 +765,26 @@ h4.title {
 #post_bar {
   margin-top: 10px; }
 
-.photo_thumb:hover {
+.photo_thumb:hover, .video_thumb:hover {
   background-color: #EEE; }
-  .photo_thumb:hover img {
+  .photo_thumb:hover img, .video_thumb:hover img {
     border: 3px solid #026DFE !important; }
 
-.photo_thumb {
+.photo_thumb, .video_thumb {
   float: left;
   margin: 0 20px 10px 0;
   width: 160px;
   padding: 10px;
   text-align: center; }
-  .photo_thumb .title {
+  .photo_thumb .title, .video_thumb .title {
     font-weight: bold; }
-  .photo_thumb img {
+  .photo_thumb img, .video_thumb img {
     border: 3px solid #CCC; }
+
+.video_thumb {
+  width: 160px !important; }
+  .video_thumb img {
+    width: 150px; }
 
 .photo_view {
   text-align: center; }
@@ -785,4 +811,38 @@ h4.title {
 .prev_media:hover, .next_media:hover {
   background: #EEE; }
   .prev_media:hover img, .next_media:hover img {
+    border: 3px solid #026DFE !important; }
+
+.profile_photos {
+  border-top: 1px dashed #999999;
+  margin-right: 10px; }
+
+.profile_photo {
+  float: left;
+  width: 90px;
+  border: 3px solid #CCCCCC;
+  margin: 10px 5px 0; }
+
+.profile_photo:hover {
+  border: 3px solid #026DFE !important; }
+
+.comment {
+  width: 600px;
+  float: left;
+  clear: both;
+  border-bottom: 1px dashed #CCC;
+  padding: 10px 0; }
+  .comment .thumb_info {
+    float: left;
+    margin-left: 10px; }
+    .comment .thumb_info img {
+      width: 50px;
+      border: 3px solid #CCC; }
+  .comment .comment_message {
+    float: left;
+    margin-left: 10px; }
+
+.comment:hover {
+  background-color: #EEE; }
+  .comment:hover img {
     border: 3px solid #026DFE !important; }

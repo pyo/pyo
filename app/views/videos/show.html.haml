@@ -1,23 +1,22 @@
+= render "users/public_top"
 .main
   .inner_content
+    = render "users/grey_boxes"
     = render "users/dashboard_nav"
-  .inner_content
-    .photo_view
-      %h2 
-        = h @video.title
-      = @video.embed_html
+    %h4.title= h @video.title
+    = @video.embed_html
+    %p
+      = h @video.description
+    .photo_tags
+      %h3 Tags:
       %p
-        = h @video.description
-      .photo_tags
-        %h3 Tags:
-        %p
-          = h @video.tags.collect(&:name)
+        = h @video.tags.collect(&:name)
   .inner_content
     %h2 Rating        
     = render :partial => "shared/rate_item",:locals => {:ratable=>@video}
   .inner_content
     %h2 Comments
-    = render @video.comments
+    = render @video.comments.all(:order => "created_at desc")
     = render :partial => "comments/form", :locals => {:commentable => @video, :comment_class=>""}
 .details
   .inner_content

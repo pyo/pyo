@@ -1,0 +1,8 @@
+.inner_content
+  .top
+    %h2.left #{@user.name.capitalize_words}
+    %span.status= @user.status.message if @user.status
+    .member_info
+      Member Since: 
+      %strong #{@user.created_at.strftime("%B %Y")}
+      | Profile Views Today: #{@user.profile.view_count(:range => 'today')} | Total Profile Views: #{@user.profile.view_count}

@@ -24,10 +24,10 @@
     %p
       - @followings.each do |following|
         .smaller_thumb.with_border
-          = link_to image_tag(following.profile.avatar.url(:thumb), :style=>'width:50px'), user_path(following)
-      - if @followings.total_pages > 1
-        = link_to 'View All', '#'
-      %br{:clear => "all"}
+          = link_to image_tag(following.profile.avatar.url(:thumb)), user_path(following)
+    - if @followings.total_entries > @followings.per_page
+      = link_to "View All (#{@followings.total_entries})", following_user_path(@user)
+    %br{:clear => "all"}
       
   - unless @posts.empty?
     .sub_info
