@@ -19,6 +19,12 @@ class UsersController < ApplicationController
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
+  def likes
+    @likes = @user.likes.paginate(:per_page => 15, :page => params[:page])
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+  end
+  
   def dashboard
     logger.info current_user.inspect
     if current_user.email_confirmed?
