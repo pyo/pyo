@@ -25,6 +25,8 @@
   - unless @videos.empty?
     .inner_content
       %h4 User's Videos
+      - if @videos.total_entries > @videos.per_page
+        = link_to("View All (#{@videos.total_entries})", user_videos_path(@user))
       .videos
         - @videos.each do |video|
           %div[video]
@@ -33,7 +35,8 @@
   - unless @tracks.empty?
     .inner_content
       %h4 #{@user.name}'s Audio
-      = link_to("VIEW ALL", user_tracks_path(@user), :style=>"float:right; margin-top:-20px")
+      - if @tracks.total_entries > @tracks.per_page
+        = link_to("View All (#{@tracks.total_entries})", user_tracks_path(@user))
       - for track in @tracks
         .profile_track_info
           %strong
@@ -47,7 +50,7 @@
   - unless @photos.empty?
     %h4 Recent Photos
     - if @photos.total_entries > @photos.per_page
-      = link_to("VIEW ALL", user_photos_path(@user), :style=>"float:right; margin-top:-20px")
+      = link_to("View All (#{@photos.total_entries})", user_photos_path(@user))
     .profile_photos
       - @photos.each do |photo|
         .profile_photo_thumb
