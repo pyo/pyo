@@ -3,18 +3,19 @@
   .inner_content
     = render "users/dashboard_nav"
     = render "users/grey_boxes"
-    .relative
-      %h4.title=h @photo.title
-      - unless current_user && (current_user.owns?(@photo) || current_user.likes?(@photo))
-        .hanger
-          = link_to 'Like', like_user_photo_path(@photo.user, @photo), :class => 'media_like', :method => :post
-    .photo_tags
-      Tags:
-      = @photo.tags.map{ |tag| link_to tag.name, user_photos_path }
-    .photo_view
-      .photo
-        = image_tag(@photo.image.url(:medium))
-      = @photo.description if @photo.description
+    .content
+      .relative
+        %h4.title=h @photo.title
+        - unless current_user && (current_user.owns?(@photo) || current_user.likes?(@photo))
+          .hanger
+            = link_to 'Like', like_user_photo_path(@photo.user, @photo), :class => 'media_like', :method => :post
+      .photo_tags
+        Tags:
+        = @photo.tags.map{ |tag| link_to tag.name, user_photos_path }
+      .photo_view
+        .photo
+          = image_tag(@photo.image.url(:medium))
+        = @photo.description if @photo.description
   .prev_next_links
     - if @prev_photo
       .prev_media
@@ -24,10 +25,10 @@
       .next_media
         = link_to image_tag(@next_photo.image.url(:thumb)), user_photo_path(@user, @next_photo)
         = link_to 'Next &raquo;', user_photo_path(@user, @next_photo)
-  .inner_content
-    %h4 Rating        
+  .content
+    %h4 Rating       
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@photo}
-  .inner_content
+  .content
     %h4 Comments
     .comments
       = render :partial => "comments/form", :locals => {:commentable => @photo, :comment_class=>""}

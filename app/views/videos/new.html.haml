@@ -1,9 +1,9 @@
 = render "users/top"
 .main
-  .inner_content
+  .content
     = render "users/dashboard_nav"
 
-    %h4.title Upload a Video
+    %h4.title Step 1. Video Details
     - form_for [@user,@video] do |form|
       .text_field
         = form.label :title

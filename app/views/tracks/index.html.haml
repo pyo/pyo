@@ -20,7 +20,7 @@
   - if current_user
     = render "users/dashboard_nav"
   = render "users/grey_boxes"
-  %h4.title #{@user.name.capitalize}'s Tracks
+  %h4 #{@user.name.capitalize}'s Tracks
   
   .tracks
     - unless @tracks.empty?

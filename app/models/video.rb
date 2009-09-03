@@ -3,12 +3,20 @@ class Video < ActiveRecord::Base
   is_taggable :tags
   acts_as_rateable
 
-	validates_presence_of :title
+	validates_presence_of :title, :description
 
   belongs_to :user
   has_many :comments, :as => 'consumer', :dependent => :destroy
 
+  default_scope :conditions => {:finished => true}
 	named_scope :recent, :order=>"created_at DESC"
+  
+  def self.unfinished(type, options = {})
+    conditions = {:finished => false}.merge(options[:conditions])
+    with_exclusive_scope do
+      find(type, :conditions => conditions)
+    end
+  end
   
   def update_panda_status(panda_video)
     if encoding = panda_video.find_encoding(PANDA_ENCODING)

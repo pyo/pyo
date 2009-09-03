@@ -18,7 +18,7 @@
   - if current_user
     = render "users/dashboard_nav"
   = render "users/grey_boxes"
-  %h4.title #{@user.name.capitalize}'s Pictures
+  %h4 #{@user.name.capitalize}'s Pictures
   .photos
     - unless @photos.empty?
       - @photos.each do |photo|

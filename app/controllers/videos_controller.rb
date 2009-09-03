@@ -28,7 +28,11 @@ class VideosController < ApplicationController
   def create
     @panda_video = Panda::Video.create
     @video = current_user.videos.create(params[:video].merge({:panda_id => @panda_video.id}))
-    redirect_to upload_user_video_path(current_user,@video)
+    if @video.errors.empty?
+      redirect_to upload_user_video_path(current_user,@video)
+    else
+      render 'new'
+    end
   end
   
   def rate
@@ -45,8 +49,9 @@ class VideosController < ApplicationController
   end
   
   def done
-    @video = Video.find_by_panda_id(params[:id])
-    flash[:notice] = "Your video has successfully been uploaded and posted to your profile."
+    @video = Video.unfinished(:first, :conditions => {:panda_id => params[:id]}) # Video.find_by_panda_id(params[:id])
+    @video.update_attribute(:finished, true)
+    flash[:notice] = "Your video has successfully been uploaded and it will be posted to your profile once it is encoded."
     render :layout => false
   end
   
@@ -57,7 +62,9 @@ class VideosController < ApplicationController
   end
   
   def status_update
-    @video = Video.find_by_panda_id(params[:id])
+    @video = Video.unfinished(:first, :conditions => {:panda_id => params[:id]}) # Video.find_by_panda_id(params[:id])
+    @video.update_attribute(:finished, true)
+    #@video = Video.find_by_panda_id(params[:id])
     @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
     @video.update_panda_status(@panda_video)
   end
