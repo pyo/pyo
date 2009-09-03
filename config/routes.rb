@@ -43,6 +43,7 @@ ActionController::Routing::Routes.draw do |map|
                   :followers => :get,
                   :following => :get,
                   :likes => :get,
+                  :updates => :get,
                   :connects => :get,
                   :inbox => :get,
 									:change_admin_status => :put,

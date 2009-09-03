@@ -1,0 +1,34 @@
+- content_for(:head) do
+  = javascript_include_tag "/audio-player/audio-player.js"
+  = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
+= render "users/public_top"
+.main
+  - if current_user
+    = render "users/dashboard_nav"
+  = render "users/grey_boxes"
+
+  
+  .content
+    %h4.with_bottom_margin #{@user.name.capitalize}'s Updates
+    .activities
+      - unless @updates.empty?
+        %ul
+          - @updates.each do |activity|
+            %div.activity[activity]
+              .thumb
+                = image_tag(activity.producer.profile.avatar(:thumb)) if activity.producer
+              #{time_ago_in_words(activity.created_at)} ago
+              %p
+                = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
+                = link_to activity.producer.name, activity.producer
+                = display_notification(activity)
+        = will_paginate(@updates)
+      - else
+        No Updates
+
+.details
+  .inner_content
+    = render :partial => "users/public_info"
+
+  .inner_content
+    = render :partial => 'shared/tall_advertisement'
