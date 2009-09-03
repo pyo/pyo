@@ -127,6 +127,9 @@ ul.menu, ul.separated {
   clear: both;
   padding-top: 20px; }
 
+.content_without_padding {
+  clear: both; }
+
 .user_bar {
   position: absolute;
   bottom: 10px;
