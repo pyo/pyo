@@ -9,6 +9,7 @@ class Comment < ActiveRecord::Base
   default_scope :order => "created_at desc"
   
   def after_create
+    CommentActivity.create({:producer => producer, :payload => self})
     producer.followers.each do |follower|
       CommentActivity.create({:producer => producer, :consumer => follower, :payload => self})
     end

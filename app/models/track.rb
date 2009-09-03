@@ -37,6 +37,7 @@ class Track < ActiveRecord::Base
   end
   
   def after_create
+    MediaUploadActivity.create({:producer => user, :payload => self})
     user.followers.each do |follower|
       MediaUploadActivity.create({:producer => user, :consumer => follower, :payload => self})
     end

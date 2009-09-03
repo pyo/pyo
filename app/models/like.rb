@@ -17,6 +17,7 @@ class Like < ActiveRecord::Base
   
   
   def after_create
+    LikeActivity.create(:producer => user, :payload => media)
     user.followers.each do |follower|
       LikeActivity.create(:producer => user, :consumer => follower, :payload => media)
     end
