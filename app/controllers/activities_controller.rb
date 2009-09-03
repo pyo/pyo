@@ -22,6 +22,12 @@ class ActivitiesController < ApplicationController
   end
   
   def create
+    current_user.followers.each do |follower|
+      activity = StatusActivity.new(params[:activity])
+      activity.producer = current_user
+      activity.consumer = follower
+      activity.save
+    end
     activity = StatusActivity.new(params[:activity])
     activity.producer = current_user
     activity.save
