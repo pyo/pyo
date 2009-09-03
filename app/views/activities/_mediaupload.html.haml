@@ -1,5 +1,11 @@
 - payload = item.payload
-posted a new #{payload.type.to_s.singularize.downcase}
+posted a new #{item.media_type}.
 - if payload.respond_to?(:image)
   .media
     = link_to image_tag(payload.image.url(:thumb)), user_photo_path(payload.user, payload)
+- else
+  .media
+    .blog
+      %blockquote
+        = link_to payload.title, payload
+        %p= truncate(payload.body, 350)
