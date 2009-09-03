@@ -699,7 +699,10 @@ form .kindagood .hint {
 
 #dashboard_nav {
   float: left;
-  margin: 10px 0; }
+  margin: 10px 0;
+  color: #AAA;
+  font-weight: bold;
+  font-size: 14px; }
   #dashboard_nav li {
     text-transform: uppercase;
     margin-right: 15px; }
