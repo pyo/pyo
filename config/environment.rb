@@ -38,7 +38,7 @@ end
 
 require 'string_ext'
 require 'tag_ext'
-
+HOST = "localhost"
 MAX_STARS = 5
 
 DO_NOT_REPLY = "info@putyourselfon.com"
