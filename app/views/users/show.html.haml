@@ -9,7 +9,7 @@
 
   
   .content
-    %h4.with_bottom_margin #{@user.profile.username}'s Updates
+    %h4.with_bottom_margin #{@user.name.capitalize}'s Updates
     .activities
       - unless @updates.empty?
         %ul
@@ -24,7 +24,7 @@
 
   - unless @videos.empty?
     .inner_content
-      %h4 User's Videos
+      %h4 #{@user.name.capitalize}'s Videos
       - if @videos.total_entries > @videos.per_page
         = link_to("View All (#{@videos.total_entries})", user_videos_path(@user))
       .videos
@@ -34,21 +34,22 @@
 
   - unless @tracks.empty?
     .inner_content
-      %h4 #{@user.name}'s Audio
+      %h4 #{@user.name.capitalize}'s Audio
       - if @tracks.total_entries > @tracks.per_page
         = link_to("View All (#{@tracks.total_entries})", user_tracks_path(@user))
-      - for track in @tracks
-        .profile_track_info
-          %strong
-            = link_to h(track.name), user_track_path(@user,track)
-          %p
-            = h truncate(track.description, 20)
-            %script{:type=>"text/javascript"}
-              = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
-            %div{:id => "audioplayer_#{track.id}"}
+      .tracks
+        - for track in @tracks
+          .track
+            .profile_track_info
+              %strong
+                = link_to h(track.name), user_track_path(@user,track)
+              .player
+                %script{:type=>"text/javascript"}
+                  = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+                %div{:id => "audioplayer_#{track.id}"}
 
   - unless @photos.empty?
-    %h4 Recent Photos
+    %h4 #{@user.name.capitalize}'s Photos
     - if @photos.total_entries > @photos.per_page
       = link_to("View All (#{@photos.total_entries})", user_photos_path(@user))
     .profile_photos

@@ -835,11 +835,10 @@ h4.title {
   .prev_media:hover img, .next_media:hover img {
     border: 3px solid #026DFE !important; }
 
-.comments {
+.comments, .tracks, .videos, .photos {
   border-top: 1px dashed #999999;
-  margin-right: 10px; }
-  .comments form {
-    margin-top: 10px; }
+  margin-right: 10px;
+  padding-top: 10px; }
 
 .profile_photos {
   border-top: 1px dashed #999999;
@@ -912,3 +911,6 @@ h4.title {
     font-size: 14px;
     font-weight: bold;
     color: #000; }
+
+.track {
+  float: left; }
