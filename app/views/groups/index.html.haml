@@ -9,6 +9,7 @@
       = flash[:notice]
 .main  
   - unless @groups.empty?
+    = render "sorting"
     .groups
       %ul
         - for group in @groups

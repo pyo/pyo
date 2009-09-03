@@ -5,12 +5,7 @@
 .main  
   - unless @users.empty?
     .inner_content
-      .box
-        Sort Results
-        %select{:onchange=>"window.location = this.value;"}
-          - %w{newest oldest most_followers least_followers alphabetical}.each do |sort|
-            %option{:value=>url_for(params.merge(:sort=>sort)), :selected=>( current_page?(params.merge(:sort=>sort) ) ? true : false )}
-              = sort.gsub("_"," ").titleize
+      = render "sorting"
       .users
         - @users.each do |user|
           .follower

@@ -1,0 +1,6 @@
+.box
+  Sort Results
+  %select{:onchange=>"window.location = this.value;"}
+    - %w{newest oldest most_members least_members alphabetical}.each do |sort|
+      %option{:value=>url_for(params.merge(:sort=>sort)), :selected=>( current_page?(params.merge(:sort=>sort) ) ? true : false )}
+        = sort.gsub("_"," ").titleize
