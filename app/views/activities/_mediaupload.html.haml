@@ -3,9 +3,14 @@ posted a new #{item.media_type}.
 - if payload.respond_to?(:image)
   .media
     = link_to image_tag(payload.image.url(:thumb)), user_photo_path(payload.user, payload)
-- else
+- elsif payload.is_a?(Blog)
   .media
     .blog
       %blockquote
         = link_to payload.title, payload
         %p= truncate(payload.body, 350)
+- elsif payload.is_a?(Track)
+  .media
+    %script{:type=>"text/javascript"}
+      = "AudioPlayer.embed(\"audioplayer_#{payload.id}\", {soundFile: \"#{payload.mp3.url}\", titles: \"#{h payload.name}\", artists: \"#{payload.user.name}\",});"  
+    %div{:id => "audioplayer_#{payload.id}"}

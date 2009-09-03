@@ -7,6 +7,7 @@ class MediaUploadActivity < Activity
   def media_type
     case payload_type
     when 'Blog' then 'blog entry'
+    when 'Track' then 'song'
     else payload.type.to_s.singularize.downcase
     end
   end
