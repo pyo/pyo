@@ -1,0 +1,5 @@
+likes #{link_to item.consumer.name, item.consumer}'s #{item.payload.class.to_s.downcase}.
+- payload = item.payload
+- if payload.respond_to?(:image)
+  .media
+    = link_to image_tag(payload.image.url(:thumb)), user_photo_path(payload.user, payload)

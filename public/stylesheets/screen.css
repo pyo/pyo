@@ -278,13 +278,17 @@ ul.menu, ul.separated {
 .activities {
   clear: both;
   border-top: 1px dashed #999;
-  width: 615px; }
+  width: 605px; }
   .activities .activity {
     float: left;
-    width: 605px;
+    width: 595px;
     padding: 10px 5px;
     border-bottom: 1px dashed #999;
     font-size: 11px; }
+    .activities .activity .media {
+      margin-top: 10px; }
+      .activities .activity .media img {
+        border: 3px solid #CCC; }
     .activities .activity p {
       font-size: 12px;
       margin-top: 5px; }
@@ -881,3 +885,6 @@ h4.title {
   background: #EEE; }
   .like:hover img {
     border: 3px solid #026DFE; }
+
+.icon {
+  vertical-align: middle; }

@@ -14,4 +14,11 @@ class Like < ActiveRecord::Base
   def media_title
     media.respond_to?(:title) ? media.title : media.name
   end
+  
+  
+  def after_create
+    user.followers.each do |follower|
+      LikeActivity.create(:producer => user, :consumer => follower, :payload => media)
+    end
+  end
 end

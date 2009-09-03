@@ -14,12 +14,6 @@ class UsersController < ApplicationController
   end
   
   def likes
-    @likes = @user.likes.paginate(:per_page => 15, :page => params[:page])
-    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
-    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
-  end
-  
-  def likes
     @likes = @user.likes.paginate(:per_page => 15, :page => params[:page], :order => 'created_at desc')
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)

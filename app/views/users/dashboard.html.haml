@@ -19,6 +19,7 @@
               = image_tag(activity.producer.profile.avatar(:thumb)) if activity.producer
             #{time_ago_in_words(activity.created_at)} ago
             %p
+              = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
               = link_to activity.producer.name, activity.producer
               = display_notification(activity)
       - if @activities.total_pages > 1
