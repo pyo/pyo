@@ -1,5 +1,14 @@
 class Group < ActiveRecord::Base
   include Covalence::Group
+  
+  SORT_TYPES = {
+    :most_members=>"`groups`.membership_count DESC, `groups`.name ASC",
+    :least_members=>"`groups`.membership_count ASC, `groups`.name ASC",
+    :newest=>"`groups`.created_at DESC",
+    :oldest=>"`groups`.created_at ASC",
+    :alphabetical=>"`groups`.name ASC"
+  }
+  
 	acts_as_url :name, :sync_url=>true
 	
   # assocs 
@@ -20,6 +29,7 @@ class Group < ActiveRecord::Base
   
   #scopes
   default_scope :order => 'name', :conditions => {:approved => 1}
+  named_scope :sort_by, lambda{|*args| {:order=>User::SORT_TYPE[(args.first || "newest").to_sym]} }
   
   #paperclip
   has_attached_file :icon,

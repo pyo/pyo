@@ -70,6 +70,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'home'
   
   map.dashboard '/dashboard', :controller => 'users', :action => 'dashboard'
+  map.connect '/dashboard/:type', :controller => 'users', :action => 'dashboard'
   map.music '/music', :controller => 'tracks', :action => 'music'
   
   map.videos '/videos', :controller => 'videos', :action => 'videos', :conditions => { :method => :get }

@@ -8,15 +8,15 @@
     - unless current_user.first_run?    
       %h4 Activity Hub
       %ul.menu.activities_menu
-        %li.first All
-        %li= link_to 'Statuses', '#'
-        %li= link_to 'Pictures', '#'
-        %li= link_to 'Audio', '#'
-        %li= link_to 'Videos', '#'
-        %li= link_to 'Blog Posts', '#'
-        %li= link_to 'Comments', '#'
-        %li= link_to 'Follows', '#'
-        %li= link_to 'Likes', '#'
+        %li.first= link_to 'All', dashboard_path
+        %li= link_to 'Statuses', :type => 'statuses'
+        %li= link_to 'Pictures', :type => 'pictures'
+        %li= link_to 'Audio', :type => 'audios'
+        %li= link_to 'Videos', :type => 'videos'
+        %li= link_to 'Blog Posts', :type => 'blogs'
+        %li= link_to 'Comments', :type => 'comments'
+        %li= link_to 'Follows', :type => 'follows'
+        %li= link_to 'Likes', :type => 'likes'
   
       #activities.activities
         - @activities.each do |activity|

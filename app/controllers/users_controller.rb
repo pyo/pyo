@@ -78,6 +78,9 @@ class UsersController < ApplicationController
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
     @user.profile.update_view_count(request)
     
+    
+    @comments= @user.comments.paginate(:per_page => 10, :page => 1)
+    
   end
 
 	def change_admin_status

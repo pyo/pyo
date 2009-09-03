@@ -70,9 +70,10 @@
           = tweet["text"]
   
   .inner_content
-    %h4 Profile Comments
-    = render :partial => @user.comments
-    = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
+    %h4 Comments
+    .profile_comments
+      = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
+      = render :partial => @comments
 
 .details
   .inner_content

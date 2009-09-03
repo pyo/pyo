@@ -5,6 +5,9 @@ class Comment < ActiveRecord::Base
   has_many :comments,   :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => 'payload', :dependent => :destroy
   
+  #scopes
+  default_scope :order => "created_at desc"
+  
   def after_create
     producer.followers.each do |follower|
       CommentActivity.create({:producer => producer, :consumer => follower, :payload => self})

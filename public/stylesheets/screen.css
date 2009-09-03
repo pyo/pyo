@@ -385,6 +385,9 @@ ul.activities_menu {
   ul.activities_menu li a {
     background: url(/images/separator-black.gif) center left no-repeat;
     padding: 0 3px 0 8px; }
+  ul.activities_menu li.first a {
+    background: none;
+    padding-left: 0; }
 
 .left {
   float: left; }
@@ -826,6 +829,12 @@ h4.title {
   background: #EEE; }
   .prev_media:hover img, .next_media:hover img {
     border: 3px solid #026DFE !important; }
+
+.profile_comments {
+  border-top: 1px dashed #999999;
+  margin-right: 10px; }
+  .profile_comments form {
+    margin-top: 10px; }
 
 .profile_photos {
   border-top: 1px dashed #999999;
