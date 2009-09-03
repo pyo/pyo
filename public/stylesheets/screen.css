@@ -385,6 +385,8 @@ ul.activities_menu {
   ul.activities_menu li a {
     background: url(/images/separator-black.gif) center left no-repeat;
     padding: 0 3px 0 8px; }
+  ul.activities_menu li.active a {
+    color: #000; }
   ul.activities_menu li.first a {
     background: none;
     padding-left: 0; }

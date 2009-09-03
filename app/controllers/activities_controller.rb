@@ -1,7 +1,21 @@
 class ActivitiesController < ApplicationController
   
   def index
-    @activities = current_user.all_activities.paginate(:per_page => 1, :page => params[:page])
+    
+    conditions = nil
+    if params[:type]
+      conditions = case params[:type]
+      when 'statuses' then ["type = ?", "StatusActivity"]
+      when 'pictures' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Photo"]
+      when 'audios' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Track"]
+      when 'videos' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Video"]
+      when 'blogs' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Blog"]
+      when 'comments' then ["type = ?", "CommentActivity"]
+      when 'follows' then ["type = ?", "FollowingActivity"]
+      when 'likes' then ["type = ?", "LikeActivity"]
+      end
+    end
+    @activities = current_user.activities.paginate(:per_page => 25, :page => params[:page], :conditions => conditions)
     respond_to do |format|
       format.js
     end

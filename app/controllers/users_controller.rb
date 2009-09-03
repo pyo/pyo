@@ -22,7 +22,20 @@ class UsersController < ApplicationController
   def dashboard
     logger.info current_user.inspect
     if current_user.email_confirmed?
-      @activities = current_user.all_activities.paginate(:per_page => 25, :page => 1)
+      conditions = nil
+      if params[:type]
+        conditions = case params[:type]
+        when 'statuses' then ["type = ?", "StatusActivity"]
+        when 'pictures' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Photo"]
+        when 'audios' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Track"]
+        when 'videos' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Video"]
+        when 'blogs' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Blog"]
+        when 'comments' then ["type = ?", "CommentActivity"]
+        when 'follows' then ["type = ?", "FollowingActivity"]
+        when 'likes' then ["type = ?", "LikeActivity"]
+        end
+      end
+      @activities = current_user.activities.paginate(:per_page => 25, :page => 1, :conditions => conditions)
       @new_messages_count = current_user.new_messages.count
       @new_followings_count = current_user.new_followings.count
       @new_comments_count = current_user.new_comments.count
@@ -71,16 +84,12 @@ class UsersController < ApplicationController
     @tracks = @user.tracks.recent(:limit => 10)
     @videos = @user.videos
     @tweets = @user.tweets rescue [] 
-    
     @followings = @user.followings.paginate(:per_page => 12, :page => 1)  
     @updates = @user.updates.paginate(:per_page => 24, :page => 1)
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
     @user.profile.update_view_count(request)
-    
-    
     @comments= @user.comments.paginate(:per_page => 10, :page => 1)
-    
   end
 
 	def change_admin_status

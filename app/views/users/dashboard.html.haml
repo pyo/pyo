@@ -8,15 +8,15 @@
     - unless current_user.first_run?    
       %h4 Activity Hub
       %ul.menu.activities_menu
-        %li.first= link_to 'All', dashboard_path
-        %li= link_to 'Statuses', :type => 'statuses'
-        %li= link_to 'Pictures', :type => 'pictures'
-        %li= link_to 'Audio', :type => 'audios'
-        %li= link_to 'Videos', :type => 'videos'
-        %li= link_to 'Blog Posts', :type => 'blogs'
-        %li= link_to 'Comments', :type => 'comments'
-        %li= link_to 'Follows', :type => 'follows'
-        %li= link_to 'Likes', :type => 'likes'
+        %li.first{:class => current_page?(dashboard_path) ? 'active' : ''}= link_to 'All', dashboard_path
+        %li{:class => current_page?(:type => 'statuses') ? 'active' : ''}= link_to 'Statuses', :type => 'statuses'
+        %li{:class => current_page?(:type => 'pictures') ? 'active' : ''}= link_to 'Pictures', :type => 'pictures'
+        %li{:class => current_page?(:type => 'audios') ? 'active' : ''}= link_to 'Audio', :type => 'audios'
+        %li{:class => current_page?(:type => 'videos') ? 'active' : ''}= link_to 'Videos', :type => 'videos'
+        %li{:class => current_page?(:type => 'blogs') ? 'active' : ''}= link_to 'Blog Posts', :type => 'blogs'
+        %li{:class => current_page?(:type => 'comments') ? 'active' : ''}= link_to 'Comments', :type => 'comments'
+        %li{:class => current_page?(:type => 'follows') ? 'active' : ''}= link_to 'Follows', :type => 'follows'
+        %li{:class => current_page?(:type => 'likes') ? 'active' : ''}= link_to 'Likes', :type => 'likes'
   
       #activities.activities
         - @activities.each do |activity|
@@ -30,7 +30,7 @@
               = display_notification(activity)
       - if @activities.total_pages > 1
         #load_more_link.load_more
-          = link_to 'Load More', activities_path(:page => @activities.current_page + 1), :id => 'load_more'
+          = link_to 'Load More', activities_path(:page => @activities.current_page + 1, :type => params[:type]), :id => 'load_more'
       
     - else
     
