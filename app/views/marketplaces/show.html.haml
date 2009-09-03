@@ -1,12 +1,13 @@
 .main
   .inner_content
+    = render "users/dashboard_nav"
     .events
-      %h2 Recent Events
+      %h4.title Recent Events
       = render :partial=>"bookings", :collection=>@events, :as=>:booking
   
   .inner_content
     .ads
-      %h2 Recent Ads
+      %h4.title Recent Ads
       = render :partial=>"ads", :collection=>@ads, :as=>:ad
     
 .details
@@ -21,12 +22,18 @@
 
   .inner_content
     .categories
-      %h3 Categories
-      - @categories.each do |category|
-        = link_to category.name, group_marketplace_path(category)
+      .info
+        %h3 Categories
+        - unless @categories.empty?
+          %ul
+            - @categories.each do |category|
+              %li= link_to category.name, group_marketplace_path(category)
     
   .inner_content
     .popular_tags
-      %h3 Most Popular Tags
-      - @popular_tags.each do |tag|
-        = link_to tag.name, url_for(:overwrite_params => {:tags=>tag.name})
+      .info
+        %h3 Most Popular Tags
+        - unless @popular_tags.empty?
+          %ul
+            - @popular_tags.each do |tag|
+              = link_to tag.name, url_for(:overwrite_params => {:tags=>tag.name})

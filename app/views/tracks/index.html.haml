@@ -26,18 +26,20 @@
     - unless @tracks.empty?
       - @tracks.each do |track|
         .track_list_item
-          %h3
+          = h track.user.name
+          \-
+          %strong
             = h track.name
-            (
-            = link_to("listen", user_track_path(@user, track))
-            = "| #{link_to('edit', edit_user_track_path(@user,track))}" if is_owner?(track) 
-            = "| #{link_to('delete', [@user,track], :confirm => 'Are you sure?', :method => :delete)}" if is_owner?(track) 
-            )
-          %p 
-            = h track.description
+          = h track.description
+          .player
             %script{:type=>"text/javascript"}
-              = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
-            #audioplayer_1
+              = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
+            %div{:id => "audioplayer_#{track.id}"}
+        .comment_link
+          - if track.comments_count > 0
+            = link_to pluralize(track.comments_count, 'Comment'), user_track_path(track.user, track, :anchor => 'comments')
+          - else
+            = link_to 'Post a comment', user_track_path(track.user, track, :anchor => 'comments')
     - else
       No Tracks Found
 

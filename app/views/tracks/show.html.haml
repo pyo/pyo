@@ -29,8 +29,9 @@
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@track}
   .inner_content
     %h4 Comments
-    = render @track.comments
-    = render :partial => "comments/form", :locals => {:commentable => @track, :comment_class=>""}
+    .comments
+      = render :partial => "comments/form", :locals => {:commentable => @track, :comment_class=>""}
+      = render @track.comments
 .details
   .inner_content
     = render "users/public_info"

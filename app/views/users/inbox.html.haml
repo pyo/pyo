@@ -2,7 +2,7 @@
   .inner_content
     = render :partial => "users/dashboard_nav"
   .inner_content
-    %h2 
+    %h4.title 
       = "Inbox"
       = " - #{params[:mbox]}" if params[:mbox]
     %ul.buttons
@@ -27,7 +27,7 @@
               = "#{time_ago_in_words(message.created_at)} ago"
             %td
               = link_to "read", user_direct_message_path(current_user,message)
-              = link_to('delete', [@user,message], :confirm => 'Are you sure?', :method => :delete)
+              = link_to('delete', [current_user,message], :confirm => 'Are you sure?', :method => :delete)
       - else
         No Activity
   
@@ -35,4 +35,4 @@
   .inner_content
     = render :partial => "users/info"
   .inner_content
-    = render :partial => "shared/tall_tall_advertisement"
+    = render :partial => "shared/tall_advertisement"

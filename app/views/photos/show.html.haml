@@ -29,8 +29,9 @@
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@photo}
   .inner_content
     %h4 Comments
-    = render :partial => @photo.comments.all(:order => "created_at desc")
-    = render :partial => "comments/form", :locals => {:commentable => @photo, :comment_class=>""}
+    .comments
+      = render :partial => "comments/form", :locals => {:commentable => @photo, :comment_class=>""}
+      = render :partial => @photo.comments.all(:order => "created_at desc")
 .details
   .inner_content
     = render :partial => "users/public_info"
