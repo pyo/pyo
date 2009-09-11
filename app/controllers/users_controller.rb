@@ -79,17 +79,17 @@ class UsersController < ApplicationController
   end
   
   def show
-    @photos = @user.photos.recent.paginate(:per_page => 10, :page => 1)
-    @flickr_photos = @user.flickr_photos(8)
-    @tracks = @user.tracks.paginate(:per_page => 6, :page => 1)
-    @videos = @user.videos.paginate(:per_page => 8, :page => 1)
-    @tweets = @user.tweets rescue [] 
-    @followings = @user.followings.paginate(:per_page => 12, :page => 1)  
-    @updates = @user.updates.paginate(:per_page => 10, :page => 1)
-    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
-    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+    @photos         = @user.photos.recent.paginate(:per_page => 10, :page => 1)
+    @flickr_photos  = @user.flickr_photos(8)
+    @tracks         = @user.tracks.paginate(:per_page => 6, :page => 1)
+    @videos         = @user.videos.paginate(:per_page => 8, :page => 1)
+    @tweets         = @user.tweets rescue [] 
+    @followings     = @user.followings.paginate(:per_page => 12, :page => 1)  
+    @updates        = @user.updates.paginate(:per_page => 10, :page => 1)
+    @posts          = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups         = @user.groups.paginate(:per_page => 5, :page => 1)
+    @comments       = @user.comments.paginate(:per_page => 10, :page => 1)
     @user.profile.update_view_count(request)
-    @comments= @user.comments.paginate(:per_page => 10, :page => 1)
   end
 
   def updates
