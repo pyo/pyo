@@ -120,6 +120,24 @@ class User < ActiveRecord::Base
     updates.first
   end
   
+  def connects_size
+    # divide by 2 because it returns the user on both sides of the relationship and we can't do distinct on the count
+    User.count(
+      :joins => %{
+        join followings as ls
+        on
+        (ls.parent_id = '#{id}' and users.id = ls.child_id)
+        or
+        (ls.child_id = '#{id}' and users.id = ls.parent_id)
+        join followings as rs
+        on
+        (rs.parent_id = '#{id}' and rs.child_id = ls.parent_id and ls.child_id = '#{id}')
+        or
+        (rs.child_id = '#{id}' and rs.parent_id = ls.child_id and ls.parent_id = '#{id}')
+      }
+    ) / 2
+  end
+  
   def city_and_state
     returning [] do |values|
       values << profile.city if profile.city.present?
