@@ -61,10 +61,6 @@ ActiveRecord::Schema.define(:version => 20090911144227) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["consumer_type", "consumer_id"], :name => "index_comments_on_consumer_type_and_consumer_id"
-  add_index "comments", ["producer_id", "producer_type"], :name => "index_comments_on_producer_id_and_producer_type"
-  add_index "comments", ["state"], :name => "index_comments_on_state"
-
   create_table "count_von_count_views", :force => true do |t|
     t.string   "model_type"
     t.integer  "model_id"
@@ -139,12 +135,10 @@ ActiveRecord::Schema.define(:version => 20090911144227) do
     t.boolean  "approved",          :default => false
     t.string   "url"
     t.integer  "group_category_id"
-    t.integer  "membership_count",  :default => 0
     t.integer  "memberships_count", :default => 0
   end
 
   add_index "groups", ["approved"], :name => "index_groups_on_approved"
-  add_index "groups", ["membership_count"], :name => "index_groups_on_membership_count"
   add_index "groups", ["name"], :name => "index_groups_on_name"
 
   create_table "likes", :force => true do |t|

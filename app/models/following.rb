@@ -2,7 +2,9 @@ class Following < ActiveRecord::Base
   include Covalence::Relationship
   def after_create
     Alert.create(:producer => parent, :consumer => child, :flavor => 'following')
-    FollowingActivity.create({:producer => parent, :payload => self})
+    
+    FollowingActivity.create({:producer => child, :payload => self})
+    
     parent.followers+[child].each do |follower|
       FollowingActivity.create({:producer => parent, :consumer => follower, :payload => self})
     end
