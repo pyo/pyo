@@ -19,6 +19,7 @@
     = render "users/dashboard_nav"
   = render "users/grey_boxes"
   %h4.title #{@user.name.capitalize}'s Connects
+  #{link_to "Total (#{@user.followers.size})", followers_user_path(@user)} | Connects (#{@user.connects_size})
   - unless @connects.empty?
     .followers
       - @connects.each do |connect|
