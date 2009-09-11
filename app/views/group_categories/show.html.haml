@@ -1,7 +1,7 @@
 .top
   .inner_content.relative
-    %h2 PYO Groups
-    There are currently #{pluralize(@groups.total_entries, 'Group').gsub(/(\d+)/, '<strong>\1</strong>')} in #{link_to @group_category.name, @group_category}
+    %h2 #{link_to @group_category.name, @group_category}
+    There are currently #{pluralize(@groups.total_entries, 'Group').gsub(/(\d+)/, '<strong>\1</strong>')} in this category
     .hanger
       = link_to image_tag('/images/startgroup.gif'), request_group_groups_path if current_user
   
