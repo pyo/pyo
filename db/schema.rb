@@ -139,10 +139,12 @@ ActiveRecord::Schema.define(:version => 20090911144227) do
     t.boolean  "approved",          :default => false
     t.string   "url"
     t.integer  "group_category_id"
+    t.integer  "membership_count",  :default => 0
     t.integer  "memberships_count", :default => 0
   end
 
   add_index "groups", ["approved"], :name => "index_groups_on_approved"
+  add_index "groups", ["membership_count"], :name => "index_groups_on_membership_count"
   add_index "groups", ["name"], :name => "index_groups_on_name"
 
   create_table "likes", :force => true do |t|
