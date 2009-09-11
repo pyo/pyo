@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   config.gem 'jnewland-capsize', :lib => false, :source => 'http://gems.github.com' # deployment tasks on ec2
 	config.gem 'crack'
 	config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
-	config.gem "josevalim-rails-footnotes",  :lib => "rails-footnotes", :source => "http://gems.github.com"
+	
 
   # Activate observers that should always be running
   #config.active_record.observers = :covalence_notification_observer
