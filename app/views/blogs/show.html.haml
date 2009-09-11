@@ -7,7 +7,7 @@
       = h @blog.title
       
     %p
-      = h @blog.body
+      = filter_html(@blog.body)
       
     %h3 Tags:
     %p
