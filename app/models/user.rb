@@ -99,9 +99,9 @@ class User < ActiveRecord::Base
   end
   
   def tweets        
-    unless twitter_username == "" || twitter_password == ""
-      twitter = Twitter.new(twitter_username,twitter_password) 
-      tweets = twitter.timeline(:user,:query=>{:count=>8})            
+    unless profile.twitter == "" || profile.twitter_password == ""
+      twitter = Twitter.new(profile.twitter,profile.twitter_password) 
+      tweets  = twitter.timeline(:user,:query=>{:count=>8})            
       if tweets.class != Hash
         tweets
       else

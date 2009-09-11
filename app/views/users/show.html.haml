@@ -71,13 +71,16 @@
           = link_to image_tag(photo.url('s')), @user.flickr_url
 
   - unless @tweets.empty?
-    .inner_content
+    .content
       %h4 Recent Tweets
-      - for tweet in @tweets
-        .profile_tweet{:style=>"clear:both; float:left; width:675px; margin:3px; padding:3px; background:#ddd"}
-          = image_tag tweet["user"]["profile_image_url"], :style=>"float:left"
-          %p{:style=>"float:left; margin: 3px"}
-          = tweet["text"]
+      .profile_photos
+        %p
+        - for tweet in @tweets
+          .profile_tweet{:style=>"clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff"}
+        
+            = image_tag tweet["user"]["profile_image_url"], :style=>"float:left"
+            %p{:style=>"float:left; margin: 3px"}
+            = link_to tweet["text"], "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}", :style=>"color:#000"
   
   .content
     %h4 Comments
