@@ -49,8 +49,8 @@ class VideosController < ApplicationController
   end
   
   def done
-    @video = Video.unfinished(:first, :conditions => {:panda_id => params[:id]}) # Video.find_by_panda_id(params[:id])
-    @video.update_attribute(:finished, true)
+    #@video = Video.unfinished(:first, :conditions => {:panda_id => params[:id]}) # Video.find_by_panda_id(params[:id])
+    #@video.update_attribute(:finished, true)
     flash[:notice] = "Your video has successfully been uploaded and it will be posted to your profile once it is encoded."
     render :layout => false
   end
