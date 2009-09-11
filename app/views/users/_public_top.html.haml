@@ -1,6 +1,6 @@
 .inner_content
   .top
-    %h2.left #{@user.name.capitalize_words}
+    %h2.left #{link_to @user.name.capitalize_words, @user}
     %span.status= @user.status.message if @user.status
     .member_info
       Member Since: 
