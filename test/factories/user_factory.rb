@@ -8,6 +8,7 @@ Factory.define :user do |user|
 	user.twitter_username "meanmarcus"
 	user.twitter_password "testit!"
 	user.flickr_username "meanmarcus"
+	user.tag_list ["meanmarcus"]
 end
 
 Factory.sequence :user do |n|
