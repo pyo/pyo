@@ -27,7 +27,7 @@ class VideosController < ApplicationController
   
   def create
     @panda_video = Panda::Video.create
-    @video = current_user.videos.create(params[:video].merge({:panda_id => @panda_video.id}))
+    @video = current_user.videos.create(params[:video].merge({:panda_id => @panda_video.id, :finished => false}))
     if @video.errors.empty?
       redirect_to upload_user_video_path(current_user,@video)
     else
