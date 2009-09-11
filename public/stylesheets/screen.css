@@ -965,3 +965,9 @@ h4.title {
   color: #333333;
   background: #CCCCCC url(/images/profact_unfollow.png) no-repeat scroll 8px 8px;
   border: 1px solid #999999; }
+
+.followings {
+  margin: 10px 0; }
+
+.clear {
+  clear: both; }
