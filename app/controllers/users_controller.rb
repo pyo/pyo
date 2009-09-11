@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_or_temp, :only => [:dashboard]
   
   before_filter :authenticate, :except => [:new, :create,:index,:show, :dashboard]
-  before_filter :load_user, :only => [:show, :edit, :updates, :update, :follow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status]
+  before_filter :load_user, :only => [:show, :edit, :updates, :update, :follow, :unfollow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status]
   before_filter :check_user, :only => [:edit,:update]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
@@ -134,6 +134,11 @@ class UsersController < ApplicationController
   
   def follow
     Following.create(:parent => current_user, :child => @user)
+    redirect_to @user
+  end
+  
+  def unfollow
+    Following.find_by_parent_and_child(current_user, @user).destroy
     redirect_to @user
   end
   

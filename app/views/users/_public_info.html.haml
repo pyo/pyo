@@ -1,3 +1,11 @@
+- content_for(:head) do
+  :javascript
+    $(function() {
+      $('.following_button').click(function() {
+        $(".followmsg").slideToggle();
+        return false
+      })
+    })
 - @followings = @user.followings.paginate(:per_page => 12, :page => 1) # sorry for this
 = image_tag @user.profile.avatar.url(:profile)
 - if current_user and current_user != @user
@@ -5,9 +13,16 @@
     - unless current_user.following?(@user)
       = link_to 'Follow Me', follow_user_path(@user), :method => :post, :class => 'follow_me_button'
     - else
-      Following
+      .action_button
+        = link_to 'Following', '#', :class => 'following_button rounded'
     = link_to 'Message', new_user_direct_message_path(@user), :class => 'message_button'
   = render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user?
+  - if current_user.following?(@user)
+    .followmsg
+      You currently follow <strong>#{@user.name}</strong>'s updates, which appear in your 
+      #{link_to 'activity hub', dashboard_path}.
+      #{link_to 'Click here to unfollow this profile', unfollow_user_path(@user), :method => :post, :class => 'unfollow rounded'}
+  
 
 .info
   - if @user.city_and_state.length > 0
