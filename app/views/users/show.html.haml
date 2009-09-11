@@ -16,14 +16,24 @@
       - unless @updates.empty?
         %ul
           - @updates.each do |activity|
-            %div.activity[activity]
-              .thumb
-                = image_tag(activity.producer.profile.avatar(:thumb)) if activity.producer
-              #{time_ago_in_words(activity.created_at)} ago
-              %p
-                = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
-                = link_to activity.producer.name, activity.producer
-                = display_notification(activity)
+            - unless activity.is_a? FollowingActivity
+              %div.activity[activity]
+                .thumb
+                  = image_tag(activity.producer.profile.avatar(:thumb)) if activity.producer
+                #{time_ago_in_words(activity.created_at)} ago
+                %p
+                  = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
+                  = link_to activity.producer.name, activity.producer
+                  = display_notification(activity)
+            - else
+              %div.activity[activity]
+                .thumb
+                  = image_tag(activity.payload.parent.profile.avatar(:thumb)) if activity.producer
+                #{time_ago_in_words(activity.created_at)} ago
+                %p
+                  = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
+                  = link_to activity.payload.parent.name, activity.payload.parent
+                  = display_notification(activity)
       - else
         No Updates
 

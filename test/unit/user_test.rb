@@ -6,31 +6,37 @@ class UserTest < ActiveSupport::TestCase
 	should_have_many :events, :dependent => :destroy
 	should_have_many :bookings, :dependent => :destroy
 	should_have_many :ads, :dependent => :destroy
-	should_have_many :videos, :dependent => :destroy
   
   context "A User Instance" do
     setup do
-      @user = Factory(:user)
-      @profile = Factory(:profile)
+      
+      @user         = Factory(:user)
+      @profile      = Factory(:profile)
       @user.profile = @profile
 			@user.save
+			
+			@friender   = @user
+		  @friendee   = Factory.next(:user)
+		  @following  = Following.create(:parent =>  @friender, :child =>  @friendee)
     end
 
-    should "have a profile" do
-      assert @user.profile == @profile
+
+    
+    should "be able to friend another" do
+      assert @friender.followings.include?(@friendee)
+    end   
+    
+    should "gen the proper following" do
+      assert_equal FollowingActivity.last.payload, @following
     end
-
-		should "have an admin status" do
-			@user = Factory.next(:user)
-			@user.update_attribute :super_user, true
-			assert @user.super_user?
-		end
-
-		should "have an featured status" do
-			@user = Factory.next(:user)
-			@user.update_attribute :featured, true
-			assert @user.featured?
-		end
+    
+    should "have the correct payload" do
+      assert_equal FollowingActivity.last.payload.child,@friendee
+    end
+    
+    should "assoc the proper activity" do
+      assert_equal @friender.activities.last, @following
+    end
 		
   end
   

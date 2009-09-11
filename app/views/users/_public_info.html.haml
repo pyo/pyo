@@ -35,14 +35,13 @@
     .bio  
       #{@user.profile.bio}
   - unless @followings.empty?
-    Following:
-    %p
+    %h3 Following:
+    .followings
       - @followings.each do |following|
         .smaller_thumb.with_border
           = link_to image_tag(following.profile.avatar.url(:thumb)), user_path(following)
-    .content
-      = link_to "View All (#{@followings.total_entries})", following_user_path(@user)
-    %br{:clear => "all"}
+      .clear
+        = link_to "View All (#{@followings.total_entries})", following_user_path(@user)
       
   - unless @posts.empty?
     .sub_info

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   has_one  :profile, :dependent => :destroy
   has_many :photos, :dependent => :destroy
   has_many :tracks, :dependent => :destroy
-  has_many :videos, :dependent => :destroy
+  has_many :videos, :dependent => :destroy, :conditions => ["`videos`.finished = ?", true]
   has_many :activities, :as => :payload, :dependent => :destroy
 	has_many :events, :dependent=>:destroy
 	has_many :bookings, :dependent=>:destroy
@@ -118,6 +118,24 @@ class User < ActiveRecord::Base
   
   def status
     updates.first
+  end
+  
+  def connects_size
+    # divide by 2 because it returns the user on both sides of the relationship and we can't do distinct on the count
+    User.count(
+      :joins => %{
+        join followings as ls
+        on
+        (ls.parent_id = '#{id}' and users.id = ls.child_id)
+        or
+        (ls.child_id = '#{id}' and users.id = ls.parent_id)
+        join followings as rs
+        on
+        (rs.parent_id = '#{id}' and rs.child_id = ls.parent_id and ls.child_id = '#{id}')
+        or
+        (rs.child_id = '#{id}' and rs.parent_id = ls.child_id and ls.parent_id = '#{id}')
+      }
+    ) / 2
   end
   
   def city_and_state
