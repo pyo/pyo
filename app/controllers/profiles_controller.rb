@@ -50,6 +50,8 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    Growler.growl("boooo")
+    
     @profile = Profile.find(params[:id])
 
     respond_to do |format|
