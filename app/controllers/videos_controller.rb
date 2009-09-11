@@ -62,7 +62,7 @@ class VideosController < ApplicationController
   end
   
   def status_update
-    @video = Video.unfinished(:first, :conditions => {:panda_id => params[:id]}) # Video.find_by_panda_id(params[:id])
+    @video = Video.first(:conditions => {:panda_id => params[:id]}) # Video.find_by_panda_id(params[:id])
     @video.update_attribute(:finished, true)
     #@video = Video.find_by_panda_id(params[:id])
     @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
