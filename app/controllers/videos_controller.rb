@@ -6,7 +6,7 @@ class VideosController < ApplicationController
   protect_from_forgery :except => :status_update
   
   def index
-    @videos = @user.nil? ? Video.all : @user.videos.all
+    @videos = @user.nil? ? Video.finished.all : @user.videos.finished.all
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
@@ -18,7 +18,7 @@ class VideosController < ApplicationController
   end
   
   def videos
-    @videos = Video.paginate(:per_page => 25, :page => params[:page])
+    @videos = Video.finished.paginate(:per_page => 25, :page => params[:page])
   end
   
   def new
@@ -27,7 +27,7 @@ class VideosController < ApplicationController
   
   def create
     @panda_video = Panda::Video.create
-    @video = current_user.videos.create(params[:video].merge({:panda_id => @panda_video.id}))
+    @video = current_user.videos.create(params[:video].merge({:panda_id => @panda_video.id, :finished => false}))
     if @video.errors.empty?
       redirect_to upload_user_video_path(current_user,@video)
     else
