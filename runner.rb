@@ -9,16 +9,5 @@
 
 require 'config/environment'
 
-# u = User.first
-# u.flickr_username = 'halogenandtoast'
-# u.save
-# 
-# puts u.flickr_id
-# 
-# 
-# u.flickr_username = 'branmurph'
-# u.save
-# 
-# puts u.flickr_id
-
-# CHA CHA CHA CHANGES
+cols = Profile.columns.map(&:name)
+puts cols.collect {|c| ":#{c}=>\"\"," }
