@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090903180257) do
+ActiveRecord::Schema.define(:version => 20090911144227) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20090903180257) do
     t.string   "country"
     t.string   "timezone"
     t.string   "url"
+    t.string   "twitter_password"
   end
 
   add_index "profiles", ["address"], :name => "index_profiles_on_address"
@@ -216,6 +217,7 @@ ActiveRecord::Schema.define(:version => 20090903180257) do
   add_index "profiles", ["first_name"], :name => "index_profiles_on_first_name"
   add_index "profiles", ["last_name"], :name => "index_profiles_on_last_name"
   add_index "profiles", ["state"], :name => "index_profiles_on_state"
+  add_index "profiles", ["twitter_password"], :name => "index_profiles_on_twitter_password"
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
   add_index "profiles", ["username"], :name => "index_profiles_on_username"
   add_index "profiles", ["zip"], :name => "index_profiles_on_zip"

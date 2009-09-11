@@ -920,3 +920,48 @@ h4.title {
 
 .track {
   float: left; }
+
+.action_button {
+  height: 36px;
+  width: 120px;
+  float: left;
+  margin: 0; }
+  .action_button .following_button {
+    font-size: 16px;
+    text-align: right;
+    width: 100px;
+    height: 13px;
+    display: block;
+    float: left;
+    background: #CCCCCC url(/images/profact_following.png) no-repeat 7px 8px;
+    border: 1px solid #999999;
+    color: #333333;
+    padding: 8px 10px 12px 10px; }
+  .action_button .following_button:hover {
+    text-decoration: none; }
+
+.followmsg {
+  display: none;
+  clear: both;
+  margin-top: 10px;
+  text-align: justify;
+  padding: 10px;
+  border: 1px solid #DDDDDD; }
+
+.unfollow {
+  clear: both;
+  margin-top: 10px;
+  background: #EEEEEE url(/images/profact_unfollow.png) no-repeat scroll 8px 8px;
+  border: 1px solid #CCCCCC;
+  color: #666666;
+  display: block;
+  padding: 8px;
+  text-align: right;
+  font-size: 12px;
+  font-family: Helvetica; }
+
+.unfollow:hover {
+  text-decoration: none;
+  color: #333333;
+  background: #CCCCCC url(/images/profact_unfollow.png) no-repeat scroll 8px 8px;
+  border: 1px solid #999999; }

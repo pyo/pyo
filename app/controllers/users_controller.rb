@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_or_temp, :only => [:dashboard]
   
   before_filter :authenticate, :except => [:new, :create,:index,:show, :dashboard]
-  before_filter :load_user, :only => [:show, :edit, :updates, :update, :follow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status]
+  before_filter :load_user, :only => [:show, :edit, :updates, :update, :follow, :unfollow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status]
   before_filter :check_user, :only => [:edit,:update]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
@@ -79,17 +79,17 @@ class UsersController < ApplicationController
   end
   
   def show
-    @photos = @user.photos.recent.paginate(:per_page => 10, :page => 1)
-    @flickr_photos = @user.flickr_photos(8)
-    @tracks = @user.tracks.paginate(:per_page => 6, :page => 1)
-    @videos = @user.videos.paginate(:per_page => 8, :page => 1)
-    @tweets = @user.tweets rescue [] 
-    @followings = @user.followings.paginate(:per_page => 12, :page => 1)  
-    @updates = @user.updates.paginate(:per_page => 10, :page => 1)
-    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
-    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+    @photos         = @user.photos.recent.paginate(:per_page => 10, :page => 1)
+    @flickr_photos  = @user.flickr_photos(8)
+    @tracks         = @user.tracks.paginate(:per_page => 6, :page => 1)
+    @videos         = @user.videos.paginate(:per_page => 8, :page => 1)
+    @tweets         = @user.tweets rescue [] 
+    @followings     = @user.followings.paginate(:per_page => 12, :page => 1)  
+    @updates        = @user.updates.paginate(:per_page => 10, :page => 1)
+    @posts          = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups         = @user.groups.paginate(:per_page => 5, :page => 1)
+    @comments       = @user.comments.paginate(:per_page => 10, :page => 1)
     @user.profile.update_view_count(request)
-    @comments= @user.comments.paginate(:per_page => 10, :page => 1)
   end
 
   def updates
@@ -134,6 +134,11 @@ class UsersController < ApplicationController
   
   def follow
     Following.create(:parent => current_user, :child => @user)
+    redirect_to @user
+  end
+  
+  def unfollow
+    Following.find_by_parent_and_child(current_user, @user).destroy
     redirect_to @user
   end
   

@@ -40,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
                 :has_one => [:password, :confirmation], 
                 :member => {
                   :follow => :post,
+                  :unfollow => :post,
                   :followers => :get,
                   :following => :get,
                   :likes => :get,
