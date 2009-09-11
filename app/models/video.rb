@@ -8,7 +8,8 @@ class Video < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :as => 'consumer', :dependent => :destroy
 
-  default_scope :conditions => {:finished => true}
+  named_scope :finished, :conditions => {:finished => true}
+  # default_scope :conditions => {:finished => true}
 	named_scope :recent, :order=>"created_at DESC"
   
   def self.unfinished(type, options = {})
