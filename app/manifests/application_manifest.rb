@@ -64,30 +64,9 @@ class ApplicationManifest < Moonshine::Manifest::Rails
 
   # Add your application's custom requirements here
   def application_packages
-    # If you've already told Moonshine about a package required by a gem with
-    # :apt_gems in <tt>moonshine.yml</tt> you do not need to include it here.
-    # package 'some_native_package', :ensure => :installed
     
-    # some_rake_task = "/usr/bin/rake -f #{configuration[:deploy_to]}/current/Rakefile custom:task RAILS_ENV=#{ENV['RAILS_ENV']}"
-    # cron 'custom:task', :command => some_rake_task, :user => configuration[:user], :minute => 0, :hour => 0
-    
-    # %w( root rails ).each do |user|
-    #   mailalias user, :recipient => 'you@domain.com'
-    # end
-    
-    # farm_config = <<-CONFIG
-    #   MOOCOWS = 3
-    #   HORSIES = 10
-    # CONFIG
-    # file '/etc/farm.conf', :ensure => :present, :content => farm_config
-    
-    # Logs for Rails, MySQL, and Apache are rotated by default
-    # logrotate '/var/log/some_service.log', :options => %w(weekly missingok compress), :postrotate => '/etc/init.d/some_service restart'
-    
-    # Only run the following on the 'testing' stage using capistrano-ext's multistage functionality.
-    # on_stage 'testing' do
-    #   file '/etc/motd', :ensure => :file, :content => "Welcome to the TEST server!"
-    # end
+    rebuild_task = "/usr/bin/rake -f #{configuration[:deploy_to]}/current/Rakefile ts:index RAILS_ENV=#{ENV['RAILS_ENV']}"
+    cron 'build_index', :command => rebuild_task, :user => configuration[:user], :minute => 0, :hour => "*"
   
     cron "#{deploy_stage}_daily_backup",
        :command => "astrails-safe #{configuration[:deploy_to]}/shared/config/astrails_safe_backup.conf",
