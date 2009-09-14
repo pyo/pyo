@@ -26,10 +26,12 @@ class ActivitiesController < ApplicationController
       activity = StatusActivity.new(params[:activity])
       activity.producer = current_user
       activity.consumer = follower
+      activity.payload = current_user
       activity.save
     end
     activity = StatusActivity.new(params[:activity])
     activity.producer = current_user
+    activity.payload = current_user
     activity.save
     redirect_to current_user
   end

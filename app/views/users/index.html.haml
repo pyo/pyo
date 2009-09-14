@@ -1,7 +1,9 @@
 .inner_content
   .top
     %h2 Members
-    .page_info There are currently <strong>123,456</strong> Members on PYO 
+    .page_info 
+      There are currently <strong>
+      = "#{@users.count}</strong> Members on PYO "
 .main  
   - unless @users.empty?
     .inner_content

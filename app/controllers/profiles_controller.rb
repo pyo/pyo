@@ -49,7 +49,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def update
+  def update    
     @profile = Profile.find(params[:id])
 
     respond_to do |format|
