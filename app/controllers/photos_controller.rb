@@ -40,7 +40,7 @@ class PhotosController < ApplicationController
       flash[:notice] = 'Your picture has successfully been uploaded and posted to your profile.'
       redirect_to dashboard_path
     else
-      flash[:error] = @photo.errors
+      flash[:error] = "There was a problem with your submission"
       render :action => "new"
     end
   end

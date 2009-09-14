@@ -19,5 +19,8 @@ config.action_mailer.raise_delivery_errors = false
 # clearance
 HOST = "localhost"
 
+#ActionController::Base.cache_store = :file_store, "/public/cache"
+config.action_controller.perform_caching = true
+
 Paperclip.options[:command_path] = '/opt/local/bin/'
 

@@ -6,5 +6,9 @@
     = "<span class='dark_grey'>( #{time_ago_in_words(comment.created_at)} ago )</span>"
     - if current_user
       = "| #{link_to('delete', comment, :confirm => 'Are you sure?', :method => :delete)}" if current_user.owns?(comment) || (defined? is_owner && is_owner)
+      = "| #{link_to('reply', '#', :class => 'reply_btn', :id=>"reply_to_#{comment.id}")}"
     %br
     = comment.message
+    .content[comment,:threaded]
+      = render :partial => "comments/form", :locals => {:commentable => comment, :comment_class => "reply"}
+      = render :partial => comment.comments

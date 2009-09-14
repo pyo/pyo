@@ -891,6 +891,11 @@ h4.title {
   .comment:hover img {
     border: 3px solid #026DFE !important; }
 
+.threaded_comment form {
+  display: none; }
+.threaded_comment .comment {
+  width: 100%; }
+
 .media_like {
   background: url(/images/media_like.png) top left no-repeat;
   display: block;

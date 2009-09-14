@@ -1,6 +1,8 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
   
+  caches_action :show
+  
   before_filter :authenticate_or_temp, :only => [:dashboard]
   
   before_filter :authenticate, :except => [:new, :create,:index,:show, :dashboard]
@@ -20,6 +22,7 @@ class UsersController < ApplicationController
   end
   
   def dashboard
+    expire_page user_path(current_user)
     logger.info current_user.inspect
     if current_user.email_confirmed?
       conditions = nil
