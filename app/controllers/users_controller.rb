@@ -85,7 +85,7 @@ class UsersController < ApplicationController
     @videos         = @user.videos.paginate(:per_page => 8, :page => 1)
     @tweets         = @user.tweets rescue [] 
     @followings     = @user.followings.paginate(:per_page => 12, :page => 1)  
-    @updates        = @user.updates.paginate(:per_page => 10, :page => 1)
+    @updates        = @user.profile_updates.paginate(:per_page => 10, :page => 1)
     @posts          = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups         = @user.groups.paginate(:per_page => 5, :page => 1)
     @comments       = @user.comments.paginate(:per_page => 10, :page => 1)

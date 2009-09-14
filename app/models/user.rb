@@ -57,6 +57,7 @@ class User < ActiveRecord::Base
   has_many :sent_messages, :as => :producer, :class_name => 'DirectMessage'
 
   has_many :updates, :class_name => "Activity", :as => :producer, :conditions => {:consumer_id => nil}
+  has_many :profile_updates, :class_name => "Activity", :as => :producer, :conditions => ["consumer_id is NULL and type != 'FollowingActivity'"]
 
 	named_scope :featured, :conditions=>{ :featured => true }
 	named_scope :sort_by, lambda{|*args| {:order=>User::SORT_TYPES[(args.first || "newest").to_sym], :joins=>[:profile]} }
