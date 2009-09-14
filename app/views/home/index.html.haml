@@ -35,7 +35,11 @@
     - @featured_users.each do |user|
       %div[user]
         .bordered_image= image_tag(user.profile.avatar(:home))
-        = link_to user.profile.username, user
-        %p
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        = link_to user.profile.username, user.profile.full_name
+        .city_and_state
+          = user.city_and_state.join(', ')
+        .talent_type
+          = user.talent_type
+          
+          
   
