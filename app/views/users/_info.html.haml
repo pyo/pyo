@@ -6,6 +6,8 @@
     - if current_user.status
       %p.justify
         = current_user.status.message
+        (#{link_to 'delete', activity_path(current_user.status.id), :method => :delete, :confirm => "Are you sure?"})
+        
   .info
     - if %w[dashboard new upload].include? controller.action_name
       .upload_post_button
@@ -13,9 +15,9 @@
     
     
     %h3 Following
-    - unless current_user.followings.recent.empty?
+    - unless @followings.empty?
       .followings
-        - current_user.followings.recent.each do |following|
+        - @followings.each do |following|
           .smaller_thumb.with_border
             = link_to image_tag(following.profile.avatar.url(:thumb)), user_path(following)
         .clear

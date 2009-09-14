@@ -121,7 +121,7 @@ class User < ActiveRecord::Base
   end
   
   def status
-    updates.first
+    updates.first(:conditions => {:type => 'StatusActivity'})
   end
   
   def connects_size

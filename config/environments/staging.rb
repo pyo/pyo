@@ -35,3 +35,5 @@ Paperclip.options[:image_magick_path] = '/usr/bin/'
 ActionMailer::Base.smtp_settings = {
   :domain => "putyourselfon.com"
 }
+
+config.action_controller.perform_caching = true
