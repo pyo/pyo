@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @likes = @user.likes.paginate(:per_page => 15, :page => params[:page], :order => 'created_at desc')
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
   
   def dashboard
@@ -85,16 +86,22 @@ class UsersController < ApplicationController
   end
   
   def show
-    @photos         = @user.photos.recent.paginate(:per_page => 10, :page => 1)
-    @flickr_photos  = @user.flickr_photos(8)
-    @tracks         = @user.tracks.paginate(:per_page => 6, :page => 1)
-    @videos         = @user.videos.paginate(:per_page => 8, :page => 1)
-    @tweets         = @user.tweets rescue []     
-    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
-    @updates        = @user.profile_updates.paginate(:per_page => 10, :page => 1)
+    unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param)
+      @photos         = @user.photos.recent.paginate(:per_page => 10, :page => 1)
+      @flickr_photos  = @user.flickr_photos(8)
+      @tracks         = @user.tracks.paginate(:per_page => 6, :page => 1)
+      @videos         = @user.videos.paginate(:per_page => 8, :page => 1)
+      @tweets         = @user.tweets rescue []     
+      @updates        = @user.profile_updates.paginate(:per_page => 10, :page => 1)
+    end
+    unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param, :action_suffix => 'comments')
+      @comments = Comment.all(:include => [:comments, {:producer => :profile}], :conditions => ["consumer_id = ?", @user.id]).paginate(:per_page => 10, :page => 1)
+    end
+    unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param, :action_suffix => 'followings')
+      @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
+    end
     @posts          = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups         = @user.groups.paginate(:per_page => 5, :page => 1)
-    @comments       = Comment.all(:include => [:comments, {:producer => :profile}], :conditions => ["consumer_id = ?", @user.id]).paginate(:per_page => 10, :page => 1)
     @user.profile.update_view_count(request)
   end
 
@@ -139,11 +146,23 @@ class UsersController < ApplicationController
   end
   
   def follow
+    expire_fragment(
+      :controller => 'users', 
+      :action => 'show', 
+      :id => current_user.to_param, 
+      :action_suffix => 'followings'
+    )
     Following.create(:parent => current_user, :child => @user)
     redirect_to @user
   end
   
   def unfollow
+    expire_fragment(
+      :controller => 'users', 
+      :action => 'show', 
+      :id => current_user.to_param, 
+      :action_suffix => 'followings'
+    )
     Following.find_by_parent_and_child(current_user, @user).destroy
     redirect_to @user
   end
@@ -153,6 +172,7 @@ class UsersController < ApplicationController
     @followers = @user.followers.paginate(:per_page => 40, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
   
   def following

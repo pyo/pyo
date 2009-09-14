@@ -33,6 +33,7 @@ class BlogsController < ApplicationController
     @blog = current_user.blogs.new(params[:blog]) 
      
     if @blog.save
+      expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
       flash[:notice] = 'Your blog has successfully been posted to your profile.'
       redirect_to dashboard_path
     else

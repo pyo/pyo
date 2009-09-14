@@ -37,6 +37,7 @@ class PhotosController < ApplicationController
   def create    
     @photo = current_user.photos.new(params[:photo])  
     if @photo.save
+      expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
       flash[:notice] = 'Your picture has successfully been uploaded and posted to your profile.'
       redirect_to dashboard_path
     else
@@ -77,6 +78,7 @@ class PhotosController < ApplicationController
     
     
     def load_user_data
+      @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
       @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
       @groups = @user.groups.paginate(:per_page => 5, :page => 1)
     end

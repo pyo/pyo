@@ -34,14 +34,15 @@
   - if @user.profile.bio
     .bio  
       #{@user.profile.bio}
-  - unless @followings.empty?
-    %h3 Following:
-    .followings
-      - @followings.each do |following|
-        .smaller_thumb.with_border
-          = link_to image_tag(following.profile.avatar.url(:thumb)), user_path(following)
-      .clear
-        = link_to "View All (#{@followings.total_entries})", following_user_path(@user)
+  - cache :action_suffix => 'followings' do
+    - unless @followings.empty?
+      %h3 Following:
+      .followings
+        - @followings.each do |following|
+          .smaller_thumb.with_border
+            = link_to image_tag(following.profile.avatar.url(:thumb)), user_path(following)
+        .clear
+          = link_to "View All (#{@followings.total_entries})", following_user_path(@user)
       
   - unless @posts.empty?
     .sub_info

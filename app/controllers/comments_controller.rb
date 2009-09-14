@@ -2,6 +2,13 @@ class CommentsController < ApplicationController
   
   def create
     flash[:notice] = "Comment was created."
+    expire_fragment(
+      :controller => 'users', 
+      :action => 'show', 
+      :id => User.find(params[:comment][:consumer_id]).to_param, 
+      :action_suffix => 'comments'
+    )
+    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
     Comment.create({:producer=>current_user}.merge(params[:comment]))
     redirect_to :back
   end

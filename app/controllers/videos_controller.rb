@@ -9,6 +9,7 @@ class VideosController < ApplicationController
     @videos = @user.nil? ? Video.finished.all : @user.videos.finished.all
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
   
   def like
@@ -62,6 +63,7 @@ class VideosController < ApplicationController
   end
   
   def status_update
+    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
     @video = Video.first(:conditions => {:panda_id => params[:id]}) # Video.find_by_panda_id(params[:id])
     @video.update_attribute(:finished, true)
     #@video = Video.find_by_panda_id(params[:id])
@@ -72,6 +74,7 @@ class VideosController < ApplicationController
   def show
     @panda_video = Panda::Video.find(@video.panda_id)
     @video.update_panda_status(@panda_video) if RAILS_ENV == 'development'
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end

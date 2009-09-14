@@ -26,7 +26,6 @@
         %ul.menu
           %li.first= link_to 'My Profile', current_user if current_user
           %li= link_to 'My Connects', connects_path if current_user
-          %li= link_to "Inbox (#{current_user.new_messages.count})", inbox_user_path(current_user) if current_user
           %li= link_to 'Members', users_path
           %li= link_to 'Groups', groups_path
           %li= link_to 'Music', music_path

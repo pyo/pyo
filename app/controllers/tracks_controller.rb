@@ -8,6 +8,7 @@ class TracksController < ApplicationController
     @tracks = @user.tracks.all
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
   
   def like
@@ -27,6 +28,7 @@ class TracksController < ApplicationController
   def show
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
   
   def music
@@ -48,6 +50,7 @@ class TracksController < ApplicationController
     @track = current_user.tracks.new(params[:track]) 
      
     if @track.save
+      expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
       flash[:notice] = 'Your audio track has successfully been uploaded and posted to your profile.'
       redirect_to dashboard_path
     else

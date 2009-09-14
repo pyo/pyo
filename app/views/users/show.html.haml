@@ -91,7 +91,8 @@
               = image_tag tweet["user"]["profile_image_url"], :style=>"float:left"
               %p{:style=>"float:left; margin: 3px"}
               = link_to tweet["text"], "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}", :style=>"color:#000"
-  
+              
+  - cache :action_suffix => 'comments' do
     .content
       %h4 Comments
       .comments
@@ -99,9 +100,7 @@
         = render :partial => @comments, :locals => {:is_owner => (current_user && @user == current_user)}
 
 .details
-  - cache :action_suffix => 'sidebar' do
-    .inner_content
-      = render :partial => "users/public_info"
-
-    .inner_content
-      = render :partial => 'shared/tall_advertisement'
+  .inner_content
+    = render :partial => "users/public_info"
+  .inner_content
+    = render :partial => 'shared/tall_advertisement'
