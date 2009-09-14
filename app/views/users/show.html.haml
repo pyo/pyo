@@ -97,7 +97,7 @@
     %h4 Comments
     .comments
       = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
-      = render :partial => @comments
+      = render :partial => @comments, :locals => {:is_owner => (current_user && @user == current_user)}
 
 .details
   .inner_content

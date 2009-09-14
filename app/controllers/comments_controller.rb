@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   
   def destroy
     @comment = Comment.find(params[:id])
-    if is_owner?
+    if is_owner? || @comment.consumer == current_user
       @comment.destroy
       flash[:notice] = "Comment was deleted."
       redirect_to :back
