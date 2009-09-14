@@ -1,7 +1,8 @@
 = render "users/public_top"
 .main
   .inner_content
-    = render "users/dashboard_nav"
+    - if current_user
+      = render "users/dashboard_nav"
     = render "users/grey_boxes"
     .content
       .relative
