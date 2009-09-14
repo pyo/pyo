@@ -25,17 +25,22 @@ class UsersController < ApplicationController
       conditions = nil
       if params[:type]
         conditions = case params[:type]
-        when 'statuses' then ["type = ?", "StatusActivity"]
-        when 'pictures' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Photo"]
-        when 'audios' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Track"]
-        when 'videos' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Video"]
-        when 'blogs' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Blog"]
-        when 'comments' then ["type = ?", "CommentActivity"]
-        when 'follows' then ["type = ?", "FollowingActivity"]
-        when 'likes' then ["type = ?", "LikeActivity"]
+        when 'statuses' then ["consumer_id = ? and type = ?", current_user.id, "StatusActivity"]
+        when 'pictures' then ["consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Photo"]
+        when 'audios' then ["consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Track"]
+        when 'videos' then ["consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Video"]
+        when 'blogs' then ["consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Blog"]
+        when 'comments' then ["consumer_id = ? and type = ?", current_user.id, "CommentActivity"]
+        when 'follows' then ["consumer_id = ? and type = ?", current_user.id, "FollowingActivity"]
+        when 'likes' then ["consumer_id = ? and type = ?", current_user.id, "LikeActivity"]
+        else ["consumer_id = ?", current_user.id]
         end
       end
-      @activities = current_user.activities.paginate(:per_page => 25, :page => 1, :conditions => conditions)
+      
+      @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id])
+      #@followings = current_user.followings.recent
+      @activities = Activity.all(:include => [:producer => :profile], :conditions => conditions).paginate(:per_page => 25, :page => 1)
+      #@activities = current_user.activities(:include => [:producer => :profile], :conditions => conditions).paginate(:per_page => 25, :page => 1)
       @new_messages_count = current_user.new_messages.count
       @new_followings_count = current_user.new_followings.count
       @new_comments_count = current_user.new_comments.count

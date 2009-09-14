@@ -22,17 +22,27 @@ class ActivitiesController < ApplicationController
   end
   
   def create
+    activity = StatusActivity.new(params[:activity])
+    activity.producer = current_user
+    activity.payload = current_user
+    activity.save
+    
+    state = activity.id
+    
     current_user.followers.each do |follower|
       activity = StatusActivity.new(params[:activity])
       activity.producer = current_user
       activity.consumer = follower
       activity.payload = current_user
+      activity.state = state
       activity.save
     end
-    activity = StatusActivity.new(params[:activity])
-    activity.producer = current_user
-    activity.payload = current_user
-    activity.save
+    
     redirect_to current_user
+  end
+  
+  def destroy
+    StatusActivity.destroy_all(["id = :id or state = :id", {:id => params[:id]}])
+    redirect_to dashboard_path
   end
 end
