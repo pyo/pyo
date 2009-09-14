@@ -5,8 +5,10 @@
 = render "users/public_top"
 .main
   .inner_content
+    - if current_user
+      = render "users/dashboard_nav"
     = render "users/grey_boxes"
-    = render "users/dashboard_nav"
+    
     .relative
       %h4.title= h @track.name
       - unless current_user && (current_user.owns?(@track) || current_user.likes?(@track))

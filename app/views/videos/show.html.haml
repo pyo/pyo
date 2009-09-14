@@ -1,8 +1,9 @@
 = render "users/public_top"
 .main
   .inner_content
+    - if current_user
+      = render "users/dashboard_nav"
     = render "users/grey_boxes"
-    = render "users/dashboard_nav"
     .relative
       %h4.title= h @video.title
       - unless current_user && (current_user.owns?(@video) || current_user.likes?(@video))

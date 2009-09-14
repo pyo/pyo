@@ -22,7 +22,7 @@
     = link_to "View All (#{@videos.total_entries})", '#'
     .media
       - @videos.each do |video|
-        = link_to image_tag(video.image.url(:thumb)), video
+        = link_to image_tag(video.thumb_url, :alt => video.title), video
   - unless @tracks.empty?
     %h4 Audio
     = link_to "View All (#{@tracks.total_entries})", '#'

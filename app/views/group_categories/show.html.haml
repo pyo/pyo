@@ -6,6 +6,8 @@
       = link_to image_tag('/images/startgroup.gif'), request_group_groups_path if current_user
   
 .main  
+  - if current_user
+    = render "users/dashboard_nav"
   - unless @groups.empty?
     .groups
       %ul
