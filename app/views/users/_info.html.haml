@@ -15,7 +15,7 @@
     %h3 Following
     - unless current_user.followings.recent.empty?
       .followings
-        - current_user.followings.recent.each do |following|
+        - current_user.followings(:include=>:profiles).recent.each do |following|
           .smaller_thumb.with_border
             = link_to image_tag(following.profile.avatar.url(:thumb)), user_path(following)
         .clear
