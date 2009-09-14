@@ -7,7 +7,7 @@ module NotificationsHelper
         render :partial => "activities/default",:locals=>{:item=>notification}
       end
     rescue
-      "Could not display"
+      "Could not display type: #{notification.type.to_s.downcase.gsub(/activity$/,'')}"
     end
   end
 end
