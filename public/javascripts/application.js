@@ -57,4 +57,14 @@ $(function(){
 		});
 	});
 	
+	$('.reply_btn').click(function(){
+	  var commentID = this.id.split("_").pop();
+	  var threadedComment = $('#threaded_comment_'+commentID+' form');
+	  if(threadedComment.css('display')=='none'){
+	    threadedComment.show();
+	  }else{
+	    threadedComment.hide();
+	  }
+	});
+	
 });
