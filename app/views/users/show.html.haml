@@ -9,7 +9,7 @@
 
   
   .content
-    %h4.with_bottom_margin #{@user.name.capitalize}'s Updates
+    %h4.with_bottom_margin #{@user.name.capitalize.possesive} Updates
     - if @updates.total_pages > 1
       = link_to "View All(#{@updates.total_entries})", updates_user_path
     .activities
@@ -40,7 +40,7 @@
 
   - unless @videos.empty?
     .content
-      %h4 #{@user.name.capitalize}'s Videos
+      %h4 #{@user.name.capitalize.possesive} Videos
       - if @videos.total_entries > @videos.per_page
         = link_to("View All (#{@videos.total_entries})", user_videos_path(@user))
       .videos
@@ -50,7 +50,7 @@
 
   - unless @tracks.empty?
     .content
-      %h4 #{@user.name.capitalize}'s Audio
+      %h4 #{@user.name.capitalize.possesive} Audio
       - if @tracks.total_entries > @tracks.per_page
         = link_to("View All (#{@tracks.total_entries})", user_tracks_path(@user))
       .tracks
@@ -66,7 +66,7 @@
 
   - unless @photos.empty?
     .content
-      %h4 #{@user.name.capitalize}'s Photos
+      %h4 #{@user.name.capitalize.possesive} Photos
       - if @photos.total_entries > @photos.per_page
         = link_to("View All (#{@photos.total_entries})", user_photos_path(@user))
       .profile_photos
