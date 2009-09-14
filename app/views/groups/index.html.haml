@@ -8,6 +8,8 @@
     %p.notify 
       = flash[:notice]
 .main  
+  - if current_user
+    = render "users/dashboard_nav"
   - unless @groups.empty?
     = render "sorting"
     .groups
