@@ -14,6 +14,10 @@ module ApplicationHelper
     
     radio_button_tag("star1",val, checked,attrs)
   end
+
+	def custom_error_messages form
+		content_tag("h2", "There were some problems with your informaiton", :class=>"form_errors") if form.object.errors.count > 0
+	end
   
   
   	def filter_html(html,profile='')

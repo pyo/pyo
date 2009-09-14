@@ -589,7 +589,7 @@ h1.bordered_title {
   font-size: 30px;
   margin-bottom: 15px; }
 
-form .hint {
+form .hint, form .form_error {
   z-index: 10000;
   display: none;
   position: absolute;
@@ -603,6 +603,17 @@ form .hint {
   font-family: Verdana;
   font-size: 12px;
   background: #EEEEEE url(/images/icons/signup_arrow.png) no-repeat scroll 10px 12px; }
+form .form_error {
+  background: #FFCCCC;
+  display: block;
+  left: -305px;
+  padding: 10px;
+  top: 12px;
+  width: 270px; }
+form h2.form_errors {
+  color: red;
+  font-size: 18px;
+  margin-bottom: 15px; }
 form .text_field, form .password_field, form .select_field, form .file_field, form .text_area {
   position: relative; }
   form .text_field select, form .text_field input, form .password_field select, form .password_field input, form .select_field select, form .select_field input, form .file_field select, form .file_field input, form .text_area select, form .text_area input {
