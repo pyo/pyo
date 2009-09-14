@@ -35,12 +35,13 @@ class UsersController < ApplicationController
         when 'comments' then ["consumer_id = ? and type = ?", current_user.id, "CommentActivity"]
         when 'follows' then ["consumer_id = ? and type = ?", current_user.id, "FollowingActivity"]
         when 'likes' then ["consumer_id = ? and type = ?", current_user.id, "LikeActivity"]
-        else ["consumer_id = ?", current_user.id]
         end
+      else conditions = ["consumer_id = ?", current_user.id]
       end
       
       @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id])
       #@followings = current_user.followings.recent
+
       @activities = Activity.all(:include => [:producer => :profile], :conditions => conditions).paginate(:per_page => 25, :page => 1)
       #@activities = current_user.activities(:include => [:producer => :profile], :conditions => conditions).paginate(:per_page => 25, :page => 1)
       @new_messages_count = current_user.new_messages.count

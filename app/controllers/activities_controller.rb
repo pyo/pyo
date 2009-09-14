@@ -5,17 +5,21 @@ class ActivitiesController < ApplicationController
     conditions = nil
     if params[:type]
       conditions = case params[:type]
-      when 'statuses' then ["type = ?", "StatusActivity"]
-      when 'pictures' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Photo"]
-      when 'audios' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Track"]
-      when 'videos' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Video"]
-      when 'blogs' then ["type = ? and payload_type = ?", "MediaUploadActivity", "Blog"]
-      when 'comments' then ["type = ?", "CommentActivity"]
-      when 'follows' then ["type = ?", "FollowingActivity"]
-      when 'likes' then ["type = ?", "LikeActivity"]
+      when 'statuses' then ["consumer_id = ? and type = ?", current_user.id, "StatusActivity"]
+      when 'pictures' then ["consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Photo"]
+      when 'audios' then ["consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Track"]
+      when 'videos' then ["consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Video"]
+      when 'blogs' then ["consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Blog"]
+      when 'comments' then ["consumer_id = ? and type = ?", current_user.id, "CommentActivity"]
+      when 'follows' then ["consumer_id = ? and type = ?", current_user.id, "FollowingActivity"]
+      when 'likes' then ["consumer_id = ? and type = ?", current_user.id, "LikeActivity"]
       end
+    else conditions = ["consumer_id = ?", current_user.id]
     end
-    @activities = current_user.activities.paginate(:per_page => 25, :page => params[:page], :conditions => conditions)
+    
+
+    @activities = Activity.all(:include => [:producer => :profile], :conditions => conditions).paginate(:per_page => 25, :page => params[:page])
+    
     respond_to do |format|
       format.js
     end
