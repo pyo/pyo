@@ -1,7 +1,7 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
   
-  caches_action :show
+  #caches_action :show, :dashboard
   
   before_filter :authenticate_or_temp, :only => [:dashboard]
   
@@ -22,8 +22,6 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    expire_page user_path(current_user)
-    logger.info current_user.inspect
     if current_user.email_confirmed?
       conditions = nil
       if params[:type]
@@ -91,12 +89,12 @@ class UsersController < ApplicationController
     @flickr_photos  = @user.flickr_photos(8)
     @tracks         = @user.tracks.paginate(:per_page => 6, :page => 1)
     @videos         = @user.videos.paginate(:per_page => 8, :page => 1)
-    @tweets         = @user.tweets rescue [] 
-    @followings     = @user.followings.paginate(:per_page => 12, :page => 1)  
+    @tweets         = @user.tweets rescue []     
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
     @updates        = @user.profile_updates.paginate(:per_page => 10, :page => 1)
     @posts          = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups         = @user.groups.paginate(:per_page => 5, :page => 1)
-    @comments       = @user.comments.paginate(:per_page => 10, :page => 1)
+    @comments       = Comment.all(:include => [:comments, {:producer => :profile}], :conditions => ["consumer_id = ?", @user.id]).paginate(:per_page => 10, :page => 1)
     @user.profile.update_view_count(request)
   end
 
@@ -190,7 +188,6 @@ class UsersController < ApplicationController
   private
   
     def authenticate_or_temp
-      logger.info "FOOK => #{session.inspect}"
       unless session[:temp_user_id]
         authenticate
       else
@@ -215,7 +212,7 @@ class UsersController < ApplicationController
     end
   
     def load_user
-      @user = User.find_by_name(params[:id])
+      @user = User.find_by_name(params[:id], :joins => :profile)
       logger.info params.inspect
     end
 end

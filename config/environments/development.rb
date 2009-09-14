@@ -11,7 +11,7 @@ config.whiny_nils = true
 # Show full error reports and disable caching
 config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
-config.action_controller.perform_caching             = false
+#config.action_controller.perform_caching             = false
 config.gem "josevalim-rails-footnotes",  :lib => "rails-footnotes", :source => "http://gems.github.com"
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
@@ -19,8 +19,8 @@ config.action_mailer.raise_delivery_errors = false
 # clearance
 HOST = "localhost"
 
-#ActionController::Base.cache_store = :file_store, "/public/cache"
-config.action_controller.perform_caching = true
+#ActionController::Base.cache_store = :file_store, "tmp/cache"
+config.action_controller.perform_caching = false
 
 Paperclip.options[:command_path] = '/opt/local/bin/'
 

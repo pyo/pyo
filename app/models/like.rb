@@ -1,5 +1,5 @@
 class Like < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   belongs_to :media, :polymorphic => true
   default_scope :order => "created_at DESC"
   

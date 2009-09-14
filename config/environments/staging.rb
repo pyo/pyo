@@ -37,3 +37,4 @@ ActionMailer::Base.smtp_settings = {
 }
 
 config.action_controller.perform_caching = true
+ActionController::Base.cache_store = :file_store, "tmp/cache"

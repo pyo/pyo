@@ -6,7 +6,7 @@
         return false
       })
     })
-- @followings = @user.followings.paginate(:per_page => 12, :page => 1) # sorry for this
+    
 = image_tag @user.profile.avatar.url(:profile)
 - if current_user and current_user != @user
   .buttons

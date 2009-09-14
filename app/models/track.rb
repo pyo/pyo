@@ -20,7 +20,7 @@ class Track < ActiveRecord::Base
                     :path => ":attachment/:id/:style.:extension",
                     :bucket => "pyo-tracks-#{RAILS_ENV}"
   #assocs 
-  belongs_to  :user
+  belongs_to :user, :counter_cache => true
   has_many    :activities, :as => :payload, :dependent => :destroy 
   has_many    :comments, :as => 'consumer'
   

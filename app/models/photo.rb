@@ -25,7 +25,7 @@ class Photo < ActiveRecord::Base
                     :default_url => "/images/:attachment/:style/missing.png"
   
   # assocs
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   has_many :comments, :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => :payload, :dependent => :destroy 
   

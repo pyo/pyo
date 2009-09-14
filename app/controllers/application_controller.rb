@@ -40,6 +40,10 @@ class ApplicationController < ActionController::Base
   def parent_object
     parent_class && parent_class.find_by_id(parent_id(parent_type))
   end
+  
+  def expire_cache_for(user)
+    expire_fragment :controller => "users", :action => "show", :id => user.to_param
+  end
 
 	protected
     

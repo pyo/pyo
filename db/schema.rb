@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090911144227) do
+ActiveRecord::Schema.define(:version => 20090914200651) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -60,6 +60,10 @@ ActiveRecord::Schema.define(:version => 20090911144227) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["consumer_type", "consumer_id"], :name => "index_comments_on_consumer_type_and_consumer_id"
+  add_index "comments", ["producer_id", "producer_type"], :name => "index_comments_on_producer_id_and_producer_type"
+  add_index "comments", ["state"], :name => "index_comments_on_state"
 
   create_table "count_von_count_views", :force => true do |t|
     t.string   "model_type"
@@ -204,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20090911144227) do
     t.string   "timezone"
     t.string   "url"
     t.string   "twitter_password"
+    t.integer  "total_view_count",    :default => 0
   end
 
   add_index "profiles", ["address"], :name => "index_profiles_on_address"
@@ -291,6 +296,10 @@ ActiveRecord::Schema.define(:version => 20090911144227) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "followers_count",                   :default => 0
+    t.integer  "videos_count",                      :default => 0
+    t.integer  "tracks_count",                      :default => 0
+    t.integer  "photos_count",                      :default => 0
+    t.integer  "likes_count",                       :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
 
 	validates_presence_of :title, :description
 
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   has_many :comments, :as => 'consumer', :dependent => :destroy
 
   named_scope :finished, :conditions => {:finished => true}
