@@ -8,3 +8,11 @@
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
 # end
+
+module ActiveSupport::CoreExtensions::String::Inflections
+	
+  def possesive
+		self.last=='s' ? "#{self}'" : "#{self}'s"
+  end
+
+end

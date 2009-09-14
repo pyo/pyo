@@ -9,10 +9,12 @@ class Comment < ActiveRecord::Base
   default_scope :order => "created_at desc"
   
   def after_create
-    CommentActivity.create({:producer => producer, :payload => self})
-    producer.followers.each do |follower|
-      CommentActivity.create({:producer => producer, :consumer => follower, :payload => self})
-    end
+		unless consumer.is_a?(Comment)
+	    CommentActivity.create({:producer => producer, :payload => self})
+	    producer.followers.each do |follower|
+	      CommentActivity.create({:producer => producer, :consumer => follower, :payload => self})
+	    end
+		end
     if consumer.respond_to?(:comments_count)
       consumer.class.increment_counter(:comments_count, consumer.id)
     end

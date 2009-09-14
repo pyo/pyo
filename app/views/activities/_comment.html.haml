@@ -1,3 +1,6 @@
-posted a comment on #{link_to item.payload.consumer.name, item.payload.consumer}'s profile
+- if item.payload.consumer.is_a?(User)
+  posted a comment on #{link_to item.payload.consumer.name.possesive, item.payload.consumer} profile
+- elsif item.payload.consumer.user
+  posted a comment on #{link_to item.payload.consumer.user.name.possesive, item.payload.consumer.user} #{link_to item.payload.consumer.class.to_s.downcase, [item.payload.consumer.user,item.payload.consumer]}
 %p
   %em "#{item.payload.message}"

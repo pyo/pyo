@@ -62,6 +62,7 @@
                     = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
                   %div{:id => "audioplayer_#{track.id}"}
 
+
     - unless @photos.empty?
       .content
         %h4 #{@user.name.capitalize}'s Photos
