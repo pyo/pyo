@@ -1,13 +1,15 @@
 - form_for @user, :html => {:multipart => true} do |form|
-  = form.error_messages
+  = custom_error_messages(form)
   .text_field
     = form.label :name, '01. Username:'
+    = error_message_on @user, :name, :css_class=>:form_error
     = form.text_field :name
     %span.hint Your unique name that will be used throughout PYO
 
   - if @user.new_record?
     .password_field
       = form.label :password, '02. Password:'
+      = error_message_on @user, :password, :css_class=>:form_error
       = form.password_field :password, :onkeyup => 'checkPassword(this)'
       %span.hint 
         Make it at least <strong>4 characters long</strong>. But we recommend you use <strong>8 characters or more</strong> just to be on the safe side!
@@ -18,16 +20,19 @@
     
   .text_field
     = form.label :email, '04. Email:'
+    = error_message_on @user, :email, :css_class=>:form_error
     = form.text_field :email
     %span.hint To validate your account and receive updates about your profile and PYO. This will also be used if you need to reset your password
 
   .text_field
     = form.label :talent_type, '05. Talent Type:'
+    = error_message_on @user, :talent_type, :css_class=>:form_error
     = form.text_field :talent_type
     %span.hint What is your talent? Are you an athlete, musician, model, actor, comedian, dancer, etc.? Let us know what you do here!
 
   .text_field
     = form.label :tag_list, '06. Tags:'
+    = error_message_on @user, :tag_list, :css_class=>:form_error
     = form.text_field :tag_list
     %span.hint A few keywords that describe you and/or your talent. (ex: basketball, football, tennis, track, hip-hop, r&amp;b, country, rock, classical, etc.)
   
