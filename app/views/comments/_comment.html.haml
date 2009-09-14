@@ -5,6 +5,6 @@
     = link_to comment.producer.name, comment.producer
     = "<span class='dark_grey'>( #{time_ago_in_words(comment.created_at)} ago )</span>"
     - if current_user
-      = "| #{link_to('delete', comment, :confirm => 'Are you sure?', :method => :delete)}" if current_user.owns?(comment)
+      = "| #{link_to('delete', comment, :confirm => 'Are you sure?', :method => :delete)}" if current_user.owns?(comment) || is_owner
     %br
     = comment.message
