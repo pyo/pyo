@@ -609,7 +609,7 @@ h1.bordered_title
   :margin-bottom 15px
 
 form
-  .hint
+  .hint, .form_error
     :z-index 10000
     :display none
     :position absolute
@@ -623,6 +623,17 @@ form
     :font-family Verdana
     :font-size 12px
     :background #EEEEEE url(/images/icons/signup_arrow.png) no-repeat scroll 10px 12px
+  .form_error
+    :background #FFCCCC
+    :display block
+    :left -305px
+    :padding 10px
+    :top 12px
+    :width 270px
+  h2.form_errors
+    :color red
+    :font-size 18px
+    :margin-bottom 15px
   .text_field, .password_field, .select_field, .file_field, .text_area
     :position relative
     select, input
