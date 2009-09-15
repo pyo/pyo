@@ -9,7 +9,7 @@
 
   - cache do  
     .content
-      %h4.with_bottom_margin #{@user.name.capitalize.possesive} Updates
+      %h4.with_bottom_margin #{@user.name.capitalize}'s Updates
       - if @updates.total_pages > 1
         = link_to "View All(#{@updates.total_entries})", updates_user_path
       .activities
@@ -38,7 +38,7 @@
 
     - unless @videos.empty?
       .content
-        %h4 #{@user.name.capitalize.possesive} Videos
+        %h4 #{@user.name.capitalize}'s Videos
         - if @videos.total_entries > @videos.per_page
           = link_to("View All (#{@videos.total_entries})", user_videos_path(@user))
         .videos
@@ -48,7 +48,7 @@
 
     - unless @tracks.empty?
       .content
-        %h4 #{@user.name.capitalize.possesive} Audio
+        %h4 #{@user.name.capitalize}'s Audio
         - if @tracks.total_entries > @tracks.per_page
           = link_to("View All (#{@tracks.total_entries})", user_tracks_path(@user))
         .tracks
@@ -65,7 +65,7 @@
 
     - unless @photos.empty?
       .content
-        %h4 #{@user.name.capitalize.possesive} Photos
+        %h4 #{@user.name.capitalize}'s Photos
         - if @photos.total_entries > @photos.per_page
           = link_to("View All (#{@photos.total_entries})", user_photos_path(@user))
         .profile_photos
@@ -91,12 +91,12 @@
               = image_tag tweet["user"]["profile_image_url"], :style=>"float:left"
               %p{:style=>"float:left; margin: 3px"}
               = link_to tweet["text"], "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}", :style=>"color:#000"
-            
-    .content
-      %h4 Comments
-      .comments
-        = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
-        = render :partial => @comments, :locals => {:is_owner => (current_user && @user == current_user)}
+              
+  .content
+    %h4 Comments
+    .comments
+      = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
+      = render :partial => @comments, :locals => {:is_owner => (current_user && @user == current_user)}
 
 .details
   .inner_content
