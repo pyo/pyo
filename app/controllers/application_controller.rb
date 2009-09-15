@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   include Clearance::App::Controllers::ApplicationController
   helper :all # include all helpers, all the time
+  skip_before_filter :verify_authenticity_token
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
