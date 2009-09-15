@@ -54,13 +54,10 @@
       - if @has_alerts
         - if @new_followings_count > 0
           .alert_type
-            = link_to "(#{@new_followings_count}) new follows", '#'
-        - if @new_comments_count > 0
-          .alert_type
-            = link_to "(#{@new_comments_count}) new comments", '#'
+            = link_to "(#{@new_followings_count}) new follows", followers_user_path(current_user) if current_user
         - if @new_messages_count > 0
           .alert_type
-            = link_to "(#{@new_messages_count}) new messages", '#'
+            = link_to "(#{@new_messages_count}) new messages", inbox_user_path(current_user) if current_user
       - else
         .inner_text
           At this time, you currently do not have any new alerts.
