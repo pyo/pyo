@@ -24,8 +24,7 @@
                 #{track_dom_id}.addParam('allowfullscreen','true');
                 #{track_dom_id}.addParam('allowscriptaccess','always');
                 #{track_dom_id}.addParam('wmode','opaque');
-                #{track_dom_id}.addVariable('duration','33');
-                #{track_dom_id}.addVariable('file','#{}');
+                #{track_dom_id}.addVariable('file','#{track.mp3.url}');
 
                 #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
                 #{track_dom_id}.write('popular_#{track_dom_id}');
@@ -54,7 +53,7 @@
                 #{track_dom_id}.addParam('allowscriptaccess','always');
                 #{track_dom_id}.addParam('wmode','opaque');
                 #{track_dom_id}.addVariable('duration','33');
-                #{track_dom_id}.addVariable('file','#{}');
+                #{track_dom_id}.addVariable('file','#{track.mp3.url}');
 
                 #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
                 #{track_dom_id}.write('recent_#{track_dom_id}');
