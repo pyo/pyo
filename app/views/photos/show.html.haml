@@ -22,7 +22,7 @@
       %br <br>
       .photo_tags
         Tags:
-        = @photo.tags.map{ |tag| link_to tag.name, user_photos_path }
+        = @photo.tags.map{ |tag| link_to tag.name, user_photos_path }.join(", ")
   .prev_next_links
     - if @prev_photo
       .prev_media
