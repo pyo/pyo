@@ -17,8 +17,9 @@
       = h @track.description
     %br  
     %p
+      %div[@track]
+      - track_dom_id = dom_id(track)
       :javascript
-        - track_dom_id = dom_id(track)
         var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
         #{track_dom_id}.addParam('allowfullscreen','true');
         #{track_dom_id}.addParam('allowscriptaccess','always');
@@ -29,7 +30,6 @@
         #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
         #{track_dom_id}.write('#{track_dom_id}');
         
-      %div[@track]
       .photo_tags
         %br
         %h3 Tags:
