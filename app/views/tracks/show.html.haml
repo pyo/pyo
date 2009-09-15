@@ -30,11 +30,10 @@
         #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
         #{track_dom_id}.write('#{track_dom_id}');
         
-      .photo_tags
-        %br
-        %h3 Tags:
-        %p
-          = h @track.tags.collect(&:name).join(", ")
+    .track_tags
+      %h3 Tags:
+      %p
+        = h @track.tags.collect(&:name).join(", ")
   .inner_content
     %h4 Rating    
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@track}

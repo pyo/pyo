@@ -1022,3 +1022,9 @@ h4.title {
 
 .comment_link {
   clear: both; }
+
+.track_tags {
+  padding-top: 5px;
+  clear: both; }
+  .track_tags h3 {
+    margin: 10px 0; }
