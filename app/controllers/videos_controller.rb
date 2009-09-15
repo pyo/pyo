@@ -72,8 +72,13 @@ class VideosController < ApplicationController
   end
   
   def show
-    @panda_video = Panda::Video.find(@video.panda_id)
-    @video.update_panda_status(@panda_video) if RAILS_ENV == 'development'
+    begin
+      @panda_video = Panda::Video.find(@video.panda_id)
+      @video.update_panda_status(@panda_video) if RAILS_ENV == 'development'
+    rescue
+      flash[:notice] = "The video could not be found"
+      redirect_to(videos_path)
+    end
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)

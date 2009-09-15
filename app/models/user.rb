@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 		:alphabetical=>"`users`.name ASC"
 	}
 	
-  validates_presence_of :password, :message=>"You must enter a password"
+  validates_presence_of :password, :message=>"You must enter a password", :on => :create
   validates_presence_of :email, :message=>"You must enter an email"
   
   include Covalence::Member

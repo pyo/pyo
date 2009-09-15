@@ -1,3 +1,7 @@
+- if flash[:notice]
+  .top
+    %p.notify 
+      = flash[:notice]
 .main
   .inner_content
     %h2 Videos

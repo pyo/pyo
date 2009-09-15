@@ -1,8 +1,6 @@
 class UsersController < ApplicationController   
   include Clearance::App::Controllers::UsersController
   
-  #caches_action :show, :dashboard
-  
   before_filter :authenticate_or_temp, :only => [:dashboard]
   
   before_filter :authenticate, :except => [:new, :create,:index,:show, :dashboard]
@@ -58,11 +56,7 @@ class UsersController < ApplicationController
     @messages = current_user.messages.read   if (params[:mbox]=="archive")
     @messages = current_user.sent_messages   if (params[:mbox]=="sent")
   end
-    
-  def connects
-    @connects = @user.followings
-  end
-  
+      
   def new
     @user = User.new(params[:user])
     @user.profile = Profile.new
@@ -133,17 +127,14 @@ class UsersController < ApplicationController
 	end
   
   def update
-		respond_to do |format|
-	    if @user.update_attributes(params[:user])
-	      flash[:notice] = "Profile was updated."
-				format.html { redirect_to dashboard_path }
-				format.js { head :ok }
-	    else
-	      flash[:notice] = "Profile update failed."
-				format.html { render :action => "edit" }
-				format.js { render :status=>500 }
-	    end
-		end
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Profile was updated."
+      redirect_to dashboard_path
+    else
+      @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
+      flash[:notice] = "Profile update failed."
+			render :action => "edit"
+    end
   end
   
   def follow
@@ -204,6 +195,7 @@ class UsersController < ApplicationController
     )
     @posts = current_user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = current_user.groups.paginate(:per_page => 5, :page => 1)
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
   
   private
@@ -233,7 +225,7 @@ class UsersController < ApplicationController
     end
   
     def load_user
-      @user = User.find_by_name(params[:id], :joins => :profile)
+      @user = User.find_by_name(params[:id])
       logger.info params.inspect
     end
 end
