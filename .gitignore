@@ -1,8 +1,6 @@
+cache/*
 config/database.yml
-<<<<<<< HEAD:.gitignore
 config/sphinx.yml
-=======
->>>>>>> 595b48abbaebf6e158942286f22daccbf16e7e4e:.gitignore
 config/*.sphinx.conf
 db/sphinx/*
 db/schema.rb
