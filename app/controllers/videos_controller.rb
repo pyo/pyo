@@ -64,12 +64,12 @@ class VideosController < ApplicationController
   end
   
   def status_update
-    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
     @video = Video.first(:conditions => {:panda_id => params[:id]}) # Video.find_by_panda_id(params[:id])
     @video.update_attribute(:finished, true)
     #@video = Video.find_by_panda_id(params[:id])
     @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
     @video.update_panda_status(@panda_video)
+    expire_fragment(:controller => 'users', :action => 'show', :id => @video.user.to_param)
   end
   
   def show
