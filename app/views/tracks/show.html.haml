@@ -18,7 +18,7 @@
     %br  
     %p
       %div[@track]
-      - track_dom_id = dom_id(track)
+      - track_dom_id = dom_id(@track)
       :javascript
         var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
         #{track_dom_id}.addParam('allowfullscreen','true');
