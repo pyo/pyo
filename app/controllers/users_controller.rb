@@ -52,6 +52,7 @@ class UsersController < ApplicationController
   end
   
   def inbox
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
     @messages = current_user.messages.unread unless params[:mbox]
     @messages = current_user.messages.read   if (params[:mbox]=="archive")
     @messages = current_user.sent_messages   if (params[:mbox]=="sent")
