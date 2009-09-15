@@ -9,7 +9,7 @@
 
   
   .content
-    %h4.with_bottom_margin #{@user.name.capitalize}'s Updates
+    %h4.with_bottom_margin #{@user.name.capitalize.possesive} Updates
     .activities
       - unless @updates.empty?
         %ul

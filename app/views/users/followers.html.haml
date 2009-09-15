@@ -18,7 +18,7 @@
   - if current_user
     = render "users/dashboard_nav"
   = render "users/grey_boxes"
-  %h4.title #{@user.name.capitalize}'s Followers
+  %h4.title #{@user.name.capitalize.possesive} Followers
   Total (#{@user.followers.size}) | #{link_to "Connects (#{@user.connects_size})", connects_user_path}
   - unless @followers.empty?
     .followers

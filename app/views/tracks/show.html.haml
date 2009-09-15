@@ -34,7 +34,7 @@
         %br
         %h3 Tags:
         %p
-          = h @track.tags.collect(&:name).join(" ")
+          = h @track.tags.collect(&:name).join(", ")
   .inner_content
     %h4 Rating    
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@track}
