@@ -22,13 +22,7 @@ $(function(){
 			});
 		}
 	});
-	
-	/* commenting */
-	$(".reply_btn").click(function(){
-		$(this).parents(".comment:first").find(".reply").slideToggle('fast');
-		return false;
-	}); 
-	
+		
 	$('.change_admin').click(function(e){
 		e.preventDefault();
 		var link = $(this);
@@ -58,13 +52,14 @@ $(function(){
 	});
 	
 	$('.reply_btn').click(function(){
-	  var commentID = this.id.split("_").pop();
-	  var threadedComment = $('#threaded_comment_'+commentID+' form');
-	  if(threadedComment.css('display')=='none'){
-	    threadedComment.show();
-	  }else{
-	    threadedComment.hide();
-	  }
+		var commentID = this.id.split("_").pop();
+		var threadedComment = $('#threaded_comment_'+commentID+' > form');
+		if(threadedComment.css('display')=='none'){
+			threadedComment.show();
+ 		}else{
+			threadedComment.hide();
+		}
+		return false;
 	});
 	
 });

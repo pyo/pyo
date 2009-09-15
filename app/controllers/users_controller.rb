@@ -91,7 +91,7 @@ class UsersController < ApplicationController
       @updates        = @user.profile_updates.paginate(:per_page => 10, :page => 1)
     end
     unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param, :action_suffix => 'comments')
-      @comments = Comment.all(:include => [:comments, {:producer => :profile}], :conditions => ["consumer_id = ?", @user.id]).paginate(:per_page => 10, :page => 1)
+      @comments = Comment.all(:include => [:comments, {:producer => :profile}], :conditions => ["consumer_id = ? and consumer_type = 'User'", @user.id]).paginate(:per_page => 10, :page => 1)
     end
     unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param, :action_suffix => 'followings')
       @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
