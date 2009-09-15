@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
 
   def new
     @photo = Photo.new
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
   end
   
   def show
