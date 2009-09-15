@@ -1,6 +1,5 @@
 - content_for(:head) do
-  = javascript_include_tag "/audio-player/audio-player.js"
-  = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
+  = javascript_include_tag "swfobject"
 = render "users/top"
 .main
   .inner_content
