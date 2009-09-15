@@ -1019,3 +1019,6 @@ h4.title {
   text-align: justify;
   font-size: 14px;
   line-height: 20px; }
+
+.comment_link {
+  clear: both; }

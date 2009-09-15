@@ -44,7 +44,7 @@ class Video < ActiveRecord::Base
 	end
   
   def embed_html
-    %(<embed src="http://#{VIDEOS_DOMAIN}/player.swf" width="#{self.width}" height="#{self.height}" allowfullscreen="true" allowscriptaccess="always" flashvars="&displayheight=#{self.height}&file=#{self.url}&image=#{self.screenshot_url}&width=#{self.width}&height=#{self.height}" />)
+    %(<embed src="http://#{VIDEOS_DOMAIN}/player.swf" width="#{self.width}" height="#{self.height}" allowfullscreen="true" allowscriptaccess="always" flashvars="&fullscreen=true&displayheight=#{self.height}&skin=http://#{VIDEOS_DOMAIN}/video-skin.swf&file=#{self.url}&image=#{self.screenshot_url}&width=#{self.width}&height=#{self.height}" />)
   end
   
   def after_create

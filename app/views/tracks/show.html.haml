@@ -1,5 +1,4 @@
 - content_for(:head) do
-  = javascript_include_tag "/audio-player/audio-player.js"
   = javascript_include_tag "/javascripts/pyo_media.js"
 
 = render "users/public_top"
@@ -18,9 +17,19 @@
       = h @track.description
     %br  
     %p
-      %script{:type=>"text/javascript"}
-        = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{@track.mp3.url}\", titles: \"#{h @track.name}\", artists: \"#{@track.user.name}\",});"  
-      #audioplayer_1
+      :javascript
+        - track_dom_id = dom_id(track)
+        var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
+        #{track_dom_id}.addParam('allowfullscreen','true');
+        #{track_dom_id}.addParam('allowscriptaccess','always');
+        #{track_dom_id}.addParam('wmode','opaque');
+        #{track_dom_id}.addVariable('duration','33');
+        #{track_dom_id}.addVariable('file','#{}');
+
+        #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
+        #{track_dom_id}.write('#{track_dom_id}');
+        
+      %div[@track]
       .photo_tags
         %br
         %h3 Tags:
