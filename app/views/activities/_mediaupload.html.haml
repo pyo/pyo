@@ -11,6 +11,13 @@ posted a new #{item.media_type}.
         %p= truncate(payload.body, 350)
 - elsif payload.is_a?(Track)
   .media
-    %script{:type=>"text/javascript"}
-      = "AudioPlayer.embed(\"audioplayer_#{payload.id}\", {soundFile: \"#{payload.mp3.url}\", titles: \"#{h payload.name}\", artists: \"#{payload.user.name}\",});"  
-    %div{:id => "audioplayer_#{payload.id}"}
+    %div[payload]
+    :javascript
+      var #{dom_id(payload)} = new SWFObject('/swf/player.swf','mpl','470','30','9');
+      #{dom_id(payload)}.addParam('allowfullscreen','true');
+      #{dom_id(payload)}.addParam('allowscriptaccess','always');
+      #{dom_id(payload)}.addParam('wmode','opaque');
+      #{dom_id(payload)}.addVariable('file','#{payload.mp3.url}');
+
+      #{dom_id(payload)}.addVariable('skin','/audio-player/audio-skin.swf');
+      #{dom_id(payload)}.write('#{dom_id(payload)}');

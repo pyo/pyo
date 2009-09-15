@@ -5,6 +5,8 @@
       There are currently <strong>
       = "#{@users.total_entries}</strong> Members on PYO "
 .main  
+  - if current_user
+    = render "users/dashboard_nav"
   - unless @users.empty?
     .inner_content
       = render "sorting"

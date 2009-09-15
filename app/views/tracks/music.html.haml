@@ -3,6 +3,8 @@
   = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
 .main  
   .inner_content
+    - if current_user
+      = render "users/dashboard_nav"
     %h2 
       = "Popular Tracks"
     

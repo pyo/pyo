@@ -4,6 +4,8 @@
       = flash[:notice]
 .main
   .inner_content
+    - if current_user
+      = render "users/dashboard_nav"
     %h2 Videos
     
     .videos
