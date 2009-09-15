@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   helper :notifications
   
   def index
-    @users = User.sort_by(params[:sort]).paginate(:per_page => 25, :page => params[:page])
+    @users = User.sort_by(params[:sort]).paginate(:include => :profile, :per_page => 40, :page => params[:page])
   end
   
   def likes

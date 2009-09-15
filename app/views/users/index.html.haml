@@ -3,7 +3,7 @@
     %h2 Members
     .page_info 
       There are currently <strong>
-      = "#{@users.count}</strong> Members on PYO "
+      = "#{@users.total_entries}</strong> Members on PYO "
 .main  
   - unless @users.empty?
     .inner_content
@@ -16,6 +16,7 @@
             .full_name= user.profile.full_name if user.profile.full_name
             .city_and_state= user.city_and_state.join(', ')
             .talent_type= user.talent_type
+      = will_paginate @users
             
 .details
   .inner_content
