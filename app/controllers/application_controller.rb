@@ -49,5 +49,6 @@ class ApplicationController < ActionController::Base
     
    def find_user
      @user = User.find_by_name(params[:user_id]) if params[:user_id]
+     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
    end
 end
