@@ -13,7 +13,6 @@
 - else
   %h1.bordered_title PYO Sign Up - <span class='blue'>Final Steps</span>
   %p.notify Thank you for joinining PYO! We will be sending you a confirmation e-mail to #{@profile.user.email} within the next few minutes. It contains instructions for confirming your account. For now, you can continue to set up your profile, but you will not be able to access your dashboard or any other features on the site until you confirm your account.
-  
-  - form_for(@profile, :html=>{:mutipart=>true}) do |form|
+  - form_for(@profile, :html => {:multipart => true}) do |form|
     = render form
     %p= image_submit_tag 'finish.gif'
