@@ -6,6 +6,7 @@ class DirectMessagesController < ApplicationController
   
   def new
     @direct_message = DirectMessage.new
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
 
   def create
