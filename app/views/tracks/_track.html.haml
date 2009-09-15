@@ -6,6 +6,15 @@
     = link_to("listen", user_track_path(track.user, track))
     )
   %p 
-    %script{:type=>"text/javascript"}
-      = "AudioPlayer.embed(\"audioplayer_1\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
-    #audioplayer_1
+    %div[track]
+    - track_dom_id = dom_id(track)
+    :javascript
+      var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
+      #{track_dom_id}.addParam('allowfullscreen','true');
+      #{track_dom_id}.addParam('allowscriptaccess','always');
+      #{track_dom_id}.addParam('wmode','opaque');
+      #{track_dom_id}.addVariable('duration','33');
+      #{track_dom_id}.addVariable('file','#{}');
+
+      #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
+      #{track_dom_id}.write('#{track_dom_id}');

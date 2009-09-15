@@ -4,9 +4,18 @@
   #{like.media_title} by #{link_to like.media.user.name, like.media.user}
   - if like.media.is_a?(Track)
     .player
-      %script{:type=>"text/javascript"}
-        = "AudioPlayer.embed(\"audioplayer_#{like.media.id}\", {soundFile: \"#{like.media.mp3.url}\", titles: \"#{h like.media.name}\", artists: \"#{like.media.user.name}\",});"  
-      %div{:id => "audioplayer_#{like.media.id}"}
+      %div[track]
+      - track_dom_id = dom_id(track)
+      :javascript
+        var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
+        #{track_dom_id}.addParam('allowfullscreen','true');
+        #{track_dom_id}.addParam('allowscriptaccess','always');
+        #{track_dom_id}.addParam('wmode','opaque');
+        #{track_dom_id}.addVariable('duration','33');
+        #{track_dom_id}.addVariable('file','#{}');
+
+        #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
+        #{track_dom_id}.write('#{track_dom_id}');
   
   .comment_link
     - if like.media.comments_count > 0

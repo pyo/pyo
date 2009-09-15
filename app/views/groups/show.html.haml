@@ -1,7 +1,3 @@
-- content_for(:head) do
-  - unless @tracks.empty?
-    = javascript_include_tag "/audio-player/audio-player.js"
-    = javascript_tag "AudioPlayer.setup(\"/audio-player/player.swf\", { width: 140,	transparentpagebg: \"yes\" });"
 .inner_content
   .top.relative
     %h2 #{@group.name.capitalize_words}
@@ -33,9 +29,18 @@
             = link_to h(track.name), user_track_path(track.user,track)
           %p
             = h truncate(track.description, 20)
-            %script{:type=>"text/javascript"}
-              = "AudioPlayer.embed(\"audioplayer_#{track.id}\", {soundFile: \"#{track.mp3.url}\", titles: \"#{h track.name}\", artists: \"#{track.user.name}\",});"  
-            %div{:id => "audioplayer_#{track.id}"}
+            %div[track]
+            - track_dom_id = dom_id(track)
+            :javascript
+              var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
+              #{track_dom_id}.addParam('allowfullscreen','true');
+              #{track_dom_id}.addParam('allowscriptaccess','always');
+              #{track_dom_id}.addParam('wmode','opaque');
+              #{track_dom_id}.addVariable('duration','33');
+              #{track_dom_id}.addVariable('file','#{}');
+
+              #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
+              #{track_dom_id}.write('#{track_dom_id}');
         
   
   .inner_content
