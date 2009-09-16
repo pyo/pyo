@@ -21,6 +21,7 @@ class Blog < ActiveRecord::Base
 
 	after_create :create_activity
   
+  
   define_index do
      indexes title
      indexes tags(:name)
