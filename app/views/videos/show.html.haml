@@ -4,18 +4,22 @@
     - if current_user
       = render "users/dashboard_nav"
     = render "users/grey_boxes"
-    .relative
-      %h4.title= h @video.title
-      - unless current_user && (current_user.owns?(@video) || current_user.likes?(@video))
-        .hanger
-          = link_to 'Like', like_user_video_path(@video.user, @video), :class => 'media_like', :method => :post
-    = @video.embed_html
-    %p
-      = h @video.description
-    .photo_tags
-      %h3 Tags:
+    .content
+      .relative
+        %h4.title= h @video.title
+        - if current_user && !current_user.owns?(@video) && !current_user.likes?(@video)
+          .hanger
+            = link_to 'Like', like_user_video_path(@video.user, @video), :class => 'media_like', :method => :post
+        - if current_user && current_user.likes?(@video)
+          .hanger
+            = link_to 'Unlike', unlike_user_video_path(@video.user, @video), :class => 'media_unlike', :method => :post
+      = @video.embed_html
       %p
-        = h @video.tags.collect(&:name).join(", ")
+        = h @video.description
+      .photo_tags
+        %h3 Tags:
+        %p
+          = h @video.tags.collect(&:name).join(", ")
   .inner_content
     %h2 Rating        
     = render :partial => "shared/rate_item",:locals => {:ratable=>@video}

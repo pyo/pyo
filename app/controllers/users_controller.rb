@@ -84,8 +84,8 @@ class UsersController < ApplicationController
       @flickr_photos  = @user.flickr_photos(8)
       @tracks         = @user.tracks.paginate(:per_page => 6, :page => 1)
       @videos         = @user.videos.paginate(:per_page => 8, :page => 1)
-      @tweets         = @user.tweets rescue []     
-      @updates        = @user.profile_updates.paginate(:per_page => 10, :page => 1)
+      @tweets         = @user.tweets rescue []    
+      @updates = Activity.all(:include => :payload, :conditions => ["producer_id = ? and producer_type = 'User' and consumer_id is NULL and type != 'FollowingActivity'", @user.id]).paginate(:per_page => 10, :page => 1)
     end
     unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param, :action_suffix => 'comments')
       @comments = Comment.all(:include => [:comments, {:producer => :profile}], :conditions => ["consumer_id = ? and consumer_type = 'User'", @user.id]).paginate(:per_page => 10, :page => 1)

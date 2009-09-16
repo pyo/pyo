@@ -13,7 +13,16 @@ class TracksController < ApplicationController
   
   def like
     current_user.likes.create(:media => @track)
+    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
     flash[:notice] = "You now like this track"
+    redirect_to user_track_path(@track.user, @track)
+  end
+  
+  def unlike
+    Like.destroy_all(:user_id => current_user.id, :media_type => 'Track', :media_id => @track.id)
+    LikeActivity.destroy_all(:producer_type => 'User', :producer_id => current_user.id, :payload_type => 'Track', :payload_id => @track.id)
+    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
+    flash[:notice] = "You no longer like this track"
     redirect_to user_track_path(@track.user, @track)
   end
   

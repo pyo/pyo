@@ -11,7 +11,16 @@ class PhotosController < ApplicationController
   
   def like
     current_user.likes.create(:media => @photo)
+    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
     flash[:notice] = "You now like this photo"
+    redirect_to user_photo_path(@photo.user, @photo)
+  end
+  
+  def unlike
+    Like.destroy_all(:user_id => current_user.id, :media_type => 'Photo', :media_id => @photo.id)
+    LikeActivity.destroy_all(:producer_type => 'User', :producer_id => current_user.id, :payload_type => 'Photo', :payload_id => @photo.id)
+    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
+    flash[:notice] = "You no longer like this photo"
     redirect_to user_photo_path(@photo.user, @photo)
   end
 

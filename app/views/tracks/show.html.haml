@@ -4,32 +4,35 @@
     - if current_user
       = render "users/dashboard_nav"
     = render "users/grey_boxes"
-    
-    .relative
-      %h4.title= h @track.name
-      - unless current_user && (current_user.owns?(@track) || current_user.likes?(@track))
-        .hanger
-          = link_to 'Like', like_user_track_path(@track.user, @track), :class => 'media_like', :method => :post
-    %p 
-      = h @track.description
-    %br  
-    %p
-      %div[@track]
-      - track_dom_id = dom_id(@track)
-      :javascript
-        var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
-        #{track_dom_id}.addParam('allowfullscreen','true');
-        #{track_dom_id}.addParam('allowscriptaccess','always');
-        #{track_dom_id}.addParam('wmode','opaque');
-        #{track_dom_id}.addVariable('file','#{@track.mp3.url}');
-
-        #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
-        #{track_dom_id}.write('#{track_dom_id}');
-        
-    .track_tags
-      %h3 Tags:
+    .content
+      .relative
+        %h4.title= h @track.name
+        - if current_user && !current_user.owns?(@track) && !current_user.likes?(@track)
+          .hanger
+            = link_to 'Like', like_user_track_path(@track.user, @track), :class => 'media_like', :method => :post
+        - if current_user && current_user.likes?(@track)
+          .hanger
+            = link_to 'Unlike', unlike_user_track_path(@track.user, @track), :class => 'media_unlike', :method => :post
+      %p 
+        = h @track.description
+      %br  
       %p
-        = h @track.tags.collect(&:name).join(", ")
+        %div[@track]
+        - track_dom_id = dom_id(@track)
+        :javascript
+          var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
+          #{track_dom_id}.addParam('allowfullscreen','true');
+          #{track_dom_id}.addParam('allowscriptaccess','always');
+          #{track_dom_id}.addParam('wmode','opaque');
+          #{track_dom_id}.addVariable('file','#{@track.mp3.url}');
+
+          #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
+          #{track_dom_id}.write('#{track_dom_id}');
+        
+      .track_tags
+        %h3 Tags:
+        %p
+          = h @track.tags.collect(&:name).join(", ")
   .inner_content
     %h4 Rating    
     = render :partial =>"shared/rate_item",:locals => {:ratable=>@track}

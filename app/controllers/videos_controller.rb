@@ -14,7 +14,16 @@ class VideosController < ApplicationController
   
   def like
     current_user.likes.create(:media => @video)
+    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
     flash[:notice] = "You now like this video"
+    redirect_to user_video_path(@video.user, @video)
+  end
+  
+  def unlike
+    Like.destroy_all(:user_id => current_user.id, :media_type => 'Video', :media_id => @video.id)
+    LikeActivity.destroy_all(:producer_type => 'User', :producer_id => current_user.id, :payload_type => 'Video', :payload_id => @video.id)
+    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
+    flash[:notice] = "You no longer like this video"
     redirect_to user_video_path(@video.user, @video)
   end
   

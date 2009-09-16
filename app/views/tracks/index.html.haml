@@ -28,7 +28,7 @@
           \-
           %strong
             = h track.name
-          = h track.description
+          (#{link_to 'Listen',  [track.user, track]})
           .player
             %div[track]
             :javascript
