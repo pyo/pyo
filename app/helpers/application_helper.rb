@@ -1,5 +1,17 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+	
+	def get_page_title
+		case
+		when current_page?(:controller=>"sessions",:action=>"new")
+			"Login to Put Yourself On"
+		when current_page?('/signup')
+			"Sign up so that you can Put Yourself On"
+		else
+			"Put Yourself On" + (@title ? " &mdash; " << @title : '')
+		end
+	end
+	
   def is_owner? item
     current_user == case true
       when item.respond_to?(:user) then item.user

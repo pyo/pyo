@@ -5,6 +5,7 @@ class PhotosController < ApplicationController
   before_filter :authenticate, :except => [:show, :index]
   
   def index
+		@title = "#{@user.name.capitalize.possesive} Pictures"
     @photos = @user.photos.paginate(:per_page => 30, :page => params[:page])
     load_user_data
   end
@@ -30,6 +31,7 @@ class PhotosController < ApplicationController
   end
   
   def show
+		@title = @photo.title
     @prev_photo = @user.photos.first(:order => 'id desc', :conditions => ["id < ?", @photo.id])
     @next_photo = @user.photos.first(:order => 'id asc', :conditions => ["id > ?", @photo.id])
     load_user_data

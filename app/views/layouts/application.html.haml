@@ -1,7 +1,7 @@
 !!! Strict
 %html
   %head
-    %title= "Put Yourself On" + (@title ||  '')
+    %title= get_page_title
     / %link{:rel => 'icon', :type => 'image/gif', :href=>'favicon.gif'}
     = stylesheet_link_tag 'screen', :media => 'screen'
     = stylesheet_link_tag '/stylesheets/jquery.rating.css'

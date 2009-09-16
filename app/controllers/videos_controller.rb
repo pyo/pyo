@@ -6,6 +6,7 @@ class VideosController < ApplicationController
   protect_from_forgery :except => :status_update
   
   def index
+		@title = "#{@user.name.capitalize.possesive} Videos"
     @videos = @user.nil? ? Video.finished.all : @user.videos.finished.all
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
@@ -28,6 +29,7 @@ class VideosController < ApplicationController
   end
   
   def videos
+		@title = "Videos"
     @videos = Video.finished.paginate(:per_page => 25, :page => params[:page])
   end
   
@@ -89,6 +91,7 @@ class VideosController < ApplicationController
       flash[:notice] = "The video could not be found"
       redirect_to(videos_path)
     end
+		@title = @video.title
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)

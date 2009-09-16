@@ -5,6 +5,7 @@ class TracksController < ApplicationController
   before_filter :authenticate, :except => [:show, :index, :music]
   
   def index
+		@title = "#{@user.name.capitalize.possesive} Audio Tracks"
     @tracks = @user.tracks.all
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
@@ -36,12 +37,14 @@ class TracksController < ApplicationController
   end
   
   def show
+		@title = "#{@track.name}"
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
   
   def music
+		@title = "Music"
     @recent_tracks = Track.recent(:limit=>8)
     @popular_tracks = Track.popular(:limit=>8)
     

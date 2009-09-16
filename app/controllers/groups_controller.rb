@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create,:approve,:deny,:pending,:members] 
   
   def index
+		@title = "Groups"
     @groups = Group.sort_by(params[:sort]).paginate(:per_page => 25, :page => params[:page], :include => :group_category)
     @categories = GroupCategory.all
     respond_to do |format|
@@ -40,6 +41,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+		@title = @group.name
     @admins = @group.with_role(:ADMIN) + @group.with_role(:MODERATOR)
     @members = @group.users.paginate(:per_page => 12, :page => 1)
     @photos = @group.photos.paginate(:per_page => 10, :page => 1)
@@ -104,6 +106,7 @@ class GroupsController < ApplicationController
   end
   
   def request_group
+		@title = "Request New Group"
     @group = Group.new
   end
   

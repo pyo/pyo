@@ -10,10 +10,12 @@ class UsersController < ApplicationController
   helper :notifications
   
   def index
+		@title = "Members"
     @users = User.sort_by(params[:sort]).paginate(:include => :profile, :per_page => 40, :page => params[:page])
   end
   
   def likes
+		@title = "#{@user.name.capitalize.possesive} Likes"
     @likes = @user.likes.paginate(:per_page => 15, :page => params[:page], :order => 'created_at desc')
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
@@ -21,6 +23,7 @@ class UsersController < ApplicationController
   end
   
   def dashboard
+		@title = "Dashboard"
     if current_user.email_confirmed?
       conditions = nil
       if params[:type]
@@ -36,6 +39,8 @@ class UsersController < ApplicationController
         end
       else conditions = ["consumer_type = 'User' and consumer_id = ?", current_user.id]
       end
+
+			@title << format_title_by_type(params[:type])
       
       @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ? and parent_type = 'User'", current_user.id])
       @activities = Activity.all(:include => [:producer => :profile], :conditions => conditions).paginate(:per_page => 25, :page => 1)
@@ -79,15 +84,15 @@ class UsersController < ApplicationController
   end
   
   def show
-    unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param)
-      @photos         = @user.photos.recent.paginate(:per_page => 10, :page => 1)
-      @flickr_photos  = @user.flickr_photos(8)
-      @tracks         = @user.tracks.paginate(:per_page => 6, :page => 1)
-      @videos         = @user.videos.paginate(:per_page => 8, :page => 1)
-      @tweets         = @user.tweets rescue []    
-      @updates = Activity.all(:include => :payload, :conditions => ["producer_id = ? and producer_type = 'User' and consumer_id is NULL and type != 'FollowingActivity'", @user.id]).paginate(:per_page => 10, :page => 1)
-    end
-    unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param, :action_suffix => 'comments')
+		@title					= "#{@user.name.capitalize} (#{@user.profile.full_name})"
+		@photos         = @user.photos.recent.paginate(:per_page => 10, :page => 1)
+		@flickr_photos  = @user.flickr_photos(8)
+		@tracks         = @user.tracks.paginate(:per_page => 6, :page => 1)
+		@videos         = @user.videos.paginate(:per_page => 8, :page => 1)
+		@tweets         = @user.tweets rescue []    
+		@updates = Activity.all(:include => :payload, :conditions => ["producer_id = ? and producer_type = 'User' and consumer_id is NULL and type != 'FollowingActivity'", @user.id]).paginate(:per_page => 10, :page => 1)
+
+		unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param, :action_suffix => 'comments')
       @comments = Comment.all(:include => [:comments, {:producer => :profile}], :conditions => ["consumer_id = ? and consumer_type = 'User'", @user.id]).paginate(:per_page => 10, :page => 1)
     end
     unless fragment_exist?(:controller => 'users', :action => 'show', :id => @user.to_param, :action_suffix => 'followings')
@@ -159,6 +164,7 @@ class UsersController < ApplicationController
   
   def followers
     @user = User.find_by_name(params[:id])
+		@title = "#{@user.name.capitalize.possesive} Followers"
     @followers = @user.followers.paginate(:per_page => 40, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
@@ -167,6 +173,7 @@ class UsersController < ApplicationController
   
   def following
     @user = User.find_by_name(params[:id])
+		@title ="Profiles #{@user.name.capitalize.possesive} is Following"
     @followings = @user.followings.paginate(:per_page => 40, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
@@ -174,6 +181,7 @@ class UsersController < ApplicationController
   
   def connects
     @user = current_user
+		@title = "#{@user.name.capitalize.possesive} Connects"
     @connects = User.paginate(
       :select => 'distinct `users`.*',
       :per_page => 40,
@@ -226,4 +234,19 @@ class UsersController < ApplicationController
       @user = User.find_by_name(params[:id])
       logger.info params.inspect
     end
+
+		def format_title_by_type type
+			" &mdash; " << case type
+			when 'statuses' then "Status Updates"
+			when 'pictures' then "Picture Updates"
+			when 'audios' then "Picture Updates"
+			when 'videos' then "Video Updates"
+			when 'blogs' then "Blog Post Updates"
+			when 'comments' then "Comment Updates"
+			when 'follows' then "Follow Updates"
+			when 'likes' then "Like Updates"
+			else 
+				return ''
+			end		
+		end
 end
