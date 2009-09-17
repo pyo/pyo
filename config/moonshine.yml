@@ -29,8 +29,7 @@
 
 # Use :app_symlinks to setup directories under public/ that you want to persist
 # across deployments. They'll be symlinked to the shared directory.
-:app_symlinks:
-  - uploads
+# :app_symlinks:
 #   - sites/default/files
 #
 # Use :local_config to copy directories straight from your local project directory
