@@ -180,7 +180,6 @@ class UsersController < ApplicationController
   end
   
   def connects
-    @user = current_user
 		@title = "#{@user.name.capitalize.possesive} Connects"
     @connects = User.paginate(
       :select => 'distinct `users`.*',
