@@ -19,7 +19,7 @@
         - @activities.each do |activity|
           %div.activity[activity]
             .thumb
-              = image_tag(activity.producer.profile.avatar(:thumb)) if activity.producer
+              = link_to(image_tag(activity.producer.profile.avatar(:thumb)), activity.producer) if activity.producer
             #{time_ago_in_words(activity.created_at)} ago
             %p
               = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
