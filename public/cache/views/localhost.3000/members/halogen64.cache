@@ -1,0 +1,449 @@
+"©b<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Put Yourself On</title>
+    <!-- %link{:rel => 'icon', :type => 'image/gif', :href=>'favicon.gif'} -->
+    <link href="/stylesheets/screen.css?1252950018" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/jquery.rating.css?1246900779" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery-1.3.2.min.js?1245334301" type="text/javascript"></script>
+    <script src="/javascripts/application.js?1252950018" type="text/javascript"></script>
+    <script src="/javascripts/jquery.rating.pack.js?1246900779" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    var AUTH_TOKEN = "9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=";
+    //]]>
+    </script>
+    <script src="/audio-player/audio-player.js?1245954610" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    AudioPlayer.setup("/audio-player/player.swf", { width: 140,	transparentpagebg: "yes" });
+    //]]>
+    </script>
+    <script src="/javascripts/formhints.js?1252426935" type="text/javascript"></script>
+    <script src="/javascripts/jquery.textcounting.js?1252426935" type="text/javascript"></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        
+        $(function() {
+          $('#upload_post_button, #close_post, .upload_post').click(function() {
+            $('#post_bar').slideToggle();
+            return false;
+          });
+          
+          
+          $('#load_more').live("click", function() {
+            $.ajax({data:'authenticity_token=' + encodeURIComponent('9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M='), dataType:'script', type:'get', url:this.href}); 
+            return false;
+          });
+          
+          $.fn.textCounting.defaults.lengthExceededClass= "warningClass";
+          $("#status_message").textCounting({});
+          
+        })
+      //]]>
+    </script>
+    <script src="/javascripts/jquery.corners.js?1252426935" type="text/javascript"></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        $(function(){
+          $('.rounded').corners();
+          $('.rounded').corners(); /* test for double rounding */
+        });
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        $(function() {
+          $('.following_button').click(function() {
+            $(".followmsg").slideToggle();
+            return false
+          })
+        })
+      //]]>
+    </script>
+  </head>
+  <body>
+    <div class='container' id='main'>
+      <div class='header'>
+        <h2 class='logo'><a href="/">Put Yourself On</a></h2>
+        <div class='user_bar'>
+          <ul class='separated'>
+            <li class='first'><a href="#" class="upload_post">Upload / Post</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/inbox">Inbox(1)</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class='content_without_padding' id='navigation'>
+        <ul class='menu'>
+          <li class='first'><a href="/members/twoism">My Profile</a></li>
+          <li><a href="/connects">My Connects</a></li>
+          <li><a href="/members/twoism/inbox">Inbox (1)</a></li>
+          <li><a href="/members">Members</a></li>
+          <li><a href="/groups">Groups</a></li>
+          <li><a href="/music">Music</a></li>
+          <li><a href="/videos">Videos</a></li>
+          <!-- %li= link_to 'Marketplace', marketplace_path -->
+        </ul>
+        <div class='search'>
+          <form action='/search'>
+            <input name='q' type='text' />
+            <input class='submit' src='/images/search.png' type='image' value='Search' />
+          </form>
+        </div>
+      </div>
+      <div class='advertisement'>
+        <img alt="Advertisement" src="/images/advertisement.jpg?1252426934" />
+      </div>
+      <div id='content'>
+        <div id='inner_content'>
+          <div class='inner_content'>
+            <div class='top'>
+              <h2 class='left'><a href="/members/halogen64">Halogen64</a></h2>
+              <span class='status'>
+                First Status
+                
+              </span>
+              <div class='member_info'>
+                Member Since:
+                <strong>September 2009</strong>
+                | Profile Views Today: 0 | Total Profile Views: 1
+              </div>
+            </div>
+          </div>
+          <div class='main'>
+            <div class='hidden' id='post_bar'>
+              <a class='warningClass close' href='#' id='close_post'>[X] CLOSE THIS</a>
+              <h4 class='capital'>Post something new to PYO:</h4>
+              <ul class='menu' id='dashboard_nav'>
+                <li id='status_nav'>Status</li>
+                <li id='picture_nav'><a href="/photos/new">Picture</a></li>
+                <li id='video_nav'><a href="/videos/new">Video</a></li>
+                <li id='audio_nav'><a href="/tracks/new">Audio</a></li>
+                <li id='blog_nav'><a href="/blogs/new">Blog</a></li>
+              </ul>
+              <span id='status_messageDown'>0</span>
+              <form action="/activities" class="new_activity" id="new_activity" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=" /></div>
+                <textarea cols="50" id="status_message" maxLength="300" name="activity[message]" rows="3"></textarea>
+                <div class='submit_button'>
+                  <input id="post_button" src="/images/post_button.gif?1252426934" type="image" />
+                </div>
+              </form>
+            </div>
+            <div class='greyboxes'>
+              <a class='greybox rounded {15px}' href='/members/halogen64/followers'>
+                <div class='count'>
+                  20
+                </div>
+                Followers
+              </a>
+              <a class='greybox rounded {15px}' href='/members/halogen64/photos'>
+                <div class='count'>
+                  4
+                </div>
+                Photos
+              </a>
+              <a class='greybox rounded {15px}' href='/members/halogen64/tracks'>
+                <div class='count'>
+                  1
+                </div>
+                Audio Files
+              </a>
+              <a class='greybox rounded {15px}' href='/members/halogen64/videos'>
+                <div class='count'>
+                  0
+                </div>
+                Videos
+              </a>
+              <a class='greybox rounded {15px}' href='/members/halogen64/likes'>
+                <div class='count'>
+                  1
+                </div>
+                Likes
+              </a>
+            </div>
+            <div class='content'>
+              <h4 class='with_bottom_margin'>Halogen64's Updates</h4>
+              <div class='activities'>
+                <ul>
+                  <div class='activity status_activity' id='status_activity_4376'>
+                    <div class='thumb'>
+                      <img alt="Thumb" src="/data/profiles/thumb.png?1252426934" />
+                    </div>
+                    about 2 hours ago
+                    <p>
+                      <img alt="Status_16-plus" class="icon" src="/images/icons/status_16-plus.png?1252426934" />
+                      <a href="/members/halogen64">halogen64</a>
+                      <strong>First Status</strong>
+                    </p>
+                  </div>
+                  <div class='activity media_upload_activity' id='media_upload_activity_4354'>
+                    <div class='thumb'>
+                      <img alt="Thumb" src="/data/profiles/thumb.png?1252426934" />
+                    </div>
+                    about 3 hours ago
+                    <p>
+                      <img alt="Blog_16-plus" class="icon" src="/images/icons/blog_16-plus.png?1252426934" />
+                      <a href="/members/halogen64">halogen64</a>
+                      posted a new blog entry.
+                      <div class='media'>
+                        <div class='blog'>
+                          <blockquote>
+                            <a href="/blogs/6">new Blogoogogogo</a>
+                            <p><p>OMg osfsdmfsfsdf</p></p>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </p>
+                  </div>
+                </ul>
+              </div>
+            </div>
+            <div class='content'>
+              <h4>Halogen64's Audio</h4>
+              <div class='tracks'>
+                <div class='track'>
+                  <div class='profile_track_info'>
+                    <strong>
+                      <a href="/members/halogen64/tracks/1">Winter</a>
+                    </strong>
+                    <div class='player'>
+                      <script type='text/javascript'>
+                        AudioPlayer.embed("audioplayer_1", {soundFile: "http://s3.amazonaws.com/pyo-tracks-development/mp3s/1/original.mp3", titles: "Winter", artists: "halogen64",});
+                      </script>
+                      <div id='audioplayer_1'>            </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='content'>
+              <h4>Halogen64's Photos</h4>
+              <div class='profile_photos'>
+                <div class='profile_photo_thumb'>
+                  <a href="/members/halogen64/photos/4"><img alt="Thumb" class="profile_photo" src="http://s3.amazonaws.com/pyo-images-development/images/4/thumb.jpg" /></a>
+                </div>
+                <div class='profile_photo_thumb'>
+                  <a href="/members/halogen64/photos/3"><img alt="Thumb" class="profile_photo" src="http://s3.amazonaws.com/pyo-images-development/images/3/thumb.jpg" /></a>
+                </div>
+                <div class='profile_photo_thumb'>
+                  <a href="/members/halogen64/photos/2"><img alt="Thumb" class="profile_photo" src="http://s3.amazonaws.com/pyo-images-development/images/2/thumb.jpg" /></a>
+                </div>
+                <div class='profile_photo_thumb'>
+                  <a href="/members/halogen64/photos/1"><img alt="Thumb" class="profile_photo" src="http://s3.amazonaws.com/pyo-images-development/images/1/thumb.jpg" /></a>
+                </div>
+              </div>
+            </div>
+            <div class='content'>
+              <h4>Comments</h4>
+              <div class='comments'>
+                <form action="/comments" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=" /></div>
+                  <div class=''>
+                    <input id="comment_consumer_id" name="comment[consumer_id]" type="hidden" value="1" />
+                    <input id="comment_consumer_type" name="comment[consumer_type]" type="hidden" value="User" />
+                    <textarea id="comment_message" name="comment[message]" style="width:98%; height:100px"></textarea>
+                    <input id="comment_submit" name="commit" type="submit" value="Add Comment" />
+                  </div>
+                </form>
+                <div class='comment'>
+                  <div class='thumb_info'>
+                    <img alt="Thumb" src="/data/profiles/thumb.png?1252426934" />
+                  </div>
+                  <div class='comment_message'>
+                    <a href="/members/halogen64">halogen64</a>
+                    <span class='dark_grey'>( 11 days ago )</span>
+                    | <a href="/comments/4" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M='); f.appendChild(s);f.submit(); };return false;">delete</a>
+                    | <a href="#" class="reply_btn" id="reply_to_4">reply</a>
+                    <br />
+                    Yes MOAR!!!
+                    <div class='content threaded_comment' id='threaded_comment_4'>
+                      <form action="/comments" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=" /></div>
+                        <div class='reply'>
+                          <input id="comment_consumer_id" name="comment[consumer_id]" type="hidden" value="4" />
+                          <input id="comment_consumer_type" name="comment[consumer_type]" type="hidden" value="Comment" />
+                          <textarea id="comment_message" name="comment[message]" style="width:98%; height:100px"></textarea>
+                          <input id="comment_submit" name="commit" type="submit" value="Add Comment" />
+                        </div>
+                      </form>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class='comment'>
+                  <div class='thumb_info'>
+                    <img alt="Thumb" src="/data/profiles/thumb.png?1252426934" />
+                  </div>
+                  <div class='comment_message'>
+                    <a href="/members/halogen64">halogen64</a>
+                    <span class='dark_grey'>( 11 days ago )</span>
+                    | <a href="/comments/3" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M='); f.appendChild(s);f.submit(); };return false;">delete</a>
+                    | <a href="#" class="reply_btn" id="reply_to_3">reply</a>
+                    <br />
+                    More more more!!!
+                    <div class='content threaded_comment' id='threaded_comment_3'>
+                      <form action="/comments" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=" /></div>
+                        <div class='reply'>
+                          <input id="comment_consumer_id" name="comment[consumer_id]" type="hidden" value="3" />
+                          <input id="comment_consumer_type" name="comment[consumer_type]" type="hidden" value="Comment" />
+                          <textarea id="comment_message" name="comment[message]" style="width:98%; height:100px"></textarea>
+                          <input id="comment_submit" name="commit" type="submit" value="Add Comment" />
+                        </div>
+                      </form>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class='comment'>
+                  <div class='thumb_info'>
+                    <img alt="Thumb" src="/data/profiles/thumb.png?1252426934" />
+                  </div>
+                  <div class='comment_message'>
+                    <a href="/members/halogen64">halogen64</a>
+                    <span class='dark_grey'>( 11 days ago )</span>
+                    | <a href="/comments/2" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M='); f.appendChild(s);f.submit(); };return false;">delete</a>
+                    | <a href="#" class="reply_btn" id="reply_to_2">reply</a>
+                    <br />
+                    More Comments
+                    <div class='content threaded_comment' id='threaded_comment_2'>
+                      <form action="/comments" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=" /></div>
+                        <div class='reply'>
+                          <input id="comment_consumer_id" name="comment[consumer_id]" type="hidden" value="2" />
+                          <input id="comment_consumer_type" name="comment[consumer_type]" type="hidden" value="Comment" />
+                          <textarea id="comment_message" name="comment[message]" style="width:98%; height:100px"></textarea>
+                          <input id="comment_submit" name="commit" type="submit" value="Add Comment" />
+                        </div>
+                      </form>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class='comment'>
+                  <div class='thumb_info'>
+                    <img alt="Thumb" src="/data/profiles/thumb.png?1252426934" />
+                  </div>
+                  <div class='comment_message'>
+                    <a href="/members/halogen64">halogen64</a>
+                    <span class='dark_grey'>( 11 days ago )</span>
+                    | <a href="/comments/1" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M='); f.appendChild(s);f.submit(); };return false;">delete</a>
+                    | <a href="#" class="reply_btn" id="reply_to_1">reply</a>
+                    <br />
+                    Comments!
+                    <div class='content threaded_comment' id='threaded_comment_1'>
+                      <form action="/comments" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=" /></div>
+                        <div class='reply'>
+                          <input id="comment_consumer_id" name="comment[consumer_id]" type="hidden" value="1" />
+                          <input id="comment_consumer_type" name="comment[consumer_type]" type="hidden" value="Comment" />
+                          <textarea id="comment_message" name="comment[message]" style="width:98%; height:100px"></textarea>
+                          <input id="comment_submit" name="commit" type="submit" value="Add Comment" />
+                        </div>
+                      </form>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='details'>
+            <div class='inner_content'>
+              <img alt="Profile" src="/data/profiles/profile.png?1252426934" />
+              <div class='buttons'>
+                <div class='action_button'>
+                  <a href="#" class="following_button rounded">Following</a>
+                </div>
+                <a href="/members/halogen64/direct_messages/new" class="message_button">Message</a>
+              </div>
+              
+              <div class='followmsg'>
+                You currently follow <strong>halogen64</strong>'s updates, which appear in your
+                <a href="/dashboard">activity hub</a>.
+                <a href="/members/halogen64/unfollow" class="unfollow rounded" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M='); f.appendChild(s);f.submit();return false;">Click here to unfollow this profile</a>
+              </div>
+              <div class='info'>
+                <div class='city_state'>
+                  Atlanta, GA
+                </div>
+                <div class='class'>
+                  Class: <a href="#">Origamist</a>
+                </div>
+                <h3>Following:</h3>
+                <div class='followings'>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/seayeti"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/tillman_zemlak105"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/jammiedonnelly65"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/schmeler37_kendall"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/ward103_fleta"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/lesch15_carlie"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/mustafa_leuschke10"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/mueller101_yoshiko"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/kemmer13_cristal"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/bechtelar56adolf"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/weber22_karianne"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/haleighondricka95"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='clear'>
+                    <a href="/members/halogen64/following">View All (23)</a>
+                  </div>
+                </div>
+                <div class='sub_info'>
+                  <strong>Blog Posts:</strong>
+                  <p>
+                    <a href="/blogs/1">Foo</a>
+                    <a href="/blogs/6">new Blogoogogogo</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class='inner_content'>
+              <div class='tall_advertisement'>
+                Advertisement
+                <img alt="Tall_advertisement" src="/images/tall_advertisement.jpg?1252426935" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class='footer content'>
+        <div class='footer-right'>
+          <ul class='separated'>
+            <li class='first'><a href="#">FAQ</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">PYO Blog</a></li>
+          </ul>
+        </div>
+        <div class='footer-left'>
+          &copy;2009 PYO Networks. All Rights Reserved.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

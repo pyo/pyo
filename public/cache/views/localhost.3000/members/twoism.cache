@@ -1,0 +1,372 @@
+"³M<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Put Yourself On</title>
+    <!-- %link{:rel => 'icon', :type => 'image/gif', :href=>'favicon.gif'} -->
+    <link href="/stylesheets/screen.css?1252950018" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/jquery.rating.css?1246900779" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery-1.3.2.min.js?1245334301" type="text/javascript"></script>
+    <script src="/javascripts/application.js?1252950018" type="text/javascript"></script>
+    <script src="/javascripts/jquery.rating.pack.js?1246900779" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    var AUTH_TOKEN = "9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=";
+    //]]>
+    </script>
+    <script src="/audio-player/audio-player.js?1245954610" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    AudioPlayer.setup("/audio-player/player.swf", { width: 140,	transparentpagebg: "yes" });
+    //]]>
+    </script>
+    <script src="/javascripts/formhints.js?1252426935" type="text/javascript"></script>
+    <script src="/javascripts/jquery.textcounting.js?1252426935" type="text/javascript"></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        
+        $(function() {
+          $('#upload_post_button, #close_post, .upload_post').click(function() {
+            $('#post_bar').slideToggle();
+            return false;
+          });
+          
+          
+          $('#load_more').live("click", function() {
+            $.ajax({data:'authenticity_token=' + encodeURIComponent('9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M='), dataType:'script', type:'get', url:this.href}); 
+            return false;
+          });
+          
+          $.fn.textCounting.defaults.lengthExceededClass= "warningClass";
+          $("#status_message").textCounting({});
+          
+        })
+      //]]>
+    </script>
+    <script src="/javascripts/jquery.corners.js?1252426935" type="text/javascript"></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        $(function(){
+          $('.rounded').corners();
+          $('.rounded').corners(); /* test for double rounding */
+        });
+      //]]>
+    </script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        $(function() {
+          $('.following_button').click(function() {
+            $(".followmsg").slideToggle();
+            return false
+          })
+        })
+      //]]>
+    </script>
+  </head>
+  <body>
+    <div class='container' id='main'>
+      <div class='header'>
+        <h2 class='logo'><a href="/">Put Yourself On</a></h2>
+        <div class='user_bar'>
+          <ul class='separated'>
+            <li class='first'><a href="#" class="upload_post">Upload / Post</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/inbox">Inbox(1)</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class='content_without_padding' id='navigation'>
+        <ul class='menu'>
+          <li class='first'><a href="/members/twoism">My Profile</a></li>
+          <li><a href="/connects">My Connects</a></li>
+          <li><a href="/members/twoism/inbox">Inbox (1)</a></li>
+          <li><a href="/members">Members</a></li>
+          <li><a href="/groups">Groups</a></li>
+          <li><a href="/music">Music</a></li>
+          <li><a href="/videos">Videos</a></li>
+          <!-- %li= link_to 'Marketplace', marketplace_path -->
+        </ul>
+        <div class='search'>
+          <form action='/search'>
+            <input name='q' type='text' />
+            <input class='submit' src='/images/search.png' type='image' value='Search' />
+          </form>
+        </div>
+      </div>
+      <div class='advertisement'>
+        <img alt="Advertisement" src="/images/advertisement.jpg?1252426934" />
+      </div>
+      <div id='content'>
+        <div id='inner_content'>
+          <div class='inner_content'>
+            <div class='top'>
+              <h2 class='left'><a href="/members/twoism">Twoism</a></h2>
+              <span class='status'>
+                fooo doggie
+                (<a href="/activities/4277" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M='); f.appendChild(s);f.submit(); };return false;">delete</a>)
+              </span>
+              <div class='member_info'>
+                Member Since:
+                <strong>September 2009</strong>
+                | Profile Views Today: 0 | Total Profile Views: 2
+              </div>
+            </div>
+          </div>
+          <div class='main'>
+            <div class='hidden' id='post_bar'>
+              <a class='warningClass close' href='#' id='close_post'>[X] CLOSE THIS</a>
+              <h4 class='capital'>Post something new to PYO:</h4>
+              <ul class='menu' id='dashboard_nav'>
+                <li id='status_nav'>Status</li>
+                <li id='picture_nav'><a href="/photos/new">Picture</a></li>
+                <li id='video_nav'><a href="/videos/new">Video</a></li>
+                <li id='audio_nav'><a href="/tracks/new">Audio</a></li>
+                <li id='blog_nav'><a href="/blogs/new">Blog</a></li>
+              </ul>
+              <span id='status_messageDown'>0</span>
+              <form action="/activities" class="new_activity" id="new_activity" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=" /></div>
+                <textarea cols="50" id="status_message" maxLength="300" name="activity[message]" rows="3"></textarea>
+                <div class='submit_button'>
+                  <input id="post_button" src="/images/post_button.gif?1252426934" type="image" />
+                </div>
+              </form>
+            </div>
+            <div class='greyboxes'>
+              <a class='greybox rounded {15px}' href='/members/twoism/followers'>
+                <div class='count'>
+                  19
+                </div>
+                Followers
+              </a>
+              <a class='greybox rounded {15px}' href='/members/twoism/photos'>
+                <div class='count'>
+                  1
+                </div>
+                Photos
+              </a>
+              <a class='greybox rounded {15px}' href='/members/twoism/tracks'>
+                <div class='count'>
+                  0
+                </div>
+                Audio Files
+              </a>
+              <a class='greybox rounded {15px}' href='/members/twoism/videos'>
+                <div class='count'>
+                  0
+                </div>
+                Videos
+              </a>
+              <a class='greybox rounded {15px}' href='/members/twoism/likes'>
+                <div class='count'>
+                  1
+                </div>
+                Likes
+              </a>
+            </div>
+            <div class='content'>
+              <h4 class='with_bottom_margin'>Twoism's Updates</h4>
+              <div class='activities'>
+                <ul>
+                  <div class='activity like_activity' id='like_activity_4300'>
+                    <div class='thumb'>
+                      <img alt="Thumb" src="http://s3.amazonaws.com/pyo-images-development/avatars/3/thumb.jpg" />
+                    </div>
+                    about 4 hours ago
+                    <p>
+                      <img alt="Like_16" class="icon" src="/images/icons/like_16.png?1252426934" />
+                      <a href="/members/twoism">twoism</a>
+                      likes <a href="/members/halogen64">halogen64</a>'s photo.
+                      <div class='media'>
+                        <a href="/members/halogen64/photos/4"><img alt="Thumb" src="http://s3.amazonaws.com/pyo-images-development/images/4/thumb.jpg" /></a>
+                      </div>
+                    </p>
+                  </div>
+                  <div class='activity status_activity' id='status_activity_4277'>
+                    <div class='thumb'>
+                      <img alt="Thumb" src="http://s3.amazonaws.com/pyo-images-development/avatars/3/thumb.jpg" />
+                    </div>
+                    about 4 hours ago
+                    <p>
+                      <img alt="Status_16-plus" class="icon" src="/images/icons/status_16-plus.png?1252426934" />
+                      <a href="/members/twoism">twoism</a>
+                      <strong>fooo doggie</strong>
+                    </p>
+                  </div>
+                  <div class='activity media_upload_activity' id='media_upload_activity_4197'>
+                    <div class='thumb'>
+                      <img alt="Thumb" src="http://s3.amazonaws.com/pyo-images-development/avatars/3/thumb.jpg" />
+                    </div>
+                    3 days ago
+                    <p>
+                      <img alt="Photo_16-plus" class="icon" src="/images/icons/photo_16-plus.png?1252426934" />
+                      <a href="/members/twoism">twoism</a>
+                      posted a new photo.
+                      <div class='media'>
+                        <a href="/members/twoism/photos/7"><img alt="Thumb" src="http://s3.amazonaws.com/pyo-images-development/images/7/thumb.jpg" /></a>
+                      </div>
+                    </p>
+                  </div>
+                </ul>
+              </div>
+            </div>
+            <div class='content'>
+              <h4>Twoism's Photos</h4>
+              <div class='profile_photos'>
+                <div class='profile_photo_thumb'>
+                  <a href="/members/twoism/photos/7"><img alt="Thumb" class="profile_photo" src="http://s3.amazonaws.com/pyo-images-development/images/7/thumb.jpg" /></a>
+                </div>
+              </div>
+            </div>
+            <div class='content'>
+              <h4>Recent Tweets</h4>
+              <div class='profile_photos'>
+                <p></p>
+                <div class='profile_tweet' style='clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff'>
+                  <img alt="Photo_normal" src="http://a1.twimg.com/profile_images/188839800/photo_normal.jpg" style="float:left" />
+                  <p style='float:left; margin: 3px'></p>
+                  <a href="http://twitter.com/twoism/status/3944392172" style="color:#000">If fox news has ever taught anyone anything, it's that one should really spellcheck their protest sign.</a>
+                </div>
+                <div class='profile_tweet' style='clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff'>
+                  <img alt="Photo_normal" src="http://a1.twimg.com/profile_images/188839800/photo_normal.jpg" style="float:left" />
+                  <p style='float:left; margin: 3px'></p>
+                  <a href="http://twitter.com/twoism/status/3928888800" style="color:#000">Just saw inglorious basterds. Fucking amazing.</a>
+                </div>
+                <div class='profile_tweet' style='clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff'>
+                  <img alt="Photo_normal" src="http://a1.twimg.com/profile_images/188839800/photo_normal.jpg" style="float:left" />
+                  <p style='float:left; margin: 3px'></p>
+                  <a href="http://twitter.com/twoism/status/3920699327" style="color:#000">UK Gov. Apologises for the treament of Alan Turing http://www.number10.gov.uk/Page20571</a>
+                </div>
+                <div class='profile_tweet' style='clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff'>
+                  <img alt="Photo_normal" src="http://a1.twimg.com/profile_images/188839800/photo_normal.jpg" style="float:left" />
+                  <p style='float:left; margin: 3px'></p>
+                  <a href="http://twitter.com/twoism/status/3899844550" style="color:#000">EPIC Code sprint  1 Site * 4 #devs = completion in 3 days. (via @meanmarcus)</a>
+                </div>
+                <div class='profile_tweet' style='clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff'>
+                  <img alt="Photo_normal" src="http://a1.twimg.com/profile_images/188839800/photo_normal.jpg" style="float:left" />
+                  <p style='float:left; margin: 3px'></p>
+                  <a href="http://twitter.com/twoism/status/3868726505" style="color:#000">This cat is the most inefficient drinker. http://bit.ly/1wWNYg</a>
+                </div>
+                <div class='profile_tweet' style='clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff'>
+                  <img alt="Photo_normal" src="http://a1.twimg.com/profile_images/188839800/photo_normal.jpg" style="float:left" />
+                  <p style='float:left; margin: 3px'></p>
+                  <a href="http://twitter.com/twoism/status/3789077170" style="color:#000">At the Hyatt for #dragoncon madness</a>
+                </div>
+                <div class='profile_tweet' style='clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff'>
+                  <img alt="Photo_normal" src="http://a1.twimg.com/profile_images/188839800/photo_normal.jpg" style="float:left" />
+                  <p style='float:left; margin: 3px'></p>
+                  <a href="http://twitter.com/twoism/status/3782587895" style="color:#000">Do stormtroopers really need badges for dragoncon?</a>
+                </div>
+                <div class='profile_tweet' style='clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff'>
+                  <img alt="Photo_normal" src="http://a1.twimg.com/profile_images/188839800/photo_normal.jpg" style="float:left" />
+                  <p style='float:left; margin: 3px'></p>
+                  <a href="http://twitter.com/twoism/status/3721184210" style="color:#000">People want to know: Did Glenn Beck rape a girl in 1990? http://is.gd/2Oj4d http://is.gd/2Oj5w. (via @almightygod)</a>
+                </div>
+              </div>
+            </div>
+            <div class='content'>
+              <h4>Comments</h4>
+              <div class='comments'>
+                <form action="/comments" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="9KU4uUnKWYSWkGY9n+jB/pOH77C1LrX6KE1rt2v+R2M=" /></div>
+                  <div class=''>
+                    <input id="comment_consumer_id" name="comment[consumer_id]" type="hidden" value="3" />
+                    <input id="comment_consumer_type" name="comment[consumer_type]" type="hidden" value="User" />
+                    <textarea id="comment_message" name="comment[message]" style="width:98%; height:100px"></textarea>
+                    <input id="comment_submit" name="commit" type="submit" value="Add Comment" />
+                  </div>
+                </form>
+                
+              </div>
+            </div>
+          </div>
+          <div class='details'>
+            <div class='inner_content'>
+              <img alt="Profile" src="http://s3.amazonaws.com/pyo-images-development/avatars/3/profile.jpg" />
+              <div class='info'>
+                <div class='city_state'>
+                  Atlanta
+                </div>
+                <div class='class'>
+                  Class: <a href="#">maker of awesome</a>
+                </div>
+                <div class='bio'>
+                  Fooo
+                </div>
+                <h3>Following:</h3>
+                <div class='followings'>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/seayeti"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/orn60_moriah"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/reynold_hoeger111"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/calebschuster40"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/schuster112trenton"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/beatty5_brett"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/joaquin_friesen102"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/aaronwitting91"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/schulist30lauren"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/cummings31_ethel"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/libby_hodkiewicz29"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='smaller_thumb with_border'>
+                    <a href="/members/abigailtromp63"><img alt="Thumb" src="/data/profiles/thumb.png?1252426934" /></a>
+                  </div>
+                  <div class='clear'>
+                    <a href="/members/twoism/following">View All (14)</a>
+                  </div>
+                </div>
+                <div class='sub_info'>
+                  <strong>Blog Posts:</strong>
+                  <p>
+                    <a href="/blogs/2">Foo Blog</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class='inner_content'>
+              <div class='tall_advertisement'>
+                Advertisement
+                <img alt="Tall_advertisement" src="/images/tall_advertisement.jpg?1252426935" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class='footer content'>
+        <div class='footer-right'>
+          <ul class='separated'>
+            <li class='first'><a href="#">FAQ</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">PYO Blog</a></li>
+          </ul>
+        </div>
+        <div class='footer-left'>
+          &copy;2009 PYO Networks. All Rights Reserved.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
