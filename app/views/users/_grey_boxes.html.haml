@@ -19,7 +19,7 @@
   %a.greybox(class='rounded {15px} #{current_page?(user_tracks_path(@user)) ? 'active' : ''}' href="#{user_tracks_path(@user)}")
     .count
       #{@user.tracks.size}
-    Audio Files
+    Audio Tracks
 
   %a.greybox(class='rounded {15px} #{current_page?(user_videos_path(@user)) || (@video && current_page?(user_video_path(@user, @video))) ? 'active' : ''}' href="#{user_videos_path(@user)}")
     .count
