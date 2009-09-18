@@ -1,6 +1,7 @@
 - payload = item.payload
-posted a new #{item.media_type}.
+
 - if payload.respond_to?(:image)
+  posted a new #{item.media_type}.
   .media
     = link_to image_tag(payload.image.url(:thumb)), user_photo_path(payload.user, payload)
 - elsif payload.is_a?(Blog)
@@ -10,6 +11,7 @@ posted a new #{item.media_type}.
         = link_to payload.title, payload
         %p= truncate(payload.body, 350)
 - elsif payload.is_a?(Track)
+  posted a new #{link_to("audio track", user_track_path(payload.user,payload))}.
   .media
     %div[payload]
     :javascript
