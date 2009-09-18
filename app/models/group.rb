@@ -34,11 +34,12 @@ class Group < ActiveRecord::Base
   #paperclip
   has_attached_file :icon,
                     :styles => { 
-                      :medium => "100x100>", 
+                      :medium => "120x120>", 
                       :thumb => "50x50#" 
                     },
                     :whiny_thumbnails => true,
                     :path => ':rails_root/public/data/:class/:id/:style/:basename.:extension',
+                    :url => '/data/:class/:id/:style/:basename.:extension',
                     :default_url => '/data/groups/:style.png'
                     
   # validations                  

@@ -2,6 +2,9 @@
 .text_field
   = form.label :name
   = form.text_field :name
+.file_field
+  = form.label :icon, 'Group Icon:'
+  = form.file_field :icon, :size => 15
 .select_field
   = form.label :group_category_id
   = form.select :group_category_id, GroupCategory.all.map {|g| [g.name, g.id]}, :include_blank => "Select a Category"
