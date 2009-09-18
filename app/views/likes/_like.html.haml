@@ -1,8 +1,11 @@
+
 .like
   - if like.media_image_url
+  
     = link_to image_tag(like.media_image_url), self.send("user_"+like.media.class.to_s.downcase+"_path", like.media.user, like.media, :anchor => 'comments')
   #{like.media_title} by #{link_to like.media.user.name, like.media.user}
   - if like.media.is_a?(Track)
+    - track = like.media
     .player
       %div[track]
       - track_dom_id = dom_id(track)
