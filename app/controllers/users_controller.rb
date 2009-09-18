@@ -180,7 +180,8 @@ class UsersController < ApplicationController
   end
   
   def connects
-		@title = "#{@user.name.capitalize.possesive} Connects"
+    
+		@title = "#{@user.name.capitalize.possesive} Connects" if @user
     @connects = User.paginate(
       :select => 'distinct `users`.*',
       :per_page => 40,
@@ -198,8 +199,8 @@ class UsersController < ApplicationController
         (rs.child_id = '#{current_user.id}' and rs.parent_id = ls.child_id and ls.parent_id = '#{current_user.id}')
       }
     )
-    @posts = current_user.blogs.paginate(:per_page => 5, :page => 1)
-    @groups = current_user.groups.paginate(:per_page => 5, :page => 1)
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
   end
   
