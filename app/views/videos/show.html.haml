@@ -20,6 +20,7 @@
         %h3 Tags:
         %p
           = h @video.tags.collect(&:name).join(", ")
+          
   .inner_content
     %h2 Rating        
     = render :partial => "shared/rate_item",:locals => {:ratable=>@video}

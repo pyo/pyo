@@ -231,7 +231,19 @@ class MultibyteCharsUTF8BehaviourTest < Test::Unit::TestCase
     assert_nil @chars.index('u')
     assert_equal 0, @chars.index('こに')
     assert_equal 2, @chars.index('ち')
+    assert_equal 2, @chars.index('ち', -2)
+    assert_equal nil, @chars.index('ち', -1)
     assert_equal 3, @chars.index('わ')
+    assert_equal 5, 'ééxééx'.mb_chars.index('x', 4)
+  end
+
+  def test_rindex_should_return_character_offset
+    assert_nil @chars.rindex('u')
+    assert_equal 1, @chars.rindex('に')
+    assert_equal 2, @chars.rindex('ち', -2)
+    assert_nil @chars.rindex('ち', -3)
+    assert_equal 6, 'Café périferôl'.mb_chars.rindex('é')
+    assert_equal 13, 'Café périferôl'.mb_chars.rindex(/\w/u)
   end
 
   def test_indexed_insert_should_take_character_offsets
@@ -379,7 +391,7 @@ class MultibyteCharsUTF8BehaviourTest < Test::Unit::TestCase
     assert_equal 'ちわ', @chars.slice(2..10)
     assert_equal '', @chars.slice(4..10)
     assert_equal 'に', @chars.slice(/に/u)
-    assert_equal 'にち', @chars.slice(/に\w/u)
+    assert_equal 'にち', @chars.slice(/に./u)
     assert_equal nil, @chars.slice(/unknown/u)
     assert_equal 'にち', @chars.slice(/(にち)/u, 1)
     assert_equal nil, @chars.slice(/(にち)/u, 2)
