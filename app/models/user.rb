@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   include Clearance::App::Models::User
   attr_accessible :email, :password, :password_confirmation, :name, :profile_attributes, :tag_list, :talent_type, :twitter_username, :twitter_password, :flickr_username, :flickr_id
   is_taggable :tags
+	acts_as_url :name, :sync_url=>true
+
   
   # assocs
   has_one  :profile, :dependent => :destroy
@@ -116,10 +118,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  def to_param
-    name.gsub(/[^_a-z0-9-]+/i, '_')
-  end
-  
   def status
     updates.first(:conditions => {:type => 'StatusActivity'})
   end
@@ -148,6 +146,10 @@ class User < ActiveRecord::Base
       values << profile.state if profile.state.present?
     end
   end
+
+	def to_param
+		url
+	end
 
   define_index do
     indexes name

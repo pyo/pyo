@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090914200651) do
+ActiveRecord::Schema.define(:version => 20090921163410) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -139,10 +139,12 @@ ActiveRecord::Schema.define(:version => 20090914200651) do
     t.boolean  "approved",          :default => false
     t.string   "url"
     t.integer  "group_category_id"
+    t.integer  "membership_count",  :default => 0
     t.integer  "memberships_count", :default => 0
   end
 
   add_index "groups", ["approved"], :name => "index_groups_on_approved"
+  add_index "groups", ["membership_count"], :name => "index_groups_on_membership_count"
   add_index "groups", ["name"], :name => "index_groups_on_name"
 
   create_table "likes", :force => true do |t|
@@ -300,6 +302,7 @@ ActiveRecord::Schema.define(:version => 20090914200651) do
     t.integer  "tracks_count",                      :default => 0
     t.integer  "photos_count",                      :default => 0
     t.integer  "likes_count",                       :default => 0
+    t.string   "url"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
@@ -310,6 +313,7 @@ ActiveRecord::Schema.define(:version => 20090914200651) do
   add_index "users", ["super_user"], :name => "index_users_on_super_user"
   add_index "users", ["talent_type"], :name => "index_users_on_talent_type"
   add_index "users", ["token"], :name => "index_users_on_token"
+  add_index "users", ["url"], :name => "index_users_on_url"
 
   create_table "videos", :force => true do |t|
     t.string   "title"

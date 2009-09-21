@@ -4,7 +4,7 @@ class ConfirmationsController < ApplicationController
   # overwrite Clearance to look for user by name rather than id
 
   def create
-    @user = User.find_by_name_and_token(params[:user_id], params[:token])
+    @user = User.find_by_url_and_token(params[:user_id], params[:token])
     @user.confirm_email!
 
     sign_user_in(@user)
@@ -14,14 +14,14 @@ class ConfirmationsController < ApplicationController
   
   private
   def forbid_confirmed_user
-    user = User.find_by_name(params[:user_id])
+    user = User.find_by_url(params[:user_id])
     if user && user.email_confirmed?
       raise ActionController::Forbidden, "confirmed user"
     end
   end
 
   def forbid_non_existant_user
-    unless User.find_by_name_and_token(params[:user_id], params[:token])
+    unless User.find_by_url_and_token(params[:user_id], params[:token])
       raise ActionController::Forbidden, "non-existant user"
     end
   end

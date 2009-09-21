@@ -124,7 +124,7 @@ class VideosController < ApplicationController
     end
     
     def find_user
-      @user = User.find_by_name(params[:user_id]) if params[:user_id]
+      @user = User.find_by_url(params[:user_id]) if params[:user_id]
     end
     
     def check_user

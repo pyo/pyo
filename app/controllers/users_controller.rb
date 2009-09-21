@@ -163,7 +163,7 @@ class UsersController < ApplicationController
   end
   
   def followers
-    @user = User.find_by_name(params[:id])
+    @user = User.find_by_url(params[:id])
 		@title = "#{@user.name.capitalize.possesive} Followers"
     @followers = @user.followers.paginate(:per_page => 40, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
@@ -172,7 +172,7 @@ class UsersController < ApplicationController
   end
   
   def following
-    @user = User.find_by_name(params[:id])
+    @user = User.find_by_url(params[:id])
 		@title ="Profiles #{@user.name.capitalize.possesive} is Following"
     @followings = @user.followings.paginate(:per_page => 40, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
@@ -231,7 +231,7 @@ class UsersController < ApplicationController
     end
   
     def load_user
-      @user = User.find_by_name(params[:id])
+      @user = User.find_by_url(params[:id])
       logger.info params.inspect
     end
 

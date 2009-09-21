@@ -43,7 +43,7 @@ class DirectMessagesController < ApplicationController
       end
     end
     def find_user
-      @user = User.find_by_name(params[:user_id])
+      @user = User.find_by_url(params[:user_id])
     end
     def find_direct_message
       @direct_message = DirectMessage.find(params[:id]) if params[:id]
