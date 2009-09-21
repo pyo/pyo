@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   end
   
   def to_param
-    name
+    CGI::escape(name)
   end
   
   def status
