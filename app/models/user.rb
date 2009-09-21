@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   end
   
   def to_param
-    CGI::escape(name)
+    name.gsub(/[^_a-z0-9-]+/i, '_')
   end
   
   def status
