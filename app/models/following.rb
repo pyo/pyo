@@ -1,5 +1,14 @@
 class Following < ActiveRecord::Base
   include Covalence::Relationship
+  
+  def producer
+    parent
+  end
+  
+  def consumer
+    child
+  end
+  
   def after_create
     Alert.create(:producer => parent, :consumer => child, :flavor => 'following')
     
