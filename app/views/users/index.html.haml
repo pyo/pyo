@@ -4,6 +4,9 @@
     .page_info 
       There are currently <strong>
       = "#{@users.total_entries}</strong> Members on PYO "
+    - if flash[:notice]
+      %p.notify 
+        = flash[:notice]
 .main  
   - if current_user
     = render "users/dashboard_nav"

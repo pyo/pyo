@@ -232,6 +232,10 @@ class UsersController < ApplicationController
   
     def load_user
       @user = User.find_by_url(params[:id])
+      unless @user
+        flash[:notice] = "That user does not exists"
+        redirect_to(users_path)
+      end
       logger.info params.inspect
     end
 
