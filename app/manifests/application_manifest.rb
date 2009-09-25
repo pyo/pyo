@@ -43,7 +43,7 @@ class ApplicationManifest < Moonshine::Manifest::Rails
 
   configure(:ssh  => {
     :port  => "30306",
-    :allow_users => ['admin']  
+    :allow_users => ['admin', 'pyo']  
   })
   plugin :ssh
   recipe :ssh
