@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.connect '/about', :controller => 'home', :action => 'about'
+  map.connect '/privacy_policy', :controller => 'home', :action => 'privacy_policy'
   map.settings '/settings', :controller => 'profiles', :action => 'edit'
   map.connects '/connects', :controller => 'users', :action => 'connects'
   map.resources :group_categories
