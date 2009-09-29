@@ -114,4 +114,13 @@ module ApplicationHelper
   		end
   		return safe_attributes
   	end
+  	
+  	def get_inbox_current(mbox = nil)
+  	  case params[:mbox]
+	    when mbox
+	      'current'
+      else
+        ''
+      end
+	  end
 end
