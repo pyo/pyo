@@ -1,30 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>We're sorry, but something went wrong (500)</title>
-	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
-		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-	</style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Put Yourself On &mdash; You Lost?</title>
+    <!-- %link{:rel => 'icon', :type => 'image/gif', :href=>'favicon.gif'} -->
+    <link href="/stylesheets/screen.css?1254322857" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/jquery.rating.css?1246992568" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery-1.3.2.min.js?1246992568" type="text/javascript"></script>
+    <script src="/javascripts/application.js?1253199913" type="text/javascript"></script>
 </head>
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
-  </div>
+  <body>
+    <div class='container' id='main'>
+      <div class='header'>
+        <h2 class='logo'><a href="/">Put Yourself On</a></h2>
+        <div class='user_bar'>
+          <ul class='separated'>
+            <li class='first'><a href="/login">Login</a></li>
+            <li><a href="/signup">Signup</a></li>
+
+          </ul>
+        </div>
+      </div>
+      <div class='content_without_padding' id='navigation'>
+        <ul class='menu'>
+          <li class='first'></li>
+          <li></li>
+          <li><a href="/members">Members</a></li>
+
+          <li><a href="/groups">Groups</a></li>
+          <li><a href="/music">Music</a></li>
+          <li><a href="/videos">Videos</a></li>
+          <!-- %li= link_to 'Marketplace', marketplace_path -->
+        </ul>
+        <div class='search'>
+          <form action='/search'>
+
+            <input name='q' type='text' />
+            <input class='submit' src='/images/search.png' type='image' value='Search' />
+          </form>
+        </div>
+      </div>
+      <div class='advertisement'>
+        <img alt="Advertisement" src="/images/advertisement.jpg?1250787963" />
+      </div>
+      <div id='content'>
+
+        <div id='inner_content'>
+          <h1 class='bordered_title'>
+            <span class='blue'>Error! Something's wrong...</span>
+          </h1>
+          <p class='notify'>
+						We're sorry, but something went wrong. We've been notified about this issue and we'll get it cleaned up shortly.
+          </p>
+					<p class="center"><img alt="500 error" src="/images/500.jpg" /></p>
+        </div>
+
+      </div>
+    </div>
+    <div class='container'>
+      <div class='footer content'>
+        <div class='footer-right'>
+          <ul class='separated'>
+            <li class='first'><a href="#">FAQ</a></li>
+            <li><a href="/about">About Us</a></li>
+
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="/terms">Terms of Use</a></li>
+            <li><a href="/privacy_policy">Privacy Policy</a></li>
+            <li><a href="#">PYO Blog</a></li>
+          </ul>
+        </div>
+        <div class='footer-left'>
+          &copy;2009 PYO Networks. All Rights Reserved.
+        </div>
+      </div>
+    </div>
 </body>
 </html>

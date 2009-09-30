@@ -404,6 +404,9 @@ ul.activities_menu {
 .justify {
   text-align: justify; }
 
+.center {
+  text-align: center; }
+
 .load_more {
   clear: both;
   padding-top: 10px; }
