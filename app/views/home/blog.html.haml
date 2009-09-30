@@ -1,0 +1,11 @@
+%h1.bordered_title <span class='blue'>PYO Blog</span>
+
+.inner_content.admin_blog
+  - @blogs.each do |blog|
+    %div[blog]
+      %h2= link_to(h(blog.title), user_blog_path(blog.user, blog))
+      %p by #{link_to(blog.user.profile.full_name, user_path(blog.user))}, #{time_ago_in_words(blog.created_at)} ago
+      %p= truncate(strip_tags(blog.body), :length=> 255)
+      %h3 Tags:
+      %p= h blog.tags.collect(&:name).join(", ")
+    

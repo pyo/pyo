@@ -952,6 +952,11 @@ h4.title {
     font-size: 14px;
     font-weight: bold;
     color: #000; }
+.blog p {
+  margin-bottom: 10px; }
+
+.admin_blog .blog {
+  margin-bottom: 35px; }
 
 .track {
   float: left; }

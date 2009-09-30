@@ -34,4 +34,10 @@ class HomeController < ApplicationController
   def faq
     @title = "Frequently Asked Questions"
   end
+  
+  def blog
+    @title = "Blog"
+    @blogs = Blog.super_user_posts.recent
+  end
+  
 end

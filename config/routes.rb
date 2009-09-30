@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.blog '/blog', :controller => 'home', :action => 'blog'
   map.connect '/about', :controller => 'home', :action => 'about'
   map.connect '/privacy_policy', :controller => 'home', :action => 'privacy_policy'
   map.connect '/terms', :controller => 'home', :action => 'terms'
