@@ -234,7 +234,7 @@ class UsersController < ApplicationController
       @user = User.find_by_url(params[:id])
       unless @user
         flash[:notice] = "That user does not exists"
-        redirect_to(users_path)
+        redirect_to(page_not_found_path)
       end
       logger.info params.inspect
     end

@@ -13,4 +13,12 @@ class HomeController < ApplicationController
   def privacy_policy
     @title = "Privacy Policy"
   end
+  
+  def page_not_found
+    @title = "You Lost?"
+    flash[:notice] = 'The page you are looking for doesn\'t exist. You may have mistyped the address or the page may have moved.'
+    respond_to do |type|
+      type.html { render :template => 'home/page_not_found', :layout => 'application', :status => 404 }
+    end
+  end
 end

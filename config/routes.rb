@@ -86,7 +86,10 @@ ActionController::Routing::Routes.draw do |map|
   map.logout    '/logout',    :controller => 'sessions',  :action => 'destroy'
   map.signup    '/signup',    :controller => 'users',  :action => 'new'
   map.music    '/music',    :controller => 'tracks',  :action => 'music'
-  
+
+  map.page_not_found '/page_not_found', :controller => 'home', :action => 'page_not_found'
   map.redirect '/:id', :controller => "users", :action => 'show' # redirector
+
+  map.connect '/*url', :controller => 'home', :action => 'page_not_found'
 
 end

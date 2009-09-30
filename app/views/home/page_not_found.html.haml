@@ -1,0 +1,8 @@
+%h1.bordered_title 
+  %span.blue Sorry... We couldn't find that page!
+
+- if flash[:notice]
+  %p.notify 
+    = flash[:notice]
+
+= image_tag '404.jpg'
