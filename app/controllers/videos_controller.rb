@@ -30,7 +30,8 @@ class VideosController < ApplicationController
   
   def videos
 		@title = "Videos"
-    @videos = Video.finished.paginate(:per_page => 25, :page => params[:page])
+		@recent_videos = Video.recent(:limit=>8)
+    @popular_videos = Video.popular(:limit=>8)
   end
   
   def new
