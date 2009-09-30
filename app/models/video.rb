@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
 
 	validates_presence_of :title, :description
 
-  belongs_to :user, :counter_cache => true
+  belongs_to :user
   has_many :comments, :as => 'consumer', :dependent => :destroy
 
   named_scope :finished, :conditions => {:finished => true}
@@ -52,7 +52,8 @@ class Video < ActiveRecord::Base
     %(<embed src="http://#{VIDEOS_DOMAIN}/player.swf" width="#{self.width}" height="#{self.height}" allowfullscreen="true" allowscriptaccess="always" flashvars="&fullscreen=true&displayheight=#{self.height}&skin=http://#{VIDEOS_DOMAIN}/video-skin.swf&file=#{self.url}&image=#{self.screenshot_url}&width=#{self.width}&height=#{self.height}" />)
   end
   
-  def after_create
+  def send_create_notifications
+    User.update_counters(user.id, :videos_count => 1)
     MediaUploadActivity.create({:producer => user, :payload => self})
     user.followers.each do |follower|
       MediaUploadActivity.create({:producer => user, :consumer => follower, :payload => self})
