@@ -1040,3 +1040,84 @@ h4.title {
   clear: both; }
   .track_tags h3 {
     margin: 10px 0; }
+
+/* User Inbox */
+.inner_content.user_inbox h4.title {
+  border: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  text-transform: capitalize; }
+.inner_content.user_inbox ul.buttons {
+  border-bottom: 1px dashed #aaa;
+  float: none;
+  height: 20px;
+  margin: 5px 0 0; }
+  .inner_content.user_inbox ul.buttons li {
+    float: left;
+    padding-right: 3px; }
+  .inner_content.user_inbox ul.buttons li.current a {
+    color: #000; }
+.inner_content.user_inbox .inbox_messages tr td {
+  border-bottom: 1px dashed #aaa;
+  padding: 10px 5px; }
+.inner_content.user_inbox .inbox_messages tr td.user {
+  width: 210px; }
+  .inner_content.user_inbox .inbox_messages tr td.user a {
+    display: block;
+    margin-top: 15px; }
+  .inner_content.user_inbox .inbox_messages tr td.user img {
+    border: 3px solid #ccc;
+    float: left;
+    margin-right: 10px; }
+.inner_content.user_inbox .inbox_messages tr td.message {
+  line-height: 15px;
+  padding-right: 10px; }
+.inner_content.user_inbox .inbox_messages tr td.actions {
+  width: 100px; }
+  .inner_content.user_inbox .inbox_messages tr td.actions a {
+    display: block;
+    padding-top: 10px; }
+    .inner_content.user_inbox .inbox_messages tr td.actions a img {
+      vertical-align: middle; }
+  .inner_content.user_inbox .inbox_messages tr td.actions a:hover {
+    text-decoration: none; }
+    .inner_content.user_inbox .inbox_messages tr td.actions a:hover span {
+      text-decoration: underline; }
+.inner_content.user_inbox .inbox_messages tr:hover td {
+  background-color: #eee; }
+.inner_content.user_inbox .inbox_messages tr:hover td.user img {
+  border-color: #026DFE; }
+.inner_content.user_inbox p.empty {
+  margin-top: 10px; }
+.inner_content.user_inbox .message_view {
+  margin-top: 10px; }
+  .inner_content.user_inbox .message_view .message_thumb {
+    float: left;
+    width: 100px; }
+    .inner_content.user_inbox .message_view .message_thumb img {
+      border: 3px solid #ccc; }
+    .inner_content.user_inbox .message_view .message_thumb a:hover img {
+      border-color: #026DFE; }
+  .inner_content.user_inbox .message_view .message_body {
+    float: left;
+    line-height: 18px;
+    text-align: justify;
+    width: 500px; }
+
+/* Wrapper (clearfix) */
+.wrapper:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0; }
+
+.wrapper {
+  display: inline-block; }
+
+html[xmlns] .wrapper {
+  display: block; }
+
+* html .wrapper {
+  height: 1%; }

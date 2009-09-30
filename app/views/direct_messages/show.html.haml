@@ -1,12 +1,17 @@
 .main
   .inner_content
     = render :partial => "users/dashboard_nav"
-  .inner_content
-    %h2 
+  .inner_content.user_inbox
+    %h4 
       = "Direct Message from #{h @direct_message.producer.name}"
-    .message_view
-      = h @direct_message.message
-    
+    %ul.buttons
+      %li= "#{link_to 'Unread', inbox_user_path(current_user)} | "
+      %li= "#{link_to 'Sent', inbox_user_path(current_user,:mbox=>"sent")} | "
+      %li= link_to 'Archive', inbox_user_path(current_user,:mbox=>"archive")
+    .message_view.wrapper
+      %div.message_thumb= link_to image_tag(@direct_message.producer.profile.avatar.url(:dashboard)), @direct_message.producer
+      %div.message_body
+        %p= h(@direct_message.message).gsub(/\n/,"<br />")
   
 .details
   .inner_content

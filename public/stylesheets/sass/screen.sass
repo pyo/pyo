@@ -1058,3 +1058,92 @@ h4.title
   h3
     :margin 10px 0
   :clear both
+  
+/* User Inbox */
+.inner_content.user_inbox
+  h4.title
+    :border 0
+    :margin-bottom 0
+    :padding-bottom 0
+    :text-transform capitalize
+  ul.buttons
+    :border-bottom 1px dashed #aaa
+    :float none
+    :height 20px
+    :margin 5px 0 0
+    li
+      :float left
+      :padding-right 3px
+    li.current
+      a
+        :color #000
+  .inbox_messages
+    tr
+      td
+        :border-bottom 1px dashed #aaa
+        :padding 10px 5px
+      td.user
+        :width 210px
+        a
+          :display block
+          :margin-top 15px
+        img
+          :border 3px solid #ccc
+          :float left
+          :margin-right 10px
+      td.message
+        :line-height 15px
+        :padding-right 10px
+      td.actions
+        :width 100px
+        a
+          :display block
+          :padding-top 10px
+          img
+            :vertical-align middle
+        a:hover
+          :text-decoration none
+          span
+            :text-decoration underline
+    tr:hover
+      td
+        :background-color #eee
+      td.user
+        img
+          :border-color #026DFE
+  p.empty
+    :margin-top 10px
+  .message_view
+    :margin-top 10px
+    .message_thumb
+      :float left
+      :width 100px
+      img
+        :border 3px solid #ccc
+      a:hover
+        img
+          :border-color #026DFE
+    .message_body
+      :float left
+      :line-height 18px
+      :text-align justify
+      :width 500px
+      
+/* Wrapper (clearfix) */
+.wrapper:after
+  :content "."
+  :display block
+  :clear both
+  :visibility hidden
+  :line-height 0
+  :height 0
+.wrapper
+  :display inline-block
+html[xmlns] .wrapper
+  :display block
+* html .wrapper
+  :height 1%
+
+  
+  
+  
