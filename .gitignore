@@ -8,7 +8,8 @@ log/*.pid
 log/*.log
 tmp/*
 public/system/*
-public/data/*
+public/data
+public/uploads
 *.DS_Store
 *.swo
 *.swp
