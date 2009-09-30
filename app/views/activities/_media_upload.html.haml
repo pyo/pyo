@@ -4,6 +4,8 @@
   posted a new #{item.media_type}.
   .media
     = link_to image_tag(payload.image.url(:thumb)), user_photo_path(payload.user, payload)
+- elsif payload.is_a?(Video)
+  posted a new #{link_to item.media_type, user_video_path(payload.user, payload)}
 - elsif payload.is_a?(Blog)
   .media
     .blog
