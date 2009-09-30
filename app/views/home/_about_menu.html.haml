@@ -1,0 +1,5 @@
+.detail
+  %ul.about_menu
+    %li= link_to 'What exactly is Put Yourself On?', '/about', :class => !params.key?(:why) && !params.key?(:who) ? 'expanded' : nil
+    %li= link_to 'Who is Put Yourself On for?', '/about?who', :class => params.key?(:who) ? 'expanded' : nil
+    %li= link_to 'Why should I use Put Yourself On?', '/about?why', :class => params.key?(:why) ? 'expanded' : nil

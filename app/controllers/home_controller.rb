@@ -26,4 +26,12 @@ class HomeController < ApplicationController
   def terms
     @title = "Terms of Use"
   end
+  
+  def contact
+    @title = "Contact Us"
+  end
+  
+  def faq
+    @title = "Frequently Asked Questions"
+  end
 end
