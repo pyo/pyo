@@ -1,4 +1,5 @@
 .info.left
+  = image_tag @group.icon.url(:profile)
   %h3 Group Info
   .category.with_bottom_margin
     <strong>Category</strong>: #{link_to @group.group_category.name, @group.group_category}
