@@ -11,6 +11,10 @@ class Video < ActiveRecord::Base
   named_scope :finished, :conditions => {:finished => true}
   # default_scope :conditions => {:finished => true}
 	named_scope :recent, :order=>"created_at DESC"
+  named_scope :popular,
+              :group => "ratings.rateable_id",
+              :joins=>:ratings, 
+              :order => "avg(score) desc"
   
   def self.unfinished(type, options = {})
     conditions = {:finished => false}.merge(options[:conditions])

@@ -1,6 +1,6 @@
 %form{:action=>send("rate_user_#{ratable.class.to_s.underscore}_path",ratable.user,ratable)}
   - MAX_STARS.times do |i|
-    - if ratable.average_rating_round.to_i == i + 1
+    - if ratable.average_rating_round.to_i == i
       = radio_for_rating(i+1,true)
     - else
       = radio_for_rating(i+1,false)

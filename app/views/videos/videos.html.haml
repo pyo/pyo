@@ -6,11 +6,11 @@
   .inner_content
     - if current_user
       = render "users/dashboard_nav"
-    %h2 Videos
+    %h2 Popular Videos
     
     .videos
-      - unless @videos.empty?
-        - @videos.each do |video|
+      - unless @popular_videos.empty?
+        - @popular_videos.each do |video|
           .video_thumb
             = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
             %h4
@@ -21,7 +21,24 @@
             = " - " + link_to('delete', [@user,video], :confirm =>"Are you sure you want to delete this photo?", :method => :delete) if is_owner?(video)
             
       - else
-        No Videos
+        No Popular Videos
+  .inner_content
+    %h2 Recent Videos
+    
+    .videos
+      - unless @recent_videos.empty?
+        - @recent_videos.each do |video|
+          .video_thumb
+            = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
+            %h4
+              = link_to video.title, user_video_path(video.user,video)
+            .created_at
+              = time_ago_in_words(video.created_at).gsub(/^about /i, '') + " ago"
+            = link_to video.user.name, video.user
+            = " - " + link_to('delete', [@user,video], :confirm =>"Are you sure you want to delete this photo?", :method => :delete) if is_owner?(video)
+
+      - else
+        No Recent Videos
 .details
   .inner_content
     = render :partial => "shared/tall_advertisement"
