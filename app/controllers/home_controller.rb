@@ -13,4 +13,8 @@ class HomeController < ApplicationController
   def privacy_policy
     @title = "Privacy Policy"
   end
+  
+  def terms
+    @title = "Terms of Use"
+  end
 end
