@@ -189,14 +189,14 @@ class UsersController < ApplicationController
       :joins => %{
         join followings as ls
         on
-        (ls.parent_id = '#{current_user.id}' and users.id = ls.child_id)
+        (ls.parent_id = '#{@user.id}' and users.id = ls.child_id)
         or
-        (ls.child_id = '#{current_user.id}' and users.id = ls.parent_id)
+        (ls.child_id = '#{@user.id}' and users.id = ls.parent_id)
         join followings as rs
         on
-        (rs.parent_id = '#{current_user.id}' and rs.child_id = ls.parent_id and ls.child_id = '#{current_user.id}')
+        (rs.parent_id = '#{@user.id}' and rs.child_id = ls.parent_id and ls.child_id = '#{@user.id}')
         or
-        (rs.child_id = '#{current_user.id}' and rs.parent_id = ls.child_id and ls.parent_id = '#{current_user.id}')
+        (rs.child_id = '#{@user.id}' and rs.parent_id = ls.child_id and ls.parent_id = '#{@user.id}')
       }
     )
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
