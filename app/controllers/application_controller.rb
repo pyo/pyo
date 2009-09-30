@@ -4,6 +4,11 @@
 class ApplicationController < ActionController::Base
   include Clearance::App::Controllers::ApplicationController
   helper :all # include all helpers, all the time
+  rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
+  
+  def bad_record
+    redirect_to page_not_found_path
+  end
 
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
