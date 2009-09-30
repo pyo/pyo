@@ -81,6 +81,7 @@ class VideosController < ApplicationController
     #@video = Video.find_by_panda_id(params[:id])
     @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
     @video.update_panda_status(@panda_video)
+    @video.send_create_notifications
     expire_fragment(:controller => 'users', :action => 'show', :id => @video.user.to_param)
   end
   

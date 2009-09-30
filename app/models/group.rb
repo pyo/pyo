@@ -35,7 +35,8 @@ class Group < ActiveRecord::Base
   has_attached_file :icon,
                     :styles => { 
                       :medium => "120x120>", 
-                      :thumb => "50x50#" 
+                      :thumb => "50x50#",
+                      :profile => "230x230#"
                     },
                     :whiny_thumbnails => true,
                     :path => ':rails_root/public/data/:class/:id/:style/:basename.:extension',

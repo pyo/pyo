@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :authenticate,  :except => [:index, :show, :members] 
   before_filter :find_group,    :except => [:create,:new,:index,:request_group,:pending,:approve,:deny] 
-  before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create,:approve,:deny,:pending,:members] 
+  before_filter :check_user,    :except => [:show,:leave,:join,:index,:request_group, :create,:approve,:deny,:pending,:members,:edit] 
   
   def index
 		@title = "Groups"
@@ -61,8 +61,15 @@ class GroupsController < ApplicationController
     end
   end
 
-  def edit
 
+  def edit
+    @admins = @group.with_role(:ADMIN) + @group.with_role(:MODERATOR)
+    if @admins.include?(current_user) || current_user.super_user?
+      @members = @group.users.paginate(:per_page => 12, :page => 1)
+    else
+      render :text => current_user.super_user.inspect and return
+      deny_access("You do not have sufficient priviledges")
+    end
   end
 
   def create

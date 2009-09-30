@@ -5,16 +5,17 @@ class Video < ActiveRecord::Base
 
 	validates_presence_of :title, :description
 
-  belongs_to :user, :counter_cache => true
+  belongs_to :user
   has_many :comments, :as => 'consumer', :dependent => :destroy
 
   named_scope :finished, :conditions => {:finished => true}
   # default_scope :conditions => {:finished => true}
-	named_scope :recent, :order=>"created_at DESC"
+	named_scope :recent, :order=>"created_at DESC", :conditions => {:finished => true}
   named_scope :popular,
               :group => "ratings.rateable_id",
               :joins=>:ratings, 
-              :order => "avg(score) desc"
+              :order => "avg(score) desc",
+              :conditions => {:finished => true}
   
   def self.unfinished(type, options = {})
     conditions = {:finished => false}.merge(options[:conditions])
@@ -51,7 +52,8 @@ class Video < ActiveRecord::Base
     %(<embed src="http://#{VIDEOS_DOMAIN}/player.swf" width="#{self.width}" height="#{self.height}" allowfullscreen="true" allowscriptaccess="always" flashvars="&fullscreen=true&displayheight=#{self.height}&skin=http://#{VIDEOS_DOMAIN}/video-skin.swf&file=#{self.url}&image=#{self.screenshot_url}&width=#{self.width}&height=#{self.height}" />)
   end
   
-  def after_create
+  def send_create_notifications
+    User.update_counters(user.id, :videos_count => 1)
     MediaUploadActivity.create({:producer => user, :payload => self})
     user.followers.each do |follower|
       MediaUploadActivity.create({:producer => user, :consumer => follower, :payload => self})
