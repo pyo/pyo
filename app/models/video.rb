@@ -59,11 +59,11 @@ class Video < ActiveRecord::Base
   end
   
   define_index do
-      indexes title
-      indexes tags(:name)
-      indexes description
-      indexes [user.profile.first_name, user.profile.last_name, user.name], :as => :user
-      indexes user.email, :as => :email
-			has created_at
-    end
+    indexes title
+    indexes tags(:name)
+    indexes description
+    indexes [user.profile.first_name, user.profile.last_name, user.name], :as => :user
+    indexes user.email, :as => :email
+    has created_at
+  end
 end

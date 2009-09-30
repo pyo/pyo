@@ -1,4 +1,4 @@
-likes #{link_to item.payload.user.name, item.payload.user}'s #{item.payload.class.to_s.downcase}.
+likes #{link_to item.payload.user.name, item.payload.user}'s #{link_to item.payload.class.to_s.downcase, [item.payload.user, item.payload]}.
 
 - payload = item.payload
 - if payload.respond_to?(:image)

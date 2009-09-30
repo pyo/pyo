@@ -1136,7 +1136,7 @@ h4.title {
     line-height: 18px;
     margin: 10px 20px 10px 30px;
     padding: 10px; }
-  .inner_content.static_pages ul {
+  .inner_content.static_pages ul.common {
     font-size: 14px;
     line-height: 20px;
     list-style-image: none;
@@ -1145,6 +1145,23 @@ h4.title {
     margin: 10px 20px 10px 10px;
     padding-left: 40px;
     text-align: justify; }
+  .inner_content.static_pages ul.about_menu {
+    margin-left: 20px; }
+
+.inner_content.static_pages .main {
+  margin-top: 0; }
+  .inner_content.static_pages .main p {
+    margin-left: 0px; }
+  .inner_content.static_pages .main p:first-child {
+    margin-top: 0; }
+.inner_content.static_pages ul.about_menu a.expanded {
+  border-color: #aaa;
+  border-right: 1px dashed;
+  color: #aaa; }
+.inner_content.static_pages ul.about_menu a.expanded:hover {
+  border-right: 0;
+  border-left: 5px solid #026DFE;
+  color: #026DFE; }
 
 /* Wrapper (clearfix) */
 .wrapper:after {

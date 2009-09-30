@@ -5,9 +5,9 @@
   .main
     #about
       - if params.key?(:why)
-        Text will go here...
+        &nbsp;
       - elsif params.key?(:who)
-        Text will go here...
+        &nbsp;
       - else
         %p Put Yourself On, Inc. is a web start-up that aims to provide anyone/everyone on the internet with the appropriate tools to do one or all of the following things:
 
@@ -18,9 +18,5 @@
 
         %p The PutYourselfOn.com website is a very basic but none the less state of the art application that does all of the above in a sleek and efficient way. Initially funded by Welco, a private company based out of Greenville, SC, the website itself was conceived and developed over the period of one year beginning in September 2008 before its mid-September 2009 silent launch. Upon noticing that there weren't any efficient ways to sort through and follow or connect with talented people on sites like YouTube, MySpace, Facebook, Twitter, Vimeo, and similar social media/networking sites, Brandon Wideman, a Freshman at Clemson Unversity at the time, came up with the idea to provide people with an application to do just that. He and his roommate Dustin Gary, also a Freshman at Clemson, set out to develop PutYourselfOn.com.
 
-  .detail
-    %ul.about_menu
-      %li= link_to 'What exactly is Put Yourself On?', '/about', :class => !params.key?(:why) && !params.key?(:who) ? 'expanded' : nil
-      %li= link_to 'Who is Put Yourself On for?', '/about?who', :class => params.key?(:who) ? 'expanded' : nil
-      %li= link_to 'Why should I use Put Yourself On?', '/about?why', :class => params.key?(:why) ? 'expanded' : nil
+  = render 'about_menu'
     
