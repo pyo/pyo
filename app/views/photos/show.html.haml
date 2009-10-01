@@ -8,7 +8,7 @@
       .relative
         %h4.title
           =h @photo.title
-        - if current_user && !current_user.owns?(@photo) && !current_user.likes?(@photo)
+        - if current_user && (!current_user.owns?(@photo) || (current_user.super_user? && current_user != @photo.user)) && !current_user.likes?(@photo)
           .hanger
             = link_to 'Like', like_user_photo_path(@photo.user, @photo), :class => 'media_like', :method => :post
         - if current_user && current_user.likes?(@photo)

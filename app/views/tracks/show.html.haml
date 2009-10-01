@@ -7,7 +7,7 @@
     .content
       .relative
         %h4.title= h @track.name
-        - if current_user && !current_user.owns?(@track) && !current_user.likes?(@track)
+        - if current_user && (!current_user.owns?(@track) || (current_user.super_user? && current_user != @track.user)) && !current_user.likes?(@track)
           .hanger
             = link_to 'Like', like_user_track_path(@track.user, @track), :class => 'media_like', :method => :post
         - if current_user && current_user.likes?(@track)

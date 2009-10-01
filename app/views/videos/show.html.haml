@@ -7,7 +7,7 @@
     .content
       .relative
         %h4.title= h @video.title
-        - if current_user && !current_user.owns?(@video) && !current_user.likes?(@video)
+        - if current_user && (!current_user.owns?(@video) || (current_user.super_user? && current_user != @video.user)) && !current_user.likes?(@video)
           .hanger
             = link_to 'Like', like_user_video_path(@video.user, @video), :class => 'media_like', :method => :post
         - if current_user && current_user.likes?(@video)
