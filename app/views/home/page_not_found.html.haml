@@ -1,8 +1,6 @@
 %h1.bordered_title 
   %span.blue Sorry... We couldn't find that page!
 
-- if flash[:notice]
-  %p.notify 
-    = flash[:notice]
+%p.notify The page you are looking for doesn't exist. You may have mistyped the address or the page may have moved.
 
 = image_tag '404.jpg'
