@@ -34,16 +34,15 @@
   - if @user.profile.bio
     .bio  
       #{@user.profile.bio}
-  - cache :action_suffix => 'followings' do
-    - @followings ||= User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1) if @user
-    - unless @followings.empty?
-      %h3 Following:
-      .followings
-        - @followings.each do |following|
-          .smaller_thumb.with_border
-            = link_to image_tag(following.profile.avatar.url(:thumb)), user_path(following)
-        .clear
-          = link_to "View All (#{@followings.total_entries})", following_user_path(@user)
+  - @followings ||= User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1) if @user
+  - unless @followings.empty?
+    %h3 Following:
+    .followings
+      - @followings.each do |following|
+        .smaller_thumb.with_border
+          = link_to image_tag(following.profile.avatar.url(:thumb)), user_path(following)
+      .clear
+        = link_to "View All (#{@followings.total_entries})", following_user_path(@user)
       
   - unless @posts.empty?
     .sub_info
