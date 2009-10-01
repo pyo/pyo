@@ -12,11 +12,8 @@
     %h3 Tags:
     %p
       = h @blog.tags.collect(&:name).join(", ")
-    
-    
-    
 .details
   .inner_content
-    = render :partial => "users/info"
+    = render :partial => "users/public_info"
   .inner_content
     = render :partial => "shared/tall_advertisement"
