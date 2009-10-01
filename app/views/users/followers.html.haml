@@ -22,14 +22,14 @@
   Total (#{@user.followers.size}) | #{link_to "Connects (#{@user.connects_size})", connects_user_path}
   - unless @followers.empty?
     .followers
-      - @followers.each do |follower|
+      - @user_followers.each do |follower|
         .follower
           = link_to image_tag(follower.profile.avatar.url(:dashboard)), follower
           = link_to follower.name.capitalize, follower
           .full_name= follower.profile.full_name if follower.profile.full_name
           .city_and_state= follower.city_and_state.join(', ')
           .talent_type= follower.talent_type
-    = will_paginate @followers
+    = will_paginate @user_followers
   - else
     No Followers
 

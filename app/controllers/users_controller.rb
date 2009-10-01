@@ -165,7 +165,7 @@ class UsersController < ApplicationController
   def followers
     @user = User.find_by_url(params[:id])
 		@title = "#{@user.name.capitalize.possesive} Followers"
-    @followers = @user.followers.paginate(:per_page => 40, :page => params[:page])
+    @user_followers = @user.followers.paginate(:per_page => 40, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
