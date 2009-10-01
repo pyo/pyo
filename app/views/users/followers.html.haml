@@ -20,7 +20,7 @@
   = render "users/grey_boxes"
   %h4.title #{@user.name.capitalize.possesive} Followers
   Total (#{@user.followers.size}) | #{link_to "Connects (#{@user.connects_size})", connects_user_path}
-  - unless @followers.empty?
+  - unless @user_followers.empty?
     .followers
       - @user_followers.each do |follower|
         .follower
