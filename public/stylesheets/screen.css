@@ -1111,6 +1111,12 @@ h4.title {
     line-height: 18px;
     text-align: justify;
     width: 500px; }
+    .inner_content.user_inbox .message_view .message_body p.message_meta {
+      margin-bottom: 10px; }
+      .inner_content.user_inbox .message_view .message_body p.message_meta span.date, .inner_content.user_inbox .message_view .message_body p.message_meta span.reply {
+        display: block; }
+      .inner_content.user_inbox .message_view .message_body p.message_meta span.date {
+        font-weight: bold; }
 
 /* Static Pages */
 .inner_content.static_pages {
