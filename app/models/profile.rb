@@ -1,7 +1,7 @@
 class Profile < ActiveRecord::Base
   # vaildations
   validates_presence_of :username,    :message => "can't be blank"
-  
+
   has_attached_file :avatar,
                     :styles => { 
                       :thumb => '50x50#', 

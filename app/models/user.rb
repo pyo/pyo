@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 	
   validates_presence_of :password, :message=>"You must enter a password", :on => :create
   validates_presence_of :email, :message=>"You must enter an email"
+  validates_format_of :name, :with => /[-a-z0-9_]+/i, :message => "Usernames can only contain letters, numbers, underscores, and dashes"
   
   include Covalence::Member
   include Clearance::App::Models::User
