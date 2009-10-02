@@ -43,8 +43,9 @@
         
   
   .inner_content
-    = render :partial => @group.comments
-    = render :partial => "comments/form", :locals => {:commentable => @group, :comment_class=>""}
+    = render :partial => @group.comments, :locals => {:group => @group}
+    - if current_user && current_user.member_in?(@group)
+      = render :partial => "comments/form", :locals => {:commentable => @group, :comment_class=>""}
   
 .details
   .inner_content

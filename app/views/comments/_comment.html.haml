@@ -10,5 +10,7 @@
     %br
     = comment.message
     .content[comment,:threaded]
-      = render :partial => "comments/form", :locals => {:commentable => comment, :comment_class => "reply"}
+      - if current_user
+        - unless @group && current_user.member_in?(@group)
+          = render :partial => "comments/form", :locals => {:commentable => comment, :comment_class => "reply"}
       = render :partial => comment.comments
