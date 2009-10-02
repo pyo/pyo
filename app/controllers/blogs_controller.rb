@@ -20,6 +20,10 @@ class BlogsController < ApplicationController
   
   def show
     @user = @blog.user
+    @title = @blog.title
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
+    @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
+    @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
   
   def update
