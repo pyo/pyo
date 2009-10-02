@@ -18,6 +18,10 @@ class BlogsController < ApplicationController
     
   end
   
+  def show
+    @user = @blog.user
+  end
+  
   def update
     if @blog.update_attributes(params[:blog])
       flash[:notice] = 'Blog was successfully updated.'
