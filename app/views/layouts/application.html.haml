@@ -8,6 +8,20 @@
     = javascript_include_tag 'jquery-1.3.2.min','application','swfobject'
     = javascript_include_tag '/javascripts/jquery.rating.pack.js'
     = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? 
+    :plain
+      <script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js">
+      </script>
+      <script type="text/javascript">
+        GS_googleAddAdSenseService("ca-pub-2727072243882391");
+        GS_googleEnableAllServices();
+      </script>
+      <script type="text/javascript">
+        GA_googleAddSlot("ca-pub-2727072243882391", "LeftSkyscraper");
+        GA_googleAddSlot("ca-pub-2727072243882391", "TopLeaderboardAd");
+      </script>
+      <script type="text/javascript">
+        GA_googleFetchAds();
+      </script>
     = yield :head
   %body
     #main.container
