@@ -6,42 +6,6 @@
       .hanger
         = link_to image_tag('joingroup.gif'), url_for(:action => 'join'), :method => :put
 .main  
-  
-  - unless @photos.empty?
-    %h4 Pictures
-    = link_to "View All (#{@photos.total_entries})", '#'
-    .media
-      - @photos.each do |photo|
-        = link_to image_tag(photo.image.url(:thumb)), [photo.user, photo]
-  - unless @videos.empty?
-    %h4 Videos
-    = link_to "View All (#{@videos.total_entries})", '#'
-    .media
-      - @videos.each do |video|
-        = link_to image_tag(video.thumb_url, :alt => video.title), [video.user, video]
-  - unless @tracks.empty?
-    %h4 Audio
-    = link_to "View All (#{@tracks.total_entries})", '#'
-    .media
-      - @tracks.each do |track|
-        .profile_track_info
-          %strong
-            = link_to h(track.name), user_track_path(track.user,track)
-          %p
-            = h truncate(track.description, 20)
-            %div[track]
-            - track_dom_id = dom_id(track)
-            :javascript
-              var #{track_dom_id} = new SWFObject('/swf/player.swf','mpl','470','30','9');
-              #{track_dom_id}.addParam('allowfullscreen','true');
-              #{track_dom_id}.addParam('allowscriptaccess','always');
-              #{track_dom_id}.addParam('wmode','opaque');
-              #{track_dom_id}.addVariable('file','#{track.mp3.url}');
-
-              #{track_dom_id}.addVariable('skin','/audio-player/audio-skin.swf');
-              #{track_dom_id}.write('#{track_dom_id}');
-        
-  
   .inner_content
     = render :partial => @group.comments, :locals => {:group => @group}
     - if current_user && current_user.member_in?(@group)
