@@ -12,6 +12,12 @@
     %h3 Tags:
     %p
       = h @blog.tags.collect(&:name).join(", ")
+      
+  .content
+    %h4 Comments
+    .comments
+      = render :partial => "comments/form", :locals => {:commentable => @blog, :comment_class=>""}
+      = render :partial => @blog.comments.all(:order => "created_at desc")
 .details
   .inner_content
     = render :partial => "users/public_info"
