@@ -54,6 +54,11 @@ class UsersController < ApplicationController
   end
   
   def inbox
+    @title = case params[:mbox]
+      when 'sent' then "Inbox - Sent Messages"
+      when 'archive' then "Inbox - Archived Messages"
+      else "Inbox - Unread Messages"
+    end
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
     @messages = current_user.messages.unread unless params[:mbox]
     @messages = current_user.messages.read   if (params[:mbox]=="archive")
@@ -104,6 +109,7 @@ class UsersController < ApplicationController
   end
 
   def updates
+    @title = "#{@user.name}'s Updates"
     @updates = @user.updates.paginate(:per_page => 25, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
@@ -173,7 +179,7 @@ class UsersController < ApplicationController
   
   def following
     @user = User.find_by_url(params[:id])
-		@title ="Profiles #{@user.name.capitalize.possesive} is Following"
+		@title ="Profiles #{@user.name.capitalize} is Following"
     @followings = @user.followings.paginate(:per_page => 40, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
