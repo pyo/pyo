@@ -10,7 +10,7 @@ class Activity < ActiveRecord::Base
   
   def self.send_group_comment_notification group, comment
     group.users.each do |user|
-     GroupCommentActivity.create({:producer => comment.producer, :consumer => user, :payload => comment})
+     GroupCommentActivity.create({:producer => comment.producer, :consumer => user, :payload => comment}) if comment.producer != user
     end
   end
 end

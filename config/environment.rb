@@ -42,4 +42,4 @@ require 'tag_ext'
 HOST = "localhost"
 MAX_STARS = 5
 
-DO_NOT_REPLY = "info@putyourselfon.com"
+DO_NOT_REPLY = "noreply@putyourselfon.com"
