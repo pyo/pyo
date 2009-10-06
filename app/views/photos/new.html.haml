@@ -30,18 +30,6 @@
 .details
   .inner_content.column
     = render 'users/info'
-    .info
-      %h3 Alerts
-      - unless current_user.alerts.empty?
-        .alert_type
-          = link_to '(30) new follows', '#'
-        .alert_type
-          = link_to '(12) new comments', '#'
-        .alert_type
-          = link_to '(6) new messages', '#'
-      - else
-        .inner_text
-          At this time, you currently do not have any new alerts.
     
   .inner_content.column  
     .info.left
