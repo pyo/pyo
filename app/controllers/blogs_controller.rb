@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
   
   
   def new
-    @title = "Put Yourself On - Post New Blog"
+    @title = "Post New Blog"
     @blog = current_user.blogs.new
   end
   
