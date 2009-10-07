@@ -141,6 +141,10 @@ class User < ActiveRecord::Base
     ) / 2
   end
   
+  def self.find_by_id_and_token(id, token) #override clearance
+    self.find_by_name_and_token(id, token)
+  end
+  
   def city_and_state
     returning [] do |values|
       values << profile.city if profile.city.present?
