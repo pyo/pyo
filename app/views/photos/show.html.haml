@@ -6,14 +6,20 @@
     = render "users/grey_boxes"
     .content
       .relative
-        %h4.title
-          =h @photo.title
-        - if current_user && (!current_user.owns?(@photo) || (current_user.super_user? && current_user != @photo.user)) && !current_user.likes?(@photo)
-          .hanger
-            = link_to 'Like', like_user_photo_path(@photo.user, @photo), :class => 'media_like', :method => :post
-        - if current_user && current_user.likes?(@photo)
-          .hanger
-            = link_to 'Unlike', unlike_user_photo_path(@photo.user, @photo), :class => 'media_unlike', :method => :post
+        .title
+          %h4
+            =h @photo.title
+          - if current_user && (!current_user.owns?(@photo) || (current_user.super_user? && current_user != @photo.user)) && !current_user.likes?(@photo)
+            .hanger
+              = link_to 'Like', like_user_photo_path(@photo.user, @photo), :class => 'media_like', :method => :post
+          - if current_user && current_user.likes?(@photo)
+            .hanger
+              = link_to 'Unlike', unlike_user_photo_path(@photo.user, @photo), :class => 'media_unlike', :method => :post
+          - if current_user.owns?(@photo)
+            .media_links
+              = link_to 'Edit Picture', edit_user_photo_path(@photo.user, @photo)
+              \/
+              = link_to 'Deletre Picture', user_photo_path(@photo.user, @photo), :method => :delete, :confirm => "Are you sure?"
       .photo_view
         .photo
           = image_tag(@photo.image.url(:medium))
