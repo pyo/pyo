@@ -37,6 +37,11 @@ class TracksController < ApplicationController
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
   end
   
+  def edit
+    @title = "Edit Audio Track"
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
+  end
+  
   def show
 		@title = "#{@track.name}"
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
@@ -73,14 +78,25 @@ class TracksController < ApplicationController
     end
   end
   
+  def update    
+    if @track.update_attributes(params[:track])
+      expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
+      flash[:notice] = 'Your audio track has successfully been updated.'
+      redirect_to user_track_path(current_user,@track)
+    else
+      flash[:error] = @track.errors
+      render :action => "edit"
+    end
+  end
+  
   def destroy
     if is_owner?
       @track.destroy
-      flash[:notice] = "Track was deleted."
-      redirect_to :back
+      flash[:notice] = "Your audio track has been deleted and removed from your profile."
+      redirect_to dashboard_path
     else
       flash[:error] = "You are not authorized for that action."
-      redirect_to :back
+      redirect_to dashboard_path
     end
   end
   

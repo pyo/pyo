@@ -40,6 +40,11 @@ class VideosController < ApplicationController
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
   end
   
+  def edit
+    @title = "Update Video"
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
+  end
+  
   def create
     @panda_video = Panda::Video.create
     @video = current_user.videos.create(params[:video].merge({:panda_id => @panda_video.id, :finished => false}))
@@ -113,11 +118,11 @@ class VideosController < ApplicationController
 	def destroy
     if is_owner?
       @video.destroy
-      flash[:notice] = "Video was deleted."
-      redirect_to :back
+      flash[:notice] = "Your video has been deleted and removed from your profile."
+      redirect_to dashboard_path
     else
       flash[:error] = "You are not authorized for that action."
-      redirect_to :back
+      redirect_to dashboard_path
     end
 	end
   

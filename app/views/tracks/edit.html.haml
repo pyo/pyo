@@ -3,7 +3,7 @@
   .inner_content
     = render :partial => "users/dashboard_nav"
     
-    %h4.title Upload Audio Track
+    %h4.title Update Audio Track
     
     - form_for([@user, @track], :html => {:multipart => true}) do |form|
       .file_field

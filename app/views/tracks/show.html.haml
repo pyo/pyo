@@ -6,13 +6,19 @@
     = render "users/grey_boxes"
     .content
       .relative
-        %h4.title= h @track.name
-        - if current_user && (!current_user.owns?(@track) || (current_user.super_user? && current_user != @track.user)) && !current_user.likes?(@track)
-          .hanger
-            = link_to 'Like', like_user_track_path(@track.user, @track), :class => 'media_like', :method => :post
-        - if current_user && current_user.likes?(@track)
-          .hanger
-            = link_to 'Unlike', unlike_user_track_path(@track.user, @track), :class => 'media_unlike', :method => :post
+        .media_title
+          %h4= h @track.name
+          - if current_user && (!current_user.owns?(@track) || (current_user.super_user? && current_user != @track.user)) && !current_user.likes?(@track)
+            .hanger
+              = link_to 'Like', like_user_track_path(@track.user, @track), :class => 'media_like', :method => :post
+          - if current_user && current_user.likes?(@track)
+            .hanger
+              = link_to 'Unlike', unlike_user_track_path(@track.user, @track), :class => 'media_unlike', :method => :post
+          - if current_user.owns?(@track)
+            .media_links
+              = link_to 'Edit Audio Track', edit_user_track_path(@track.user, @track)
+              \/
+              = link_to 'Delete Audio Track', user_track_path(@track.user, @track), :method => :delete, :confirm => "Are you sure?"
       %p 
         = h @track.description
       %br  

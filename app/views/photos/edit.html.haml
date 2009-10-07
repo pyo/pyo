@@ -1,0 +1,36 @@
+= render "users/top"
+.main
+  = render "users/dashboard_nav"
+  .inner_content
+    
+    %h4.title Edit Picture
+    
+    - form_for([@user, @photo], :html => {:multipart => true}) do |form|
+      .file_field
+        = form.label :image, 'Image:'
+        = form.file_field :image
+        %span.hint 
+          Supported file types: JPG, JPEG, GIF, PNG
+      .text_field
+        = form.label :title, 'Title:'
+        = form.text_field :title
+        %span.hint 
+          Name your image.
+      .text_area
+        = form.label :description, 'Description: <span class="grey">(Optional)</span>'
+        = form.text_area :description
+      .text_field
+        = form.label :tag_list, 'Tags:'
+        = form.text_field :tag_list      
+        %span.hint 
+          Separate each tag with a comma.
+      .submit_button
+        = image_submit_tag 'upload.gif'
+    
+.details
+  .inner_content.column
+    = render 'users/info'
+    
+  .inner_content.column  
+    .info.left
+      = render 'shared/tall_advertisement'

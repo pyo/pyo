@@ -6,13 +6,19 @@
     = render "users/grey_boxes"
     .content
       .relative
-        %h4.title= h @video.title
-        - if current_user && (!current_user.owns?(@video) || (current_user.super_user? && current_user != @video.user)) && !current_user.likes?(@video)
-          .hanger
-            = link_to 'Like', like_user_video_path(@video.user, @video), :class => 'media_like', :method => :post
-        - if current_user && current_user.likes?(@video)
-          .hanger
-            = link_to 'Unlike', unlike_user_video_path(@video.user, @video), :class => 'media_unlike', :method => :post
+        .media_title
+          %h4= h @video.title
+          - if current_user && (!current_user.owns?(@video) || (current_user.super_user? && current_user != @video.user)) && !current_user.likes?(@video)
+            .hanger
+              = link_to 'Like', like_user_video_path(@video.user, @video), :class => 'media_like', :method => :post
+          - if current_user && current_user.likes?(@video)
+            .hanger
+              = link_to 'Unlike', unlike_user_video_path(@video.user, @video), :class => 'media_unlike', :method => :post
+          - if current_user.owns?(@video)
+            .media_links
+              = link_to 'Edit Video', edit_user_video_path(@video.user, @video)
+              \/
+              = link_to 'Delete Video', user_video_path(@video.user, @video), :method => :delete, :confirm => "Are you sure?"
       = @video.embed_html
       %p
         = h @video.description

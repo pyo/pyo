@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
   end
   
   def edit
-    
+    @title = "Edit Blog"
   end
   
   def show
@@ -54,11 +54,11 @@ class BlogsController < ApplicationController
   def destroy
     if is_owner?
       @blog.destroy
-      flash[:notice] = "Blog was deleted."
-      redirect_to :back
+      flash[:notice] = "Your blog post has been deleted and removed from your profile."
+      redirect_to dashboard_path
     else
       flash[:error] = "You are not authorized for that action."
-      redirect_to :back
+      redirect_to dashboard_path
     end
   end
   

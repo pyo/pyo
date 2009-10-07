@@ -3,8 +3,13 @@
     = render :partial => "users/dashboard_nav"
   .inner_content
     
-    %h2
-      = h @blog.title
+    .media_title
+      %h4= h @blog.title
+      - if current_user.owns?(@blog)
+        .media_links
+          = link_to 'Edit Blog', edit_user_blog_path(current_user, @blog)
+          \/
+          = link_to 'Delete Blog', user_blog_path(current_user, @blog), :method => :delete, :confirm => "Are you sure?"
       
     %p
       = sanitize(@blog.body)

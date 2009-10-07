@@ -17,6 +17,7 @@ class Blog < ActiveRecord::Base
   # assocs 
   belongs_to :user
   has_many :comments, :as => 'consumer', :dependent => :destroy
+  has_many :activities, :as => :payload, :dependent => :destroy
   
   validates_presence_of :title
   validates_presence_of :body

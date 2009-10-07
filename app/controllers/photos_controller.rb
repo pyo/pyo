@@ -31,6 +31,11 @@ class PhotosController < ApplicationController
     @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
   end
   
+  def edit
+    @title = "Edit Picture"
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 12, :page => 1)
+  end
+  
   def show
 		@title = @photo.title
     @prev_photo = @user.photos.first(:order => 'id desc', :conditions => ["id < ?", @photo.id])
@@ -59,15 +64,26 @@ class PhotosController < ApplicationController
     end
   end
   
+  def update    
+    if @photo.update_attributes(params[:photo])
+      expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
+      flash[:notice] = 'Your picture has successfully been updated.'
+      redirect_to user_photo_path(current_user,@photo)
+    else
+      flash[:error] = "There was a problem with your submission"
+      render :action => "edit"
+    end
+  end
+  
   
   def destroy
     if is_owner?
       @photo.destroy
-      flash[:notice] = "Comment was deleted."
-      redirect_to :back
+      flash[:notice] = "Your picture has been deleted and removed from your profile."
+      redirect_to dashboard_path
     else
       flash[:error] = "You are not authorized for that action."
-      redirect_to :back
+      redirect_to dashboard_path
     end
   end
   
