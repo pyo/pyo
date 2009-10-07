@@ -5,7 +5,7 @@
 
 - if flash[:notice]
   %p.notify= flash[:notice]
-- if flash[:notice]
+- if flash[:failure]
   %p.notify= flash[:failure]
 
 - form_for :session, :url => session_path, :html => { :id => 'new_session' } do |form|
