@@ -9,6 +9,7 @@ log/*.log
 tmp/*
 public/system/*
 public/data
+public/stylesheets/screen.css
 public/uploads
 *.DS_Store
 *.swo
