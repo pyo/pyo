@@ -14,7 +14,7 @@
           - if current_user && current_user.likes?(@track)
             .hanger
               = link_to 'Unlike', unlike_user_track_path(@track.user, @track), :class => 'media_unlike', :method => :post
-          - if current_user.owns?(@track)
+          - if current_user && current_user.owns?(@track)
             .media_links
               = link_to 'Edit Audio Track', edit_user_track_path(@track.user, @track)
               \/

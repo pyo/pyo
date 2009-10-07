@@ -14,7 +14,7 @@
           - if current_user && current_user.likes?(@video)
             .hanger
               = link_to 'Unlike', unlike_user_video_path(@video.user, @video), :class => 'media_unlike', :method => :post
-          - if current_user.owns?(@video)
+          - if current_user && current_user.owns?(@video)
             .media_links
               = link_to 'Edit Video', edit_user_video_path(@video.user, @video)
               \/

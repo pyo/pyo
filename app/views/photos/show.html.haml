@@ -15,7 +15,7 @@
           - if current_user && current_user.likes?(@photo)
             .hanger
               = link_to 'Unlike', unlike_user_photo_path(@photo.user, @photo), :class => 'media_unlike', :method => :post
-          - if current_user.owns?(@photo)
+          - if current_user && current_user.owns?(@photo)
             .media_links
               = link_to 'Edit Picture', edit_user_photo_path(@photo.user, @photo)
               \/

@@ -5,7 +5,7 @@
     
     .media_title
       %h4= h @blog.title
-      - if current_user.owns?(@blog)
+      - if current_user && current_user.owns?(@blog)
         .media_links
           = link_to 'Edit Blog', edit_user_blog_path(current_user, @blog)
           \/
