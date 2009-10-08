@@ -180,7 +180,8 @@ class UsersController < ApplicationController
   def following
     @user = User.find_by_url(params[:id])
 		@title ="Profiles #{@user.name.capitalize} is Following"
-    @followings = @user.followings.paginate(:per_page => 40, :page => params[:page])
+    @main_followings = @user.followings.paginate(:per_page => 40, :page => params[:page])
+    @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 12, :page => 1)
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end

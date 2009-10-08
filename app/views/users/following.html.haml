@@ -21,14 +21,14 @@
   %h4.title Profiles #{@user.name.capitalize} is following
   - unless @followings.empty?
     .followers
-      - @followings.each do |following|
+      - @main_followings.each do |following|
         .follower
           = link_to image_tag(following.profile.avatar.url(:dashboard)), following
           = link_to following.name.capitalize, following
           .full_name= following.profile.full_name if following.profile.full_name
           .city_and_state= following.city_and_state.join(', ')
           .talent_type= following.talent_type
-    = will_paginate @followings
+    = will_paginate @main_followings
   - else
     No Followers
 
