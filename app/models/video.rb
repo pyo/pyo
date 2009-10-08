@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
 
 	validates_presence_of :title, :description
 
-  belongs_to :user, :counter_cache => true
+  belongs_to :user # counter cache is handled inside the model
   has_many :comments, :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => :payload, :dependent => :destroy
 
@@ -54,11 +54,15 @@ class Video < ActiveRecord::Base
   end
   
   def send_create_notifications
-    User.update_counters(user.id, :videos_count => 1)
+    User.increment_counter(:videos_count, user.id)
     MediaUploadActivity.create({:producer => user, :payload => self})
     user.followers.each do |follower|
       MediaUploadActivity.create({:producer => user, :consumer => follower, :payload => self})
     end
+  end
+  
+  def before_destroy
+    User.decrement_counter(:videos_count, user.id)
   end
   
   define_index do
