@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
   include Clearance::App::Controllers::ApplicationController
   helper :all # include all helpers, all the time
   rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
+  before_filter :check_restricted_access
+  
+  def check_restricted_access
+    if Rails.env == 'staging'
+      authenticate_or_request_with_http_basic do |username, password|
+        username == "admin" && password == "testit!"
+      end
+    end
+  end
   
   def bad_record
     redirect_to page_not_found_path
