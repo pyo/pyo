@@ -110,7 +110,7 @@ class UsersController < ApplicationController
 
   def updates
     @title = "#{@user.name}'s Updates"
-    @updates = @user.updates.paginate(:per_page => 25, :page => params[:page])
+    @updates = Activity.all(:include => :payload, :conditions => ["producer_id = ? and producer_type = 'User' and consumer_id is NULL and type != 'FollowingActivity'", @user.id]).paginate(:per_page => 25, :page => params[:page])
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups = @user.groups.paginate(:per_page => 5, :page => 1)
   end
