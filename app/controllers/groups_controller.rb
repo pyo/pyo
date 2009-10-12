@@ -77,9 +77,11 @@ class GroupsController < ApplicationController
     
     respond_to do |format|
       if @group.save
-        @group.with_approved_scope do
-				  @group.users.join(current_user,:ADMIN)
-				end
+        membership = Membership.new(:parent_type => "Group", :parent_id => @group.id, :child_type => 'User', :child_id => current_user.id, :status => 'ADMIN')
+        membership.save(false)
+        #@group.with_approved_scope do
+				#@group.users.join(current_user,:ADMIN)
+				#end
         flash[:notice] = 'Group request was submitted.'
         format.html { redirect_to(groups_path) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
@@ -135,6 +137,10 @@ class GroupsController < ApplicationController
       @group = Group.find_pending_by_url(params[:id])
       @group.approved = true
       @group.save
+      @group.members.each do |member|
+        Activity.send_join_group_notifications(member, @group)
+      end
+      
       flash[:notice] = "Group was approved."
       redirect_to :back
     end
@@ -149,6 +155,7 @@ class GroupsController < ApplicationController
       @group = Group.find_pending_by_url(params[:id])
       @group.destroy
       flash[:notice] = "Group was denied."
+      redirect_to :back
     end
   end
   

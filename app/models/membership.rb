@@ -1,7 +1,7 @@
 class Membership < ActiveRecord::Base
   include Covalence::Membership
   def after_create
-    if parent.approved?
+    if parent && parent.approved?
       Activity.send_join_group_notifications child, parent
       Group.increment_counter(:memberships_count, parent.id)
     end
