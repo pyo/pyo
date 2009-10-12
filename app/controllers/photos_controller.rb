@@ -5,9 +5,13 @@ class PhotosController < ApplicationController
   before_filter :authenticate, :except => [:show, :index]
   
   def index
-		@title = "#{@user.name.capitalize.possesive} Pictures"
-    @photos = @user.photos.paginate(:per_page => 30, :page => params[:page])
-    load_user_data
+    if @user
+  		@title = "#{@user.name.capitalize.possesive} Pictures"
+      @photos = @user.photos.paginate(:per_page => 30, :page => params[:page])
+      load_user_data
+    else
+      redirect_to page_not_found_path
+    end
   end
   
   def like
