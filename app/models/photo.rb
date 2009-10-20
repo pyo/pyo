@@ -28,6 +28,7 @@ class Photo < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   has_many :comments, :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => :payload, :dependent => :destroy 
+  has_many :likes, :as => :media, :dependent => :destroy
   
   # validations
   validates_presence_of :title

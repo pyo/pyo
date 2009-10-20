@@ -8,6 +8,7 @@ class Video < ActiveRecord::Base
   belongs_to :user # counter cache is handled inside the model
   has_many :comments, :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => :payload, :dependent => :destroy
+  has_many :likes, :as => :media, :dependent => :destroy
 
   named_scope :finished, :conditions => {:finished => true}
   # default_scope :conditions => {:finished => true}
