@@ -16,13 +16,13 @@ class ConfirmationsController < ApplicationController
   def forbid_confirmed_user
     user = User.find_by_url(params[:user_id])
     if user && user.email_confirmed?
-      raise ActionController::Forbidden, "confirmed user"
+      raise ActionController::Forbidden, "You have already confirmed your account."
     end
   end
 
   def forbid_non_existant_user
     unless User.find_by_url_and_token(params[:user_id], params[:token])
-      raise ActionController::Forbidden, "non-existant user"
+      raise ActionController::Forbidden, "Could not confirm account. You may have already confirmed your account."
     end
   end
   
