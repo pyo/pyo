@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include Clearance::App::Controllers::ApplicationController
   helper :all # include all helpers, all the time
   rescue_from ActiveRecord::RecordNotFound, :with => :bad_record
+  rescue_from ActionController::Forbidden, :with => :bad_record
   before_filter :check_restricted_access
   
   def check_restricted_access
@@ -15,7 +16,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def bad_record
+  def bad_record(exception)
+    flash[:notice] = exception.message
     redirect_to page_not_found_path
   end
 
