@@ -2,6 +2,6 @@
   %span.blue Sorry... We couldn't find that page!
 
 %p.notify 
-  = flash[:notice] ? flash[:notice] : "The page you are looking for doesn't exist. You may have mistyped the address or the page may have moved."
+  = flash[:warning] ? flash[:warning] : "The page you are looking for doesn't exist. You may have mistyped the address or the page may have moved."
 
 = image_tag '404.jpg'

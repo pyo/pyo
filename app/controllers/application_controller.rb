@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
   
   def bad_record(exception)
-    flash[:notice] = exception.message
+    flash[:warning] = exception.message
     redirect_to page_not_found_path
   end
 
