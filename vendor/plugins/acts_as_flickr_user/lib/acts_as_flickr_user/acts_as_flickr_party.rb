@@ -5,7 +5,11 @@ module ActsAsFlickrParty
    include HTTParty
    API_BASE = 'http://api.flickr.com/services/rest/'.freeze
    def self.call(method, args)
-     post(API_BASE, :body => args.merge(:method => 'flickr.' + method, :api_key => configuration['api_key']))['rsp']
+     begin
+       post(API_BASE, :body => args.merge(:method => 'flickr.' + method, :api_key => configuration['api_key']))['rsp']
+     rescue Exception => e
+       # what to do here....?
+     end
    end
 
    def self.configuration
@@ -55,7 +59,7 @@ module ActsAsFlickrParty
      return case scope
      when 'public' 
         photos = API.call('people.getPublicPhotos', :user_id => flickr_nsid, :per_page => per_page)
-        if photos && photos['photos']['total'].to_i > 0
+        if photos && photos['photos'] && photos['photos']['total'].to_i > 0
           photos['photos']['photo'].map{ |hash| ActsAsFlickrParty::Photo.new(hash) }
         else
           []

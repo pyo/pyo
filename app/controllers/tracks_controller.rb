@@ -5,6 +5,7 @@ class TracksController < ApplicationController
   before_filter :authenticate, :except => [:show, :index, :music]
   
   def index
+    redirect_to page_not_found_path unless @user
 		@title = "#{@user.name.capitalize.possesive} Audio Tracks"
     @tracks = @user.tracks.all
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)

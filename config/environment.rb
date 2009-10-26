@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   config.gem 'right_aws'
   config.gem 'right_http_connection'
   config.gem 'andand'
-  config.gem 'httparty'
+  config.gem 'httparty', :version => '0.4.5'
   config.gem 'haml'
   config.gem 'capistrano'
   config.gem 'jnewland-capsize', :lib => false, :source => 'http://gems.github.com' # deployment tasks on ec2
@@ -38,7 +38,7 @@ Rails::Initializer.run do |config|
 end
 
 require 'string_ext'
-require 'tag_ext'
+#require 'tag_ext'
 HOST = "localhost"
 MAX_STARS = 5
 

@@ -6,6 +6,7 @@ class VideosController < ApplicationController
   protect_from_forgery :except => :status_update
   
   def index
+    redirect_to page_not_found_path unless @user
 		@title = "#{@user.name.capitalize.possesive} Videos"
     @videos = @user.nil? ? Video.finished.all : @user.videos.finished.all
     @posts = @user.blogs.paginate(:per_page => 5, :page => 1)
