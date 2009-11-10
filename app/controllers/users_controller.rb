@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
   def index
 		@title = "Members"
-    @users = User.sort_by(params[:sort]).paginate(:include => :profile, :per_page => 40, :page => params[:page])
+    @users = User.sort_by(params[:sort]).paginate(:include => :profile, :per_page => 40, :page => params[:page], :conditions => {:email_confirmed => true})
   end
   
   def likes
