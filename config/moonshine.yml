@@ -19,7 +19,7 @@
 #	Git
 #############################################################
 :scm: :git
-:repository: git@git.assembla.com:putyourselfon.git
+:repository: git@github.com:pyo/pyo.git
 :deploy_via: remote_cache
 
 #:time_zone: UTC
