@@ -25,16 +25,16 @@ class ApplicationManifest < Moonshine::Manifest::Rails
     when "production" then
       configure({
         :application => "putyourselfon.com",
-        :deploy_to => "/home/admin/public_html/putyourselfon.com",
+        :deploy_to => "/srv/putyourselfon",
         :domain => "putyourselfon.com",
         :domain_aliases => [ "www.putyourselfon.com" ]
       })
     when "staging" then 
       configure({
         :application => "staging.putyourselfon.com",
-        :deploy_to => "/home/admin/public_html/staging.putyourselfon.com",
+        :deploy_to => "/srv/putyourselfon_staging",
         :domain => "staging.putyourselfon.com",        
-        :domain_aliases => [ "174.129.227.77" ]
+        :domain_aliases => [ "174.129.52.199" ]
       })    
   end
 
