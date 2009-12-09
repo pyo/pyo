@@ -1,4 +1,4 @@
-server "174.129.227.77", :app, :web, :db, :primary => true
+server "174.129.23.221", :app, :web, :db, :primary => true
 set :branch, "staging"
 
 set :application, "staging.putyourselfon.com"

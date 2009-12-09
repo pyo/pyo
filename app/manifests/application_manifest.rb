@@ -34,7 +34,7 @@ class ApplicationManifest < Moonshine::Manifest::Rails
         :application => "staging.putyourselfon.com",
         :deploy_to => "/srv/putyourselfon_staging",
         :domain => "staging.putyourselfon.com",        
-        :domain_aliases => [ "174.129.52.199" ]
+        :domain_aliases => [ "174.129.23.221" ]
       })    
   end
 
