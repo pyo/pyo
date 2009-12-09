@@ -1,19 +1,18 @@
 :ruby: ree
-:user: admin
+:user: rails
 
 #############################################################
 #	Settings
 #############################################################
 :default_run_options:
   :pty: true
-:ssh_options:
-  :forward_agent: true
+#:ssh_options:
+#  :forward_agent: true
 :use_sudo: true
 :scm_verbose: true
 
 # bug in moonshine deploy:setup pulls the moonshine.yml before it can be set in app manifest requires you to set deploy_to here
-:deploy_to: /home/admin/public_html/staging.putyourselfon.com
-# :deploy_to: /home/admin/public_html/putyourselfon.com
+:deploy_to: /srv/putyourselfon
   
 #############################################################
 #	Git
