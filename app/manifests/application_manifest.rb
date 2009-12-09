@@ -42,8 +42,7 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   recipe :ds_tools_apache
 
   configure(:ssh  => {
-    :port  => "30306",
-    :allow_users => ['admin', 'pyo']  
+    :allow_users => ['rails', 'ubuntu']  
   })
   plugin :ssh
   recipe :ssh
