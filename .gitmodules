@@ -1,6 +1,6 @@
 [submodule "vendor/plugins/covalence"]
 	path = vendor/plugins/covalence
-	url = git@github.com:digitalscientists/covalence.git
+	url = git://github.com/digitalscientists/covalence.git
 [submodule "vendor/plugins/count_von_count"]
 	path = vendor/plugins/count_von_count
 	url = git://github.com/toastyapps/count_von_count
