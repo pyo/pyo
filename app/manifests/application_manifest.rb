@@ -41,12 +41,6 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   plugin :ds_tools
   recipe :ds_tools_apache
 
-  configure(:ssh  => {
-    :allow_users => ['rails', 'ubuntu']  
-  })
-  plugin :ssh
-  recipe :ssh
-
   plugin :php
   recipe :php
   
