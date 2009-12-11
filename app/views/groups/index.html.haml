@@ -19,7 +19,7 @@
             = link_to image_tag(group.icon.url(:medium)), group
             %h4= link_to group.name, group
             %p
-              %strong #{pluralize(group.members.count, 'Member')}
+              %strong #{pluralize(group.members.size, 'Member')}
             %p Category: #{link_to group.group_category.name, group.group_category}
       = will_paginate @groups, :prev_label => "&laquo;", :next_label => "&raquo;"
   - else
