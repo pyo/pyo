@@ -69,14 +69,14 @@ ul.menu, ul.separated {
 
 #content {
   width: 900px;
-  background: url(/images/content_top.png) #FFF top center no-repeat;
+  /* background: url(/images/content_top.png) #FFF top center no-repeat; REMOVED */
   float: left;
   margin-bottom: 10px; }
 
 #inner_content {
   width: 900px;
   padding-bottom: 15px;
-  background: url(/images/content_bottom.png) center bottom no-repeat;
+  /* background: url(/images/content_bottom.png) center bottom no-repeat; REMOVED */
   float: left; }
 
 .inner_content {
@@ -106,7 +106,7 @@ ul.menu, ul.separated {
   width: 900px;
   height: 56px;
   margin: 0 auto;
-  background: url(/images/footer.png) top left no-repeat;
+  /* background: url(/images/footer.png) top left no-repeat; REMOVED */
   color: #333;
   padding-top: 10px;
   text-align: center; }
