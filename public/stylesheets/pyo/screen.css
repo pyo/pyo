@@ -1,7 +1,7 @@
 /* BODY */
 
 body { 
-	background: #000 url(http://putyourselfon.com/pyobg.jpg) top center no-repeat;
+	background: #000 url(http://putyourselfon.com/pyobg.jpg) top center no-repeat fixed;
 	}
 
 #inner_content {
