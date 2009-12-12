@@ -32,17 +32,6 @@
         PYO gives you the tools you need to promote yourself and your talent(s), build a fanbase and network with other talented people just like you! 
         = link_to 'More', '/about?why'
 
-.inner_content
-  %h5 Featured Users
-  .home_users
-    - @featured_users.each do |user|
-      %div[user]
-        .bordered_image= image_tag(user.profile.avatar(:home))
-        = link_to user.profile.username, user
-        .city_and_state
-          = user.city_and_state.join(', ')
-        .talent_type
-          = user.talent_type
-          
+.inner_content          
           
   
