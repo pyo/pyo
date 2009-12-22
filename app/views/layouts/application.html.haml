@@ -27,7 +27,10 @@
   %body
     #main.container
       .header
-        %h2.logo= link_to 'Put Yourself On', root_path
+	  - unless curent_user
+		%h2.logo= link_to 'Put Yourself On', root_path
+	  - else
+		%h2.logo= link_to 'Dashboard', dashboard_path
 
         .user_bar
           = render 'users/user_bar'
