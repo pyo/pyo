@@ -27,7 +27,7 @@
   %body
     #main.container
       .header
-	  - unless curent_user
+	  - if current_user?
 		%h2.logo= link_to 'Put Yourself On', root_path
 	  - else
 		%h2.logo= link_to 'Dashboard', dashboard_path
