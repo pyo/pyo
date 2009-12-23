@@ -4,3 +4,6 @@
 [submodule "vendor/plugins/count_von_count"]
 	path = vendor/plugins/count_von_count
 	url = git://github.com/toastyapps/count_von_count
+[submodule "vendor/plugins/moonshine"]
+	path = vendor/plugins/moonshine
+	url = git://github.com/railsmachine/moonshine.git
