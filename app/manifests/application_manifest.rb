@@ -53,6 +53,9 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   plugin :beankstalked
   recipe :beankstalked
   
+  plugin :imagemagick
+  recipe :imagemagick
+
   recipe :default_stack
 
   # Add your application's custom requirements here
