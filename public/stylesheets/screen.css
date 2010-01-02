@@ -45,11 +45,11 @@ h2.logo {
   text-indent: -99999px;
   background: url(/images/logo.png) top left no-repeat;
   width: 500px;
-  height: 70px;
+  height: 80px;
   float: left; }
   h2.logo a {
     width: 500px;
-    height: 70px;
+    height: 80px;
     display: block; }
 
 ul.menu, ul.separated {
