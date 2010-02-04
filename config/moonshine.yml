@@ -11,7 +11,6 @@
 :use_sudo: true
 :scm_verbose: true
 
-# bug in moonshine deploy:setup pulls the moonshine.yml before it can be set in app manifest requires you to set deploy_to here
 :deploy_to: /srv/putyourselfon
   
 #############################################################
@@ -20,6 +19,7 @@
 :scm: :git
 :repository: git@github.com:pyo/pyo.git
 :deploy_via: remote_cache
+:keep_releases: 20
 
 #:time_zone: UTC
 #:domain_aliases:
@@ -44,6 +44,8 @@
   - log
   - pids
   - config
+  - public/stylesheets
+  - public/stylesheets/pyo
 
 # After specifying a gem with config.gem, run 'rake moonshine:gems'
 # to update config/gems.yml. If the gem depends on native packages, 

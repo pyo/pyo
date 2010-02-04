@@ -21,22 +21,8 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   # database.yml, Postfix, Cron, logrotate and NTP. See lib/moonshine/manifest/rails.rb
   # for details. To customize, remove this recipe and specify the components you want.
 
-  case deploy_stage
-    when "production" then
-      configure({
-        :application => "putyourselfon.com",
-        :deploy_to => "/srv/putyourselfon",
-        :domain => "putyourselfon.com",
-        :domain_aliases => [ "www.putyourselfon.com" ]
-      })
-    when "staging" then 
-      configure({
-        :application => "staging.putyourselfon.com",
-        :deploy_to => "/srv/putyourselfon_staging",
-        :domain => "staging.putyourselfon.com",        
-        :domain_aliases => [ "174.129.23.221" ]
-      })    
-  end
+  plugin :sphinx
+  recipe :sphinx
 
   plugin :ds_tools
   recipe :ds_tools_apache
@@ -66,7 +52,7 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   
     cron "#{deploy_stage}_daily_backup",
        :command => "astrails-safe #{configuration[:deploy_to]}/shared/config/astrails_safe_backup.conf",
-       :user => "root",
+       :user => configuration[:user],
        :minute => "0",
        :hour => "0"
     

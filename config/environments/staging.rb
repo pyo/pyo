@@ -28,7 +28,7 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 # clearance
-HOST = "174.129.227.77"
+HOST = "67.202.20.214"
 
 Paperclip.options[:image_magick_path] = '/usr/bin/'
 
