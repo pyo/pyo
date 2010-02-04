@@ -1,0 +1,76 @@
+--- !ruby/object:Gem::Specification 
+name: SQS
+version: !ruby/object:Gem::Version 
+  version: 0.1.7
+platform: ruby
+authors: 
+- Zach Holt
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-02-21 00:00:00 +00:00
+default_executable: 
+dependencies: []
+
+description: SQS is a Ruby interface to Amazon's Simple Queue Service. SQS uses the Query API, exposing all the published API calls, plus a few more. For more information on the Simple Queue Service, see http://www.amazonaws.com
+email: z@wzph.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README
+- MIT-LICENSE
+- CHANGELOG
+files: 
+- lib/sqs.rb
+- lib/sqs/grant.rb
+- lib/sqs/message.rb
+- lib/sqs/queue.rb
+- test/all_tests.rb
+- test/unit/sqs_grant_test.rb
+- test/unit/sqs_message_test.rb
+- test/unit/sqs_queue_test.rb
+- test/unit/sqs_test.rb
+- test/unit/test_setup.rb
+- test/unit/test_conf.yml
+- README
+- MIT-LICENSE
+- CHANGELOG
+has_rdoc: true
+homepage: http://sqs.rubyforge.org
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: SQS
+rubygems_version: 1.3.5
+signing_key: 
+specification_version: 2
+summary: A Ruby interface to Amazon's Simple Queue Service
+test_files: 
+- test/all_tests.rb
+- test/unit/sqs_grant_test.rb
+- test/unit/sqs_message_test.rb
+- test/unit/sqs_queue_test.rb
+- test/unit/sqs_test.rb
+- test/unit/test_setup.rb
+- test/unit/test_conf.yml

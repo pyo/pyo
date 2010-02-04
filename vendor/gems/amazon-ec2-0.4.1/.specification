@@ -1,0 +1,162 @@
+--- !ruby/object:Gem::Specification 
+name: amazon-ec2
+version: !ruby/object:Gem::Version 
+  version: 0.4.1
+platform: ruby
+authors: 
+- Glenn Rempe
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-06-06 00:00:00 +00:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: xml-simple
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.0.11
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: mocha
+  type: :development
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.9.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: test-spec
+  type: :development
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.9.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: rcov
+  type: :development
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.8.1.2.0
+    version: 
+description: An interface library that allows Ruby applications to easily connect to the HTTP 'Query API' for the Amazon Web Services Elastic Compute Cloud (EC2) and manipulate cloud servers.
+email: glenn@rempe.us
+executables: 
+- ec2-gem-example.rb
+- ec2sh
+- setup.rb
+extensions: []
+
+extra_rdoc_files: 
+- ChangeLog
+- LICENSE
+- README.rdoc
+files: 
+- .gitignore
+- ChangeLog
+- LICENSE
+- README.rdoc
+- Rakefile
+- VERSION
+- amazon-ec2.gemspec
+- bin/ec2-gem-example.rb
+- bin/ec2sh
+- bin/setup.rb
+- lib/EC2.rb
+- lib/EC2/availability_zones.rb
+- lib/EC2/console.rb
+- lib/EC2/elastic_ips.rb
+- lib/EC2/exceptions.rb
+- lib/EC2/image_attributes.rb
+- lib/EC2/images.rb
+- lib/EC2/instances.rb
+- lib/EC2/keypairs.rb
+- lib/EC2/products.rb
+- lib/EC2/responses.rb
+- lib/EC2/security_groups.rb
+- lib/EC2/snapshots.rb
+- lib/EC2/volumes.rb
+- test/test_EC2.rb
+- test/test_EC2_availability_zones.rb
+- test/test_EC2_console.rb
+- test/test_EC2_elastic_ips.rb
+- test/test_EC2_image_attributes.rb
+- test/test_EC2_images.rb
+- test/test_EC2_instances.rb
+- test/test_EC2_keypairs.rb
+- test/test_EC2_products.rb
+- test/test_EC2_responses.rb
+- test/test_EC2_s3_xmlsimple.rb
+- test/test_EC2_security_groups.rb
+- test/test_EC2_snapshots.rb
+- test/test_EC2_volumes.rb
+- test/test_helper.rb
+- wsdl/2007-08-29.ec2.wsdl
+- wsdl/2008-02-01.ec2.wsdl
+- wsdl/2008-05-05.ec2.wsdl
+- wsdl/2008-12-01.ec2.wsdl
+has_rdoc: true
+homepage: http://github.com/grempe/amazon-ec2
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --quiet
+- --title
+- amazon-ec2 documentation
+- --opname
+- index.html
+- --line-numbers
+- --main
+- README.rdoc
+- --inline-source
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: amazon-ec2
+rubygems_version: 1.3.5
+signing_key: 
+specification_version: 3
+summary: Amazon EC2 Ruby Gem
+test_files: 
+- test/test_EC2.rb
+- test/test_EC2_availability_zones.rb
+- test/test_EC2_console.rb
+- test/test_EC2_elastic_ips.rb
+- test/test_EC2_image_attributes.rb
+- test/test_EC2_images.rb
+- test/test_EC2_instances.rb
+- test/test_EC2_keypairs.rb
+- test/test_EC2_products.rb
+- test/test_EC2_responses.rb
+- test/test_EC2_s3_xmlsimple.rb
+- test/test_EC2_security_groups.rb
+- test/test_EC2_snapshots.rb
+- test/test_EC2_volumes.rb
+- test/test_helper.rb
