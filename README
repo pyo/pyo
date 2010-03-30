@@ -2,9 +2,11 @@
 
 This the Ruby on Rails application powering PutYourselfOn.com.
 
-WARNING: production and staging deployments are not working.
+The project has git submodules for plugins and the capistrano / moonshine libraries.
 
-This is a work in Progress.
+Be sure to run:
+
+  $ git submodule init && git submodule update
 
 Pivotal Tracker for tasks is here:
 
@@ -30,6 +32,9 @@ password: testit!
 
   sudo gem install jnewland-capsize -s http://gems.github.com
 
+Please note the submodules are required to deploy to staging or production:
+
+  git submodule init && git submodule update
 
 == Making changes to the server
 
