@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 	
   validates_presence_of :password, :message=>"You must enter a password", :on => :create
   validates_presence_of :email, :message=>"You must enter an email"
-  validates_format_of :name, :with => /^[-a-z0-9_]+$/i, :message => "Usernames can only contain letters, numbers, underscores, and dashes"
+  validates_format_of   :name, :with => /^[-a-z0-9_.+]+$/i, :message => "Usernames can only contain letters, numbers, underscores, periods, pluses and dashes"
   
   include Covalence::Member
   include Clearance::App::Models::User
@@ -69,11 +69,11 @@ class User < ActiveRecord::Base
   is_member_of :groups
   
   # validations
-  validates_presence_of :name, :message=>"You must enter a username"
-  validates_presence_of :talent_type, :message=>"This field is required so that we can place you in the correct classification on PYO. Please try to name your talent as accurately and appropriately as possible. If you don’t have a talent, and are looking to use PYO to simply discover and promote the talent already here, you can simply classify yourself as a \"Fan\"."
-  validates_presence_of :tag_list, :message => "This field is required so that we can properly group you within the correct industries on PYO. For example, if you chose “Athlete” as your talent type, you would include the sport(s) you play, like \"basketball\", \"football\", \"soccer\", \"track\", etc. If you can’t think of any tags at the moment, just put whatever you put in the \"Talent Type\" field there. You can always change this later."
-  validates_uniqueness_of :name
-  validates_format_of :name, :with => /^[^\s]*$/, :message => "cannot contain spaces."
+  validates_presence_of   :name, :message =>"You must enter a username"
+  validates_uniqueness_of :name, :message => "has already been taken.  Please choose a different username.", :case_sensitive => false
+  validates_length_of     :name, :maximum => 15
+  validates_presence_of   :talent_type, :message=>"This field is required so that we can place you in the correct classification on PYO. Please try to name your talent as accurately and appropriately as possible. If you don’t have a talent, and are looking to use PYO to simply discover and promote the talent already here, you can simply classify yourself as a \"Fan\"."
+  validates_presence_of   :tag_list, :message => "This field is required so that we can properly group you within the correct industries on PYO. For example, if you chose “Athlete” as your talent type, you would include the sport(s) you play, like \"basketball\", \"football\", \"soccer\", \"track\", etc. If you can’t think of any tags at the moment, just put whatever you put in the \"Talent Type\" field there. You can always change this later."
   
   accepts_nested_attributes_for :profile, :allow_destroy => true
   
