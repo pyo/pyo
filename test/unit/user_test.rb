@@ -34,9 +34,9 @@ class UserTest < ActiveSupport::TestCase
       assert_equal FollowingActivity.last.payload.child,@friendee
     end
     
-    should "assoc the proper activity" do
-      assert_equal @friender.activities.last, @following
-    end
+    # should "assoc the proper activity" do
+    #   assert_equal @friender.activities.last, @following
+    # end
 		
   end
   

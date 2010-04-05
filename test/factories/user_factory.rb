@@ -1,6 +1,6 @@
 Factory.define :user do |user|
   user.email "mawcus#{Time.now.to_i}@digitalscientists.com"
-  user.encrypted_password 'testit!'
+  user.password 'testit!'
   user.name 'marcus'
   user.first_run true
   user.super_user false
