@@ -77,6 +77,11 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :profile, :allow_destroy => true
   
+  def self.authenticate(email, password)
+    return nil  unless user = find_by_email(email) || find_by_name(email)
+    return user if     user.authenticated?(password)
+  end
+    
   def all_activities
     Activity.all(:conditions => [
       "(consumer_type = 'User' and consumer_id = ?) or (producer_type = 'User' and producer_id in (?))", 

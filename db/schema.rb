@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090929213552) do
+ActiveRecord::Schema.define(:version => 20100406151432) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20090929213552) do
     t.string   "consumer_type"
     t.integer  "consumer_id"
     t.string   "state",         :default => "new"
-    t.string   "message"
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
