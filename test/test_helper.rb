@@ -35,6 +35,13 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  
+  def assert_makes_invalid(model)
+    assert(model.valid?, "The model wasn't valid before changes")
+    yield
+    assert(!model.valid?, "The model was valid after changes")
+  end
+  
 end
 
 ActiveSupport::TestCase.extend ThinkingSphinxTestHelper

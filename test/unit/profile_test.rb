@@ -28,5 +28,36 @@ class ProfileTest < ActiveSupport::TestCase
   #   end
   #   
   # end
+
+  context "Creating a New Profile" do
+    setup do
+      @profile = Factory.create(:profile)
+    end
+    
+    should "require a usernamename" do
+      assert_makes_invalid(@profile) do
+        @profile.username = nil
+      end
+    end
+
+    should "not have a name longer than 15 characters" do
+      assert_makes_invalid(@profile) do
+        @profile.username = "x" * 16
+      end
+    end
+
+    should "have a name with only letters, numbers, +,-,_,." do
+      assert_makes_invalid(@profile) do
+        @profile.username = "%^gth%!2"
+      end
+    end
+    
+    should "have a unique name" do
+      new_profile = Profile.new(:username => @profile.username)
+      assert(!new_profile.valid?, "The user has a username that has already been taken")
+    end
+    
+  end
+  
 	
 end

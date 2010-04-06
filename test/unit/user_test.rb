@@ -37,8 +37,51 @@ class UserTest < ActiveSupport::TestCase
     # should "assoc the proper activity" do
     #   assert_equal @friender.activities.last, @following
     # end
-		
+    
   end
   
+  context "A User" do
+    setup do
+      @user = Factory.create(:user)
+    end
+    
+    should "be able to login by email" do
+      assert_not_nil(User.authenticate(@user.email, "testit!"))
+    end
+    
+    should "be able to login by username" do
+      assert_not_nil(User.authenticate(@user.name, "testit!"))
+    end
+  end
+  
+  context "Creating a New User" do
+    setup do
+      @user = Factory.create(:user)
+    end
+    
+    should "require a name" do
+      assert_makes_invalid(@user) do
+        @user.name = nil
+      end
+    end
+
+    should "not have a name longer than 15 characters" do
+      assert_makes_invalid(@user) do
+        @user.name = "x" * 16
+      end
+    end
+
+    should "have a name with only letters, numbers, +,-,_,." do
+      assert_makes_invalid(@user) do
+        @user.name = "%^gth%!2"
+      end
+    end
+    
+    should "have a unique name" do
+      new_user = User.new(:name => @user.name)
+      assert(!new_user.valid?, "The user has a name that has already been taken")
+    end
+    
+  end
   
 end
