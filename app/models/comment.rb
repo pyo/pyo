@@ -1,12 +1,28 @@
 class Comment < ActiveRecord::Base
   include Covalence::Notification
   
-  # assocs
+  ####################
+  ### Associations ###
+  ####################
+  
   has_many :comments,   :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => 'payload', :dependent => :destroy
   
-  #scopes
+  ###################
+  ### Validations ###
+  ###################
+  
+  validates_length_of :message, :maximum => 300
+  
+  ##############
+  ### Scopes ###
+  ##############
+  
   default_scope :order => "created_at desc"
+
+  ###############
+  ### Methods ###
+  ###############
   
   def after_create
 		unless consumer.is_a?(Comment) || consumer.is_a?(Group)
