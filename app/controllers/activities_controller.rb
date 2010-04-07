@@ -29,6 +29,11 @@ class ActivitiesController < ApplicationController
     activity = StatusActivity.new(params[:activity])
     activity.producer = current_user
     activity.payload = current_user
+    if activity.save
+      flash[:notice] = "Your post was saved."
+    else
+      flash[:error] = "Your post was too long.  Please shorten your post and try again."
+    end
     activity.save
     
     state = activity.id

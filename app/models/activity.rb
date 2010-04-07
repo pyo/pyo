@@ -13,4 +13,11 @@ class Activity < ActiveRecord::Base
      GroupCommentActivity.create({:producer => comment.producer, :consumer => user, :payload => comment}) if comment.producer != user
     end
   end
+  
+  ###################
+  ### Validations ###
+  ###################
+  
+  validates_length_of :message, :maximum => 500
+  
 end
