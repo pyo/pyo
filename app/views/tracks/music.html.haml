@@ -4,7 +4,7 @@
       = render "users/dashboard_nav"
     %h2 
       = "Popular Tracks"
-    
+      
     .tracks
       - unless @popular_tracks.empty?
         - @popular_tracks.each do |track|

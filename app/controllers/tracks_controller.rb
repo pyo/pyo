@@ -28,9 +28,9 @@ class TracksController < ApplicationController
     redirect_to user_track_path(@track.user, @track)
   end
   
-  def music
-    @tracks = Track.all
-  end
+  # def music
+  #   @tracks = Track.paginate(:per_page => 20, :page => params[:page])
+  # end
   
   def new
     @title = "Upload Audio Track"
@@ -52,8 +52,8 @@ class TracksController < ApplicationController
   
   def music
 		@title = "Music"
-    @recent_tracks = Track.recent(:limit=>8)
-    @popular_tracks = Track.popular(:limit=>8)
+    @recent_tracks = Track.recent.all(:limit=>8)
+    @popular_tracks = Track.popular.all(:limit=>8)
     
   end
   

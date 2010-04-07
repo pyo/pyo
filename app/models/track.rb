@@ -7,7 +7,7 @@ class Track < ActiveRecord::Base
               :order => "tracks.created_at DESC"
   named_scope :popular,
               :group => "ratings.rateable_id",
-              :joins=>:ratings, 
+              :joins => :ratings, 
               :order => "avg(score) desc"
               
               
