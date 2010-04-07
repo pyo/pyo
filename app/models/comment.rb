@@ -8,12 +8,7 @@ class Comment < ActiveRecord::Base
   has_many :comments,   :as => 'consumer', :dependent => :destroy
   has_many :activities, :as => 'payload', :dependent => :destroy
   
-  ###################
-  ### Validations ###
-  ###################
-  
-  validates_length_of :message, :maximum => 300
-  
+
   ##############
   ### Scopes ###
   ##############

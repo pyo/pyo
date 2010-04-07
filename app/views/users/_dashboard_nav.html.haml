@@ -31,6 +31,6 @@
       %li#blog_nav= link_to 'Blog', new_blog_path
   %span#status_messageDown 0
   - form_for Activity.new do |f|
-    = f.text_area :message, :size => "50x3", :id => "status_message", :maxLength => 300
+    = f.text_area :message, :size => "50x3", :id => "status_message", :maxLength => 500
     .submit_button
       = image_submit_tag 'post_button.gif', :id => 'post_button'
