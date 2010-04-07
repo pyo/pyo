@@ -1,10 +1,15 @@
 class CommentsController < ApplicationController
   
   def create
-    flash[:notice] = "Comment was created."
-    expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
-    Comment.create({:producer=>current_user}.merge(params[:comment]))
-    redirect_to :back
+    @comment = Comment.new({:producer=>current_user}.merge(params[:comment]))
+    if @comment.save
+      flash[:notice] = "Comment was created."
+      expire_fragment(:controller => 'users', :action => 'show', :id => current_user.to_param)
+      redirect_to :back
+    else
+      flash[:error] = "Your comment wasn't saved. Make sure your character count is less than 300 characters."
+      redirect_to :back
+    end
   end
   
   def destroy
