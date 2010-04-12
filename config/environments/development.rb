@@ -22,5 +22,10 @@ HOST = "localhost"
 ActionController::Base.cache_store = :file_store, "tmp/cache"
 config.action_controller.perform_caching = true
 
-Paperclip.options[:command_path] = '/opt/local/bin/'
-
+im_dir = `which identify`
+im_dir = if im_dir.nil? or im_dir.empty?
+  '/opt/local/bin/'
+else
+  File.dirname(im_dir)
+end
+Paperclip.options[:command_path] = im_dir
