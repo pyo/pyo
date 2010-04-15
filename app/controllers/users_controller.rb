@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_or_temp, :only => [:dashboard]
   
   before_filter :authenticate, :except => [:new, :create,:index,:show, :dashboard]
-  before_filter :load_user, :only => [:show, :edit, :updates, :update, :follow, :unfollow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status]
+  before_filter :load_user, :only => [:show, :edit, :updates, :update, :follow, :unfollow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status, :suspend]
   before_filter :check_user, :only => [:edit,:update]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
@@ -144,6 +144,12 @@ class UsersController < ApplicationController
       flash[:notice] = "Profile update failed."
 			render :action => "edit"
     end
+  end
+  
+  def suspend
+    
+    flash[:notice] = "This user has been hidden."
+    redirect_to users_path
   end
   
   def follow

@@ -44,16 +44,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :as => "members",
                 :has_one => [:password, :confirmation], 
                 :member => {
-                  :follow => :post,
-                  :unfollow => :post,
-                  :followers => :get,
-                  :following => :get,
-                  :likes => :get,
-                  :updates => :get,
-                  :connects => :get,
-                  :inbox => :get,
-									:change_admin_status => :put,
-									:change_featured_status => :put
+                  :follow                 => :post,
+                  :unfollow               => :post,
+                  :followers              => :get,
+                  :following              => :get,
+                  :likes                  => :get,
+                  :updates                => :get,
+                  :connects               => :get,
+                  :inbox                  => :get,
+									:change_admin_status    => :put,
+									:change_featured_status => :put,
+									:suspend                => :get
                   } do |users|
                   users.resources :photos,
                                   :member => {:rate => :post, :like => :post, :unlike => :post}

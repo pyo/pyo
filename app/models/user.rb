@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  
   TALENT_TYPES	= %w{DJ Producer Singer Guitarist Drummer Fan}.sort
 	SORT_TYPES			= {
 		:most_followers=>"`users`.followers_count DESC, `profiles`.last_name ASC",
