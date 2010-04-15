@@ -1,6 +1,27 @@
 class Comment < ActiveRecord::Base
   include Covalence::Notification
   
+  #################
+  ### Callbacks ###
+  #################
+  
+  after_create :send_notification
+  
+  def send_notification
+    case consumer
+    when Photo
+      UserMailer.deliver_photo_comment(consumer, self)
+    when User
+      UserMailer.deliver_user_comment(consumer, self)
+    when Track
+      UserMailer.deliver_track_comment(consumer, self)
+    when Video
+      UserMailer.deliver_video_comment(consumer, self)
+    when Blog
+      UserMailer.deliver_blog_comment(consumer,self)
+    end
+  end
+  
   ####################
   ### Associations ###
   ####################

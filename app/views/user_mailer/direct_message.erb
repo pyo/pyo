@@ -1,0 +1,7 @@
+You have a new Direct Message from <%= @direct_message.producer.name %>.
+
+<%= @direct_message.producer.name %> says:
+<%= @direct_message.message %>
+
+To view the message, click this link:  <%= inbox_user_url(@direct_message.consumer) %>
+
