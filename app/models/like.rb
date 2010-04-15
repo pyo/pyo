@@ -1,7 +1,27 @@
 class Like < ActiveRecord::Base
+  
+  #################
+  ### Callbacks ###
+  #################
+  
+  after_create :send_like_email
+  
+  def send_like_email
+    UserMailer.deliver_like_email(self)
+  end
+  
+  ####################
+  ### Associations ###
+  ####################
+  
   belongs_to :user, :counter_cache => true
   belongs_to :media, :polymorphic => true
+  
   default_scope :order => "created_at DESC"
+  
+  ###############
+  ### Methods ###
+  ###############
   
   def media_image_url
     case media_type

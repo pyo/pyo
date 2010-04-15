@@ -53,5 +53,12 @@ class UserMailer < ActionMailer::Base
     body       :blog    => blog,
                :comment => comment
   end
+
+  def like_email(like)
+    subject    "The user #{like.user.name} likes your #{like.media_type}"
+    from       DO_NOT_REPLY
+    recipients like.media.user.email
+    body       :like => like
+  end
   
 end

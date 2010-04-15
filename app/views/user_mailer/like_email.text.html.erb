@@ -1,0 +1,5 @@
+<p><%= @like.user.name %> likes your <%= @like.media_type %>.</p>
+
+<p>To view your <%= @like.media_type %>, click this link:<br/>
+   <%= send("user_#{@like.media_type.downcase}_url", @like.media.user, @like.media) %>
+</p>
