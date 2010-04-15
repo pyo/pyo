@@ -54,7 +54,7 @@ ActionController::Routing::Routes.draw do |map|
                   :inbox                  => :get,
 									:change_admin_status    => :put,
 									:change_featured_status => :put,
-									:suspend                => :get
+									:suspend                => :put
                   } do |users|
                   users.resources :photos,
                                   :member => {:rate => :post, :like => :post, :unlike => :post}

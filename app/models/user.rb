@@ -78,7 +78,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile, :allow_destroy => true
   
   def self.authenticate(email, password)
-    return nil  unless user = find_by_email(email) || find_by_name(email)
+    return nil  unless user = find_by_email_and_suspended(email, false) || 
+                              find_by_name_and_suspended(email, false)
     return user if     user.authenticated?(password)
   end
     

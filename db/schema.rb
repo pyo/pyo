@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100407183352) do
+ActiveRecord::Schema.define(:version => 20100415223458) do
 
   create_table "activities", :force => true do |t|
     t.string   "producer_type"
@@ -301,6 +301,7 @@ ActiveRecord::Schema.define(:version => 20100407183352) do
     t.integer  "photos_count",                      :default => 0
     t.integer  "likes_count",                       :default => 0
     t.string   "url"
+    t.boolean  "suspended",                         :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

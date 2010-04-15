@@ -146,11 +146,11 @@ class UsersController < ApplicationController
     end
   end
   
-  # def suspend
-  #   
-  #   flash[:notice] = "This user has been hidden."
-  #   redirect_to users_path
-  # end
+  def suspend
+    @user.update_attribute(:suspended, true)
+    flash[:notice] = "This user has been suspended."
+    redirect_to users_path
+  end
   
   def follow
     expire_fragment(
