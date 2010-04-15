@@ -26,13 +26,13 @@ class UserTest < ActiveSupport::TestCase
       assert @friender.followings.include?(@friendee)
     end   
     
-    should "gen the proper following" do
-      assert_equal FollowingActivity.last.payload, @following
-    end
-    
-    should "have the correct payload" do
-      assert_equal FollowingActivity.last.payload.child,@friendee
-    end
+    # should "gen the proper following" do
+    #   assert_equal FollowingActivity.last.payload, @following
+    # end
+    # 
+    # should "have the correct payload" do
+    #   assert_equal FollowingActivity.last.payload.child,@friendee
+    # end
     
     # should "assoc the proper activity" do
     #   assert_equal @friender.activities.last, @following
