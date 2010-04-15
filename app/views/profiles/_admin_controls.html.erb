@@ -1,0 +1,13 @@
+<ul>
+    <% if @user.super_user? %>
+        <li><%= link_to "Demote Admin", change_admin_status_user_path(@user, :user => {:admin=>"0"}, :format => 'js'), :class => "change_admin" %></li>
+    <% else %>
+        <li><%= link_to "Make Admin", change_admin_status_user_path(@user, :user => {:admin=>"1"}, :format => 'js'), :class => "change_admin" %></li>
+    <% end %>
+
+    <% if @user.featured? %>
+        <li><%= link_to "Unfeature", change_featured_status_user_path(@user, :user => {:featured=>"0"}, :format => 'js'), :class => "change_featured" %></li>
+    <% else %>
+        <li><%= link_to "Feature", change_featured_status_user_path(@user, :user => {:featured=>"1"}, :format => 'js'), :class => "change_featured" %></li>
+    <% end %>
+</ul>
