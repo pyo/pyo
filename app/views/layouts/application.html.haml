@@ -31,6 +31,8 @@
     #top-bar
       #inner-top-bar
         #logo
+          %a{:href => "/"}
+		    %img{:src => "images/blank.gif", :alt => "", :border => "0", :width => "428", :height => "80"}
 		
     #website
       #header
@@ -49,7 +51,7 @@
       #pyo
         #nav
           %ul
-            %li= link_to 'Put Yourself On', root_path
+            %li= link_to 'Home', root_path
             %li= link_to 'My Connects', connects_user_path(current_user) if current_user
             %li= link_to 'People', users_path
             %li= link_to 'Groups', groups_path
