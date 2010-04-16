@@ -35,15 +35,7 @@
 		
     #website
       #header
-        .top-user-panel		
-
-        .user_bar
-          = render 'users/user_bar'
-      - if current_user.andand.super_user?
-        .content
-          %h3 Admin
-          %ul.menu
-            %li= link_to 'Group Approvals', pending_groups_path
+        .top-user-panel
 
       = render "shared/advertisement"
 
