@@ -137,6 +137,7 @@ class GroupsController < ApplicationController
       @group = Group.find_pending_by_url(params[:id])
       @group.approved = true
       @group.save
+      UserMailer.deliver_approve_group(@group)
       @group.members.each do |member|
         Activity.send_join_group_notifications(member, @group)
       end
@@ -154,6 +155,7 @@ class GroupsController < ApplicationController
       # TODO Send Denied DM
       @group = Group.find_pending_by_url(params[:id])
       @group.destroy
+      UserMailer.deliver_deny_group(@group)
       flash[:notice] = "Group was denied."
       redirect_to :back
     end

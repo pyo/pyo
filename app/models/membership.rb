@@ -8,6 +8,6 @@ class Membership < ActiveRecord::Base
   end
 
   def before_destroy
-    Group.decrement_counter(:memberships_count, parent.id)
+    Group.decrement_counter(:memberships_count, parent.id) if parent
   end
 end

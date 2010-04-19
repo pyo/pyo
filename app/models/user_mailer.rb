@@ -60,5 +60,19 @@ class UserMailer < ActionMailer::Base
     recipients   like.media.user.email
     body         :like => like
   end
+
+  def deny_group(group)
+    subject      "Your group request was denied"
+    from         DO_NOT_REPLY
+    recipients   group.members.first.email
+    body         :group => group
+  end
+
+  def approve_group(group)
+    subject      "Your group request was approved"
+    from         DO_NOT_REPLY
+    recipients   group.members.first.email
+    body         :group => group
+  end
   
 end
