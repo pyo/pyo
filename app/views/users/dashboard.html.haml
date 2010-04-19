@@ -1,4 +1,12 @@
 = render "users/top"
+.details
+  .inner_content.column
+    = render 'users/info'
+    
+  .inner_content.column  
+    .info.left
+      = render 'shared/tall_advertisement'
+
 .main
   .inner_content
     = render "users/dashboard_nav"
@@ -42,11 +50,3 @@
         %li When a user "Likes" an item on the site
         %li When a user joins/creates a group
         %li When a user posts a new blog entry
-  
-.details
-  .inner_content.column
-    = render 'users/info'
-    
-  .inner_content.column  
-    .info.left
-      = render 'shared/tall_advertisement'
