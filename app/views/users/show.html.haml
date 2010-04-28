@@ -1,109 +1,114 @@
 = render "users/public_top"
-.main
-  - if current_user
-    = render "users/dashboard_nav"
-  = render "users/grey_boxes"
+- if @user.suspended?
+  This user has been suspended.
+  - if current_user.super_user?
+    = link_to "Restore this User", restore_user_path(@user), :method => :put 
+-else
+  .main
+    - if current_user
+      = render "users/dashboard_nav"
+    = render "users/grey_boxes"
 
-  .content
-    %h4.with_bottom_margin #{@user.name.capitalize.possesive} Updates
-    - if @updates.total_pages > 1
-      = link_to "View All(#{@updates.total_entries})", updates_user_path
-    .activities
-      - unless @updates.empty?
-        %ul
-          - @updates.each do |activity|
-            - if activity.payload
-              - unless activity.is_a? FollowingActivity
-                %div.activity[activity]
-                  #{time_ago_in_words(activity.created_at)} ago
-                  %p
-                    = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
-                    = link_to @user.name, @user
-                    = display_notification(activity)
-              - else
-                %div.activity[activity]
-                  .thumb
-                    = image_tag(activity.payload.parent.profile.avatar(:thumb)) if activity.producer
-                  #{time_ago_in_words(activity.created_at)} ago
-                  %p
-                    = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
-                    = link_to activity.payload.parent.name, activity.payload.parent
-                    = display_notification(activity)
-      - else
-        No Updates
-
-  - unless @videos.empty?
     .content
-      %h4 #{@user.name.capitalize.possesive} Videos
-      - if @videos.total_entries > @videos.per_page
-        = link_to("View All (#{@videos.total_entries})", user_videos_path(@user))
-      .videos
-        - @videos.each do |video|
-          %div[video]
-            = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
+      %h4.with_bottom_margin #{@user.name.capitalize.possesive} Updates
+      - if @updates.total_pages > 1
+        = link_to "View All(#{@updates.total_entries})", updates_user_path
+      .activities
+        - unless @updates.empty?
+          %ul
+            - @updates.each do |activity|
+              - if activity.payload
+                - unless activity.is_a? FollowingActivity
+                  %div.activity[activity]
+                    #{time_ago_in_words(activity.created_at)} ago
+                    %p
+                      = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
+                      = link_to @user.name, @user
+                      = display_notification(activity)
+                - else
+                  %div.activity[activity]
+                    .thumb
+                      = image_tag(activity.payload.parent.profile.avatar(:thumb)) if activity.producer
+                    #{time_ago_in_words(activity.created_at)} ago
+                    %p
+                      = image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon)
+                      = link_to activity.payload.parent.name, activity.payload.parent
+                      = display_notification(activity)
+        - else
+          No Updates
 
-  - unless @tracks.empty?
+    - unless @videos.empty?
+      .content
+        %h4 #{@user.name.capitalize.possesive} Videos
+        - if @videos.total_entries > @videos.per_page
+          = link_to("View All (#{@videos.total_entries})", user_videos_path(@user))
+        .videos
+          - @videos.each do |video|
+            %div[video]
+              = link_to image_tag(video.thumb_url), user_video_path(video.user,video)
+
+    - unless @tracks.empty?
+      .content
+        %h4 #{@user.name.capitalize.possesive} Audio
+        - if @tracks.total_entries > @tracks.per_page
+          = link_to("View All (#{@tracks.total_entries})", user_tracks_path(@user))
+        .tracks
+          - for track in @tracks
+            .track
+              .profile_track_info
+                %strong
+                  = link_to h(track.name), user_track_path(@user,track)
+                .player
+                  %div[track, "profile"] Enable Javascript to Listen to this track
+                  :javascript
+                    var #{'profile_' + dom_id(track)} = new SWFObject('/swf/player.swf','mpl','470','30','9');
+                    #{'profile_' + dom_id(track)}.addParam('allowfullscreen','true');
+                    #{'profile_' + dom_id(track)}.addParam('allowscriptaccess','always');
+                    #{'profile_' + dom_id(track)}.addParam('wmode','opaque');
+                    #{'profile_' + dom_id(track)}.addVariable('file','#{track.mp3.url}');
+
+                    #{'profile_' + dom_id(track)}.addVariable('skin','/audio-player/audio-skin.swf');
+                    #{'profile_' + dom_id(track)}.write('#{'profile_' + dom_id(track)}');
+
+
+    - unless @photos.empty?
+      .content
+        %h4 #{@user.name.capitalize.possesive} Photos
+        - if @photos.total_entries > @photos.per_page
+          = link_to("View All (#{@photos.total_entries})", user_photos_path(@user))
+        .profile_photos
+          - @photos.each do |photo|
+            .profile_photo_thumb
+              = link_to image_tag(photo.image.url(:thumb), :class => 'profile_photo'), user_photo_path(@user,photo)
+
+    - unless @flickr_photos.empty? || true
+      .inner_content
+        %h4 Recent Flickr Photos
+        - for photo in @flickr_photos
+          .flickr_photo_thumb
+            = link_to image_tag(photo.url('s')), @user.flickr_url
+
+    - unless @tweets.empty?
+      .content
+        %h4 Recent Tweets
+        .profile_photos
+          %p
+          - for tweet in @tweets
+            - if tweet # sometimes twitter fails
+              .profile_tweet{:style=>"clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff"}
+
+                = image_tag tweet["user"]["profile_image_url"], :style=>"float:left"
+                %p{:style=>"float:left; margin: 3px"}
+                = link_to tweet["text"], "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}", :style=>"color:#000"
+          
     .content
-      %h4 #{@user.name.capitalize.possesive} Audio
-      - if @tracks.total_entries > @tracks.per_page
-        = link_to("View All (#{@tracks.total_entries})", user_tracks_path(@user))
-      .tracks
-        - for track in @tracks
-          .track
-            .profile_track_info
-              %strong
-                = link_to h(track.name), user_track_path(@user,track)
-              .player
-                %div[track, "profile"] Enable Javascript to Listen to this track
-                :javascript
-                  var #{'profile_' + dom_id(track)} = new SWFObject('/swf/player.swf','mpl','470','30','9');
-                  #{'profile_' + dom_id(track)}.addParam('allowfullscreen','true');
-                  #{'profile_' + dom_id(track)}.addParam('allowscriptaccess','always');
-                  #{'profile_' + dom_id(track)}.addParam('wmode','opaque');
-                  #{'profile_' + dom_id(track)}.addVariable('file','#{track.mp3.url}');
+      %h4 Comments
+      .comments
+        = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
+        = render :partial => @comments, :locals => {:is_owner => (current_user && @user == current_user)}
 
-                  #{'profile_' + dom_id(track)}.addVariable('skin','/audio-player/audio-skin.swf');
-                  #{'profile_' + dom_id(track)}.write('#{'profile_' + dom_id(track)}');
-
-
-  - unless @photos.empty?
-    .content
-      %h4 #{@user.name.capitalize.possesive} Photos
-      - if @photos.total_entries > @photos.per_page
-        = link_to("View All (#{@photos.total_entries})", user_photos_path(@user))
-      .profile_photos
-        - @photos.each do |photo|
-          .profile_photo_thumb
-            = link_to image_tag(photo.image.url(:thumb), :class => 'profile_photo'), user_photo_path(@user,photo)
-
-  - unless @flickr_photos.empty? || true
+  .details
     .inner_content
-      %h4 Recent Flickr Photos
-      - for photo in @flickr_photos
-        .flickr_photo_thumb
-          = link_to image_tag(photo.url('s')), @user.flickr_url
-
-  - unless @tweets.empty?
-    .content
-      %h4 Recent Tweets
-      .profile_photos
-        %p
-        - for tweet in @tweets
-          - if tweet # sometimes twitter fails
-            .profile_tweet{:style=>"clear:both; float:left; width:99%; margin:3px; padding:3px; background:#fff"}
-    
-              = image_tag tweet["user"]["profile_image_url"], :style=>"float:left"
-              %p{:style=>"float:left; margin: 3px"}
-              = link_to tweet["text"], "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}", :style=>"color:#000"
-              
-  .content
-    %h4 Comments
-    .comments
-      = render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""}
-      = render :partial => @comments, :locals => {:is_owner => (current_user && @user == current_user)}
-
-.details
-  .inner_content
-    = render :partial => "users/public_info"
-  .inner_content
-    = render :partial => 'shared/tall_advertisement'
+      = render :partial => "users/public_info"
+    .inner_content
+      = render :partial => 'shared/tall_advertisement'

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_or_temp, :only => [:dashboard]
   
   before_filter :authenticate, :except => [:new, :create,:index,:show, :dashboard]
-  before_filter :load_user, :only => [:show, :edit, :updates, :update, :follow, :unfollow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status, :suspend]
+  before_filter :load_user, :only => [:show, :edit, :updates, :update, :follow, :unfollow, :connects, :likes, :inbox, :change_admin_status, :change_featured_status, :suspend, :restore]
   before_filter :check_user, :only => [:edit,:update]
   after_filter :set_first_run, :only => [:dashboard]
   helper :notifications
@@ -149,6 +149,12 @@ class UsersController < ApplicationController
   def suspend
     @user.update_attribute(:suspended, true)
     flash[:notice] = "This user has been suspended."
+    redirect_to users_path
+  end
+  
+  def restore
+    @user.update_attribute(:suspended, false)
+    flash[:notice] = "This user has been restored"
     redirect_to users_path
   end
   
