@@ -4,9 +4,9 @@
     %title= get_page_title
     / %link{:rel => 'icon', :type => 'image/gif', :href=>'favicon.gif'}
     = stylesheet_link_tag '/stylesheets/jquery.rating.css'
-    = stylesheet_link_tag '/style.css'
     = stylesheet_link_tag '/stylesheets/screen.css'
     = stylesheet_link_tag '/stylesheets/pyo/screen.css'
+    = stylesheet_link_tag '/style.css'
     = javascript_include_tag 'jquery-1.3.2.min','application','swfobject'
     = javascript_include_tag '/javascripts/jquery.rating.pack.js'
     = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? 
