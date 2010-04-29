@@ -1,6 +1,10 @@
 @charset "UTF-8";
 /* CSS Document */
 
+@import('http://putyourselfon.com/stylesheets/screen.css');
+
+@import('http://putyourselfon.com/stylesheets/pyo/screen.css');
+
 body {
 	margin: 0;
   	background: #000 url(images/bg.jpg) top center no-repeat;
