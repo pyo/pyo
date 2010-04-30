@@ -59,7 +59,7 @@ body a:hover {
 	background: url(images/top-bar.gif) top left repeat-x;
 	}
 
-.inner-top-bar {
+#inner-top-bar {
 	margin: auto;
 	width: 900px;
 	}
