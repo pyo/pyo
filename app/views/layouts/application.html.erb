@@ -2,10 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title><%= @get_page_title %></title>
+    <%title= get_page_title %>
       <%= stylesheet_link_tag "screen", "/stylesheets/pyo/screen.css", "/style.css" %>
-      <%= javascript_include_tag "jquery-1.3.2.min","application","swfobject" %>
-      <%= javascript_include_tag "jquery.rating.pack.js" %>
+      <%= javascript_include_tag "jquery-1.3.2.min", "application", "swfobject", "jquery.rating.pack.js" %>
       <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
       <script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js">
       </script>
