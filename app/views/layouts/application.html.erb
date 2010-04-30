@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><%= @get_page_title %></title>
-      <%= stylesheet_link_tag "screen", "/stylesheets/pyo/screen.css", "http:/putyourselfon.com/style.css" %>
+      <%= stylesheet_link_tag "screen", "/stylesheets/pyo/screen.css", "/style.css" %>
       <%= javascript_include_tag :all, :recursive => true %>
       <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
       <script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js">
