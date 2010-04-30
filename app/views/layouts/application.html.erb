@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title><%= @get_page_title %></title>
+      <%= stylesheet_link_tag "screen", "/stylesheets/pyo/screen.css", "http:/putyourselfon.com/style.css" %>
+      <%= javascript_include_tag :all, :recursive => true %>
+      <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+      <script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js">
+      </script>
+      <script type="text/javascript">
+        GS_googleAddAdSenseService("ca-pub-2727072243882391");
+        GS_googleEnableAllServices();
+      </script>
+      <script type="text/javascript">
+        GA_googleAddSlot("ca-pub-2727072243882391", "LeftSkyscraper");
+        GA_googleAddSlot("ca-pub-2727072243882391", "TopLeaderboardAd");
+      </script>
+      <script type="text/javascript">
+        GA_googleFetchAds();
+      </script>
+      <%= yield :head %>
+  </head>
+
+  <body>
+
+    <!-- BEGIN WRAPPER -->
+    <div id="wrapper">
+	
+      <!-- BEGIN TOP BAR -->
+      <div id="top-bar">
+	    <!-- BEGIN INNER TOP BAR -->
+	    <div id="inner-top-bar">
+		  <div id="logo">
+			<%= link_to image_tag "blank.gif", :size => "428x80", root_path %>
+		  </div>
+		</div>
+	    <!-- /END INNER TOP BAR -->
+	  </div>
+      <!-- /END TOP BAR -->
+
+      <!-- BEGIN WEBSITE -->
+      <div id="website">
+	
+        <!-- BEGIN HEADER -->
+        <div id="header">
+	
+	      <!-- BEGIN TOP USER PANEL -->
+	      <div id="top-user-panel">
+		  </div>
+	      <!-- /END TOP USER PANEL -->
+	
+	    </div>
+        <!-- /END HEADER -->
+
+        <%= render "shared/advertisement" %>
+
+        <!-- BEGIN PYO -->
+        <div id="pyo">
+	
+	      <!-- BEGIN NAV -->
+	      <div id="nav">
+		    <ul>
+			<li><%= link_to "Home", root_path %></li>
+			<li><%= link_to "My Connects", connects_user_path(current_user) if current_user %></li>
+			<li><%= link_to "People", users_path %></li>
+			<li><%= link_to "Groups", groups_path %></li>
+			<li><%= link_to "Music", music_path %></li>
+			<li><%= link_to "Videos", videos_path %></li>
+			</ul>
+		  </div>
+	      <!-- /END NAV -->
+	
+	      <!-- BEGIN INNER CONTENT -->
+	      <div id="inner_content">
+		    <%= yield %>
+		  </div>
+	      <!-- /END INNER CONTENT -->
+	
+	    </div>
+	    <!-- /END PYO -->
+	
+	  </div>
+      <!-- /END WEBSITE -->
+
+	</div>
+    <!-- /END WRAPPER -->
+	
+  </body>
+</html>
