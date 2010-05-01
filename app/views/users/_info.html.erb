@@ -11,14 +11,14 @@
 <!-- FOLLOWING -->
 <div class="prof-following">
 <h3>Following</h3>
-<%- @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 20, :page => 1) %>
-<%- unless @followings.empty? %>
+<% @followings = User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", current_user.id]).paginate(:per_page => 20, :page => 1) %>
+<% unless @followings.empty? %>
   <div class="followings">
-	<%- @followings.each do |following| %>
+	<% @followings.each do |following| %>
 	  <%= link_to(image_tag(following.profile.avatar.url(:thumb)), user_path(following)) %>
   <div style="clear:both;"><%= link_to "View All (#{current_user.followings.size})", following_user_path(current_user) %></div>
   </div>
-<%- end %>
+<% else %>
 <p>You are currently not following any users. Would you like to search for some?</p>
 </div>
 <!-- /FOLLOWING -->
