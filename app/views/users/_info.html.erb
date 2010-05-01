@@ -31,21 +31,9 @@
 <% else %>
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span><strong>Inbox (<%= "#{current_user.messages.unread.count}" %>)</strong></span></a></li>
 <% end %>
-<% if current_page?(likes_user_path(current_user)) %>
 <li><a href="<%= likes_user_path(current_user) %>"><%= image_tag "ico_left-lik.png" %> <span>My Likes (<%= "#{current_user.likes.size}" %>)</span></a></li>
-<% else %>
-<li><a href="<%= likes_user_path(current_user) %>"><%= image_tag "ico_left-lik.png" %> <span><strong>My Likes (<%= "#{current_user.likes.size}" %>)</strong></span></a></li>
-<% end %>
-<% if current_page?(user_videos_path(current_user)) %>
 <li><a href="<%= user_videos_path(current_user) %>"><%= image_tag "ico_left-vid.png" %> <span>My Videos (<%= "#{current_user.videos.size}" %>)</span></a></li>
-<% else %>
-<li><a href="<%= user_videos_path(current_user) %>"><%= image_tag "ico_left-vid.png" %> <span><strong>My Videos (<%= "#{current_user.videos.size}" %>)</strong></span></a></li>
-<% end %>
-<% if current_page?(user_tracks_path(current_user)) %>
 <li><a href="<%= user_tracks_path(current_user) %>"><%= image_tag "ico_left-son.png" %> <span>My Songs (<%= "#{current_user.tracks.size}" %>)</span></a></li>
-<% else %>
-<li><a href="<%= user_tracks_path(current_user) %>"><%= image_tag "ico_left-son.png" %> <span><strong>My Songs (<%= "#{current_user.tracks.size}" %>)</strong></span></a></li>
-<% end %>
 </ul>
 </div>
 <!-- /MEDIA -->
