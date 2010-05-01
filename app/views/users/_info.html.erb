@@ -19,7 +19,7 @@
   <% @followings.each do |following| %>
   <%= link_to(image_tag(following.profile.avatar.url(:thumb)), user_path(following)) %>
   <% end %>
-  <%= link_to "View All (#{current_user.followings.size})", following_user_path(current_user) %>
+  <div style="clear:both;"><%= link_to "View All (#{current_user.followings.size})", following_user_path(current_user) %></div>
   </div>
 <% end %>
 </div>
