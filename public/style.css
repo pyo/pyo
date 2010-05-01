@@ -428,6 +428,13 @@ td#content {
 	color: #333;
 	font-size: 14px;
 	}
+	
+.dash-options li a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000;
+	background: #ddd;
+	}
 
 .dash-options ul.children li a {
 	padding: 8px;
@@ -440,8 +447,8 @@ td#content {
 	font-size: 12px;
 	}
 
-.dash-options li a:hover {
-	text-decoration: none;
+.dash-options ul.children li a:hover,
+.dash-options ul.children li a.selected {
 	font-weight: bold;
 	color: #000;
 	background: #ddd;
