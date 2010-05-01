@@ -11,7 +11,7 @@
 <!-- MEDIA -->
 <div class="dash-options">
 <ul>
-<% if current_page?(dashboard_path) %>
+<% if current_page(dashboard_path)? %>
 <li><a href="<%= dashboard_path %>"><%= image_tag "ico_left-feed.png" %> <span><strong>Activity Feed</strong></span></a></li>
   <ul class="children">
   <li><a href="<%= dashboard_path :type => "statuses" %>"><%= image_tag "icons/status_small.png" %> <span>Status Updates</span></a></li>
@@ -26,7 +26,7 @@
 <% else %>
 <li><a href="<%= dashboard_path %>"><%= image_tag "ico_left-feed.png" %> <span>Activity Feed</span></a></li>
 <% end %>
-<% if current_page?(inbox_user_path(current_user)) %>
+<% if current_page(inbox_user_path(current_user))? %>
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span>Inbox (<%= "#{current_user.messages.unread.count}" %>)</span></a></li>
 <% else %>
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span><strong>Inbox (<%= "#{current_user.messages.unread.count}" %>)</strong></span></a></li>
