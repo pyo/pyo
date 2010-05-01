@@ -18,7 +18,7 @@
 	  <%= link_to(image_tag(following.profile.avatar.url(:thumb)), user_path(following)) %>
   <div style="clear:both;"><%= link_to "View All (#{current_user.followings.size})", following_user_path(current_user) %></div>
   </div>
-<%- else %>
+<%- end %>
 <p>You are currently not following any users. Would you like to search for some?</p>
 </div>
 <!-- /FOLLOWING -->
