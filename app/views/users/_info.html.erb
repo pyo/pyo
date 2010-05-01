@@ -29,11 +29,10 @@
 <div class="dash-options">
 <ul>
 <li><a href="<%= dashboard_path %>"><%= image_tag "ico_left-feed.png" %> <span>Activity Feed</span></a></li>
-<li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span>Inbox (<%= #{current_user.messages.unread.count} %>)</span></a></li>
-<li><a href="<%= likes_user_path(current_user) %>"><%= image_tag "ico_left-lik.png" %> <span>My Likes (<%= #{current_user.likes.size} %>)</span></a></li>
-<li><a href="<%= user_videos_path(current_user) %>"><%= image_tag "ico_left-vid.png" %> <span>My Videos (<%= #{current_user.videos.size} %>)</span></a></li>
-<li><a href="<%= user_tracks_path(current_user) %>"><%= image_tag "ico_left-son.png" %> <span>My Songs (<%= #{current_user.tracks.size} %>)</span></a></li>
+<li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span>Inbox (<%= render "#{current_user.messages.unread.count}" %>)</span></a></li>
+<li><a href="<%= likes_user_path(current_user) %>"><%= image_tag "ico_left-lik.png" %> <span>My Likes (<%= render "#{current_user.likes.size}" %>)</span></a></li>
+<li><a href="<%= user_videos_path(current_user) %>"><%= image_tag "ico_left-vid.png" %> <span>My Videos (<%= render "#{current_user.videos.size}" %>)</span></a></li>
+<li><a href="<%= user_tracks_path(current_user) %>"><%= image_tag "ico_left-son.png" %> <span>My Songs (<%= render "#{current_user.tracks.size}" %>)</span></a></li>
 </ul>
 </div>
 <!-- /MEDIA -->
-
