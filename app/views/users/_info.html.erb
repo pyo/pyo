@@ -11,7 +11,7 @@
 <!-- MEDIA -->
 <div class="dash-options">
 <ul>
-<% if @current_page?(dashboard_path) ? %>
+<% if @current_page?(dashboard_path) %>
 <li><a href="<%= dashboard_path %>"><%= image_tag "ico_left-feed.png" %> <span><strong>Activity Feed</strong></span></a></li>
 <% else %>
 <li><a href="<%= dashboard_path %>"><%= image_tag "ico_left-feed.png" %> <span>Activity Feed</span></a></li>
