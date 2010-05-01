@@ -30,8 +30,8 @@
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span><strong>Inbox (<%= "#{current_user.messages.unread.count}" %>)</strong></span></a></li>
   <ul class="children">
   <li><a href="<%= inbox_user_path(current_user) %>"><span>Unread Messages (<%= "#{current_user.messages.unread.count}" %>)</span></a></li>
-  <li><a href="<%= inbox_user_path(current_user) :mbox => "archive" %>"><span>Read Messages (<%= "#{current_user.messages.archive.count}" %>)</span></span></a></li>
-  <li><a href="<%= inbox_user_path(current_user) :mbox => "sent" %>"><span>Sent Messages (<%= "#{current_user.messages.sent.count}" %>)</span></a></li>
+  <li><a href="<%= inbox_user_path(current_user,:mbox=>"archive") %>"><span>Read Messages (<%= "#{current_user.messages.archive.count}" %>)</span></span></a></li>
+  <li><a href="<%= inbox_user_path(current_user,:mbox=>"sent") %>"><span>Sent Messages (<%= "#{current_user.messages.sent.count}" %>)</span></a></li>
   </ul>
 <% else %>
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span>Inbox (<%= "#{current_user.messages.unread.count}" %>)</strong></span></a></li>
