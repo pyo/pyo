@@ -1,10 +1,9 @@
 <!-- DASH IMAGE -->
 <div class="dash-image">
 <%= link_to(image_tag(current_user.profile.avatar.url(:dashboard)), current_user) %>
-<p><a href="">UserName</a></p>
 <p><%= link_to current_user.name.capitalize, current_user %></p>
 <p><span>Followers: <%= link_to "#{current_user.followers.size}", followers_user_path(current_user) %></span></p>
 <p><span>Following: <%= link_to "#{current_user.followings.size}", following_user_path(current_user) %></span></p>
-<p><span>Updates: <%= link_to "#{@updates.current_user.total_entries}", updates_user_path(current_user) %></span></p>
+<p><span>Updates: <%= link_to "#{@updates.total_entries}", updates_user_path(current_user) %></span></p>
 </div>
 <!-- /DASH IMAGE -->
