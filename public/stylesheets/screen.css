@@ -77,10 +77,6 @@ ul.menu, ul.separated {
   background: #fff;
   float: left; }
 
-.inner_content {
-  clear: both;
-  padding: 15px 10px; }
-
 .inner_text {
   clear: both;
   padding: 10px 10px 0 10px;

@@ -1,8 +1,8 @@
 .inner_content.top
   %h2 Hello, #{current_user.name.capitalize}!
   Your PYO URL: 
-  %strong putyourselfon.com/#{current_user.name} 
-  [ #{link_to 'Settings', settings_path} ]
+  %strong PutYourselfOn.com/#{current_user.name} 
+  [ #{link_to 'Edit Your Profile', settings_path} ]
 
   - if flash[:notice]
     %p.notify 
