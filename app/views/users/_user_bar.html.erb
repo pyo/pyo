@@ -1,0 +1,62 @@
+<% if current_user? %>
+<!-- BEGIN USER NAME -->
+<div class="tup-name">
+<a href="<%= current_user %>"><%= image_tag (current_user.profile.avatar.url(:dashboard)) %> <span>UserName</span></a>
+</div>
+<!-- /END USER NAME -->
+
+<!-- BEGIN USER OPTIONS -->
+<div class="tup-options">
+	
+    <div class="tup-dash">
+    <a href="<%= dashboard_path %>"><%= image_tag "ico_tup-dash.png" %> <span>Dashboard</span></a>
+    </div>
+    
+    <div class="tup-inbox">
+    <a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_tup-inbox.png" %> <span>Inbox (<%= "#{current_user.messages.unread.count}" %>)</span></a>
+    </div>
+    
+    <div class="tup-settings">
+    <a href="<%= settings_path %>"><%= image_tag "ico_tup-settings.png" %> <span>Settings</span></a>
+    </div>
+    
+    <div class="tup-logout">
+    <a href="<%= logout_path %>"><%= image_tag "ico_tup-logout.png" %> <span>Logout</span></a>
+    </div>
+
+</div>
+<!-- /END USER OPTIONS -->
+
+<!-- BEGIN USER UPLOAD OPTIONS -->
+<div class="tup-upload">
+
+	<div class="tup-status">
+    <a href="">><%= image_tag "ico_tup-status.png" %> <span>Update Status</span></a>
+    </div>
+    
+    <div class="tup-video">
+    <a href="<%= new_video_path %>">><%= image_tag "ico_tup-vid.png" %>> <span>Upload Videos</span></a>
+    </div>
+    
+    <div class="tup-picture">
+    <a href="<%= new_photo_path %>">><%= image_tag "ico_tup-pic.png" %> <span>Upload Pictures</span></a>
+    </div>
+    
+    <div class="tup-music">
+    <a href="<%= new_track_path %>">><%= image_tag "ico_tup-music.png" %> <span>Upload Music</span></a>
+    </div>
+    
+    <div class="tup-blog">
+    <a href="<%= new_blog_path %>">><%= image_tag "ico_tup-blog.png" %> <span>Post Blog</span></a>
+    </div>
+
+</div>
+<!-- /END USER UPLOAD OPTIONS -->
+<% else %>
+<div class="tup">
+  <ul>
+    <li><%= link_to "Login", login_path %></li>
+    <li><%= link_to "Signup", signup_path %></li>
+  </ul>
+</div>
+<% end %>
