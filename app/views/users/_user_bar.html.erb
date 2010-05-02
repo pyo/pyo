@@ -1,4 +1,4 @@
-<% if current_user? %>
+<% if current_user %>
 <!-- BEGIN USER NAME -->
 <div class="tup-name">
 <a href="<%= current_user %>"><%= image_tag (current_user.profile.avatar.url(:dashboard)) %> <span>UserName</span></a>
