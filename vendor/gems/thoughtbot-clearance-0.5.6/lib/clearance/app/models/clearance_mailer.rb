@@ -6,14 +6,14 @@ module Clearance
         def change_password(user)
           from       DO_NOT_REPLY
           recipients user.email
-          subject    "Change your password"
+          subject    "Reset your PYO (Put Yourself On) Password"
           body       :user => user
         end
 
         def confirmation(user)
           from       DO_NOT_REPLY
           recipients user.email
-          subject   "Account confirmation"
+          subject   "PYO (Put Yourself On) Account Confirmation"
           body      :user => user
         end
 
