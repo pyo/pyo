@@ -175,7 +175,7 @@ body a:hover {
 	margin: -4px;
 	}
 
-.tup-name span {
+.tup-name span a {
 	font-size: 18px;
 	position: relative;
 	top: -7px;
