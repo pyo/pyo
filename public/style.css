@@ -635,6 +635,7 @@ td#content {
 .prof-bio h3, .sub_info h3 {
 	margin: 0 0 5px 0;
 	border-bottom: 1px solid #ccc;
+	padding: 5px;
 	}
 
 .followings img {
