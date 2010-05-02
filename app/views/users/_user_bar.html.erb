@@ -1,7 +1,7 @@
 <% if current_user %>
 <!-- BEGIN USER NAME -->
 <div class="tup-name">
-<%= link_to(image_tag(current_user.profile.avatar.url(:dashboard)), current_user) %> <span><%= link_to current_user.name.capitalize, current_user %></span>
+<a href="<%= (current_user) %>"><%= image_tag (current_user.profile.avatar.url(:dashboard)) %> <span><%= current_user.name.capitalize %></span></a>
 </div>
 <!-- /END USER NAME -->
 
