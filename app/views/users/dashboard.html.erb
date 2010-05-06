@@ -13,7 +13,32 @@
           <h2><%= image_tag "ico_left-feed.png" %> <span>Activity Feed</span></h2>
           </div>
 
-            <p>Activity Feed Down for Maintenance...</p>
+            <%= render "users/dashboard_nav" %>
+
+            <% if current_user.first_run? %>
+
+            <p>First run content goes here...</p>
+
+            <% else %>
+            
+            <% @activities.each do |activity| %>
+            <!-- BEGIN USER ACTION -->
+            <div class="prof-action <% [activity] %>">
+	        <%= link_to(image_tag(activity.producer.profile.avatar(:thumb)), activity.producer) if activity.producer %>
+	        <p class="act_head"><%= link_to activity.producer.name, activity.producer %>
+		    <%= "display_notification(activity)" %></p>
+            </div>
+            <!-- /END USER ACTION -->
+
+            <% end %>
+
+            <% if @activities.total_pages > 1 %>
+
+            <div class="load_more" id="load_more_link">
+	        <%= link_to 'More...', activities_path(:page => @activities.current_page + 1, :type => params[:type]), :id => 'load_more' %>
+	        </div>
+	
+	        <% end %>
         
         </div>
         <!-- /END USER ACTIVITY -->
