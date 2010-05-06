@@ -23,24 +23,3 @@
 
 </script>
 <% end %>
-
-
-- content_for :head do
-  = javascript_include_tag 'formhints', 'jquery.textcounting.js'
-    
-#post_bar.hidden
-  %a#close_post.warningClass.close(href='#') [X] CLOSE THIS
-  %h4.capital Post something new to PYO:
-  - if current_user
-    %ul.menu#dashboard_nav
-      %li#status_nav Status
-      %li#picture_nav= link_to 'Picture', new_photo_path
-      %li#video_nav= link_to 'Video', new_video_path
-      %li#audio_nav= link_to 'Audio', new_track_path
-      %li#blog_nav= link_to 'Blog', new_blog_path
-  %span#status_messageDown 0
-  - form_for Activity.new do |f|
-    = f.text_area :message, :size => "50x3", :id => "status_message", :maxLength => 500
-    .submit_button
-      = image_submit_tag 'post_button.gif', :id => 'post_button'
-     
