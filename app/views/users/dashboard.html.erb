@@ -7,7 +7,7 @@
         <%= render "users/top" %>
             
         <!-- BEGIN USER ACTIVITY -->
-        <div class="prof-activity" id="activities">
+        <div class="prof-activity main" id="activities">
 	
           <div class="prof-activity-title">
           <h2><%= image_tag "ico_left-feed.png" %> <span>Activity Feed</span></h2>
@@ -23,7 +23,7 @@
 
             <% @activities.each do |activity| %>
             <!-- BEGIN USER ACTION -->
-            <div class="prof-action <%= [activity] -%>">
+            <div class="prof-action <%= ".activity[activity]" %>">
 	
 	          <div class="thumb">
 	          <%= link_to(image_tag(activity.producer.profile.avatar(:thumb)), activity.producer) if activity.producer %>
@@ -32,7 +32,7 @@
 	          <div class="activity">
 	          <p><%= link_to activity.producer.name, activity.producer %>
 		      <%= display_notification(activity) %></p>
-		      <p class="act_time"><%= image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon) %> <span><%= "#{time_ago_in_words(activity.created_at)}" %></span></p>
+		      <p class="act_time"><%= image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon) %> <span><%= "#{time_ago_in_words(activity.created_at)}" %> ago</span></p>
 		      </div>
 		
 		      <div class="clear"></div>

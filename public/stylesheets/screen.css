@@ -82,12 +82,6 @@ ul.menu, ul.separated {
   padding: 10px 10px 0 10px;
   text-align: justify; }
 
-.main {
-  float: right;
-  clear: both;
-  width: 625px;
-  margin-top: 10px; }
-
 .details {
   float: left;
   width: 270px; }
