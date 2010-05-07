@@ -1,2 +1,2 @@
 page.insert_html :bottom, :activities, :partial => 'activity', :collection => @activities
-page.replace_html :load_more_link, link_to('Load More', activities_path(:page => @activities.current_page + 1), :id => 'load_more')
+page.replace_html :load_more_link, link_to('Load More', activities_path(:page => @activities.current_page + 1, :type => params[:type]), :id => 'load_more')

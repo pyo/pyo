@@ -685,6 +685,20 @@ td#content {
 
 .prof-action {
 	clear: both;
+	border-bottom: 1px dotted #ddd;
+	padding: 7px;
+	}
+
+.prof-action .thumb {
+	float: left;
+	width: 50px;
+	margin: 0 10px 0 0;
+	}
+
+.prof-action .activity {
+	float: left;
+	width: 500px;
+	margin: 0;
 	}
 
 .prof-activity-title {
@@ -719,46 +733,6 @@ td#content {
 	float: right;
 	font-size: 10px;
 	}
-	
-.act_head {
-	padding: 0;
-	margin: 0;
-	cursor: pointer;
-	position: relative;
-	}
-
-p.act {
-	margin: 0;
-	padding: 0;
-	}
-
-.act_head img,
-p.act_status img,
-p.act img {
-	float: left;
-	margin: 0 5px 0 0;
-	}
-	
-.act_head span {
-	position: relative;
-	top: -2px;
-	}
-
-.act_body, .act_body p, p.act_status {
-	padding: 0;
-	margin: 0;
-	}
-
-.act_body img {
-	margin: 0;
-	padding: 0;
-	border: 3px solid #ccc;
-	}
-
-.act_body:hover img,
-.act_body.hover img {
-	border: 3px solid #006fff;
-	}
 
 p.act_time {
 	padding: 0;
@@ -777,18 +751,4 @@ p.act_time {
 
 .act_time a.blend {
 	color: #222;
-	}
-
-.prof-action {
-	border-bottom: 1px dotted #ddd;
-	padding: 7px;
-	}
-
-.prof-action:hover {
-	background: #efefef;
-	border-bottom: 1px solid #ccc;
-	}
-
-p.act_status {
-	font-weight: bold;
 	}
