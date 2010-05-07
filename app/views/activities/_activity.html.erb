@@ -1,5 +1,5 @@
 <!-- BEGIN USER ACTION -->
-<div class="prof-action <%= [activity] %>">
+<div class="prof-action <%= [activity] -%>">
 
   <div class="thumb">
   <%= link_to(image_tag(activity.producer.profile.avatar(:thumb)), activity.producer) if activity.producer %>
@@ -8,8 +8,10 @@
   <div class="activity">
   <p><%= link_to activity.producer.name, activity.producer %>
   <%= display_notification(activity) %></p>
-  <p><%= "#{time_ago_in_words(activity.created_at)}" %></p>
+  <p class="act_time"><%= image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon) %> <span><%= "#{time_ago_in_words(activity.created_at)}" %></span></p>
   </div>
+
+  <div class="clear"></div>
 
 </div>
 <!-- /END USER ACTION -->
