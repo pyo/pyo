@@ -44,8 +44,8 @@
             <% end %>
 
             <% if @activities.total_pages > 1 %>
-            <div class="load_more" id="load_more_link">
-	        <%= link_to 'More', activities_path(:page => @activities.current_page + 1, :type => params[:type]), :id => 'load_more' %>
+            <div id="load_more_link" class="load_more">
+	        <%= link_to 'Load More', activities_path(:page => @activities.current_page + 1, :type => params[:type]), :id => 'load_more' %>
 	        </div>
 	        <% end %>
         
