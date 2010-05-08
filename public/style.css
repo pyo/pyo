@@ -683,19 +683,19 @@ td#content {
 	width: 560px; 
 	}
 
-.prof-action {
+.activity {
 	clear: both;
 	border-bottom: 1px dotted #ddd;
 	padding: 7px;
 	}
 
-.prof-action .thumb {
+.activity .thumb {
 	float: left;
 	width: 50px;
 	margin: 0 10px 0 0;
 	}
 
-.prof-action .activity {
+.activity .activity_detail {
 	float: left;
 	width: 485px;
 	margin: 0;
