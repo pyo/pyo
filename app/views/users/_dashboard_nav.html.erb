@@ -8,7 +8,6 @@
         $('#post_bar').slideToggle();
         return false;
       });
-#{form_authenticity_token}
 
       $('#load_more').live("click", function() {
         $.ajax({data:'authenticity_token=' + encodeURIComponent('<%= "#{form_authenticity_token}" %>'), dataType:'script', type:'get', url:this.href}); 

@@ -22,7 +22,7 @@
             <% else %>
 
             <% @activities.each do |activity| %>
-            <%= div.activity[activity] %>
+            <div class="activity">
 	
 	          <div class="thumb">
 	          <%= link_to(image_tag(activity.producer.profile.avatar(:thumb)), activity.producer) if activity.producer %>
@@ -45,10 +45,11 @@
             <div id="load_more_link" class="load_more">
 	        <%= link_to 'Load More', activities_path(:page => @activities.current_page + 1, :type => params[:type]), :id => 'load_more' %>
 	        </div>
+	        <% end %>
         
         </div>
         <!-- /END USER ACTIVITY -->
-	        <% end %>
+	        
   
       </td>
       <td valign="top" id="side_bar" class="column_left">
