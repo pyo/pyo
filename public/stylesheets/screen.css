@@ -70,7 +70,6 @@ ul.menu, ul.separated {
 #content {
   width: 900px;
   /* background: url(/images/content_top.png) #FFF top center no-repeat; REMOVED */
-  background: #fff;
   float: left;
   margin-bottom: 10px; }
 
@@ -78,7 +77,6 @@ ul.menu, ul.separated {
   width: 900px;
   padding-bottom: 15px;
   /* background: url(/images/content_bottom.png) center bottom no-repeat; REMOVED */
-  background: #fff;
   float: left; }
 
 .inner_content {
