@@ -22,7 +22,7 @@
             <% else %>
 
             <% @activities.each do |activity| %>
-            <div class="activity">
+			<% div_for(activity, :class => 'activity') %>
 	
 	          <div class="thumb">
 	          <%= link_to(image_tag(activity.producer.profile.avatar(:thumb)), activity.producer) if activity.producer %>

@@ -1,24 +1,23 @@
-<%- content_for :head do %>
-<%= javascript_include_tag "formhints", "jquery.textcounting.js" %>
-<script type='text/javascript'>
-  //<![CDATA[
-
+<% content_for :head do %>
+  <%= javascript_include_tag 'formhints', 'jquery.textcounting.js' %>
+  <script type="text/javascript">
+    /*<![CDATA[*//*---->*/
     $(function() {
       $('#upload_post_button, #close_post, .upload_post').click(function() {
         $('#post_bar').slideToggle();
         return false;
       });
-
+    
+    
       $('#load_more').live("click", function() {
-        $.ajax({data:'authenticity_token=' + encodeURIComponent('<%= "#{form_authenticity_token}" %>'), dataType:'script', type:'get', url:this.href}); 
+        $.ajax({data:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>'), dataType:'script', type:'get', url:this.href}); 
         return false;
       });
-
+      
       $.fn.textCounting.defaults.lengthExceededClass= "warningClass";
       $("#status_message").textCounting({});
-
+      
     })
-  //]]>
-
-</script>
+  /*--*//*]]>*/
+  </script>
 <% end %>
