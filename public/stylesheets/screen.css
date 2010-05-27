@@ -12,7 +12,7 @@ p, h1, h2, h3, h4, h5, ul, form, img {
 
 a {
   outline: none;
-  color: #006FFF;
+  color: #0956c9;
   font-weight: bold;
   text-decoration: none; }
   a img {
@@ -140,7 +140,7 @@ ul.menu, ul.separated {
     .user_bar ul li a {
       display: block;
       float: left;
-      background: url(/images/separator.gif) center left no-repeat;
+      background: url(/images/separator-.gif) center left no-repeat;
       padding: 0 5px 0 8px; }
     .user_bar ul li.first a {
       background: none; }
@@ -149,22 +149,22 @@ ul.menu, ul.separated {
   height: 40px;
   background: url(/images/menu_bg.jpg) top left repeat-x;
   margin: 10px 0;
-  border: 1px solid #444;
+  border: 1px solid #aaa;
   line-height: 40px; }
   #navigation ul {
     float: left; }
     #navigation ul li {
       display: inline; }
       #navigation ul li a {
-        color: #FFF;
+        color: #111;
         display: block;
         float: left;
         padding: 0 10px;
-        border-right: 1px solid #444; }
+        border-right: 1px solid #aaa; }
       #navigation ul li a:hover {
-        background: #111;
+        background: #ccc;
         text-decoration: underline;
-        color: #026DFE; }
+        color: #000; }
 
 .search {
   float: right;
@@ -175,7 +175,7 @@ ul.menu, ul.separated {
     height: 25px;
     margin-right: 10px;
     margin-top: 5px;
-    border: 1px solid #222;
+    border: 1px solid #aaa;
     padding-left: 5px; }
     .search form input {
       outline: none;
@@ -189,7 +189,6 @@ ul.menu, ul.separated {
     .search form input.submit {
       position: absolute;
       top: 0px;
-      border: 1px solid #222;
       border-top: 0;
       right: 9px;
       padding: 0;

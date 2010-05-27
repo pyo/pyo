@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  layout nil
   def index
     @users = User.all(:limit => 30, :order => "RAND()")
     @featured_users = User.all(:limit=>4,:order=>"RAND()")
