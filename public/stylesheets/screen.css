@@ -566,17 +566,6 @@ ul.activities_menu {
 #upload_post_button:hover {
   background-position: 0 -36px; }
 
-#load_more {
-  background: url(/images/load_more.png);
-  width: 605px;
-  height: 36px;
-  display: block;
-  overflow: hidden;
-  text-indent: -9999px; }
-
-#load_more:hover {
-  background-position: 0 -36px; }
-
 h1.bordered_title {
   text-align: center;
   border-bottom: 10px solid #eee;

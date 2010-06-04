@@ -14,7 +14,7 @@ body {
 
 p, h1, h2, h3, h4, h5, ul, form, img, div {
   padding: 0;
-  margin: 0; 
+  margin: 0;
   }
   
 body a {
@@ -327,20 +327,21 @@ table.columns {
 	}
 
 td#side_bar {
-	width: 300px;
+	width: 320px;
 	background: #eee;
 	border: 1px solid #ddd;
 	}
 
 .ad-300 {
+	margin: 10px 0 0 10px;
 	width: 300px;
 	height: 250px;
 	background: #eee;
 	}
 
 td#content {
-	padding: 0 0 0 10px;
-	width: 579px;
+	padding: 0;
+	width: 540px;
 	}
 	
 /* DASHBOARD
@@ -680,7 +681,7 @@ td#content {
 .prof-songs, .prof-comments {
 	clear: both;
 	margin: 10px 0 20px 0;
-	width: 560px; 
+	width: 540px; 
 	}
 
 .activity {
@@ -697,12 +698,12 @@ td#content {
 
 .activity .activity_detail {
 	float: left;
-	width: 485px;
+	width: 465px;
 	margin: 0;
 	}
 
 .prof-activity-title {
-	width: 560px;
+	width: 540px;
 	height: 35px;
 	border-bottom: 1px solid #ccc;
 	font-family: Verdana;
@@ -714,7 +715,7 @@ td#content {
 	}
 
 .prof-activity-title h2 {
-	width: 560px;
+	width: 540px;
 	height: 35px;
 	float: left;
 	color: #000;
@@ -752,3 +753,22 @@ p.act_time {
 .act_time a.blend {
 	color: #222;
 	}
+
+#load_more {
+	padding: 10px;
+	text-align: center;
+	display: block;
+	background: url(images/load_more.gif) top left repeat-x;
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	border-left: 1px solid #ddd;
+  	width: 525px;
+	font-size: 14px;
+	}
+
+#load_more:hover {
+	border: 1px solid #bbb;
+	background-image: none;
+	background-color: #eee;
+}
