@@ -702,6 +702,10 @@ td#content {
 	margin: 0;
 	}
 
+.activity-desc {
+	color: #666;
+}
+
 .prof-activity-title {
 	width: 540px;
 	height: 35px;
@@ -755,8 +759,12 @@ p.act_time {
 	color: #222;
 	}
 
-.activity a, .status_activity {
+.activity a {
 	font-size: 13px;
+	}
+
+.status_activity {
+	font-weight: bold;
 	}
 
 #load_more {
