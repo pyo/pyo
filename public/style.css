@@ -687,7 +687,7 @@ td#content {
 .activity {
 	clear: both;
 	border-bottom: 1px dotted #ddd;
-	padding: 7px;
+	padding: 10px 7px 10px 7px;
 	}
 
 .activity .thumb {
@@ -702,9 +702,9 @@ td#content {
 	margin: 0;
 	}
 
-.activity-desc {
-	color: #666;
-}
+.activity-desc { color: #666; }
+
+.reg { color: #333; }
 
 .prof-activity-title {
 	width: 540px;
@@ -765,6 +765,10 @@ p.act_time {
 
 .status_activity {
 	font-weight: bold;
+	}
+
+span.act-comment {
+	color: #333;
 	}
 
 #load_more {
