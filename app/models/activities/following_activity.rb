@@ -4,6 +4,6 @@ class FollowingActivity < Activity
   end
   
   def icon
-    "icons/follow_16.png"
+    "icons/follow_small.png"
   end
 end

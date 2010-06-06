@@ -7,6 +7,6 @@ class CommentActivity < Activity
   end
   
   def icon
-    "icons/comment_16.png"
+    "icons/comment_small.png"
   end
 end

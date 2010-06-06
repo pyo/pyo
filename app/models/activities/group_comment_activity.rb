@@ -4,6 +4,6 @@ class GroupCommentActivity < Activity
   end
   
   def icon
-    "icons/comment_16.png"
+    "icons/comments_small.png"
   end
 end

@@ -738,6 +738,7 @@ td#content {
 p.act_time {
 	padding: 0;
 	margin: 0;
+	font-size: 11px;
 	}
 
 .act_time span {
@@ -752,6 +753,10 @@ p.act_time {
 
 .act_time a.blend {
 	color: #222;
+	}
+
+.activity a, .status_activity {
+	font-size: 13px;
 	}
 
 #load_more {

@@ -7,6 +7,6 @@ class StatusActivity < Activity
   end
   
   def icon
-    "icons/status_16-plus.png"
+    "icons/status_small.png"
   end
 end

@@ -14,10 +14,10 @@ class MediaUploadActivity < Activity
   
   def icon
     case payload_type
-    when 'Video' then 'icons/videos_16-plus.png'
-    when 'Track' then 'icons/audio_16-plus.png'
-    when 'Photo' then 'icons/photo_16-plus.png'
-    when 'Blog' then 'icons/blog_16-plus.png'
+    when 'Video' then 'icons/video.png'
+    when 'Track' then 'icons/song_small.png'
+    when 'Photo' then 'icons/picture_small.png'
+    when 'Blog' then 'icons/blog_small.png'
     end
   end
 end
