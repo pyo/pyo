@@ -673,12 +673,43 @@ td#content {
 .sub_info li a:hover {
 	background: #e0e0e0;
 	}
+	
+/* PEOPLE
+================================================*/
+.users {
+	clear: both;
+	margin: 5px 0 0 0;
+	width: 540px;
+	}
+
+.follower {
+	clear: both;
+	border-bottom: 1px dotted #ddd;
+	padding: 10px 7px 10px 7px;
+	height: 50px;
+	}
+
+.follower img {
+	float: left;
+	margin: 0 10px 0 0;
+	width: 50px;
+	}
+
+.user_name {
+	font-size: 14px;
+	font-weight: bold;
+	}
+
+.class {
+	color: #006fff;
+	}
 
 /* MIDDLE -- PROFILE -  ACTIVITY
 ================================================*/
 .prof-activity,
 .prof-pics, .prof-vids,
-.prof-songs, .prof-comments {
+.prof-songs, .prof-comments,
+.main {
 	clear: both;
 	margin: 10px 0 20px 0;
 	width: 540px; 
@@ -706,33 +737,33 @@ td#content {
 
 .reg { color: #333; }
 
-.prof-activity-title {
+.page-title {
 	width: 540px;
 	height: 35px;
 	border-bottom: 1px solid #ccc;
 	font-family: Verdana;
 	}
 
-.prof-activity-title img {
+.page-title img {
 	float: left;
 	margin: 0 10px 0 0;
 	}
 
-.prof-activity-title h2 {
+.page-title h2 {
 	width: 540px;
 	height: 35px;
 	float: left;
 	color: #000;
-	font-size: 17px;
+	font-size: 20px;
 	margin: 0;
 	}
 
-.prof-activity-title h2 span {
+.page-title h2 span {
 	position: relative;
 	top: 5px;
 	}
 
-.prof-activity-title p {
+.page-title p {
 	margin: 5px 0 0 0;
 	padding: 0;
 	float: right;

@@ -2,14 +2,39 @@
 <table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
   <tbody>
     <tr>
-      <td valign="top" id="content" class="column_right">     
+      <td valign="top" id="content" class="column_left">     
 
-        asdf
+        <!-- BEGIN PEOPLE -->
+        <div class="main">
+
+	        <div class="page-title">
+	        <h2><%= image_tag "ico_left-people.png" %> <span>People</span></h2>
+			<p>There are currently <strong><%= "#{users.total_entries}" %></strong> members on PYO.</p>
+	        </div>
+	
+			<%= render "shared/square_ad" %>
+
+			<div class="users">
+				<%= @users.each do |user| %>
+				<div class="follower">
+					<%= link_to(image_tag(user.profile.avatar.url(:dashboard)), user) %>
+					<div class="user_name"><%= link_to user.name, user %> / <%= user.profile.full_name if user.profile.full_name %></div>
+					<div class="city_and_state"><%= user.city_and_state.join(', ') %></div>
+					<div class="class"><%= user.talent_type %></div>
+				</div>
+				<% end %>
+			</div>
+			
+			<% = will_paginate @users %>
+
+        </div>
+        <!-- /END PEOPLE -->
 
       </td>
-      <td valign="top" id="side_bar" class="column_left">
+      <td valign="top" id="side_bar" class="column_right">
 	
-        <%= render "users/info" %>
+        <%= render "shared/square_ad" %>
+		<%= render "shared/tall_advertisement" %>
 
       </td>
     </tr>
