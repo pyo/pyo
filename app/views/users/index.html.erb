@@ -15,7 +15,7 @@
 			<%= render "shared/square_ad" %>
 
 			<div class="users">
-				<%= @users.each do |user| %>
+				<% @users.each do |user| %>
 				<div class="follower">
 					<%= link_to(image_tag(user.profile.avatar.url(:dashboard)), user) %>
 					<div class="user_name"><%= link_to user.name, user %> / <%= user.profile.full_name if user.profile.full_name %></div>
@@ -25,7 +25,7 @@
 				<% end %>
 			</div>
 			
-			<% = will_paginate @users %>
+			<%= will_paginate @users %>
 
         </div>
         <!-- /END PEOPLE -->
