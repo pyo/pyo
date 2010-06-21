@@ -38,22 +38,6 @@
 	margin-top: -25px;
 	}
 
-.follower {
-	overflow: hidden;
-	}
-
-.follower .full_name {
-	color: #888;
-	}
-
-.follower .talent_type {
-	color: #006fff;
-	}
-
-.users {
-	margin-top: 20px;
-	}
-
 .pagination a {
 	padding: 5px;
 	}

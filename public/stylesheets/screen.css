@@ -437,7 +437,7 @@ ul.activities_menu {
 .upload_post_button {
   margin-bottom: 10px; }
 
-.followers, .members {
+/* .followers, .members {
   margin-top: 10px; }
   .followers div.thumb, .members div.thumb {
     width: 52px;
@@ -469,7 +469,7 @@ ul.activities_menu {
 .follower:hover {
   background: #EEE; }
   .follower:hover img {
-    border: 3px solid #026DFE; }
+    border: 3px solid #026DFE; } */
 
 .bordered_image img {
   border: 3px solid #CCC; }
@@ -479,8 +479,8 @@ ul.activities_menu {
   font-weight: bold;
   margin-bottom: 10px; }
 
-.class {
-  font-weight: bold; }
+/* .class {
+  font-weight: bold; } */
 
 .greyboxes {
   margin-top: 10px;
