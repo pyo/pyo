@@ -11,6 +11,8 @@
 	        <h2><%= image_tag "ico_left-people.png" %> <span>People</span></h2>
 			<p>There are currently <strong><%= @users.total_entries %></strong> members on PYO.</p>
 	        </div>
+	
+			<%= render "sorting" %>
 
 			<div class="users">
 				<% @users.each do |user| %>
