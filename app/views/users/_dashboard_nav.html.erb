@@ -28,6 +28,6 @@
 <span id="status_messageDown">0</span>
 <% form_for(Activity.new) do |f| %>
 <%= f.text_area :message, :size => "50x3", :id => "status_message", :maxLength => 500 %>
-<%= f.submit "Post", :class => "submit", %>
+<%= f.submit "Post", :class => "submit" %>
 <% end %>
 </div>
