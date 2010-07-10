@@ -715,6 +715,39 @@ td#content {
 	width: 540px; 
 	}
 
+.prof-activity-title {
+	width: 540px;
+	height: 35px;
+	border-bottom: 1px solid #ccc;
+	font-family: Verdana;
+	}
+
+.prof-activity-title img {
+	float: left;
+	margin: 0 10px 0 0;
+	}
+
+.prof-activity-title h2 {
+	width: 540px;
+	height: 35px;
+	float: left;
+	color: #000;
+	font-size: 17px;
+	margin: 0;
+	}
+
+.prof-activity-title h2 span {
+	position: relative;
+	top: 5px;
+	}
+
+.prof-activity-title p {
+	margin: 5px 0 0 0;
+	padding: 0;
+	float: right;
+	font-size: 10px;
+	}
+
 .activity {
 	clear: both;
 	border-bottom: 1px dotted #ddd;
