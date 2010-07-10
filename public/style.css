@@ -732,13 +732,13 @@ td#content {
 	height: 35px;
 	float: left;
 	color: #000;
-	font-size: 17px;
 	margin: 0;
 	}
 
 .prof-activity-title h2 span {
 	position: relative;
 	top: 5px;
+	font-size: 20px;
 	}
 
 .prof-activity-title p {
@@ -746,6 +746,33 @@ td#content {
 	padding: 0;
 	float: right;
 	font-size: 10px;
+	}
+
+.dash-update {
+	margin: 10px 0 0 0;
+	width: 500px;
+	height: 150px;
+	background: #eee;
+	padding: 20px;
+	border-bottom: 3px solid #aaa;
+	}
+
+.dash-update h4 {
+	float: left;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	font-style: italic;
+	color: #777;
+	}
+
+.dash-update span#status_messageDown {
+	float: right;
+	color: #999;
+	}
+
+.dash-update textarea#status_message {
+	width: 490px;
 	}
 
 .activity {
