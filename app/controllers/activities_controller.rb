@@ -47,7 +47,7 @@ class ActivitiesController < ApplicationController
       activity.save
     end
     
-    redirect_to dashboard_path
+    redirect_to current_user
   end
   
   def destroy
