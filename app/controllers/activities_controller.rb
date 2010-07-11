@@ -14,8 +14,6 @@ class ActivitiesController < ApplicationController
       when 'follows' then ["consumer_type = 'User' and consumer_id = ? and type = ?", current_user.id, "FollowingActivity"]
       when 'likes' then ["consumer_type = 'User' and consumer_id = ? and type = ?", current_user.id, "LikeActivity"]
       end
-    else conditions = ["consumer_type = 'User' and consumer_id = ?", current_user.id]
-    end
     
 
     @activities = Activity.all(:include => [:producer => :profile], :conditions => conditions).paginate(:per_page => 25, :page => params[:page])
