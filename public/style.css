@@ -340,7 +340,7 @@ td#side_bar {
 	}
 
 td#content {
-	padding: 0;
+	padding: 0 0 0 5px;
 	width: 540px;
 	}
 	
@@ -750,16 +750,16 @@ td#content {
 
 .dash-update {
 	margin: 10px 0 0 0;
-	width: 500px;
+	width: 520px;
 	height: 150px;
 	background: #eee;
-	padding: 20px;
+	padding: 10px;
 	border-bottom: 3px solid #aaa;
 	}
 
 .dash-update h4 {
 	float: left;
-	margin: 0;
+	margin: 0 0 10px;
 	padding: 0;
 	font-size: 16px;
 	font-style: italic;
@@ -768,16 +768,31 @@ td#content {
 
 .dash-update span#status_messageDown {
 	float: right;
-	color: #999;
+	color: #ccc;
 	}
 
 .dash-update textarea#status_message {
-	width: 490px;
+	width: 510px;
+	}
+
+.dash-update input.submit {
+	width: 50px;
+	height: 25px;
+	background: url(home/post.gif) top left no-repeat;
+	border: 1px solid #05216a;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	}
+
+.dash-update input.submit:active {
+	background-color: #1b63d4;
+	background-image: none;
 	}
 
 .activity {
 	clear: both;
-	border-bottom: 1px dotted #ddd;
+	border-bottom: 1px dotted #bbb;
 	padding: 10px 7px 10px 7px;
 	}
 
