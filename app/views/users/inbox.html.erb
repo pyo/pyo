@@ -25,10 +25,11 @@
 						<% if current_page?(inbox_user_path(current_user)) || current_page?(inbox_user_path(current_user,:mbox=>"archive")) %>
 						<%= link_to(image_tag(message.producer.profile.avatar.url(:thumb)), message.producer) %>
 						<span class="username"><%= link_to(h(message.producer.name), message.producer) %></span>
-						<% else %>
+						<% elsif current_page?(inbox_user_path(current_user,:mbox=>"sent")) %>
 						<%= link_to(image_tag(message.consumer.profile.avatar.url(:thumb)), message.consumer) %>
 						<span class="username"><%= link_to(h(message.consumer.name), message.consumer) %></span>
 						<% end %>
+
 						<span class="date"><%= "#{time_ago_in_words(message.created_at)} ago" %></span>
 						</td>
 
