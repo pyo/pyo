@@ -22,8 +22,14 @@
 					<% for message in @messages %>
 					<tr>
 						<td class='user'>
-						<%= link_to(image_tag(message.producer.profile.avatar.url(:thumb)), message.producer) %>
-						<span class="username"><%= link_to(h(message.producer.name), message.producer) %></span>
+						<%= link_to(image_tag(message.producer.profile.avatar.url(:thumb)), message.producer) if current_page?(inbox_user_path(current_user)) || current_page?(inbox_user_path(current_user,:mbox=>"archive")) %>
+						
+						<%= link_to(image_tag(message.consumer.profile.avatar.url(:thumb)), message.consumer) if current_page?(inbox_user_path(current_user,:mbox=>"sent")) %>
+				
+						<span class="username"><%= link_to(h(message.producer.name), message.producer) if current_page?(inbox_user_path(current_user)) || current_page?(inbox_user_path(current_user,:mbox=>"archive")) %></span>
+						
+						<span class="username"><%= link_to(h(message.producer.name), message.producer) if current_page?(inbox_user_path(current_user,:mbox=>"sent")) %></span>
+						
 						<span class="date"><%= "#{time_ago_in_words(message.created_at)} ago" %></span>
 						</td>
 
