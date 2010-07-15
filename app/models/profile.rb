@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-  # vaildations
+  # validations
   validates_presence_of   :username, :message => "can't be blank"
   validates_uniqueness_of :username, :message => "has already been taken.  Please choose a different username.", :case_sensitive => false
   validates_format_of     :username, :with => /^[-a-z0-9_.+]+$/i, :message => "Usernames can only contain letters, numbers, underscores, periods, pluses and dashes"

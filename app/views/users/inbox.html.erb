@@ -1,0 +1,30 @@
+<!-- BEGIN COLUMNS -->
+<table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="top" id="content" class="column_left">
+	
+        <!-- BEGIN INBOX -->
+        <div class="main">
+
+	        <div class="page-title">
+	        <h2><%= image_tag "ico_left-inbox.png" %> <span>Inbox</span> / <%= "#{params[:mbox]}" %></h2>
+	        </div>
+
+			<ul class="inbox-buttons">
+
+			</ul>
+
+        </div>
+        <!-- /END INBOX -->
+
+      </td>
+      <td valign="top" id="side_bar" class="column_right">
+	
+        <%= render "users/info" %>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /END COLUMNS -->
