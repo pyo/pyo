@@ -29,7 +29,7 @@
 						<% end %>
 						
 						<% if current_page?(inbox_user_path(current_user,:mbox=>"sent")) %>
-						<span class="username"><% link_to(h(message.consumer.name), message.consumer) %></span>
+						<span class="username"><%= link_to(h(message.consumer.name), message.consumer) %></span>
 						<% else %>
 						<span class="username"><%= link_to(h(message.producer.name), message.producer) %></span>
 						<% end %>
