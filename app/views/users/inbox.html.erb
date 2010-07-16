@@ -22,9 +22,21 @@
 					<% for message in @messages %>
 					<tr>
 						<td class='user'>
-						<%= if current_page?(inbox_user_path(current_user)) || current_page?(inbox_user_path(current_user,:mbox=>"archive")) link_to(image_tag(message.producer.profile.avatar.url(:thumb)), message.producer) elsif current_page?(inbox_user_path(current_user,:mbox=>"sent")) link_to(image_tag(message.consumer.profile.avatar.url(:thumb)), message.consumer) %>	
-				
-						<span class="username"><%= if current_page?(inbox_user_path(current_user)) || current_page?(inbox_user_path(current_user,:mbox=>"archive")) link_to(h(message.producer.name), message.producer) elsif current_page?(inbox_user_path(current_user,:mbox=>"sent")) link_to(h(message.consumer.name), message.consumer) %></span>
+						<% if current_page?(inbox_user_path(current_user)) %>
+						<%= link_to(image_tag(message.producer.profile.avatar.url(:thumb)), message.producer) %>
+						<% elsif current_page?(inbox_user_path(current_user,:mbox=>"archive")) %>
+						<%= link_to(image_tag(message.producer.profile.avatar.url(:thumb)), message.producer) %>
+						<% elsif current_page?(inbox_user_path(current_user,:mbox=>"sent")) %>
+						<%= link_to(image_tag(message.consumer.profile.avatar.url(:thumb)), message.consumer) %>
+						<% end %>
+						
+						<% if current_page?(inbox_user_path(current_user)) %>
+						<span class="username"><%= link_to(h(message.producer.name), message.producer) %></span>
+						<% elsif current_page?(inbox_user_path(current_user,:mbox=>"archive")) %>
+						<span class="username"><%= link_to(h(message.producer.name), message.producer) %></span>
+						<% elsif current_page?(inbox_user_path(current_user,:mbox=>"sent")) %>
+						<span><% link_to(h(message.consumer.name), message.consumer) %></span>
+						<% end %>
 						
 						<span class="date"><%= "#{time_ago_in_words(message.created_at)} ago" %></span>
 						</td>
