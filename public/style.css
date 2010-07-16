@@ -463,6 +463,20 @@ td#content {
 	background: #ddd;
 	}
 	
+/* INBOX
+================================================*/
+table.inbox_messages {
+	margin: 10px 0 0 0;
+	}
+
+table.inbox_messages td.user img {
+	float: left;
+	}
+
+table.inbox_messages tr {
+	border-bottom: 1px dotted #bbb;
+}
+	
 /* PROFILE
 ================================================*/
 .prof-lastupdate {
@@ -690,7 +704,7 @@ td#content {
 
 .follower {
 	clear: both;
-	border-bottom: 1px dotted #ddd;
+	border-bottom: 1px dotted #bbb;
 	padding: 10px 7px 10px 7px;
 	height: 50px;
 	}

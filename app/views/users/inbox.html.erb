@@ -29,9 +29,9 @@
 						<% end %>
 						
 						<% if current_page?(inbox_user_path(current_user,:mbox=>"sent")) %>
-						<span class="username"><%= link_to(h(message.consumer.name), message.consumer) %></span>
+						<span class="username"><%= link_to(h(message.consumer.name), message.consumer) %></span><br />
 						<% else %>
-						<span class="username"><%= link_to(h(message.producer.name), message.producer) %></span>
+						<span class="username"><%= link_to(h(message.producer.name), message.producer) %></span><br />
 						<% end %>
 						
 						<span class="date"><%= "#{time_ago_in_words(message.created_at)} ago" %></span>
