@@ -473,9 +473,23 @@ table.inbox_messages td.user img {
 	float: left;
 	}
 
-table.inbox_messages tr {
+table.inbox_messages tr  td {
 	border-bottom: 1px dotted #bbb;
-}
+	}
+
+table.inbox_messages ul {
+	margin: 0;
+	padding: 0;
+	background: #eee;
+	}
+
+table.inbox_messages li {
+	display: inline;
+	}
+
+table.inbox_messages li a {
+	float: left;
+	}
 	
 /* PROFILE
 ================================================*/
