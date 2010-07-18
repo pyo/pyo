@@ -13,8 +13,8 @@
 
 			<ul class="inbox-buttons">
 				<li class="<%= get_inbox_current() %>"><%= link_to 'Unread Messages', inbox_user_path(current_user) %></li>
-				<li class="<%= get_inbox_current('sent') %>"><%= link_to 'Sent Messages', inbox_user_path(current_user, :mbox => 'sent') %></li>
 				<li class="<%= get_inbox_current('archive') %>"><%= link_to 'Read Messages', inbox_user_path(current_user, :mbox => 'archive') %></li>
+				<li class="<%= get_inbox_current('sent') %>"><%= link_to 'Sent Messages', inbox_user_path(current_user, :mbox => 'sent') %></li>
 			</ul>
 			
 			<% if @messages.empty? %>

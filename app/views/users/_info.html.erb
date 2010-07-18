@@ -16,14 +16,14 @@
 <% if current_page?(dashboard_path) %>
 <li><a href="<%= dashboard_path %>"><%= image_tag "ico_left-feed.png" %> <span><strong>Activity Feed</strong></span></a></li>
   <ul class="children">
-  <li><a href="<%= dashboard_path :type => "statuses" %>"><%= image_tag "icons/status_small.png" %> <span>Status Updates</span></a></li>
-  <li><a href="<%= dashboard_path :type => "comments" %>"><%= image_tag "icons/comments_small.png" %><span>Comments</span></span></a></li>
-  <li><a href="<%= dashboard_path :type => "pictures" %>"><%= image_tag "icons/pictures_small.png" %> <span>Pictures</span></a></li>
-  <li><a href="<%= dashboard_path :type => "audios" %>"><%= image_tag "icons/songs_small.png" %> <span>Songs</span></a></li>
-  <li><a href="<%= dashboard_path :type => "videos" %>"><%= image_tag "icons/videos_small.png" %> <span>Videos</span></a></li>
-  <li><a href="<%= dashboard_path :type => "blogs" %>"><%= image_tag "icons/blogs_small.png" %> <span>Blogs</span></a></li>
-  <li><a href="<%= dashboard_path :type => "follows" %>"><%= image_tag "icons/follow_small.png" %> <span>Follows</span></a></li>
-  <li><a href="<%= dashboard_path :type => "likes" %>"><%= image_tag "icons/like_small.png" %> <span>Likes</span></a></li>
+  <li class="<%= get_dashboard_current('statuses') %>"><a href="<%= dashboard_path :type => "statuses" %>"><%= image_tag "icons/status_small.png" %> <span>Status Updates</span></a></li>
+  <li class="<%= get_dashboard_current('comments') %>"><a href="<%= dashboard_path :type => "comments" %>"><%= image_tag "icons/comments_small.png" %><span>Comments</span></span></a></li>
+  <li class="<%= get_dashboard_current('pictures') %>"><a href="<%= dashboard_path :type => "pictures" %>"><%= image_tag "icons/pictures_small.png" %> <span>Pictures</span></a></li>
+  <li class="<%= get_dashboard_current('audios') %>"><a href="<%= dashboard_path :type => "audios" %>"><%= image_tag "icons/songs_small.png" %> <span>Songs</span></a></li>
+  <li class="<%= get_dashboard_current('videos') %>"><a href="<%= dashboard_path :type => "videos" %>"><%= image_tag "icons/videos_small.png" %> <span>Videos</span></a></li>
+  <li class="<%= get_dashboard_current('blogs') %>"><a href="<%= dashboard_path :type => "blogs" %>"><%= image_tag "icons/blogs_small.png" %> <span>Blogs</span></a></li>
+  <li class="<%= get_dashboard_current('follows') %>"><a href="<%= dashboard_path :type => "follows" %>"><%= image_tag "icons/follow_small.png" %> <span>Follows</span></a></li>
+  <li class="<%= get_dashboard_current('likes') %>"><a href="<%= dashboard_path :type => "likes" %>"><%= image_tag "icons/like_small.png" %> <span>Likes</span></a></li>
   </ul>
 <% else %>
 <li><a href="<%= dashboard_path %>"><%= image_tag "ico_left-feed.png" %> <span>Activity Feed</span></a></li>
@@ -31,9 +31,9 @@
 <% if current_page?(inbox_user_path(current_user)) %>
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span><strong>Inbox (<%= "#{current_user.messages.unread.count}" %>)</strong></span></a></li>
   <ul class="children">
-  <li><a href="<%= inbox_user_path(current_user) %>"><span>Unread Messages (<%= "#{current_user.messages.unread.count}" %>)</span></a></li>
-  <li><a href="<%= inbox_user_path(current_user,:mbox=>"archive") %>"><span>Read Messages (<%= "#{current_user.messages.read.count}" %>)</span></span></a></li>
-  <li><a href="<%= inbox_user_path(current_user,:mbox=>"sent") %>"><span>Sent Messages (<%= "#{current_user.sent_messages.count}" %>)</span></a></li>
+  <li class="<%= get_inbox_current() %>"><a href="<%= inbox_user_path(current_user) %>"><span>Unread Messages (<%= "#{current_user.messages.unread.count}" %>)</span></a></li>
+  <li class="<%= get_inbox_current('archive') %>"><a href="<%= inbox_user_path(current_user,:mbox=>"archive") %>"><span>Read Messages (<%= "#{current_user.messages.read.count}" %>)</span></span></a></li>
+  <li class="<%= get_inbox_current('sent') %>"><a href="<%= inbox_user_path(current_user,:mbox=>"sent") %>"><span>Sent Messages (<%= "#{current_user.sent_messages.count}" %>)</span></a></li>
   </ul>
 <% else %>
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span>Inbox (<%= "#{current_user.messages.unread.count}" %>)</strong></span></a></li>
