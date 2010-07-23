@@ -12,10 +12,29 @@
 	        </div>
 				
 			<ul class="inbox-buttons">
-				<li class="<%= get_inbox_current() %>"><%= link_to 'Unread Messages', inbox_user_path(current_user) %></li>
-				<li class="<%= get_inbox_current('archive') %>"><%= link_to 'Read Messages', inbox_user_path(current_user, :mbox => 'archive') %></li>
-				<li class="<%= get_inbox_current('sent') %>"><%= link_to 'Sent Messages', inbox_user_path(current_user, :mbox => 'sent') %></li>
+				<li><%= link_to 'Unread Messages', inbox_user_path(current_user) %></li>
+				<li><%= link_to 'Read Messages', inbox_user_path(current_user, :mbox => 'archive') %></li>
+				<li><%= link_to 'Sent Messages', inbox_user_path(current_user, :mbox => 'sent') %></li>
 			</ul>
+			
+			<div class="view-message">
+				
+				<div class="message-thumb">
+				<%= link_to(image_tag(@direct_message.producer.profile.avatar.url(:dashboard)), @direct_message.producer) %>
+				</div>
+				
+				<div class="message-body">
+					
+					<p class="message-meta">
+					<span class="date">Sent: <%= time_ago_in_words(@direct_message.created_at) %></span>
+					<span class="reply"><%= link_to "#{image_tag('/images/reply.png')} <span>Reply to #{h @direct_message.producer.name}</span>", new_user_direct_message_path(@direct_message.producer) %></span>
+					</p>
+					
+					<p><%= h(@direct_message.message).gsub(/\n/,"<br />") %></p>
+										
+				</div>
+				
+			</div>
 			
         </div>
         <!-- /END INBOX -->
