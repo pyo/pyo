@@ -1,0 +1,70 @@
+<!-- BEGIN COLUMNS -->
+<table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="top" id="content" class="column_left">
+	
+        <!-- BEGIN INBOX -->
+        <div class="main">
+
+	        <div class="page-title">
+	        <h2><%= image_tag "ico_left-inbox.png" %> <span>Direct message from <%= h @direct_message.producer.name %> to <%= h @direct_message.consumer.name %></span></h2>
+	        </div>
+				
+			<ul class="inbox-buttons">
+				<li class="<%= get_inbox_current() %>"><%= link_to 'Unread Messages', inbox_user_path(current_user) %></li>
+				<li class="<%= get_inbox_current('archive') %>"><%= link_to 'Read Messages', inbox_user_path(current_user, :mbox => 'archive') %></li>
+				<li class="<%= get_inbox_current('sent') %>"><%= link_to 'Sent Messages', inbox_user_path(current_user, :mbox => 'sent') %></li>
+			</ul>
+			
+			<% if @messages.empty? %>
+			<p>No new messages...</p>
+			<% else %>
+			<table cellpadding='0' cellspacing='0' class='inbox_messages' width='100%'>
+				<tbody>
+					<% for message in @messages %>
+					<tr>
+						<td class='user'>
+						<% if current_page?(inbox_user_path(current_user,:mbox=>"sent")) %>
+						<%= link_to(image_tag(message.consumer.profile.avatar.url(:thumb)), message.consumer) %>
+						<% else %>
+						<%= link_to(image_tag(message.producer.profile.avatar.url(:thumb)), message.producer) %>
+						<% end %>
+						
+						<% if current_page?(inbox_user_path(current_user,:mbox=>"sent")) %>
+						<span class="username"><%= link_to(h(message.consumer.name), message.consumer) %></span><br />
+						<% else %>
+						<span class="username"><%= link_to(h(message.producer.name), message.producer) %></span><br />
+						<% end %>
+						
+						<span class="date"><%= "#{time_ago_in_words(message.created_at)} ago" %></span>
+						</td>
+
+						<td class='message'>
+						<%= h truncate(message.message,100) %>
+						</td>
+
+						<td class='actions'>
+						<%= link_to "#{image_tag('/images/read.png')} <span>read</span>", user_direct_message_path(current_user,message) %>
+						<%= link_to("#{image_tag('/images/delete.png')} <span>delete</span>", [current_user,message], :confirm => 'Are you sure?', :method => :delete) %>
+						</td>
+
+					</tr>
+					<% end %>
+				</tbody>	
+			</table>
+			<% end %>
+        </div>
+        <!-- /END INBOX -->
+
+      </td>
+      <td valign="top" id="side_bar" class="column_right">
+	
+        <%= render "users/info" %>
+		<%= render "shared/tall_advertisement" %>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /END COLUMNS -->
