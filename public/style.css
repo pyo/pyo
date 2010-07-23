@@ -495,6 +495,11 @@ ul.inbox-buttons li.current a {
 	background: #bbb;
 	color: #000;
 	}
+
+h2.inbox-show span {
+	font-size: 18px;
+	font-weight: normal;
+	}
 	
 /* PROFILE
 ================================================*/

@@ -8,7 +8,7 @@
         <div class="main">
 
 	        <div class="page-title">
-	        <h2><%= image_tag "ico_left-inbox.png" %> <span>Direct message from <%= h @direct_message.producer.name %> to <%= h @direct_message.consumer.name %></span></h2>
+	        <h2 class="inbox-show"><%= image_tag "ico_left-inbox.png" %> <span>Direct message from <strong><%= h @direct_message.producer.name %></strong> to <strong><%= h @direct_message.consumer.name %></strong></span></h2>
 	        </div>
 				
 			<ul class="inbox-buttons">
