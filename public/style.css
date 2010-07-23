@@ -502,6 +502,7 @@ h2.inbox-show span {
 	}
 
 .view-message {
+	margin: 10px 0 0 0;
 	width: 520px;
 	}
 
@@ -514,6 +515,11 @@ h2.inbox-show span {
 .message-body {
 	float: left;
 	width: 410px;
+	}
+
+.message-body p {
+	padding: 10px;
+	margin: 10px;
 	}
 	
 /* PROFILE
