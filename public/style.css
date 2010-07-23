@@ -500,6 +500,21 @@ h2.inbox-show span {
 	font-size: 18px;
 	font-weight: normal;
 	}
+
+.view-message {
+	width: 520px;
+	}
+
+.message-thumb {
+	margin: 0 10px 0 0;
+	float: left;
+	width: 100px;
+	}
+
+.message-body {
+	float: left;
+	width: 410px;
+	}
 	
 /* PROFILE
 ================================================*/
