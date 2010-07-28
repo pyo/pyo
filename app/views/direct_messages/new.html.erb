@@ -1,0 +1,51 @@
+<!-- BEGIN COLUMNS -->
+<table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="top" id="content" class="column_left">
+	
+        <!-- BEGIN INBOX -->
+        <div class="main">
+
+	        <div class="page-title">
+	        <h2 class="inbox-new"><%= image_tag "ico_left-inbox.png" %> <span>New direct message to <strong><%= h @user.name %></strong></span></h2>
+	        </div>
+			
+			<div class="view-message">
+				
+				<div class="message-thumb">
+				<%= link_to(image_tag(@user.profile.avatar.url(:dashboard)) %>
+				</div>
+				
+				<div class="message-body">
+					
+				<% form_for [@user,@direct_message] do |f| %>
+				<label>Message:</label><br />
+				<%= f.hidden_field :consumer_id, :value=>@user.id %>
+				<%= f.hidden_field :consumer_id, :value=>@user.id %>
+				<%= f.hidden_field :consumer_id, :value=>@user.id %>
+				<%= f.hidden_field :consumer_id, :value=>@user.id %>
+				<%= f.text_area :message, :style=>"width:98%" %>
+				<%= f.submit "Send" %>
+				<% end %>
+										
+				</div>
+				
+				<div class="clear"></div>
+				
+			</div>
+			
+        </div>
+        <!-- /END INBOX -->
+
+      </td>
+      <td valign="top" id="side_bar" class="column_right">
+	
+        <%= render "users/info" %>
+		<%= render "shared/tall_advertisement" %>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /END COLUMNS -->

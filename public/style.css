@@ -497,7 +497,7 @@ ul.inbox-buttons li.current a {
 	}
 
 h2.inbox-show span {
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: normal;
 	}
 
@@ -509,18 +509,20 @@ h2.inbox-show span {
 .message-thumb {
 	margin: 0 10px 0 0;
 	float: left;
-	width: 100px;
+	width: 80px;
 	}
 
 .message-body {
 	float: left;
-	width: 410px;
+	width: 430px;
 	}
 
 .message-body p {
-	padding: 10px;
-	margin: 10px;
+	padding: 5px;
+	margin: 5px;
 	}
+
+.message-body span.date { font-weight: bold; }
 	
 /* PROFILE
 ================================================*/
