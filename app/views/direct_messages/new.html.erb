@@ -14,7 +14,7 @@
 			<div class="view-message">
 				
 				<div class="message-thumb">
-				<%= link_to(image_tag(@user.profile.avatar.url(:dashboard)) %>
+				<%= link_to(image_tag(@user.profile.avatar.url(:dashboard)), @user) %>
 				</div>
 				
 				<div class="message-body">
@@ -22,9 +22,9 @@
 				<% form_for [@user,@direct_message] do |f| %>
 				<label>Message:</label><br />
 				<%= f.hidden_field :consumer_id, :value=>@user.id %>
-				<%= f.hidden_field :consumer_id, :value=>@user.id %>
-				<%= f.hidden_field :consumer_id, :value=>@user.id %>
-				<%= f.hidden_field :consumer_id, :value=>@user.id %>
+				<%= f.hidden_field :consumer_type, :value=>"User" %>
+				<%= f.hidden_field :producer_id, :value=>current_user.id %>
+				<%= f.hidden_field :producer_type, :value=>"User" %>
 				<%= f.text_area :message, :style=>"width:98%" %>
 				<%= f.submit "Send" %>
 				<% end %>
