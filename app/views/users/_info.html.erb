@@ -28,10 +28,10 @@
 <% else %>
 <li><a href="<%= dashboard_path %>"><%= image_tag "ico_left-feed.png" %> <span>Activity Feed</span></a></li>
 <% end %>
-<% if current_page?(inbox_user_path(current_user)) || current_page?(new_user_direct_message_path(@user)) %>
+<% if current_page?(inbox_user_path(current_user)) || current_page?(new_user_direct_message_path(@user)) || current_page?(user_direct_message_path(current_user,message)) %>
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span><strong>Inbox (<%= "#{current_user.messages.unread.count}" %>)</strong></span></a></li>
   <ul class="children">
-  <li class="<%= get_inbox_current() %>"><a href="<%= inbox_user_path(current_user) %>"><span>Unread Messages (<%= "#{current_user.messages.unread.count}" %>)</span></a></li>
+  <li class="<%= get_inbox_current() unless current_page?(new_user_direct_message_path(@user)) || current_page?(user_direct_message_path(current_user,message)) %>"><a href="<%= inbox_user_path(current_user) %>"><span>Unread Messages (<%= "#{current_user.messages.unread.count}" %>)</span></a></li>
   <li class="<%= get_inbox_current('archive') %>"><a href="<%= inbox_user_path(current_user,:mbox=>"archive") %>"><span>Read Messages (<%= "#{current_user.messages.read.count}" %>)</span></span></a></li>
   <li class="<%= get_inbox_current('sent') %>"><a href="<%= inbox_user_path(current_user,:mbox=>"sent") %>"><span>Sent Messages (<%= "#{current_user.sent_messages.count}" %>)</span></a></li>
   </ul>
