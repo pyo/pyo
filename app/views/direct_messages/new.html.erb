@@ -8,7 +8,7 @@
         <div class="main">
 
 	        <div class="page-title">
-	        <h2 class="inbox-show"><%= image_tag "ico_left-inbox.png" %> <span>New direct message to <strong><%= h @user.name %></strong></span></h2>
+	        <h2 class="inbox-show"><%= image_tag "ico_left-inbox.png" %> <span>New direct message to <strong><%= h @user.name %> <%= link_to(h(@user.name), @user) %></strong></span></h2>
 	        </div>
 	
 			<ul class="inbox-buttons">

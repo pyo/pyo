@@ -471,7 +471,7 @@ table.inbox_messages tr  td {
 	}
 
 ul.inbox-buttons {
-	width: 520px;
+	width: 530px;
 	height: 20px;
 	margin: 0;
 	padding: 10px 0 13px 10px;
@@ -500,6 +500,8 @@ h2.inbox-show span {
 	font-size: 16px;
 	font-weight: normal;
 	}
+
+h2.inbox-show a { color: #000; }
 
 .view-message {
 	margin: 10px 0 0 0;
