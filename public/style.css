@@ -525,6 +525,10 @@ h2.inbox-show a { color: #000; }
 	}
 
 .message-body span.date { font-weight: bold; }
+
+textarea#direct_message_message { 
+	border: 1px solid #;
+	}
 	
 /* PROFILE
 ================================================*/

@@ -31,7 +31,7 @@
 				<%= f.hidden_field :consumer_type, :value=>"User" %>
 				<%= f.hidden_field :producer_id, :value=>current_user.id %>
 				<%= f.hidden_field :producer_type, :value=>"User" %>
-				<%= f.text_area :message, :style=>"width:98%" %>
+				<%= f.text_area :message %>
 				<%= f.submit "Send" %>
 				<% end %>
 										
