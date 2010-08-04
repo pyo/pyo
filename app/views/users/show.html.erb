@@ -1,0 +1,36 @@
+<!-- BEGIN COLUMNS -->
+<table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="top" id="content" class="column_left">
+		
+		<% if @user.suspended? %>
+		  <p>This user has been suspended.</p>
+		  <% if current_user.super_user? %>
+		    <%= link_to "Restore this User", restore_user_path(@user), :method => :put %>
+		  <% end %>
+
+		<% else %>
+
+        <!-- BEGIN PROFILE -->
+        <div class="main">
+	
+			<%= render "users/public_top" %>
+
+        </div>
+        <!-- /END PROFILE -->
+
+		<% end %>
+
+      </td>
+      <td valign="top" id="side_bar" class="column_right">
+		
+		<%= render "users/public_info" %>
+        <!-- <%= render shared[slash]square_ad %> -->
+		<%= render "shared/tall_advertisement" %>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /END COLUMNS -->

@@ -1,0 +1,16 @@
+<!-- BEGIN LASTUPDATE -->
+<div class="prof-lastupdate">
+<h2><%= link_to @user.name.capitalize_words, @user %> <% if @user.status %><span><%= @user.status.message %> <%= "(" + link_to('delete', activity_path(current_user.status.id), :method => :delete, :confirm => "Are you sure?") + ")" if @user == current_user %></span><% end %></h2>
+<% if @user.status %><div class="prof-status-update"><%= image_tag "icons/update_status.gif" %><span><%= "#{time_ago_in_words(activity.created_at)}" %> ago</span></div><% end %>
+</div>
+<!-- /END LASTUPDATE -->
+
+<!-- BEGIN JOINED -->
+<div class="prof-joined">
+<strong>Joined:</strong> <%= @user.created_at.strftime("%B %Y") %> | <strong>Profile Views Today:</strong> <%= @user.profile.view_count(:range => 'today') %> | <strong>Total Profile Views:</strong> <%= @user.profile.view_count %>
+</div>
+<!-- /END JOINED -->
+
+<% if flash[:notice] %>
+<p class="notify"><%= flash[:notice] %></p>
+<% end %> 

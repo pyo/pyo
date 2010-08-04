@@ -505,7 +505,7 @@ h2.inbox-show a { color: #000; }
 
 .view-message {
 	margin: 10px 0 0 0;
-	width: 520px;
+	width: 540px;
 	}
 
 .message-thumb {
@@ -516,7 +516,7 @@ h2.inbox-show a { color: #000; }
 
 .message-body {
 	float: left;
-	width: 430px;
+	width: 445px;
 	}
 
 .message-body p {
@@ -527,7 +527,29 @@ h2.inbox-show a { color: #000; }
 .message-body span.date { font-weight: bold; }
 
 textarea#direct_message_message { 
+	width: 435px;
 	border: 1px solid #;
+	font-size: 12px;
+	font-family: "Lucida Grande", Verdana, Arial;
+	padding: 5px;
+	}
+
+input#direct_message_submit {
+	float: right;
+	margin: 5px 0 0 0;
+	width: 50px;
+	height: 25px;
+	background: url(images/post.gif) top left no-repeat;
+	border: 1px solid #05216a;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	cursor: pointer;	
+	}
+
+input#direct_message_submit:active {
+	background-color: #1b63d4;
+	background-image: none;
 	}
 	
 /* PROFILE
