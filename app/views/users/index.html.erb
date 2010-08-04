@@ -12,6 +12,10 @@
 			<p>There are currently <strong><%= @users.total_entries %></strong> members on PYO.</p>
 	        </div>
 	
+			<% if flash[:notice] %>
+			<p class="notify"><%= flash[:notice] %></p>
+			<% end %> 
+	
 			<%= render "sorting" %>
 
 			<div class="users">

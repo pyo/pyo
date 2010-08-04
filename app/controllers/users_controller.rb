@@ -149,13 +149,13 @@ class UsersController < ApplicationController
   def suspend
     @user.update_attribute(:suspended, true)
     flash[:notice] = "This user has been suspended."
-    redirect_to users_path
+    redirect_to @user
   end
   
   def restore
     @user.update_attribute(:suspended, false)
     flash[:notice] = "This user has been restored"
-    redirect_to users_path
+    redirect_to @user
   end
   
   def follow
