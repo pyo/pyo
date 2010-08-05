@@ -20,10 +20,16 @@
 
 <!-- PROFILE INFO -->
 <div class="prof-info">
-<% if @user.profile.full_name.length > 0 %><p><strong>Name:</strong> <%= @user.profile.full_name.capitalize %></p><% end %>
-<% if @user.city_and_state.length > 0 %><p><strong>Location:</strong><%= @user.city_and_state.join(", ") %></p><% end %>
+<% if @user.profile.full_name.length > 0 %>
+<p><strong>Name:</strong> <%= @user.profile.full_name.capitalize %></p>
+<% end %>
+<% if @user.city_and_state.length > 0 %>
+<p><strong>Location:</strong><%= @user.city_and_state.join(", ") %></p>
+<% end %>
 <p><strong>Class:</strong> <% @user.talent_type %></p>
-<% if @user.profile.url.length > 0 %><p><strong>Website:</strong> <a href="<%= @user.profile.url %>"><%= @user.profile.url %></a></p><% end %>
+<% if @user.profile.url.length > 0 %>
+<p><strong>Website:</strong> <a href="<%= @user.profile.url %>"><%= @user.profile.url %></a></p>
+<% end %>
 </div>
 <!-- /PROFILE INFO -->
 
@@ -102,5 +108,4 @@
 </ul>
 </div>
 <!-- /SUB_INFO -->
-<% end %>
 <% end %>
