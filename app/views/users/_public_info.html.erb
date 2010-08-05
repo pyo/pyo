@@ -8,7 +8,7 @@
 <div class="prof-left-top-bar">
 <% if current_user and current_user != @user %>
 <% unless current_user.following?(@user) %>
-<div class="prof-follow"><%= link_to(image_tag("blank.gif"), :width => "120", :height => "50", :border => "0", follow_user_path(@user), :method => :post) %></div>
+<div class="prof-follow"><%= link_to(image_tag("blank.gif"), :width => "120", :height => "50", :border => "0", follow_user_path(@user), :method => :post)) %></div>
 <% else %>
 <div class="prof-follow"><%= image_tag("following.gif"), :width => "120", :height => "50", :border => "0" %></div>
 <div class="prof-message"><%= link_to(image_tag("blank.gif"), :width => "140", :height => "50", :border => "0", new_user_direct_message_path(@user)) %></div>
