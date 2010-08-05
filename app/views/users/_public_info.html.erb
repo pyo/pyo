@@ -1,5 +1,3 @@
-<%= link_to(image_tag("blank.gif", :size => "140x50", :border => "0")), new_user_direct_message_path(@user) %>
-
 <!-- PROFILE IMAGE -->
 <div class="prof-image">
 <%= image_tag @user.profile.avatar.url(:profile) %>
@@ -10,10 +8,10 @@
 <div class="prof-left-top-bar">
 <% if current_user and current_user != @user %>
 <% unless current_user.following?(@user) %>
-<div class="prof-follow"><%= link_to(image_tag("blank.gif", :size => "120x50", :border => "0")), follow_user_path(@user), :method => :post %></div>
+<div class="prof-follow"><%= link_to image_tag("blank.gif", :size => "120x50", :border => "0"), follow_user_path(@user), :method => :post %></div>
 <% else %>
 <div class="prof-follow"><%= image_tag("following.gif", :size => "120x50", :border => "0") %></div>
-<div class="prof-message"><%= link_to(image_tag("blank.gif", :size => "140x50", :border => "0")), new_user_direct_message_path(@user) %></div>
+<div class="prof-message"><%= link_to image_tag("blank.gif", :size => "140x50", :border => "0"), new_user_direct_message_path(@user) %></div>
 <%= render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user? %>
 <% end %>
 <% end %>
