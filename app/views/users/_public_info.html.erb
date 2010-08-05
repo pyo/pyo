@@ -54,9 +54,7 @@
 <%= render "shared/square_ad" %>
 
 <% @followings ||= User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 25, :page => 1) if @user %>
-<% if @followings.empty? %>
-<div></div>
-<% else %>
+<% unless @followings.empty? %>
 <!-- FOLLOWING -->
 <div class="prof-following">
 <h3>Following</h3>
@@ -86,9 +84,7 @@
 <!-- /BIO -->
 <% end %>
 
-<% if @posts.empty? %>
-<div></div>
-<% else %>
+<% unless @posts.empty? %>
 <!-- SUB_INFO -->
 <div class="sub_info">
 <h3>Blog Posts</h3>
@@ -101,9 +97,7 @@
 <!-- /SUB_INFO -->
 <% end %>
 
-<% if @groups.empty? %>
-<div></div>
-<% else %>
+<% unless @groups.empty? %>
 <!-- SUB_INFO -->
 <div class="sub_info">
 <h3>Groups</h3>
@@ -114,4 +108,5 @@
 </ul>
 </div>
 <!-- /SUB_INFO -->
+<% end %>
 <% end %>
