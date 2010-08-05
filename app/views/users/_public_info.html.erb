@@ -4,18 +4,18 @@
 </div>
 <!-- /PROFILE IMAGE -->
 
+<% if current_user and current_user != @user %>
 <!-- LEFT (TOP) BAR -->
 <div class="prof-left-top-bar">
-<% if current_user and current_user != @user %>
 <% unless current_user.following?(@user) %>
 <div class="prof-follow"><%= link_to image_tag("blank.gif", :size => "120x50", :border => "0"), follow_user_path(@user), :method => :post %></div>
 <% else %>
 <div class="prof-follow"><%= image_tag("following.gif", :size => "120x50", :border => "0") %></div>
 <div class="prof-message"><%= link_to image_tag("blank.gif", :size => "140x50", :border => "0"), new_user_direct_message_path(@user) %></div>
 <% end %>
-<% end %>
 </div>
 <!-- /LEFT (TOP) BAR -->
+<% end %>
 
 <%= render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user? %>
 
@@ -27,9 +27,9 @@
 <% if @user.city_and_state.length > 0 %>
 <p><strong>Location:</strong><%= @user.city_and_state.join(", ") %></p>
 <% end %>
-<p><strong>Class:</strong> <% @user.talent_type %></p>
+<p><strong>Class:</strong> <%= @user.talent_type %></p>
 <% if @user.profile.url.length > 0 %>
-<p><strong>Website:</strong> <a href="<%= @user.profile.url %>"><%= @user.profile.url %></a></p>
+<p><strong>Website:</strong> <a href="<%= @user.profile.url %>" target="_blank"><%= @user.profile.url %></a></p>
 <% end %>
 </div>
 <!-- /PROFILE INFO -->

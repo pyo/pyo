@@ -1,4 +1,4 @@
-<ul>
+<ul class="admin-controls">
     <% if @user.super_user? %>
         <li><%= link_to "Demote Admin", change_admin_status_user_path(@user, :user => {:admin=>"0"}, :format => 'js'), :class => "change_admin" %></li>
     <% else %>
