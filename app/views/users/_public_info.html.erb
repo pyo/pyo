@@ -1,0 +1,105 @@
+<!-- PROFILE IMAGE -->
+<div class="prof-image">
+<%= image_tag @user.profile.avatar.url(:profile) %>
+</div>
+<!-- /PROFILE IMAGE -->
+
+<!-- LEFT (TOP) BAR -->
+<div class="prof-left-top-bar">
+<% if current_user and current_user != @user %>
+<% unless current_user.following?(@user) %>
+<div class="prof-follow"><%= link_to(image_tag("blank.gif"), :width => "120", :height => "50", :border => "0", follow_user_path(@user), :method => :post) %></div>
+<% else %>
+<div class="prof-follow"><%= image_tag("following.gif"), :width => "120", :height => "50", :border => "0" %></div>
+<div class="prof-message"><%= link_to(image_tag("blank.gif"), :width => "140", :height => "50", :border => "0", new_user_direct_message_path(@user)) %></div>
+<%= render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user? %>
+<% end %>
+<% end %>
+</div>
+<!-- /LEFT (TOP) BAR -->
+
+<!-- PROFILE INFO -->
+<div class="prof-info">
+<% if @user.profile.full_name.length > 0 %><p><strong>Name:</strong> <%= @user.profile.full_name.capitalize %></p><% end %>
+<% if @user.city_and_state.length > 0 %><p><strong>Location:</strong><%= @user.city_and_state.join(", ") %></p><% end %>
+<p><strong>Class:</strong> <% @user.talent_type %></p>
+<% if @user.profile.url.length > 0 %><p><strong>Website:</strong> <%= link_to(@user.profile.url), @user.profile.url %></p><% end %>
+</div>
+<!-- /PROFILE INFO -->
+
+<!-- FOLLOWERS -->
+<div class="prof-followers">
+<p><a href="<%= followers_user_path(@user) %>"><%= @user.followers.size %> <span>Followers</span></a></p>
+<p><a href="<%= following_user_path(@user) %>"><%= @user.followings.size %> <span>Following</span></a></p>
+</div>
+<!-- /FOLLOWERS -->
+
+<!-- MEDIA -->
+<div class="prof-media">
+<ul>
+<li><a href="<%= likes_user_path(@user) %>"><%= image_tag("ico_left-lik.png") %> <span><%= @user.likes.size %> Likes</span></a></li>
+<li><a href="<%= user_photos_path(@user) %>"><%= image_tag("ico_left-pic.png") %> <span><1,234><%= @user.photos.size %> Pictures</span></a></li>
+<li><a href="<%= user_tracks_path(@user) %>"><%= image_tag("ico_left-vid.png") %> <span><%= @user.videos.size %> Videos</span></a></li>
+<li><a href="<%= user_videos_path(@user) %>" style="border-bottom:1px solid #ccc;"><%= image_tag("ico_left-son.png") %> <span><%= @user.tracks.size %> Songs</span></a></li>
+</ul>
+</div>
+<!-- /MEDIA -->
+
+<%= render "shared/square_ad" %>
+
+<% @followings ||= User.all(:include => :profile, :joins => "INNER JOIN followings ON ( users.id = followings.child_id AND followings.child_type = 'User')", :conditions => ["parent_id = ?", @user.id]).paginate(:per_page => 25, :page => 1) if @user %>
+<% unless @followings.empty? %>
+<!-- FOLLOWING -->
+<div class="prof-following">
+<h3>Following</h3>
+
+    <div class="followings">
+	<% @followings.each do |following| %>
+	<%= link_to(image_tag(following.profile.avatar.url(:thumb)), user_path(following)) %>
+	<% end %>
+	<div style="clear:both;padding:5px 0 0 0;"><%= link_to "View All (#{@user.followings.size})", following_user_path(@user) %></div>
+    </div>
+    
+</div>
+<!-- /FOLLOWING -->
+<% end %>
+<% end %>
+
+<% if @user.profile.bio %>
+<!-- BIO -->
+<div class="prof-bio">
+<h3>Bio</h3>
+
+	<div class="bio-text">
+	<%= @user.profile.bio %>
+	</div>
+                              	
+</div>
+<!-- /BIO -->
+<% end %>
+
+<% unless @posts.empty? %>
+<!-- SUB_INFO -->
+<div class="sub_info">
+<h3>Blog Posts</h3>
+<ul>
+<% @posts.each do |post| %>
+<li><%= link_to post.title, post %></li>
+<% end %>
+</ul>
+</div>
+<!-- /SUB_INFO -->
+<% end %>
+
+<% unless @groups.empty? %>
+<!-- SUB_INFO -->
+<div class="sub_info">
+<h3>Groups</h3>
+<ul>
+<% @groups.each do |group| %>
+<li><%= link_to group.name, group %></li>
+<% end %>
+</ul>
+</div>
+<!-- /SUB_INFO -->
+<% end %>
