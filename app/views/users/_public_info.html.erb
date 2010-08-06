@@ -17,7 +17,7 @@
 </div>
 <!-- /LEFT (TOP) BAR -->
 
-<% = render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user? %>
+<%= render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user? %>
 <% end %>
 
 <!-- PROFILE INFO -->
