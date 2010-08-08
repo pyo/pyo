@@ -645,6 +645,25 @@ input#direct_message_submit:active {
 	background-position: bottom left;
 	}
 
+ul.admin-controls {
+	margin: 0 0 0 10px;
+	width: 300px;
+	}
+
+ul.admin-controls li {
+	width: 300px;
+	}
+
+ul.admin-controls li a {
+	display: block;
+	padding: 5px;
+	}
+
+ul.admin-controls li a:hover {
+	background: #ccc;
+	color: #000;
+	}
+
 .prof-info {
 	clear: both;
 	margin: auto;
