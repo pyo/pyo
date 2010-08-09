@@ -33,10 +33,14 @@
 </table>
 <!-- /END COLUMNS -->
 
-<% if current_user.following?(@user) %>
-<div style="clear:both;float:right;padding:10px 10px 0 0;">
-<%= link_to '[ X ] CLICK HERE TO UNFOLLOW THIS PROFILE', unfollow_user_path(@user), :method => :post %>
-</div>
+<% if current_user and current_user != @user %>
+
+	<% if current_user.following?(@user) %>
+	<div style="clear:both;float:right;padding:10px 10px 0 0;">
+	<%= link_to '[ X ] CLICK HERE TO UNFOLLOW THIS PROFILE', unfollow_user_path(@user), :method => :post %>
+	</div>
+	<% end %>
+	
 <% end %>
 
 <% end %>

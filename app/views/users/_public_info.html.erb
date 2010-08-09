@@ -23,7 +23,7 @@
 <!-- PROFILE INFO -->
 <div class="prof-info">
 <% if @user.profile.full_name.length > 0 %>
-<p><strong>Name:</strong> <%= @user.profile.full_name.capitalize %></p>
+<p><strong>Name:</strong> <%= @user.profile.full_name %></p>
 <% end %>
 <% if @user.city_and_state.length > 0 %>
 <p><strong>Location:</strong><%= @user.city_and_state.join(", ") %></p>
