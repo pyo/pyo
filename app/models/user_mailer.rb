@@ -1,21 +1,21 @@
 class UserMailer < ActionMailer::Base
   
   def direct_message(direct_message)  
-    subject      "You have a new Direct Message from #{direct_message.producer.name} on Put Yourself On..."  
+    subject      "You have a new Direct Message from #{direct_message.producer.name} on PYO..."  
     from         direct_message.producer.name  
     recipients   direct_message.consumer.email  
     body         :direct_message => direct_message
   end
   
   def new_follower(following)
-    subject    "#{following.parent.name} is now following you on Put Yourself On!"
+    subject    "#{following.parent.name} is now following you on PYO!"
     from       DO_NOT_REPLY
     recipients following.child.email
     body       :following => following
   end
 
   def photo_comment(photo, comment)
-    subject      "#{comment.producer.name} posted a comment to your photo on Put Yourself On..."
+    subject      "#{comment.producer.name} posted a comment to your photo on PYO..."
     from         DO_NOT_REPLY
     recipients   photo.user.email
     body         :photo   => photo,
@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def user_comment(user, comment)
-    subject      "#{comment.producer.name} posted a comment to your profile on Put Yourself On..."
+    subject      "#{comment.producer.name} posted a comment to your profile on PYO..."
     from         DO_NOT_REPLY
     recipients   user.email
     body         :user    => user,
@@ -31,7 +31,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def track_comment(track, comment)
-    subject      "#{comment.producer.name} posted a comment to your song on Put Yourself On..."
+    subject      "#{comment.producer.name} posted a comment to your song on PYO..."
     from         DO_NOT_REPLY
     recipients   track.user.email
     body         :track    => track,
@@ -39,7 +39,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def video_comment(video, comment)
-    subject      "#{comment.producer.name} posted a comment to your video on Put Yourself On..."
+    subject      "#{comment.producer.name} posted a comment to your video on PYO..."
     from         DO_NOT_REPLY
     recipients   video.user.email
     body         :video   => video,
@@ -47,7 +47,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def blog_comment(blog, comment)
-    subject      "#{comment.producer.name} posted a comment to your blog on Put Yourself On..."
+    subject      "#{comment.producer.name} posted a comment to your blog on PYO..."
     from         DO_NOT_REPLY
     recipients   blog.user.email
     body         :blog    => blog,
