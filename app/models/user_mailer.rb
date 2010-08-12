@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   def new_follower(following)
     subject    "#{following.parent.name} is now following you on Put Yourself On!"
     from       DO_NOT_REPLY
-    recipients following.child
+    recipients following.child.email
     body       :following => following
   end
 
