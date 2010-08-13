@@ -77,7 +77,7 @@
 		<div class="prof-activity-title">
 		<h2><%= image_tag "ico_left-pic.png" %> <%= @user.name.capitalize.possesive %> Pictures</h2>
 		<% if @photos.total_entries > @photos.per_page %>
-		<p><a href=""><%= link_to "See all #{@photos.total_entries} Pictures", user_photos_path(@user) %></a></p>
+		<p><%= link_to "See all #{@photos.total_entries} Pictures", user_photos_path(@user) %></p>
 		<% end %>
 		</div>
 		<!-- /END PICTURES -->
@@ -88,7 +88,7 @@
 		<div class="prof-activity-title">
 		<h2><%= image_tag "ico_left-vid.png" %> <%= @user.name.capitalize.possesive %> Videos</h2>
 		<% if @videos.total_entries > @videos.per_page %>
-		<p><a href=""><%= link_to "See all #{@videos.total_entries} Pictures", user_videos_path(@user) %></a></p>
+		<p><%= link_to "See all #{@videos.total_entries} Pictures", user_videos_path(@user) %></p>
 		<% end %>
 		</div>
 		<!-- /END PICTURES -->
@@ -99,7 +99,7 @@
 		<div class="prof-activity-title">
 		<h2><%= image_tag "ico_left-son.png" %> <%= @user.name.capitalize.possesive %> Music</h2>
 		<% if @tracks.total_entries > @tracks.per_page %>
-		<p><a href=""><%= link_to "See all #{@tracks.total_entries} Pictures", user_tracks_path(@user) %></a></p>
+		<p><%= link_to "See all #{@tracks.total_entries} Pictures", user_tracks_path(@user) %></p>
 		<% end %>
 		</div>
 		<!-- /END PICTURES -->
