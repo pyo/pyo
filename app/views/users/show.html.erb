@@ -74,35 +74,62 @@
 
 		<% unless @photos.empty? %>
 		<!-- BEGIN PICTURES -->
-		<div class="prof-activity-title">
-		<h2><%= image_tag "ico_left-pic.png" %> <%= @user.name.capitalize.possesive %> Pictures</h2>
-		<% if @photos.total_entries > @photos.per_page %>
-		<p><%= link_to "See all #{@photos.total_entries} Pictures", user_photos_path(@user) %></p>
-		<% end %>
+		<div class="prof-activity main" id="profile-photos">
+			
+			<div class="prof-activity-title">
+			<h2><%= image_tag "ico_left-pic.png" %> <%= @user.name.capitalize.possesive %> Pictures</h2>
+			<% if @photos.total_entries > @photos.per_page %>
+			<p><%= link_to "See all #{@photos.total_entries} Pictures", user_photos_path(@user) %></p>
+			<% end %>
+			
+			<% @photos.each do |photo| %>
+			
+			<% end %>
+		
 		</div>
 		<!-- /END PICTURES -->
 		<% end %>
 
 		<% unless @videos.empty? %>
-		<!-- BEGIN PICTURES -->
-		<div class="prof-activity-title">
-		<h2><%= image_tag "ico_left-vid.png" %> <%= @user.name.capitalize.possesive %> Videos</h2>
-		<% if @videos.total_entries > @videos.per_page %>
-		<p><%= link_to "See all #{@videos.total_entries} Pictures", user_videos_path(@user) %></p>
-		<% end %>
+		<!-- BEGIN VIDEOS -->
+		<div class="prof-activity main" id="profile-videos">
+			
+			<div class="prof-activity-title">
+			<h2><%= image_tag "ico_left-vid.png" %> <%= @user.name.capitalize.possesive %> Videos</h2>
+			<% if @videos.total_entries > @videos.per_page %>
+			<p><%= link_to "See all #{@videos.total_entries} Pictures", user_videos_path(@user) %></p>
+			<% end %>
+			
+			<% @videos.each do |video| %>
+			
+				<% div_for(video) do %>
+				<% end %>
+			
+			<% end %>
+		
 		</div>
-		<!-- /END PICTURES -->
+		<!-- /END VIDEOS -->
 		<% end %>
 
 		<% unless @tracks.empty? %>
-		<!-- BEGIN PICTURES -->
-		<div class="prof-activity-title">
-		<h2><%= image_tag "ico_left-son.png" %> <%= @user.name.capitalize.possesive %> Music</h2>
-		<% if @tracks.total_entries > @tracks.per_page %>
-		<p><%= link_to "See all #{@tracks.total_entries} Pictures", user_tracks_path(@user) %></p>
-		<% end %>
+		<!-- BEGIN MUSIC -->
+		<div class="prof-activity main" id="profile-music">
+			
+			<div class="prof-activity-title">
+			<h2><%= image_tag "ico_left-son.png" %> <%= @user.name.capitalize.possesive %> Music</h2>
+			<% if @tracks.total_entries > @tracks.per_page %>
+			<p><%= link_to "See all #{@tracks.total_entries} Pictures", user_tracks_path(@user) %></p>
+			<% end %>
+			
+			<% @videos.each do |video| %>
+			
+				<% for track in @tracks %>
+				<% end %>
+			
+			<% end %>
+		
 		</div>
-		<!-- /END PICTURES -->
+		<!-- /END MUSIC -->
 		<% end %>
 
 		<!-- BEGIN COMMENTS -->
