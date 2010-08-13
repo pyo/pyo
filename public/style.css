@@ -829,19 +829,27 @@ ul.admin-controls li a:hover {
 	width: 540px; 
 	}
 
-.prof-activity-title {
+.dash-activity-title {
 	width: 540px;
 	height: 35px;
 	border-bottom: 1px solid #ccc;
 	font-family: Verdana;
 	}
 
+.prof-activity-title {
+	width: 540px;
+	height: 20px;
+	border-bottom: 1px solid #ccc;
+	font-family: Verdana;
+	}
+
+.dash-activity-title img,
 .prof-activity-title img {
 	float: left;
 	margin: 0 10px 0 0;
 	}
 
-.prof-activity-title h2 {
+.dash-activity-title h2 {
 	width: 540px;
 	height: 35px;
 	float: left;
@@ -849,16 +857,20 @@ ul.admin-controls li a:hover {
 	margin: 0;
 	}
 
-.prof-activity-title h2.profile {
-	font-size: 18px !important;
-}
+.prof-activity-title h2 {
+	font-size: 18px;
+	height: 20px;
+	float: left;
+	color:;
+	}
 
-.prof-activity-title h2 span {
+.dash-activity-title h2 span {
 	position: relative;
 	top: 5px;
 	font-size: 20px;
 	}
 
+.dash-activity-title p,
 .prof-activity-title p {
 	margin: 5px 0 0 0;
 	padding: 0;
