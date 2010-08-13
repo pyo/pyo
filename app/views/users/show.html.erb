@@ -14,13 +14,61 @@
     <tr>
       <td valign="top" id="content" class="column_left">
 
-        <!-- BEGIN PROFILE -->
-        <div class="main">
-	
-			
+        <!-- BEGIN PROFILE ACTIVITY -->
+        <div class="prof-activity main" id="activities">
 
+			<div class="prof-activity-title">
+			<h2><%= @user.name.capitalize.possesive %> Updates/Activity</h2>
+			<% if @updates.total_pages > 1 %>
+			<p><a href=""><%= link_to "See all #{@updates.total_entries} Updates", updates_user_path %></a></p>
+			<% end %>
+			</div>
+			
+			<% unless @updates.empty? %>
+			
+			<% @updates.each do |activity| %>
+			
+				<% if activity.payload %>
+				
+					<% unless activity.is_a? FollowingActivity %>
+					
+					<% div_for(activity, :class => 'activity') do %>
+						<div class="activity_detail">
+						<p><%= link_to @user.name, @user %>
+						<span class="activity-desc"><%= display_notification(activity) %></span></p>
+						<p class="act_time"><%= image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon) %> <span><%= "#{time_ago_in_words(activity.created_at)}" %> ago</span></p>
+						</div>
+						
+						<div class="clear"></div>
+					<% end %>
+					
+					<% else %>
+					
+					<% div_for(activity, :class => 'activity') do %>
+						<div class="thumb">
+						<%= link_to(image_tag(activity.payload.parent.profile.avatar(:thumb)), activity.payload.parent) if activity.producer %>
+						</div>
+
+						<div class="activity_detail">
+						<p><%= link_to activity.payload.parent.name, activity.payload.parent %>
+						<span class="activity-desc"><%= display_notification(activity) %></span></p>
+						<p class="act_time"><%= image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon) %> <span><%= "#{time_ago_in_words(activity.created_at)}" %> ago</span></p>
+						</div>
+
+						<div class="clear"></div>
+					<% end %>
+					
+					<% end %>
+					
+				<% end %>
+			
+			<% else %>
+			
+			<p>No Updates/Activity yet...</p>
+			
+			<% end %>
         </div>
-        <!-- /END PROFILE -->
+        <!-- /END PROFILE ACTIVITY -->
 
       </td>
       <td valign="top" id="side_bar" class="column_right">
