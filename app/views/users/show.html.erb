@@ -18,7 +18,7 @@
         <div class="prof-activity main" id="activities">
 
 			<div class="prof-activity-title">
-			<h2 class="profile"><%= @user.name.capitalize.possesive %> Updates/Activity</h2>
+			<h2 class="profile"><%= image_tag "ico_left-feed.png" %> <%= @user.name.capitalize.possesive %> Activity</h2>
 			<% if @updates.total_pages > 1 %>
 			<p><a href=""><%= link_to "See all #{@updates.total_entries} Updates", updates_user_path %></a></p>
 			<% end %>

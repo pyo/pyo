@@ -849,6 +849,10 @@ ul.admin-controls li a:hover {
 	margin: 0;
 	}
 
+.prof-activity-title h2.profile {
+	font-size: 18px !important;
+}
+
 .prof-activity-title h2 span {
 	position: relative;
 	top: 5px;
