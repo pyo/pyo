@@ -600,7 +600,7 @@ input#direct_message_submit:active {
 	}
 
 .prof-image {
-	padding: 25px 0 10px 25px;
+	padding: 30px 0 10px 35px;
 	}
 
 .prof-left-top-bar {
@@ -750,7 +750,7 @@ ul.admin-controls li a:hover {
 .prof-bio h3, .sub_info h3 {
 	margin: 0 0 5px 0;
 	border-bottom: 1px solid #ccc;
-	padding: 5px;
+	padding: 5px 5px 5px 0;
 	}
 
 .followings img {
@@ -838,7 +838,7 @@ ul.admin-controls li a:hover {
 
 .prof-activity-title {
 	width: 540px;
-	height: 20px;
+	height: 25px;
 	border-bottom: 1px solid #ccc;
 	font-family: Verdana;
 	}
@@ -849,7 +849,13 @@ ul.admin-controls li a:hover {
 	margin: 0 10px 0 0;
 	}
 
-.dash-activity-title h2 {
+.prof-activity-title img {
+	margin: 0 5px 0 0;
+	width: 20px;
+	}
+
+.dash-activity-title h2,
+.prof-activity-title h2 {
 	width: 540px;
 	height: 35px;
 	float: left;
@@ -858,10 +864,8 @@ ul.admin-controls li a:hover {
 	}
 
 .prof-activity-title h2 {
-	font-size: 18px;
+	font-size: 18px !important;
 	height: 20px;
-	float: left;
-	color:;
 	}
 
 .dash-activity-title h2 span {
@@ -876,6 +880,11 @@ ul.admin-controls li a:hover {
 	padding: 0;
 	float: right;
 	font-size: 10px;
+	}
+
+.dash-activity-title p a,
+.prof-activity-title p a {
+	color: #000;
 	}
 
 .dash-update {
