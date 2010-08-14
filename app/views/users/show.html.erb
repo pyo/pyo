@@ -158,7 +158,6 @@
 				<% if tweet # sometimes twitter fails %>
 				<li class="profile_tweet">
 				<%= link_to image_tag(tweet["user"]["profile_image_url"]), "http://twitter.com/#{tweet["user"]["screen_name"]}/" %> <%= link_to tweet["text"], "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}" %><br />
-				<%= #link_to "#{time_ago_in_words(tweet.created_at)}", "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}" %>
 				</li>
 				<% end %>
 			<% end %>
