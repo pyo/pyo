@@ -912,7 +912,7 @@ ul.admin-controls li a:hover {
 	border: 3px solid #006fff;
 	}
 
-.prof-music ul {
+.prof-music ul, .prof-tweets ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -930,6 +930,25 @@ ul.admin-controls li a:hover {
 
 .prof-music li img {
 	float: left;
+	}
+	
+li.profile_tweet {
+	border-bottom: 1px dotted #bbb;
+	padding: 10px 7px 10px 7px;
+	}
+
+li.profile_tweet img {
+	float: left;
+	border: 3px solid #ccc;
+	margin: 0 5px 0 0;
+	}
+
+li.profile_tweet img:hover {
+	border: 3px solid #006fff;
+	}
+
+a.tweet_status {
+	color: #000;
 	}
 
 .dash-update {

@@ -157,7 +157,7 @@
 			<% for tweet in @tweets %>
 				<% if tweet # sometimes twitter fails %>
 				<li class="profile_tweet">
-				<%= link_to image_tag(tweet["user"]["profile_image_url"]), "http://twitter.com/#{tweet["user"]["screen_name"]}/" %> <%= link_to tweet["user"]["screen_name"], "http://twitter.com/#{tweet["user"]["screen_name"]}/", :class => "tweet_screen_name" %> <%= link_to tweet["text"], "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}", :class => "tweet_status" %><br />
+				<%= link_to image_tag(tweet["user"]["profile_image_url"]), "http://twitter.com/#{tweet["user"]["screen_name"]}/" %> <%= link_to tweet["user"]["screen_name"], "http://twitter.com/#{tweet["user"]["screen_name"]}/", :class => "tweet_screen_name" %> <%= link_to tweet["text"], "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}", :class => "tweet_status" %><br /><div class="clear"></div>
 				</li>
 				<% end %>
 			<% end %>
