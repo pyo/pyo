@@ -84,12 +84,12 @@
 			</div>
 			
 			<div class="prof-photos">
-			<% @photos.each do |photo| %>
-			<div class="prof-photo_thumb">
-			<%= link_to image_tag(photo.image.url(:thumb), :class => 'profile_photo'), user_photo_path(@user,photo) %>
-			</div>
-			<% end %>
-			<div class="clear"></div>
+				<% @photos.each do |photo| %>
+				<div class="prof-photo_thumb">
+				<%= link_to image_tag(photo.image.url(:thumb), :class => 'profile_photo'), user_photo_path(@user,photo) %>
+				</div>
+				<% end %>
+				<div class="clear"></div>
 			</div>
 		
 		</div>
@@ -132,10 +132,12 @@
 			<% end %>
 			</div>
 			
-			<div class="prof-tracks">
-			<% for track in @tracks %>
-			
-			<% end %>
+			<div class="prof-music">
+				<ul>
+				<% for track in @tracks %>
+				<li><%= link_to "#{image_tag('/images/play.gif')} #{h(track.name)}", user_track_path(@user,track) %></li>
+				<% end %>
+				</ul>
 			</div>
 		
 		</div>

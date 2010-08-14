@@ -818,7 +818,7 @@ ul.admin-controls li a:hover {
 	color: #006fff;
 	}
 
-/* MIDDLE -- PROFILE -  ACTIVITY
+/* PROFILE / DASHBOARD
 ================================================*/
 .prof-activity,
 .prof-pics, .prof-vids,
@@ -886,6 +886,48 @@ ul.admin-controls li a:hover {
 .dash-activity-title p a,
 .prof-activity-title p a {
 	color: #000;
+	}
+
+.prof-photos, .prof-videos,
+.prof-music {
+	clear: both;
+	margin: 10px 0 0 0;
+	width: 540px;
+	}
+
+.prof-photos .prof-photo_thumb img.profile_photo,
+.prof-videos .video img {
+	border: 3px solid #ccc;
+	margin: 10px 5px 0;
+	width: 90px;
+	float:left;
+	}
+
+.prof-videos .video img {
+	width: 160px;
+	}
+	
+.prof-photos img.profile_photo,
+.prof-videos .video img:hover {
+	border: 3px solid #006fff;
+	}
+
+.prof-music ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	}
+
+.prof-music li {
+	width: 165px;
+	margin: 10px 0 0 10px;
+	padding: 0;
+	float: left;
+	font-size: 14px;
+	}
+
+.prof-music li img {
+	float: left;
 	}
 
 .dash-update {
