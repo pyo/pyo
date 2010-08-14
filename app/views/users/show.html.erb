@@ -143,6 +143,31 @@
 		</div>
 		<!-- /END MUSIC -->
 		<% end %>
+		
+		<% unless @tweets.empty? %>
+		<!-- BEGIN TWEETS -->
+		<div class="prof-activity main" id="profile-tweets">
+			
+			<div class="prof-activity-title">
+			<h2><%= image_tag "ico-left-tweets.png" %> <%= @user.name.capitalize.possesive %> Recent Tweets</h2>
+			</div>
+			
+			<div class="prof-tweets">
+			<ul>
+			<% for tweet in @tweets %>
+				<% if tweet # sometimes twitter fails %>
+				<li class="profile_tweet">
+				<%= link_to image_tag(tweet["user"]["profile_image_url"]), "http://twitter.com/#{tweet["user"]["screen_name"]}/" %> <%= tweet["text"] %><br />
+				<span><%= link_to "#{time_ago_in_words(tweet.created_at)}", "http://twitter.com/#{tweet["user"]["screen_name"]}/status/#{tweet["id"]}" %> ago</span>
+				</li>
+				<% end %>
+			<% end %>
+			</ul>
+			</div>
+			
+		</div>
+		<!-- /END TWEETS -->
+		<% end %>
 
 		<!-- BEGIN COMMENTS -->
 		<div class="prof-activity-title">

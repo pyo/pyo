@@ -920,6 +920,8 @@ ul.admin-controls li a:hover {
 
 .prof-music li {
 	width: 165px;
+	height: 35px;
+	overflow: hidden;
 	margin: 10px 0 0 10px;
 	padding: 0;
 	float: left;
