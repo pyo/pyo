@@ -82,9 +82,13 @@
 			<p><%= link_to "See all #{@photos.total_entries} Pictures", user_photos_path(@user) %></p>
 			<% end %>
 			
+			<div class="prof-photos">
 			<% @photos.each do |photo| %>
-			
+			<div class="prof-photo_thumb">
+			<%= link_to image_tag(photo.image.url(:thumb), :class => 'profile_photo'), user_photo_path(@user,photo) %>
+			</div>
 			<% end %>
+			</div>
 		
 		</div>
 		<!-- /END PICTURES -->
@@ -97,12 +101,14 @@
 			<div class="prof-activity-title">
 			<h2><%= image_tag "ico_left-vid.png" %> <%= @user.name.capitalize.possesive %> Videos</h2>
 			<% if @videos.total_entries > @videos.per_page %>
-			<p><%= link_to "See all #{@videos.total_entries} Pictures", user_videos_path(@user) %></p>
+			<p><%= link_to "See all #{@videos.total_entries} Videos", user_videos_path(@user) %></p>
 			<% end %>
 			
+			<div class="prof-videos">
 			<% @videos.each do |video| %>
 			
 				<% div_for(video) do %>
+				<%= link_to image_tag(video.thumb_url), user_video_path(video.user,video) %>
 				<% end %>
 			
 			<% end %>
@@ -121,9 +127,11 @@
 			<p><%= link_to "See all #{@tracks.total_entries} Pictures", user_tracks_path(@user) %></p>
 			<% end %>
 			
+			<div class="prof-tracks">
 			<% for track in @tracks %>
 			
 			<% end %>
+			</div>
 		
 		</div>
 		<!-- /END MUSIC -->

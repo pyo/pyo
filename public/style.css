@@ -837,6 +837,7 @@ ul.admin-controls li a:hover {
 	}
 
 .prof-activity-title {
+	clear: both;
 	width: 540px;
 	height: 25px;
 	border-bottom: 1px solid #ccc;
