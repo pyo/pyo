@@ -81,6 +81,7 @@
 			<% if @photos.total_entries > @photos.per_page %>
 			<p><%= link_to "See all #{@photos.total_entries} Pictures", user_photos_path(@user) %></p>
 			<% end %>
+			</div>
 			
 			<div class="prof-photos">
 			<% @photos.each do |photo| %>
@@ -104,6 +105,7 @@
 			<% if @videos.total_entries > @videos.per_page %>
 			<p><%= link_to "See all #{@videos.total_entries} Videos", user_videos_path(@user) %></p>
 			<% end %>
+			</div>
 			
 			<div class="prof-videos">
 			<% @videos.each do |video| %>
@@ -114,6 +116,7 @@
 			
 			<% end %>
 			<div class="clear"></div>
+			</div>
 		</div>
 		<!-- /END VIDEOS -->
 		<% end %>
@@ -127,6 +130,7 @@
 			<% if @tracks.total_entries > @tracks.per_page %>
 			<p><%= link_to "See all #{@tracks.total_entries} Pictures", user_tracks_path(@user) %></p>
 			<% end %>
+			</div>
 			
 			<div class="prof-tracks">
 			<% for track in @tracks %>
