@@ -849,15 +849,6 @@ h4.title, .media_title {
   border-top: 1px dashed #999999;
   margin-right: 10px; }
 
-.profile_photo {
-  float: left;
-  width: 90px;
-  border: 3px solid #CCCCCC;
-  margin: 10px 5px 0; }
-
-.profile_photo:hover {
-  border: 3px solid #026DFE !important; }
-
 .comment {
   width: 600px;
   float: left;

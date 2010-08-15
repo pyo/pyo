@@ -170,11 +170,21 @@
 		<% end %>
 
 		<!-- BEGIN COMMENTS -->
-		<div class="prof-activity-title">
-		<h2><%= image_tag "ico_left-com.png" %> Comments</h2>
+		<div class="prof-activity main" id="profile-comments">
+		
+			<div class="prof-activity-title">
+			<h2><%= image_tag "ico_left-com.png" %> Comments</h2>
+			</div>
+			
+			<div class="prof-comments">
+			<%= render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""} %>
+	        <%= render :partial => @comments, :locals => {:is_owner => (current_user && @user == current_user)} %>
+			</div>
+		
+		
 		</div>
 		<!-- /END COMMENTS -->
-
+		
       </td>
       <td valign="top" id="side_bar" class="column_right">
 		

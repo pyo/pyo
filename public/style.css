@@ -889,7 +889,7 @@ ul.admin-controls li a:hover {
 	}
 
 .prof-photos, .prof-videos,
-.prof-music {
+.prof-music, .prof-comments {
 	clear: both;
 	margin: 10px 0 0 0;
 	width: 540px;
@@ -897,19 +897,13 @@ ul.admin-controls li a:hover {
 
 .prof-photos .prof-photo_thumb img.profile_photo,
 .prof-videos .video img {
-	border: 3px solid #ccc;
 	margin: 10px 5px 0;
-	width: 90px;
+	width: 95px;
 	float:left;
 	}
 
 .prof-videos .video img {
-	width: 160px;
-	}
-	
-.prof-photos img.profile_photo,
-.prof-videos .video img:hover {
-	border: 3px solid #006fff;
+	width: 165px;
 	}
 
 .prof-music ul, .prof-tweets ul {
@@ -939,12 +933,7 @@ li.profile_tweet {
 
 li.profile_tweet img {
 	float: left;
-	border: 3px solid #ccc;
 	margin: 0 5px 0 0;
-	}
-
-li.profile_tweet img:hover {
-	border: 3px solid #006fff;
 	}
 
 a.tweet_status {
