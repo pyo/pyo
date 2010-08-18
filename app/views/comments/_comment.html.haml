@@ -9,5 +9,4 @@
       = "| #{link_to('reply', '#', :class => 'reply_btn', :id=>"reply_to_#{comment.id}")}"
     %br
     = auto_link(h(comment.message), :html => {:target => '_blank'})
-    .content[comment]
     .clear
