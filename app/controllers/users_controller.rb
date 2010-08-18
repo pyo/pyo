@@ -28,16 +28,16 @@ class UsersController < ApplicationController
       conditions = nil
       if params[:type]
         conditions = case params[:type]
-        when 'statuses' then ["consumer_id = ? and consumer_type = 'User' and producer id = ? and producer_type = 'User' and type = ? and payload_type = ? and consumer_id is NULL", current_user.id, "StatusActivity"]
-        when 'pictures' then ["consumer_id = ? and consumer_type = 'User' and producer id = ? and producer_type = 'User' and type = ? and payload_type = ? and consumer_id is NULL", current_user.id, "MediaUploadActivity", "Photo"]
-        when 'audios' then ["consumer_id = ? and consumer_type = 'User' and producer id = ? and producer_type = 'User' and type = ? and payload_type = ? and consumer_id is NULL", current_user.id, "MediaUploadActivity", "Track"]
-        when 'videos' then ["consumer_id = ? and consumer_type = 'User' and producer id = ? and producer_type = 'User' and type = ? and payload_type = ? and consumer_id is NULL", current_user.id, "MediaUploadActivity", "Video"]
-        when 'blogs' then ["consumer_id = ? and consumer_type = 'User' and producer id = ? and producer_type = 'User' and type = ? and payload_type = ? and consumer_id is NULL", current_user.id, "MediaUploadActivity", "Blog"]
-        when 'comments' then ["consumer_id = ? and consumer_type = 'User' and producer id = ? and producer_type = 'User' and type = ? and payload_type = ? and consumer_id is NULL", current_user.id, "CommentActivity"]
-        when 'follows' then ["consumer_id = ? and consumer_type = 'User' and producer id = ? and producer_type = 'User' and type = ? and payload_type = ? and consumer_id is NULL", current_user.id, "FollowingActivity"]
-        when 'likes' then ["consumer_id = ? and consumer_type = 'User' and producer id = ? and producer_type = 'User' and type = ? and payload_type = ? and consumer_id is NULL", current_user.id, "LikeActivity"]
+        when 'statuses' then ["consumer_type = 'User' and consumer_id = ? and type = ?", current_user.id, "StatusActivity"]
+        when 'pictures' then ["consumer_type = 'User' and consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Photo"]
+        when 'audios' then ["consumer_type = 'User' and consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Track"]
+        when 'videos' then ["consumer_type = 'User' and consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Video"]
+        when 'blogs' then ["consumer_type = 'User' and consumer_id = ? and type = ? and payload_type = ?", current_user.id, "MediaUploadActivity", "Blog"]
+        when 'comments' then ["consumer_type = 'User' and consumer_id = ? and type = ?", current_user.id, "CommentActivity"]
+        when 'follows' then ["consumer_type = 'User' and consumer_id = ? and type = ?", current_user.id, "FollowingActivity"]
+        when 'likes' then ["consumer_type = 'User' and consumer_id = ? and type = ?", current_user.id, "LikeActivity"]
         end
-      else conditions = ["consumer_type = 'User' and consumer_id = ? and producer_type = 'User' and producer_id = ?", current_user.id]
+      else conditions = ["consumer_type = 'User' and consumer_id = ?", current_user.id]
       end
 
 			@title << format_title_by_type(params[:type])
