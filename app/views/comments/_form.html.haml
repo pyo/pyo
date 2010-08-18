@@ -3,7 +3,7 @@
     %div{:class=>comment_class}
       = hidden_field_tag("comment[consumer_id]", commentable.id)
       = hidden_field_tag("comment[consumer_type]", commentable.class.to_s)
-      = text_area_tag "comment_message", "",:onkeyup => "checkform()"
+      = text_area_tag "comment_message", "",:onKeyup => "checkform()"
       = form.submit 'Add Comment',:disabled => "disabled"
 - else
   #{link_to 'Login', login_path} or #{link_to 'Sign Up', signup_path} to comment

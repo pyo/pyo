@@ -58,7 +58,7 @@ document.getElementById('new_activity_submit').disabled=false;
 			<% if current_user %>
 			<span id="status_messageDown">0</span>
 			<% form_for(:new_activity, Activity.new) do |f| %>
-			<%= f.text_area :message, :size => "50x3", :id => "status_message", :maxLength => 500, :onkeyup => "checkform()" %>
+			<%= f.text_area :message, :size => "50x3", :id => "status_message", :maxLength => 500, :onKeyup => "checkform()" %>
 			<%= f.submit "Post", :class => "submit", :disabled => "disabled" %>
 			<% end %>
 			<div class="clear"></div>
