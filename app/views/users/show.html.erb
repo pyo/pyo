@@ -177,6 +177,7 @@
 			<div class="prof-comments">
 			<%= render :partial => "comments/form", :locals => {:commentable => @user, :comment_class=>""} %>
 	        <%= render :partial => @comments, :locals => {:is_owner => (current_user && @user == current_user)} %>
+			<div class="clear"></div>
 			</div>
 		
 		

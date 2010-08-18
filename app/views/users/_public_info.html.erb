@@ -16,8 +16,6 @@
 <% end %>
 </div>
 <!-- /LEFT (TOP) BAR -->
-
-<%= render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user? %>
 <% end %>
 
 <!-- PROFILE INFO -->
@@ -41,6 +39,10 @@
 <p><a href="<%= following_user_path(@user) %>"><%= @user.followings.size %> <span>Following</span></a></p>
 </div>
 <!-- /FOLLOWERS -->
+
+<% if current_user and current_user != @user %>
+<%= render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user? %>
+<% end %>
 
 <!-- MEDIA -->
 <div class="prof-media">

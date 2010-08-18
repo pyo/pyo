@@ -849,32 +849,6 @@ h4.title, .media_title {
   border-top: 1px dashed #999999;
   margin-right: 10px; }
 
-.comment {
-  width: 600px;
-  float: left;
-  clear: both;
-  border-bottom: 1px dashed #CCC;
-  padding: 10px 0; }
-  .comment .thumb_info {
-    float: left;
-    margin-left: 10px; }
-    .comment .thumb_info img {
-      width: 50px;
-      border: 3px solid #CCC; }
-  .comment .comment_message {
-    float: left;
-    margin-left: 10px; }
-
-.comment:hover {
-  background-color: #EEE; }
-  .comment:hover img {
-    border: 3px solid #026DFE !important; }
-
-.threaded_comment form {
-  display: none; }
-.threaded_comment .comment {
-  width: 100%; }
-
 .media_like {
   background: url(/images/media_like.png) top left no-repeat;
   display: block;

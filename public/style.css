@@ -768,7 +768,7 @@ ul.admin-controls li a:hover {
 	}
 
 .sub_info ul {
-	magin: 0;
+	margin: 0;
 	padding: 0;
 	list-style: none;
 	}
@@ -786,6 +786,58 @@ ul.admin-controls li a:hover {
 
 .sub_info li a:hover {
 	background: #e0e0e0;
+	}
+
+.comment {
+	width: 540px;
+	clear: both;
+	border-bottom: 1px dotted #bbb;
+	padding: 10px 0; 
+	}
+
+.comment .thumb_info {
+    float: left;
+	margin: 0 10px 0 0;
+	}
+
+.comment .thumb_info img {
+	width: 50px;
+	}
+
+.comment .comment_message {
+    float: left;
+	}
+
+.threaded_comment form {
+ 	display: none; 
+	}
+
+.threaded_comment .comment {
+  	width: 100%; 
+	}
+
+textarea#comment_message {
+	width: 540px;
+	font-family: "Lucida Grande", Verdana, Arial;
+	font-size: 12px;
+	}
+
+input#comment_submit {
+	float: right;
+	margin: 5px 0 0 0;
+	width: 100px;
+	height: 25px;
+	background: url(images/post_comment.gif) top left no-repeat;
+	border: 1px solid #05216a;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	cursor: pointer;
+	}
+
+input#comment_submit:active {
+	background-color: #1b63d4;
+	background-image: none;
 	}
 	
 /* PEOPLE
