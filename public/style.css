@@ -817,15 +817,16 @@ ul.admin-controls li a:hover {
 	}
 
 textarea#comment_message {
-	width: 540px;
+	width: 530px !important;
 	font-family: "Lucida Grande", Verdana, Arial;
 	font-size: 12px;
+	padding: 5px;
 	}
 
 input#comment_submit {
 	float: right;
 	margin: 5px 0 0 0;
-	width: 100px;
+	width: 110px;
 	height: 25px;
 	background: url(images/post_comment.gif) top left no-repeat;
 	border: 1px solid #05216a;
