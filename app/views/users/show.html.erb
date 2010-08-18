@@ -3,14 +3,14 @@
 
 function checkform()
 {
-var f = document.forms["new_activity"].elements;
+var f = document.forms["comment_message"].elements;
 var cansubmit=true;
 for (var i = 0; i < f.length; i++) {
 if (f[i].value.length==0) cansubmit=false;
 }
 if (cansubmit)
 {
-document.getElementById('activity_submit').disabled=false;
+document.getElementById('comment_submit').disabled=false;
 }
 }
 </script> 
