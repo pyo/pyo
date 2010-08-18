@@ -817,7 +817,8 @@ ul.admin-controls li a:hover {
 	}
 
 textarea#comment_message {
-	width: 530px !important;
+	width: 530px;
+	height: 100px;
 	font-family: "Lucida Grande", Verdana, Arial;
 	font-size: 12px;
 	padding: 5px;
