@@ -15,8 +15,8 @@
         <!-- BEGIN USER UPDATES -->
         <div class="prof-activity main" id="user-updates">
 
-			<div class="prof-activity-title">
-			<h2><%= image_tag "ico_left-feed.png" %> <%= @user.name.capitalize.possesive %> Updates</h2>
+			<div class="page-title">
+			<h2><%= image_tag "ico_left-feed.png" %> <span><%= @user.name.capitalize.possesive %> Updates</span></h2>
 			</div>
 			
 			<% unless @updates.empty? %>
