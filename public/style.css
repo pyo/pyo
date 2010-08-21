@@ -806,8 +806,12 @@ ul.admin-controls li a:hover {
 	}
 
 .comment .comment_message {
-	width: 400px;
+	width: 450px;
     float: left;
+	}
+
+.comment .comment_message p {
+	text-align: justify;
 	}
 
 .threaded_comment form {
