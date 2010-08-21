@@ -27,10 +27,10 @@
 			<div class="users">
 				<% @main_followings.each do |following| %>
 				<div class="follower">
-					<%= link_to(image_tag(user.profile.avatar.url(:dashboard)), user) %>
-					<div class="user_name"><%= link_to user.name, user %> / <%= user.profile.full_name if user.profile.full_name %></div>
-					<div class="city_and_state"><%= user.city_and_state.join(', ') %></div>
-					<div class="class"><%= user.talent_type %></div>
+					<%= link_to(image_tag(following.profile.avatar.url(:dashboard)), following) %>
+					<div class="user_name"><%= link_to following.name, following %> / <%= following.profile.full_name if following.profile.full_name %></div>
+					<div class="city_and_state"><%= following.city_and_state.join(', ') %></div>
+					<div class="class"><%= following.talent_type %></div>
 				</div>
 				<% end %>
 			</div>

@@ -27,10 +27,10 @@
 			<div class="users">
 				<% @connects.each do |connect| %>
 				<div class="follower">
-					<%= link_to(image_tag(user.profile.avatar.url(:dashboard)), user) %>
-					<div class="user_name"><%= link_to user.name, user %> / <%= user.profile.full_name if user.profile.full_name %></div>
-					<div class="city_and_state"><%= user.city_and_state.join(', ') %></div>
-					<div class="class"><%= user.talent_type %></div>
+					<%= link_to(image_tag(connect.profile.avatar.url(:dashboard)), connect) %>
+					<div class="user_name"><%= link_to connect.name, connect %> / <%= connect.profile.full_name if connect.profile.full_name %></div>
+					<div class="city_and_state"><%= connect.city_and_state.join(', ') %></div>
+					<div class="class"><%= connect.talent_type %></div>
 				</div>
 				<% end %>
 			</div>
