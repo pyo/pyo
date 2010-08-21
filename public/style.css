@@ -796,6 +796,7 @@ ul.admin-controls li a:hover {
 	}
 
 .comment .thumb_info {
+	width: 50px;
     float: left;
 	margin: 0 10px 0 0;
 	}
@@ -805,6 +806,7 @@ ul.admin-controls li a:hover {
 	}
 
 .comment .comment_message {
+	width: 400px;
     float: left;
 	}
 
