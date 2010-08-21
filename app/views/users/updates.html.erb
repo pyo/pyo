@@ -1,0 +1,76 @@
+		<% if @user.suspended? %>
+		  <p>This user has been suspended.</p>
+		    <%= link_to "Restore this User", restore_user_path(@user), :method => :put if current_user && current_user.super_user? %>
+
+		<% else %>
+		
+		<%= render "users/public_top" %>
+
+<!-- BEGIN COLUMNS -->
+<table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="top" id="content" class="column_left">
+
+        <!-- BEGIN USER UPDATES -->
+        <div class="prof-activity main" id="user-updates">
+
+			<div class="prof-activity-title">
+			<h2><%= image_tag "ico_left-feed.png" %> <%= @user.name.capitalize.possesive %> Updates</h2>
+			</div>
+			
+			<% unless @updates.empty? %>
+			
+			<% @updates.each do |activity| %>
+			
+			<% div_for(activity, :class => 'activity') do %>
+	
+	          <div class="thumb">
+	          <%= link_to(image_tag(activity.producer.profile.avatar(:thumb)), activity.producer) if activity.producer %>
+	          </div>
+	
+	          <div class="activity_detail">
+	          <p><%= link_to activity.producer.name, activity.producer %>
+		      <span class="activity-desc"><%= display_notification(activity) %></span></p>
+		      <p class="act_time"><%= image_tag(activity.icon, :class => 'icon') if activity.respond_to?(:icon) %> <span><%= "#{time_ago_in_words(activity.created_at)}" %> ago</span></p>
+		      </div>
+		
+		      <div class="clear"></div>
+		
+            <% end %>
+				
+			<% end %>
+			
+			<% else %>
+			
+			<p>No Updates/Activity yet...</p>
+			
+			<% end %>
+			
+			<%= will_paginate @updates %>
+			
+        </div>
+        <!-- /END USER UPDATES -->
+		
+      </td>
+      <td valign="top" id="side_bar" class="column_right">
+		
+		<%= render "users/public_info" %>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /END COLUMNS -->
+
+<% if current_user and current_user != @user %>
+
+	<% if current_user.following?(@user) %>
+	<div style="clear:both;float:right;padding:10px 10px 0 0;">
+	<%= link_to '[ X ] CLICK HERE TO UNFOLLOW THIS PROFILE', unfollow_user_path(@user), :method => :post %>
+	</div>
+	<% end %>
+	
+<% end %>
+
+<% end %>
