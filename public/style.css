@@ -1064,6 +1064,10 @@ a.tweet_status {
 	margin: 0;
 	}
 
+.activity_detail p {
+	text-align: justify;
+	}
+
 .activity-desc { color: #666; }
 
 .reg { color: #333; }

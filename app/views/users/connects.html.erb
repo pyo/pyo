@@ -1,0 +1,70 @@
+		<% if @user.suspended? %>
+		  <p>This user has been suspended.</p>
+		    <%= link_to "Restore this User", restore_user_path(@user), :method => :put if current_user && current_user.super_user? %>
+
+		<% else %>
+		
+		<%= render "users/public_top" %>
+
+<!-- BEGIN COLUMNS -->
+<table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="top" id="content" class="column_left">
+
+        <!-- BEGIN USER FOLLOWING -->
+        <div class="prof-activity main" id="user-followers">
+
+			<div class="prof-activity-title">
+			<h2><%= image_tag "ico_left-connects.png" %> <%= @user.name.capitalize %> has <%= @user.connects.size %> Connects</h2>
+			<p style="color:#777;">Mutual follows between <%= @user.name.capitalize %> and the users they follow. | Back to: <%= link_to "Followers", followers_user_path(@user) %></p>
+			</div>
+			
+			<% unless @connects.empty? %>
+			
+			<%= render "sorting" %>
+
+			<div class="users">
+				<% @connects.each do |connect| %>
+				<div class="follower">
+					<%= link_to(image_tag(user.profile.avatar.url(:dashboard)), user) %>
+					<div class="user_name"><%= link_to user.name, user %> / <%= user.profile.full_name if user.profile.full_name %></div>
+					<div class="city_and_state"><%= user.city_and_state.join(', ') %></div>
+					<div class="class"><%= user.talent_type %></div>
+				</div>
+				<% end %>
+			</div>
+			
+			<%= will_paginate @connects %>
+			
+			<% else %>
+			
+			<p>No Connects yet...</p>
+			
+			<% end %>
+			
+        </div>
+        <!-- /END USER FOLLOWING -->
+		
+      </td>
+      <td valign="top" id="side_bar" class="column_right">
+		
+		<%= render "users/public_info" %>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /END COLUMNS -->
+
+<% if current_user and current_user != @user %>
+
+	<% if current_user.following?(@user) %>
+	<div style="clear:both;float:right;padding:10px 10px 0 0;">
+	<%= link_to '[ X ] CLICK HERE TO UNFOLLOW THIS PROFILE', unfollow_user_path(@user), :method => :post %>
+	</div>
+	<% end %>
+	
+<% end %>
+
+<% end %>
