@@ -17,7 +17,7 @@
 
 			<div class="prof-activity-title">
 			<h2><%= image_tag "ico_left-following.png" %> <%= @user.name.capitalize.possesive %> <%= @user.followers.size %> Followers</h2>
-			<p><%= link_to "Connects (#{@user.connects_size})", connects_user_path %></p>
+			<p><%= link_to "See #{@user.name.capitalize.possesive} (#{@user.connects_size}) Connects", connects_user_path %></p>
 			</div>
 			
 			<% unless @user_followers.empty? %>
