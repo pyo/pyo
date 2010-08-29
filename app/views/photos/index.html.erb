@@ -1,0 +1,21 @@
+<% if @user.suspended? %>
+		  
+<%= render "users/suspended" %>
+
+<% else %>
+		
+<%= render "users/public_top_photos" %>
+
+<!-- BEGIN COLUMNS -->
+<div id="columns">
+	
+	<!-- BEGIN LEFT SIDE -->
+	<!-- /END LEFT SIDE -->
+	
+	<!-- BEGIN RIGHT SIDE -->
+	<!-- /END RIGHT SIDE -->
+	
+</div>
+<!-- /END COLUMNS -->
+
+<% end %>

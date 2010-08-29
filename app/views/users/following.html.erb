@@ -1,10 +1,10 @@
-		<% if @user.suspended? %>
-		  <p>This user has been suspended.</p>
-		    <%= link_to "Restore this User", restore_user_path(@user), :method => :put if current_user && current_user.super_user? %>
+<% if @user.suspended? %>
+		  
+<%= render "users/suspended" %>
 
-		<% else %>
+<% else %>
 		
-		<%= render "users/public_top" %>
+<%= render "users/public_top" %>
 
 <!-- BEGIN COLUMNS -->
 <table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -39,7 +39,7 @@
 			
 			<% else %>
 			
-			<p>This user isn't following anyone yet...</p>
+			<p style="clear:both;">This user isn't following anyone yet...</p>
 			
 			<% end %>
 			

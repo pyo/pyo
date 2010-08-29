@@ -1,0 +1,2 @@
+<p>This user has been suspended.</p>
+<%= link_to "Restore this User", restore_user_path(@user), :method => :put if current_user && current_user.super_user? %>

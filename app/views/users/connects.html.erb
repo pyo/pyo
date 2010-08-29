@@ -1,10 +1,10 @@
-		<% if @user.suspended? %>
-		  <p>This user has been suspended.</p>
-		    <%= link_to "Restore this User", restore_user_path(@user), :method => :put if current_user && current_user.super_user? %>
+<% if @user.suspended? %>
+		  
+<%= render "users/suspended" %>
 
-		<% else %>
+<% else %>
 		
-		<%= render "users/public_top" %>
+<%= render "users/public_top" %>
 
 <!-- BEGIN COLUMNS -->
 <table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -17,7 +17,7 @@
 
 			<div class="prof-activity-title">
 			<h2><%= image_tag "ico_left-connects.png" %> <%= @user.name.capitalize %> has <%= @user.connects_size %> Connects</h2>
-			<p style="color:#777;margin-bottom:10px;">Mutual follows between <%= @user.name.capitalize %> and the users they follow. | Back to: <%= link_to "Followers", followers_user_path(@user) %></p>
+			<p style="color:#777;margin-bottom:10px;">Mutual follows between <%= @user.name.capitalize %> and the users they follow.</p>
 			</div>
 			
 			<% unless @connects.empty? %>
@@ -39,7 +39,7 @@
 			
 			<% else %>
 			
-			<p>No Connects yet...</p>
+			<p style="clear:both;">No Connects yet...</p>
 			
 			<% end %>
 			
