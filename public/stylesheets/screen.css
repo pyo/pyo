@@ -791,22 +791,6 @@ h4.title, .media_title {
   margin-top: 10px;
   margin-bottom: 10px; }
 
-.photo_thumb:hover, .video_thumb:hover {
-  background-color: #EEE; }
-  .photo_thumb:hover img, .video_thumb:hover img {
-    border: 3px solid #026DFE !important; }
-
-.photo_thumb, .video_thumb {
-  float: left;
-  margin: 0 20px 10px 0;
-  width: 160px;
-  padding: 10px;
-  text-align: center; }
-  .photo_thumb .title, .video_thumb .title {
-    font-weight: bold; }
-  .photo_thumb img, .video_thumb img {
-    border: 3px solid #CCC; }
-
 .video_thumb {
   width: 160px !important; }
   .video_thumb img {

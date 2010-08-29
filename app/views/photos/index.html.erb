@@ -13,6 +13,8 @@
 	<div id="column_left">
 		<% unless @photos.empty? %>
 			
+			<div class="main-left">
+			
 			<% @photos.each do |photo| %>
 			<div class="photo_thumb">
 				<a href="<%= user_photo_path(photo.user,photo) %>" title="<% if photo.title %> <%= photo.title %> <% end %>"><%= image_tag(photo.image.url(:thumb)) %></a>
@@ -20,9 +22,13 @@
 			<% end %>
 			<div class="clear"></div>
 			
+			</div>
+			
 		<% else %>
 		
+		<div class="main-left">
 		<p><%= @user.name %> doesn't have any pictures yet...</p>
+		</div>
 		
 		<% end %>
 	</div>

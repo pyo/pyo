@@ -342,10 +342,17 @@ td#content {
 	}
 
 #column_left {
-	width: 540px;
+	float: left;
+	width: 560px;
+	}
+
+.main-left {
+	width: 560px;
+	padding: 10px 0 0 0;
 	}
 
 #column_right {
+	float: left;
 	width: 320px;
 	}
 
@@ -1197,4 +1204,14 @@ span.act-comment {
 
 .top-media-user-details h2 img {
 	width: 20px;
+	}
+
+.photo_thumb {
+	float: left;
+	margin: 0 10px 10px 0;
+	width: 130px;
+	}
+
+.photo_thumb img {
+	width: 130px;
 	}
