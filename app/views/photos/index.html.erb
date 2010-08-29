@@ -10,9 +10,26 @@
 <div id="columns">
 	
 	<!-- BEGIN LEFT SIDE -->
+	<div id="column_left">
+		<% unless @photos.empty? %>
+			
+			<% @photos.each do |photo| %>
+			<div class="photo_thumb">
+				<a href="<%= user_photo_path(photo.user,photo) %>" title="<% if photo.title %> <%= photo.title %> <% end %>"><%= image_tag(photo.image.url(:thumb)) %></a>
+			</div>
+			<% end %>
+			<div class="clear"></div>
+			
+		<% else %>
+		
+		<p><%= @user.name %> doesn't have any pictures yet...</p>
+	</div>
 	<!-- /END LEFT SIDE -->
 	
 	<!-- BEGIN RIGHT SIDE -->
+	<div id="column_right">
+		<%= render "shared/square_ad" %>
+	</div>
 	<!-- /END RIGHT SIDE -->
 	
 </div>

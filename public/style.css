@@ -335,8 +335,18 @@ td#content {
 /*PYO - COLUMNS (CSS)
 ================================================*/
 #columns {
+	border-top: 1px solid #ccc;
+	clear: both;
 	margin: 10px 0 0 0;
 	padding: 0;
+	}
+
+#column_left {
+	width: 540px;
+	}
+
+#column_right {
+	width: 320px;
 	}
 
 /* DASHBOARD
@@ -1158,3 +1168,33 @@ span.act-comment {
 	background-image: none;
 	background-color: #eee;
 }
+
+/* USER MEDIA
+================================================*/
+.top-media-user-info {
+	width: 875px;
+	height: 60px;
+	padding: 5px 0 0 0
+	}
+
+.top-media-user-pic {
+	margin: 0 10px 0 0;
+	float: left;
+	width: 60px;
+	height: 60px;
+	}
+
+.top-media-user-pic img {
+	width: 60px;
+	height: 60px;
+	}
+
+.top-media-user-details h2 {
+	margin: 0 0 5px 0;
+	color: #000;
+	font-size: 20px !important;
+	}
+
+.top-media-user-details h2 img {
+	width: 20px;
+	}
