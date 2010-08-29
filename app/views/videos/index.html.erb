@@ -1,0 +1,47 @@
+<% if @user.suspended? %>
+		  
+<%= render "users/suspended" %>
+
+<% else %>
+		
+<%= render "users/public_top_videos" %>
+
+<!-- BEGIN COLUMNS -->
+<div id="columns">
+	
+	<!-- BEGIN LEFT SIDE -->
+	<div id="column_left">
+		<% unless @videos.empty? %>
+			
+			<div class="main-left">
+			
+			<% @videos.each do |video| %>
+			<div class="video_thumb">
+				<a href="<%= user_video_path(video.user,video) %>" title="<% if video.title %> <%= video.title %> <% end %>"><%= image_tag(video.thumb_url) %></a>
+				<p><%= link_to video.title, user_video_path(video.user,video) %></p>
+			</div>
+			<% end %>
+			<div class="clear"></div>
+			
+			</div>
+			
+		<% else %>
+		
+		<div class="main-left">
+		<p><%= @user.name %> doesn't have any videos yet...</p>
+		</div>
+		
+		<% end %>
+	</div>
+	<!-- /END LEFT SIDE -->
+	
+	<!-- BEGIN RIGHT SIDE -->
+	<div id="column_right">
+		<%= render "shared/square_ad" %>
+	</div>
+	<!-- /END RIGHT SIDE -->
+	
+</div>
+<!-- /END COLUMNS -->
+
+<% end %>

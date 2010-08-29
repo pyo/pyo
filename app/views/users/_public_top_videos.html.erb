@@ -1,0 +1,18 @@
+<!-- BEGIN USER INFO (TOP) -->
+<div class="top-media-user-info">
+	
+	<div class="top-media-user-pic">
+	<%= link_to(image_tag(@user.profile.avatar.url(:dashboard)), @user) %>
+	</div>
+	
+	<div class="top-media-user-details">
+	<h2><%= image_tag "ico_left-vid.png" %> <%= @user.name.capitalize_words.possesive %> Videos</h2>
+	<p><%= link_to "&lsaquo; Back to #{@user.name.capitalize_words.possesive} Profile", @user %></p>
+	</div>
+	
+</div>
+<!-- /END INFO (TOP) -->
+
+<% if flash[:notice] %>
+<p class="notify"><%= flash[:notice] %></p>
+<% end %> 
