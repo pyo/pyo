@@ -335,7 +335,6 @@ td#content {
 /*PYO - COLUMNS (CSS)
 ================================================*/
 #columns {
-	border-top: 1px solid #ccc;
 	clear: both;
 	margin: 10px 0 0 0;
 	padding: 0;
@@ -618,7 +617,6 @@ input#direct_message_submit:active {
 .prof-joined {
 	margin: 5px 0 0 0;
 	width: 875px;
-	border-bottom: 1px solid #ccc;
 	padding: 0 0 10px 5px;
 	color: #555;
 	}
@@ -1206,13 +1204,22 @@ span.act-comment {
 	width: 20px;
 	}
 
-.photo_thumb {
+.photo_thumb, .video_thumb {
 	float: left;
 	margin: 0 10px 10px 0;
 	width: 130px;
-	height: 200px;
+	}
+
+.video_thumb {
+	margin-right: 20px;
+	width: 160px;
+	height: 160px;
 	}
 
 .photo_thumb img {
 	width: 130px;
+	}
+
+.video_thumb img {
+	width: 160px;
 	}

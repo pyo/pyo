@@ -1,0 +1,48 @@
+<% if @user.suspended? %>
+		  
+<%= render "users/suspended" %>
+
+<% else %>
+		
+<%= render "users/public_top_songs" %>
+
+<!-- BEGIN COLUMNS -->
+<div id="columns">
+	
+	<!-- BEGIN LEFT SIDE -->
+	<div id="column_left">
+		<% unless @tracks.empty? %>
+			
+			<div class="main-left">
+			
+			<% @tracks.each do |track| %>
+			<div class="song_item">
+			<%= link_to(image_tag(@user.profile.avatar.url(:dashboard)), [track.user, track]) %>
+			<p><%= h track.user.name %> - <strong><%= h track.name %></strong></p>
+			<p><%= link_to 'Play', [track.user, track] %> | <% if track.comments_count > 0 %> <%= link_to pluralize(track.comments_count, 'Comment'), user_track_path(track.user, track, :anchor => 'comments') %> <% else %> <%= link_to 'Post a Comment', user_track_path(track.user, track, :anchor => 'comments') %></p>
+			</div>
+			<% end %>
+			<div class="clear"></div>
+			
+			</div>
+			
+		<% else %>
+		
+		<div class="main-left">
+		<p><%= @user.name %> doesn't have any songs yet...</p>
+		</div>
+		
+		<% end %>
+	</div>
+	<!-- /END LEFT SIDE -->
+	
+	<!-- BEGIN RIGHT SIDE -->
+	<div id="column_right">
+		<%= render "shared/square_ad" %>
+	</div>
+	<!-- /END RIGHT SIDE -->
+	
+</div>
+<!-- /END COLUMNS -->
+
+<% end %>

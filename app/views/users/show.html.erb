@@ -126,7 +126,7 @@
 			<div class="prof-activity-title">
 			<h2><%= image_tag "ico_left-son.png" %> <%= @user.name.capitalize.possesive %> Music</h2>
 			<% if @tracks.total_entries > @tracks.per_page %>
-			<p><%= link_to "See all #{@tracks.total_entries} Pictures", user_tracks_path(@user) %></p>
+			<p><%= link_to "See all #{@tracks.total_entries} Songs", user_tracks_path(@user) %></p>
 			<% end %>
 			</div>
 			
