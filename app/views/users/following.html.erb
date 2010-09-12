@@ -4,7 +4,9 @@
 
 <% else %>
 		
-<%= render "users/public_top" %>
+<% if flash[:notice] %>
+<p class="notify"><%= flash[:notice] %></p>
+<% end %> 
 
 <!-- BEGIN COLUMNS -->
 <table class="columns" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -16,7 +18,7 @@
         <div class="prof-activity main" id="user-followers">
 
 			<div class="prof-activity-title">
-			<h2><%= image_tag "ico_left-following.png" %> <%= @user.name.capitalize %> follows <%= @user.followings.size %> people</h2>
+			<h2><%= image_tag "ico_left-following.png" %> <%= link_to(@user.name.capitalize), @user) %> follows <%= @user.followings.size %> people</h2>
 			<p><%= link_to "See #{@user.name.capitalize.possesive} (#{@user.connects_size}) Connects", connects_user_path %></p>
 			</div>
 			
