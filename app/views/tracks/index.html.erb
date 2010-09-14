@@ -19,7 +19,7 @@
 			<div class="song_item">
 			<%= link_to(image_tag(@user.profile.avatar.url(:dashboard)), [track.user, track]) %>
 			<p><%= h track.user.name %> - <strong><%= h track.name %></strong></p>
-			<p><%= link_to 'Play', [track.user, track] %> | <% if track.comments_count > 0 %> <%= link_to pluralize(track.comments_count, 'Comment'), user_track_path(track.user, track, :anchor => 'comments') %> <% else %> <%= link_to 'Post a Comment', user_track_path(track.user, track, :anchor => 'comments') %></p>
+			<p><%= link_to 'Play', [track.user, track] %> | <% if track.comments_count > 0 %> <%= link_to pluralize(track.comments_count, 'Comment'), user_track_path(track.user, track, :anchor => 'comments') %> <% else %> <%= link_to 'Post a Comment', user_track_path(track.user, track, :anchor => 'comments') %> <% end %></p>
 			</div>
 			<% end %>
 			<div class="clear"></div>
