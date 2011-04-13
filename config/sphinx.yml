@@ -2,7 +2,7 @@ development:
   enable_star: 1
   min_infix_len: 2
   morphology: stem_en
-  bin_path: '/usr/local/bin'
+  bin_path: '/Users/dustin/.gem/ruby/1.8/bin'
   charset_table: "0..9, a..z, _, @, A..Z->a..z, U+410..U+42F->U+430..U+44F, U+430..U+44F"
 test:
   enable_star: 1

@@ -10,7 +10,7 @@
 </div>
 <!-- /DASH IMAGE -->
 
-<!-- MEDIA -->
+<!-- DASH BOARD OPTIONS - MEDIA -->
 <div class="dash-options">
 <ul>
 <% if current_page?(dashboard_path) %>
@@ -39,11 +39,12 @@
 <li><a href="<%= inbox_user_path(current_user) %>"><%= image_tag "ico_left-inbox.png" %> <span>Inbox (<%= "#{current_user.messages.unread.count}" %>)</strong></span></a></li>
 <% end %>
 <li><a href="<%= likes_user_path(current_user) %>"><%= image_tag "ico_left-lik.png" %> <span>My Likes (<%= "#{current_user.likes.size}" %>)</span></a></li>
+<li><a href="<%= user_photos_path(current_user) %>"><%= image_tag "ico_left-pic.png" %> <span>My Pictures (<%= "#{current_user.photos.size}" %>)</span></a></li>
 <li><a href="<%= user_videos_path(current_user) %>"><%= image_tag "ico_left-vid.png" %> <span>My Videos (<%= "#{current_user.videos.size}" %>)</span></a></li>
 <li><a href="<%= user_tracks_path(current_user) %>"><%= image_tag "ico_left-son.png" %> <span>My Songs (<%= "#{current_user.tracks.size}" %>)</span></a></li>
 </ul>
 </div>
-<!-- /MEDIA -->
+<!-- / DASHBOARD OPTIONS - MEDIA -->
 
 <!-- FOLLOWING -->
 <div class="prof-following">

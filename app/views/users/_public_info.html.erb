@@ -40,6 +40,19 @@
 </div>
 <!-- /FOLLOWERS -->
 
+<% unless @user.profile.bio.empty? %>
+<!-- BIO -->
+<div class="prof-bio">
+<h3>Bio</h3>
+
+	<div class="bio-text">
+	<%= @user.profile.bio %>
+	</div>
+                              	
+</div>
+<!-- /BIO -->
+<% end %>
+
 <% if current_user and current_user != @user %>
 <%= render :partial => "profiles/admin_controls", :locals=>{:user=>@user} if current_user.super_user? %>
 <% end %>
@@ -72,19 +85,6 @@
     
 </div>
 <!-- /FOLLOWING -->
-<% end %>
-
-<% unless @user.profile.bio.empty? %>
-<!-- BIO -->
-<div class="prof-bio">
-<h3>Bio</h3>
-
-	<div class="bio-text">
-	<%= @user.profile.bio %>
-	</div>
-                              	
-</div>
-<!-- /BIO -->
 <% end %>
 
 <% unless @posts.empty? %>

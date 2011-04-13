@@ -41,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :profiles
 
-  map.resources :users, :as => "members",
+  map.resources :users, :as => "people",
                 :has_one => [:password, :confirmation], 
                 :member => {
                   :follow                 => :post,
