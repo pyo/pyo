@@ -1,0 +1,27 @@
+h1. Count Von Count
+
+h2. Disclaimer
+
+The code in here still needs lots of love.
+
+h2. Installation
+
+<pre><code>script/plugin install git://github.com/toastyapps/count_von_count.git
+script/generate count_migration
+rake db:migrate
+</code></pre>
+
+h2. Usage
+
+From inside your controller action you may now do
+<pre><code>@post = Post.find(params[:id])
+@post.update_view_count(request)
+</code></pre>
+
+You also get a view_count helper method
+<code>@post.view_count # 10</code>
+
+If you want to store the total view count on the model add a field called "total_view_count" to your model
+
+You may also add IP addresses to a blacklist so that they are not recorded by adding this to an initializer
+<code>CountVonCount.blacklist = %w{127.0.0.1}</code>
