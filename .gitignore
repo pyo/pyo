@@ -1,3 +1,4 @@
+.project
 cache/*
 config/database.yml
 config/sphinx.yml
