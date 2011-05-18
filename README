@@ -4,13 +4,17 @@ This the Ruby on Rails application powering PutYourselfOn.com.
 
 The project has git submodules for plugins and the capistrano / moonshine libraries.
 
+Bootstrapping
+
+Add a config/database.yml for the project.  Railsmachine deployment takes care of this, so don't worry about checking a new one in.
+
 Be sure to run:
 
   $ git submodule init && git submodule update
 
 Pivotal Tracker for tasks is here:
 
-http://www.pivotaltracker.com/projects/63649
+https://www.pivotaltracker.com/projects/294381
 
 Production Server is Amazon EC2.
 
