@@ -36,6 +36,18 @@ Please note the submodules are required to deploy to staging or production:
 
   git submodule init && git submodule update
 
+NOTE: We removed two submodules:
+
+[submodule "vendor/plugins/count_von_count"]
+	path = vendor/plugins/count_von_count
+	url = git://github.com/toastyapps/count_von_count
+
+[submodule "vendor/plugins/covalence"]
+	path = vendor/plugins/covalence
+	url = git://github.com/digitalscientists/covalence.git
+
+So the only submodule we use is the moonshine one.
+
 == Making changes to the server
 
 To add new packages or make configuration changes on the server, please
