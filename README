@@ -4,11 +4,24 @@ This the Ruby on Rails application powering PutYourselfOn.com.
 
 The project has git submodules for plugins and the capistrano / moonshine libraries.
 
-Bootstrapping
+== Bootstrapping
 
 Add a config/database.yml for the project.  Railsmachine deployment takes care of this, so don't worry about checking a new one in.
 
-Be sure to run:
+Add RVM to the project.  Here's a sample:
+
+rvm 1.8.7@pyo
+
+Then you'll need to install rails (and rack):
+
+gem install rails -v 2.3.3
+gem install mysql
+
+You can then load the schema:
+
+rake db:schema:load
+
+Also be sure to run:
 
   $ git submodule init && git submodule update
 
@@ -25,6 +38,16 @@ http://67.202.20.214
 
 username: admin
 password: testit!
+
+== Deployment
+
+You may need to install the capistrano-ext gem:
+
+gem install capistrano-ext
+
+You can then deploy to staging:
+
+cap staging deploy
 
 == Required libraries
 
