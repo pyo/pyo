@@ -89,6 +89,7 @@ class UsersController < ApplicationController
   end
   
   def show
+=begin
 		@title					= "#{@user.name.capitalize} (#{@user.profile.full_name})"
 		@photos         = @user.photos.recent.paginate(:per_page => 10, :page => 1)
 		@flickr_photos  = @user.flickr_photos(8)
@@ -106,6 +107,8 @@ class UsersController < ApplicationController
     @posts          = @user.blogs.paginate(:per_page => 5, :page => 1)
     @groups         = @user.groups.paginate(:per_page => 5, :page => 1)
     @user.profile.update_view_count(request)
+=end    
+    render :action=>'show_v2', :layout=>'pyo2'
   end
 
   def updates
