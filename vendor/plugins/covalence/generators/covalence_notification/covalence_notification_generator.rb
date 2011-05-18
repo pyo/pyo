@@ -1,0 +1,2 @@
+class CovalenceNotificationGenerator < ModelGenerator
+end

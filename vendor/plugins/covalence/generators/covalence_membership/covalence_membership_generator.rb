@@ -1,0 +1,2 @@
+class CovalenceMembershipGenerator < ModelGenerator
+end

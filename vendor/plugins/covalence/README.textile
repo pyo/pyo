@@ -1,0 +1,7 @@
+h1. Covalence
+
+h2. Installation
+
+@script/plugin install git@github.com:digitalscientists/covalence.git@
+
+h2. Usage

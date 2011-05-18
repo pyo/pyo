@@ -1,0 +1,2 @@
+class CovalenceRelationshipGenerator < ModelGenerator
+end
