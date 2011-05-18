@@ -4,13 +4,17 @@ This the Ruby on Rails application powering PutYourselfOn.com.
 
 The project has git submodules for plugins and the capistrano / moonshine libraries.
 
+Bootstrapping
+
+Add a config/database.yml for the project.  Railsmachine deployment takes care of this, so don't worry about checking a new one in.
+
 Be sure to run:
 
   $ git submodule init && git submodule update
 
 Pivotal Tracker for tasks is here:
 
-http://www.pivotaltracker.com/projects/63649
+https://www.pivotaltracker.com/projects/294381
 
 Production Server is Amazon EC2.
 
@@ -35,6 +39,18 @@ password: testit!
 Please note the submodules are required to deploy to staging or production:
 
   git submodule init && git submodule update
+
+NOTE: We removed two submodules:
+
+[submodule "vendor/plugins/count_von_count"]
+	path = vendor/plugins/count_von_count
+	url = git://github.com/toastyapps/count_von_count
+
+[submodule "vendor/plugins/covalence"]
+	path = vendor/plugins/covalence
+	url = git://github.com/digitalscientists/covalence.git
+
+So the only submodule we use is the moonshine one.
 
 == Making changes to the server
 
