@@ -17,7 +17,7 @@
 #	Git
 #############################################################
 :scm: :git
-:repository: git@github.com:pyo/pyo.git
+:repository: git@github.com:highgroove/pyo.git
 :deploy_via: remote_cache
 :keep_releases: 20
 
