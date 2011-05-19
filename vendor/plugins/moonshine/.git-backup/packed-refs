@@ -1,0 +1,5 @@
+# pack-refs with: peeled 
+90035442c2d6e93f3397e7efa4c33d3803fbf2bb refs/remotes/origin/rails-3
+9acbc1bd23c4393307cfd73a979dec0b6950b5f0 refs/remotes/origin/multistage-generator
+4bf2402a43b4cae08e361a73676896053640d7f4 refs/remotes/origin/master
+a0ee2360ac8e7f1bc71f7d3d0289c07d14d1a11b refs/remotes/origin/gh-pages
